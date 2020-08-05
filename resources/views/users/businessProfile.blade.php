@@ -34,6 +34,14 @@
           	<div id="iusuario" class="container tab-pane active "><br>
 				<div class="content-perfil-empresa">
 					<form action="/action_page.php">
+						<div class="row media-perfil">
+							<div class="col-md-4 media-perfil-c-4">
+								<div class="a-basicos-postulante-img j-center"><img class="basicos-postulante-c-4" :src="imagePreview" alt="postulante"></div>
+								<label for="image">Foto de Perfil</label>
+								<input type="file" class="form-control" id="image" ref="file" @change="onImageChange" accept="image/*">
+
+							</div>
+						</div>
 						<div class="row perfil-empresa-form">
 							<div class="col-md-6 ">
 								<div class="form-group">
@@ -142,6 +150,8 @@
             el: '#userProfile-dev',
             data() {
                 return {
+					image:"",
+					imagePreview:"{{ Auth::user()->image }}",
                     name:"{{ Auth::user()->name }}",
                     lastname: "{{ Auth::user()->lastname }}",
 					email:"{{ Auth::user()->email }}",
@@ -156,9 +166,27 @@
             },
             methods: {
 
+				onImageChange(e){
+                    this.image = e.target.files[0];
+
+                    this.imagePreview = URL.createObjectURL(this.image);
+                    let files = e.target.files || e.dataTransfer.files;
+                    if (!files.length)
+                        return;
+                
+                    this.createImage(files[0]);
+                },
+                createImage(file) {
+                    let reader = new FileReader();
+                    let vm = this;
+                    reader.onload = (e) => {
+                        vm.image = e.target.result;
+                    };
+                    reader.readAsDataURL(file);
+                },
                 updateUserProfile(){
                     this.loading = true
-                    axios.post("{{ url('/profile/business/update') }}", {name: this.name, lastname: this.lastname}).then(res => {
+                    axios.post("{{ url('/profile/business/update') }}", {name: this.name, lastname: this.lastname, image: this.image}).then(res => {
                         this.loading = false
                         if(res.data.success == true){
 
