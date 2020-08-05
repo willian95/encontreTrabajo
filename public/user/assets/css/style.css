@@ -12,7 +12,7 @@ html {
 }
 
 .loader {
-    margin-top:45%;
+    margin-top:45vh;
     margin-left: 45%;
     border: 16px solid #f3f3f3; /* Light grey */
     border-top: 16px solid #3498db; /* Blue */
