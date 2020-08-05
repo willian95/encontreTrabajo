@@ -904,7 +904,7 @@
                         company:this.company,
                         jobBg:this.jobBg,
                         startDateBg:this.startDateBg,
-                        endDateBg:this.endtDateBg
+                        endDateBg:this.endDateBg
                     })
                     .then(res => {
 
