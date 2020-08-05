@@ -4,7 +4,8 @@ html {
 
 .loader-cover{
     position: fixed;
-    width: 100%;
+    left:0;
+    right: 0;
     z-index: 99999999;
     background-color: rgba(0, 0, 0, 0.6);
     top: 0;
