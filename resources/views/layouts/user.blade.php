@@ -57,12 +57,12 @@
                         <form class="form-inline form-search-content">
                             <input class="form-control form-control-sm " type="text" placeholder="Buscar"
                                 aria-label="Search">
-                            <img class="img-barra-search" src="assets/img/search.png" alt="">
+                            <img class="img-barra-search" src="{{ asset('user/assets/img/search.png') }}" alt="">
                             </form>
                     </div>
                     <div class="dropdown p-rigth">
                         <button type="button" class="btn btn-primary dropdown-toggle button-user user-b" data-toggle="dropdown">
-                            <img class="img-user-icon" src="assets/img/user-b.png" alt="">
+                            <img class="img-user-icon" src="{{ asset('user/assets/img/user-b.png') }}" alt="">
                         </button>
                         <div class="dropdown-menu">
                             <a class="dropdown-item" href="#">Link 1</a>
