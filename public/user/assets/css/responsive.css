@@ -1,0 +1,260 @@
+
+/* Normal desktop :992px. */
+@media (min-width: 992px) and (max-width: 1197px) {
+    .content.a-academicos label {
+        font-size: 12px;
+    }
+    div#rlabora {
+        margin-top: 40px;
+        font-size: 12px;
+    }
+    div#rlabora .col textarea {
+        flex: 0 0 100%;
+    }
+    div#labora {
+        font-size: 12px;
+    }
+    div#rlabora {
+        font-size: 12px;
+    }
+    .content-otros {
+        font-size: 12px;
+    }
+}
+@media (min-width: 525px) and (max-width: 991px) {
+    .content-abasico-basicos {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+    }
+    .row.r-laboral-form .col {
+        max-width: 100%;
+        flex: 0 0 100%!important;
+    }
+    div#labora {
+        font-size: 12px;
+    }
+    .content-otros {
+        font-size: 12px;
+    }
+    div#rlabora .col {
+        flex: 0 0 50%;
+    }
+    .row.a-academicos-form .col {
+        flex: 0 0 50%;
+    }
+    .content-abasico-basicos label {
+        font-size: 12px;
+    }
+    .row.inf-media-perfil-basicos select {
+        font-size: 12px;
+    
+    }
+    .row.media-perfil-basicos-publicidad {
+        flex-direction: row;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
+    .row.media-perfil .col-md-4 {
+        padding: 25px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 150px;
+        margin: 10px;
+        flex: auto;
+
+    }
+    img.basicos-postulante-c-4 {
+        width: 150px;
+        height: 150px;
+        object-fit: contain;
+    }
+    .col-md-4.media-perfil-c-4 input {
+        width: 150px;
+    }
+    .row.media-perfil label {
+        margin-top: 10px;
+        font-size: 12px;
+        width: 150px;
+    }
+    .row.media-perfil-basicos-publicidad img {
+        height: 150px;}
+        
+}
+@media (max-width: 768px) {
+    
+    div#labora table {
+        font-size: 10px;
+    }
+    div#labora .col {
+        flex: 0 0 50%;
+    }
+    .row.r-laboral-form .col textarea {
+        flex: 0 0 100%!important;
+    }
+    .container.content-table-a-academico {
+        font-size: 10px;
+    }
+    
+    .content.a-academicos .col {
+        flex: 0 0 50%;
+        justify-content: center;
+    }
+    .content-work-options {
+        margin-top: 40px;
+        margin-left: 30px;
+        margin-right: -15px;
+    }
+    .content-content-work-options {
+        margin: 0;
+    }
+    .options-panel-user ul {
+        display: flex;
+        padding: 0;
+        margin-top: 20px;
+    }
+    .options-panel-user ul li a {
+        list-style: none;
+        color: #fff;
+        padding: 5px 10px;
+    }
+    .col-md-6.content-logo {
+        height: 50vh;
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+   
+    img.content-logo-fondo {
+        height: 50vh;
+    }
+    .mask {
+        height: 50vh;
+    }
+    .col.r-col-100 {
+    min-width: 50%;
+    max-width: 50%!important;
+}
+    .div_section-content-user.row {
+        display: flex;
+        flex-direction: column;
+    }
+    .col-md-3.content-inf-user {
+        background-color: #0075a9;
+        max-width: 100%;
+    }
+    .div_section-content-user.row .col-md-9 {
+   
+        max-width: 100%;
+    }
+    .options-panel-user {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+    .blue {
+        width: 120px;
+    }
+    .content-work-options {
+        margin-top: 40px;
+    }
+    .content-work-options {
+        margin-top: 40px;
+        margin-left: 30px;
+        margin-right: 0px;
+    }
+    .col-md-6.content-tabs-inf {
+        flex: 0 0 100%;
+        max-width: 100%;
+        margin-top: 40px;
+    }
+    img.content-logo-img-img {
+        width: 50%;
+    }
+    .content-logo-img {
+        text-align: center;
+        display: flex;
+        justify-content: center;
+    }
+    .row.card-content-work {
+        margin-right: 0px!important;
+    }
+    .content.div-content-inf-user {
+        position: relative;
+        width: 100%;
+    }
+}
+@media (max-width: 575px) {
+    .content-barra-m {
+        justify-content: center;
+    }
+    div#rlabora .col {
+        flex: 0 0 100%;
+    }
+    .row.media-perfil-basicos-publicidad {
+        flex-direction: row;
+        display: flex;
+        justify-content: center;
+    }
+    .row.inf-perfil .col {
+        max-width: 100%;
+        flex: 0 0 100%;
+    }
+    .row.inf-media-perfil-basicos .col {
+        padding: 0px 40px 0px 40px;
+    }
+    li.nav-item.tabs-perfil h3 {
+        display: none;
+    }
+    .col-md-6.content-logo {
+        height: 30vh;
+    }
+    img.content-logo-fondo {
+        height: 30vh;
+    }
+    .mask {
+        height: 30vh;
+    }
+    .col.r-col-100 {
+        min-width: 100%;
+        max-width: 100%!important;
+    }
+    img.content-logo-img-img {
+        width: 75%;
+    }
+    .dropdown.d-none-c {
+        display: inherit;
+    }
+    .options-panel-user ul {
+        display: none;
+    }
+    .content-barra-menu-perfil-menu-monitor {
+        display: none;
+    }
+    .row.media-perfil-basicos-publicidad {
+        flex-direction: row;
+        display: flex;
+    }
+    div#labora .col {
+        flex: 0 0 100%;
+    }
+    .content-otros .col {
+        flex: 0 0 100%!important;
+    }
+    ul.nav.nav-tabs {
+        margin-left: 10px;
+    }
+   
+}
+@media (max-width: 320px) {
+    img.ico-tab {
+        width: 25px;
+    }
+}
