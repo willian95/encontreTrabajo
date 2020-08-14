@@ -43,7 +43,32 @@ Route::get('/profiles/job-background/fetch', "ProfileController@fetchJobBackgrou
 Route::post('/profiles/job-background/store', "ProfileController@storeJobBackground")->middleware('auth');
 Route::post('/profiles/others/store', "ProfileController@storeOthers")->middleware('auth');
 
+Route::get("/offers/create", "OfferController@create")->middleware('auth');
+Route::post("/offers/store", "OfferController@store")->middleware('auth');
+Route::get("/offers/fetch/{page}", "OfferController@userFetch")->middleware('auth');
+Route::get("/offers/business/fetch/{page}", "OfferController@businessFetch")->middleware('auth');
+Route::get("/offers/detail/{slug}", "OfferController@show")->middleware('auth');
+
+Route::post("/proposal/store", "ProposalController@store")->middleware('auth');
+Route::post("/proposal/fetch", "ProposalController@fetch")->middleware('auth');
+
+Route::get('plans/available', 'PlanController@index');
+
+Route::post("/cart/store", "CartController@store");
+
+Route::get('/checkout/{cart}', 'CheckoutController@initTransaction')->name('checkout');  
+Route::post('/checkout/webpay/response', 'CheckoutController@response')->name('checkout.webpay.response');  
+Route::post('/checkout/webpay/finish', 'CheckoutController@finish')->name('checkout.webpay.finish');
+
+///////////////////////// ADMIN /////////////////////////////////////
+
 Route::get('/admin/dashboard', "AdminController@index");
 Route::get('/admin/user/index', "UserController@index");
 Route::get('/admin/user/fetch/{page}', "UserController@fetch");
 Route::post('/admin/user/delete', "UserController@delete");
+
+Route::get('/admin/plans', "PlanController@adminIndex")->middleware('auth');
+Route::get("/admin/plans/fetch", "PlanController@fetch");
+Route::post("/admin/plans/store", "PlanController@store");
+Route::post("/admin/plans/delete", "PlanController@delete");
+Route::post("/admin/plans/update", "PlanController@update");

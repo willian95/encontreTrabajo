@@ -47,4 +47,12 @@ class User extends Authenticatable
         return $this->hasOne(Profile::class);
     }
 
+    public function region(){
+        return $this->belongsTo(Region::class);
+    }
+
+    public function commune(){
+        return $this->belongsTo(Commune::class);
+    }
+
 }

@@ -2,6 +2,16 @@ html {
     overflow-x: hidden;
 }
 
+[v-cloak] {
+    display: none;
+}
+
+.round-img{
+    width: 80px; 
+    height: 80px; 
+    border-radius: 50%;
+}
+
 .loader-cover{
     position: fixed;
     left:0;
@@ -523,7 +533,7 @@ img.img-barra-search {
     align-content: center;
     background-color: #0075a9;
     width: 26%;
-    z-index: 9999;
+    z-index: 999;
 }
     .col-md-3.content-inf-user.f-b {
         display: flex;

@@ -26,28 +26,30 @@
                     <div><h3>{{ Auth::user()->name }} {{ Auth::user()->lastname }}</h3></div>
                     <div class="options-panel-user">
                         <ul>
+                            <li><a href="{{ url('/home') }}">Inicio</a></li>
                             @if(\Auth::user()->role_id == 2)
                                 <li><a href="{{ url('/profile/user') }}">Mi perfil</a></li>
                             @elseif(\Auth::user()->role_id == 3)
                                 <li><a href="{{ url('/profile/business') }}">Mi perfil</a></li>
+                            @endif
+
+                            @if(\Auth::user()->role_id == 3)
+                                <li><a href="{{ url('/offers/create') }}">Crear oferta</a></li>
+                                <li><a href="{{ url('/plans/available') }}">Planes</a></li>
                             @endif
                             <li><a href="#">Opcion 2</a></li>
                             <li><a href="#">Opcion 3</a></li>
                             <li><a href="#">Opcion 4</a></li>
                         </ul>
                         <div class="dropdown d-none-c responsive">
-                                <button type="button" class="btn btn-primary dropdown-toggle button-user" data-toggle="dropdown">
-                                        <img class="img-menu" src="{{ asset('user/assets/img/menu-icon.png') }}" alt="">
-                                        Menú
-                                </button>
-                                <div class="dropdown-menu">
-                                <a class="dropdown-item" href="#">Link 1</a>
-                                <a class="dropdown-item" href="#">Link 2</a>
-                                <a class="dropdown-item" href="#">Link 3</a>
-                                <a class="dropdown-item" href="#">Link 4</a>
-
-                                </div>
+                            <button type="button" class="btn btn-primary dropdown-toggle button-user" data-toggle="dropdown" onclick="toggleUserDropdown()">
+                                    <img class="img-menu" src="{{ asset('user/assets/img/menu-icon.png') }}" alt="">
+                                    Menú
+                            </button>
+                            <div class="dropdown-menu user-dropdown">
+                                <a class="dropdown-item" href="{{ url('/logout') }}">Cerrar sesión</a>
                             </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -61,13 +63,11 @@
                             </form>
                     </div>
                     <div class="dropdown p-rigth">
-                        <button type="button" class="btn btn-primary dropdown-toggle button-user user-b" data-toggle="dropdown">
+                        <button type="button" class="btn btn-primary dropdown-toggle button-user user-b" data-toggle="dropdown" onclick="toggleUserDropdown()"> 
                             <img class="img-user-icon" src="{{ asset('user/assets/img/user-b.png') }}" alt="">
                         </button>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#">Link 1</a>
-                            <a class="dropdown-item" href="#">Link 2</a>
-                            <a class="dropdown-item" href="#">Link 3</a>
+                        <div class="dropdown-menu user-dropdown">
+                            <a class="dropdown-item" href="{{ url('/logout') }}">Cerrar sesión</a>
                         </div>
                     </div>
                 </div>
@@ -96,6 +96,19 @@
         </script>
 
         @stack('scripts')
+
+        <script>
+
+            function toggleUserDropdown(){
+                
+                if($(".user-dropdown").hasClass("show")){
+                    $(".user-dropdown").removeClass("show")
+                }else{
+                    $(".user-dropdown").addClass("show")
+                }
+            }
+
+        </script>
 
     </body>
 </html>

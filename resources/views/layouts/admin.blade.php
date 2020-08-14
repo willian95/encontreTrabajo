@@ -37,10 +37,42 @@ License: You must have a valid license purchased only from themeforest(the above
 		<!--end::Layout Themes-->
 		<link rel="shortcut icon" href="{{ asset('admin/assets/media/logos/favicon.ico') }}" />
 
+		<link rel="stylesheet" href="{{ asset('/alertify/css/alertify.css') }}" >
+    	<link rel="stylesheet" href="{{ asset('/alertify/css/themes/bootstrap.css') }}" >
+
 	</head>
 	<!--end::Head-->
 	<!--begin::Body-->
 	<body id="kt_body" class="header-fixed header-mobile-fixed subheader-enabled page-loading">
+
+		<style>
+			.loader-cover-custom{
+				position: fixed;
+				left:0;
+				right: 0;
+				z-index: 99999999;
+				background-color: rgba(0, 0, 0, 0.6);
+				top: 0;
+				bottom: 0;
+			}
+
+			.loader-custom {
+				margin-top:45vh;
+				margin-left: 45%;
+				border: 16px solid #f3f3f3; /* Light grey */
+				border-top: 16px solid #3498db; /* Blue */
+				border-radius: 50%;
+				width: 120px;
+				height: 120px;
+				animation: spin 2s linear infinite;
+			}
+			
+			@keyframes spin {
+				0% { transform: rotate(0deg); }
+				100% { transform: rotate(360deg); }
+			}
+		</style>
+
 		<!--begin::Main-->
 		<!--begin::Header Mobile-->
 		<div id="kt_header_mobile" class="header-mobile header-mobile-fixed">
@@ -111,6 +143,12 @@ License: You must have a valid license purchased only from themeforest(the above
 							<li class="nav-item mb-5" data-toggle="tooltip" data-placement="right" data-container="body" data-boundary="window" title="Usuarios">
 								<a href="{{ url('/admin/user/index') }}" class="nav-link btn btn-icon btn-text-white btn-hover-text-white btn-lg">
 									<i class="flaticon-users-1"></i>
+								</a>
+							</li>
+
+							<li class="nav-item mb-5" data-toggle="tooltip" data-placement="right" data-container="body" data-boundary="window" title="Planes">
+								<a href="{{ url('/admin/plans') }}" class="nav-link btn btn-icon btn-text-white btn-hover-text-white btn-lg">
+									<i class="flaticon-notes"></i>
 								</a>
 							</li>
 
@@ -5080,10 +5118,16 @@ License: You must have a valid license purchased only from themeforest(the above
 		<!--end::Page Vendors-->
 		<!--begin::Page Scripts(used by this page)-->
 		<script src="{{ asset('admin/assets/js/pages/widgets.js?v=7.0.4') }}"></script>
+		<script src="{{ asset('/alertify/alertify.min.js') }}"></script>
 		<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 		<script src="{{ asset('js/app.js') }}"></script>
 
 		@stack("scripts")
+
+
+		<script>
+            alertify.set('notifier','position', 'top-right');
+        </script>
 
 		<!--end::Page Scripts-->
 	</body>

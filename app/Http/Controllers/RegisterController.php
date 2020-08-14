@@ -8,6 +8,7 @@ use Illuminate\Support\Str;
 use Carbon\Carbon;
 use App\User;
 use App\Profile;
+use App\ServiceAmount;
 
 class RegisterController extends Controller
 {
@@ -36,7 +37,18 @@ class RegisterController extends Controller
             $user->business_name = $request->businessName;
             $user->business_rut = $request->businessRut;
             $user->business_phone = $request->businessPhone;
+            
+            if($request->role_id == 3){
+                $user->expire_free_trial = Carbon::now()->addMonths(6);
+            }
+            
             $user->save();
+
+            if($request->role_id == 3){
+                $serviceAmount = new ServiceAmount;
+                $serviceAmount->user_id = $user->id;
+                $serviceAmount->save();
+            }
 
             $profile = new Profile;
             $profile->user_id = $user->id;

@@ -9,7 +9,13 @@ class HomeController extends Controller
     
     function index(){
 
-        return view("users.index");
+        if(\Auth::user()->role_id == 2){
+            return view("users.index");
+        }
+
+        if(\Auth::user()->role_id == 3){
+            return view("users.businessIndex");
+        }
 
     }
 
