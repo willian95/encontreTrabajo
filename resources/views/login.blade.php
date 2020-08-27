@@ -10,7 +10,7 @@
             <div class="row">
                 <div class="col-md-6 content-logo">
                     <div class="section-logo">
-                        <img class="content-logo-fondo" src="{{ asset('user/assets/img/login.jpg') }}" alt="">
+                        <img class="content-logo-fondo" src="{{ asset('user/assets/img/login2.jpg') }}" alt="">
                         <div class="mask">
 
                         </div>

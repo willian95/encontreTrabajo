@@ -25,8 +25,6 @@ class ProfileUpdateRequest extends FormRequest
     {
         return [
             "birthDate" => "nullable|date",
-            "commune" => "required|exists:communes,id",
-            "region" => "required|exists:regions,id",
             "name" => "required",
             "lastname" => "required"
         ];

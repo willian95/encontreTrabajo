@@ -163,6 +163,7 @@ img.content-logo-fondo {
     width: 100%;
     position: absolute;
     z-index: 1;
+    object-fit: cover;
 }
 .mask {
     position: absolute;

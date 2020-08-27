@@ -30,9 +30,9 @@ class RegisterController extends Controller
             $user->password = bcrypt($request->password);
             $user->role_id = $request->role_id;
             $user->desired_job = $request->desiredJob;
-            $user->region_id = $request->region;
             $user->image = url('/').'/images/users/default.jpg';
-            $user->commune_id = $request->commune;
+            //$user->commune_id = $request->commune;
+            //$user->region_id = $request->region;
             $user->register_hash = $registerHash;
             $user->business_name = $request->businessName;
             $user->business_rut = $request->businessRut;

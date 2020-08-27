@@ -37,6 +37,7 @@ Route::post('/profile/business/business/update', "ProfileController@businessBusi
 Route::post('/profile/update', "ProfileController@update")->middleware('auth');
 Route::get('/profiles/academic/fetch', "ProfileController@fetchAcademicBackground")->middleware('auth');
 Route::post('/profile/academic/store', "ProfileController@storeAcademicBackground")->middleware('auth');
+Route::post('/profile/academic/update', "ProfileController@updateAcademicBackground")->middleware('auth');
 Route::post('/profile/academic/delete', "ProfileController@deleteAcademicBackground")->middleware('auth');
 Route::post('/profiles/job-resume/store', "ProfileController@storeJobResume")->middleware('auth');
 Route::get('/profiles/job-background/fetch', "ProfileController@fetchJobBackground")->middleware('auth');
@@ -51,6 +52,8 @@ Route::get("/offers/detail/{slug}", "OfferController@show")->middleware('auth');
 
 Route::post("/proposal/store", "ProposalController@store")->middleware('auth');
 Route::post("/proposal/fetch", "ProposalController@fetch")->middleware('auth');
+Route::get("/my-proposals", "ProposalController@index")->middleware('auth');
+Route::get("/my-proposals/fetch/{page}", "ProposalController@myProposals")->middleware('auth');
 
 Route::get('plans/available', 'PlanController@index');
 
@@ -59,6 +62,8 @@ Route::post("/cart/store", "CartController@store");
 Route::get('/checkout/{cart}', 'CheckoutController@initTransaction')->name('checkout');  
 Route::post('/checkout/webpay/response', 'CheckoutController@response')->name('checkout.webpay.response');  
 Route::post('/checkout/webpay/finish', 'CheckoutController@finish')->name('checkout.webpay.finish');
+
+Route::get("/country/fetch", "CountriesController@fetch");
 
 ///////////////////////// ADMIN /////////////////////////////////////
 

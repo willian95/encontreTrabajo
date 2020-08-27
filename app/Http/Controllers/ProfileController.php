@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\ProfileUpdateRequest;
 use App\Http\Requests\JobResumeStoreRequest;
 use App\Http\Requests\StoreAcademicBackgroundRequest;
+use App\Http\Requests\UpdateAcademicBackgroundRequest;
 use App\Http\Requests\StoreJobBackgroundRequest;
 use App\Http\Requests\OthersStoreRequest;
 use App\Http\Requests\BusinessUserUpdateRequest;
@@ -173,10 +174,15 @@ class ProfileController extends Controller
                 if($request->get("curriculum") != null){
                     
                     $curriculumData = $request->get('curriculum');
-                    if(explode('/', explode(':', substr($curriculumData, 0, strpos($curriculumData, ';')))[1])[1] == "pdf"){
+
+                    if(explode('/', explode(':', substr($curriculumData, 0, strpos($curriculumData, ';')))[1])[1] == "pdf" || explode('/', explode(':', substr($curriculumData, 0, strpos($curriculumData, ';')))[1])[1] == "vnd.openxmlformats-officedocument.wordprocessingml.document" || explode('/', explode(':', substr($curriculumData, 0, strpos($curriculumData, ';')))[1])[1] == "vnd.oasis.opendocument.text"){
                         
                         $data = explode( ',', $curriculumData);
                         $fileCurriculum = Carbon::now()->timestamp . '_' . uniqid() . '.'.explode('/', explode(':', substr($curriculumData, 0, strpos($curriculumData, ';')))[1])[1];
+
+                        $fileCurriculum = str_replace("vnd.openxmlformats-officedocument.wordprocessingml.document", "docx", $fileCurriculum);
+                        $fileCurriculum = str_replace("vnd.oasis.opendocument.text", "odt", $fileCurriculum);
+
                         $ifp = fopen($fileCurriculum, 'wb' );
                         fwrite($ifp, base64_decode( $data[1] ) );
                         rename($fileCurriculum, 'curriculums/users/'.$fileCurriculum);
@@ -189,6 +195,8 @@ class ProfileController extends Controller
                 return response()->json(["success" => false, "msg" => "Hubo un problema con el video", "err" => $e->getMessage(), "ln" => $e->getLine()]);
     
             }
+
+            //dd($request->all());
 
             $user = User::where("id", \Auth::user()->id)->first();
             $user->name = $request->name;
@@ -212,9 +220,10 @@ class ProfileController extends Controller
             $profile->gender = $request->gender;
             $profile->civil_state = $request->civilState;
             $profile->address = $request->address;
-            $profile->city = $request->city;
+            $profile->country_id = $request->country;
             $profile->handicap = $request->handicap;
             $profile->phone = $request->phone;
+            $profile->nationality = $request->nationality;
             $profile->home_phone = $request->homePhone;
             $profile->update();
             
@@ -253,9 +262,31 @@ class ProfileController extends Controller
             $academicBg->start_date = $request->startDate;
             $academicBg->end_date = $request->endDate;
             $academicBg->state = $request->state;
+            $academicBg->study_field = $request->studyField;
             $academicBg->save();
 
             return response()->json(["success" => true, "msg" => "Antecedente Académico agregado"]);
+
+        }catch(\Exception $e){
+            return response()->json(["success" => false, "msg" => "Error en el servidor", "err" => $e->getMessage(), "ln" => $e->getLine()]);
+        }
+
+    }
+
+    function updateAcademicBackground(UpdateAcademicBackgroundRequest $request){
+
+        try{
+
+            $academicBg = AcademicBackground::where("id", $request->id)->first();
+            $academicBg->college = $request->college;
+            $academicBg->educational_level = $request->educationalLevel;
+            $academicBg->start_date = $request->startDate;
+            $academicBg->end_date = $request->endDate;
+            $academicBg->state = $request->state;
+            $academicBg->study_field = $request->studyField;
+            $academicBg->update();
+
+            return response()->json(["success" => true, "msg" => "Antecedente Académico Actualizado"]);
 
         }catch(\Exception $e){
             return response()->json(["success" => false, "msg" => "Error en el servidor", "err" => $e->getMessage(), "ln" => $e->getLine()]);
@@ -283,11 +314,13 @@ class ProfileController extends Controller
         try{
 
             $profile = Profile::where("user_id", \Auth::user()->id)->first();
-            $profile->job_description = $request->jobDescription;
+            $profile->job_description = str_replace("\n", ". ", $request->jobDescription);
             $profile->experience_year = $request->expYears;
             $profile->availability = $request->availability;
             $profile->salary = $request->salary;
             $profile->desired_area = $request->desiredArea;
+            $profile->functions = str_replace("\n", ".", $request->functions);
+            $profile->awards = str_replace("\n", ". ", $request->awards);
             $profile->update();
 
             return response()->json(["success" => true, "msg" => "Resumen laboral actualizado"]);
@@ -337,8 +370,8 @@ class ProfileController extends Controller
         try{
 
             $profile = Profile::where("user_id", \Auth::user()->id)->first();
-            $profile->informatic_knowledge = $request->informaticKnowledge;
-            $profile->knowledge_habilities = $request->knowledgeHabilities;
+            $profile->informatic_knowledge = str_replace("\n", ". ", $request->informaticKnowledge);
+            $profile->knowledge_habilities = str_replace("\n", ". ", $request->knowledgeHabilities);
             $profile->driver_license = $request->driverLicense;
             $profile->handicap_description = $request->handicapDescription;
             $profile->update();

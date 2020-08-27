@@ -36,10 +36,9 @@
                             @if(\Auth::user()->role_id == 3)
                                 <li><a href="{{ url('/offers/create') }}">Crear oferta</a></li>
                                 <li><a href="{{ url('/plans/available') }}">Planes</a></li>
+                                <li><a href="{{ url('/my-proposals') }}">Ofertas Respondidas</a></li>
                             @endif
-                            <li><a href="#">Opcion 2</a></li>
-                            <li><a href="#">Opcion 3</a></li>
-                            <li><a href="#">Opcion 4</a></li>
+    
                         </ul>
                         <div class="dropdown d-none-c responsive">
                             <button type="button" class="btn btn-primary dropdown-toggle button-user" data-toggle="dropdown" onclick="toggleUserDropdown()">

@@ -12,6 +12,10 @@ use App\User;
 class ProposalController extends Controller
 {
     
+    function index(){
+        return view("users.proposals");
+    }
+
     function store(ProposalStoreRequest $request){
 
         try{
@@ -58,6 +62,34 @@ class ProposalController extends Controller
             return response()->json(["success" => true, "proposals" => $proposals, "proposalsCount" => $proposalsCount, "dataAmount" => $dataAmount]);
 
         }catch(\Exception $e){
+            return response()->json(["success" => false, "err" => $e->getMessage(), "ln" => $e->getLine(), "msg" => "Error en el servidor"]);
+        }
+
+    }
+
+    function myProposals($page = 1){
+
+        try{
+            
+            $dataAmount = 20;
+            $skip = ($page - 1) * $dataAmount;
+
+            $proposals = Proposal::skip($skip)->take($dataAmount)->whereHas('offer', function($q){
+
+                $q->where("user_id", \Auth::user()->id);
+
+            })->orderBy("id", "desc")->with("user", "offer")->get();
+
+            $proposalsCount = Proposal::with("user", "offer")->whereHas('offer', function($q){
+
+                $q->where("user_id", \Auth::user()->id);
+
+            })->count();
+
+            return response()->json(["success" => true, "proposals" => $proposals, "proposalsCount" => $proposalsCount, "dataAmount" => $dataAmount]);
+
+        }catch(\Exception $e){
+       
             return response()->json(["success" => false, "err" => $e->getMessage(), "ln" => $e->getLine(), "msg" => "Error en el servidor"]);
         }
 

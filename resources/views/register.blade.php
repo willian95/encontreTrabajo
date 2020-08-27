@@ -12,7 +12,7 @@
             <div class="row">
                 <div class="col-md-6 content-logo">
                     <div class="section-logo">
-                        <img class="content-logo-fondo" src="{{ url('user/assets/img/login.jpg') }}" alt="">
+                        <img class="content-logo-fondo" src="{{ url('user/assets/img/register.jpg') }}" alt="">
                         <div class="mask">
 
                         </div>
@@ -69,25 +69,6 @@
                                     <input type="text" class="form-control" id="puesto"  v-model="desiredJob">
                                 </div>
                                 </div>
-                                </div>
-                                
-                                <div class="row">
-                                    <div class="col r-col-100">
-                                        <div class="form-group">
-                                            <label for="region">Región</label>
-                                            <select class="form-control" v-model="region" @change="fetchCommunes()">
-                                                <option :value="region.id" v-for="region in regions">@{{ region.name }}</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col r-col-100">
-                                        <div class="form-group">
-                                            <label for="comuna">Comuna</label>
-                                            <select class="form-control" v-model="commune">
-                                                <option :value="commune.id" v-for="commune in communes">@{{ commune.name }}</option>
-                                            </select>
-                                        </div>
-                                    </div>
                                 </div>
                                 
                                 <div class="row">
@@ -167,25 +148,6 @@
                             <div class="row">
                                 <div class="col r-col-100">
                                     <div class="form-group">
-                                        <label for="region2">Región</label>
-                                        <select class="form-control" v-model="region" @change="fetchCommunes()">
-                                            <option :value="region.id" v-for="region in regions">@{{ region.name }}</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col r-col-100">
-                                    <div class="form-group">
-                                        <label for="comuna2">Comuna</label>
-                                        <select class="form-control" v-model="commune">
-                                            <option :value="commune.id" v-for="commune in communes">@{{ commune.name }}</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="row">
-                                <div class="col r-col-100">
-                                    <div class="form-group">
                                         <label for="pwd2">Contraseña</label>
                                         <input type="password" class="form-control" id="pwd2"  v-model="password">
                                     </div>
@@ -253,28 +215,6 @@
                     this.roleId = type
                     this.clear()
                    
-                },
-                fetchRegions(){
-
-                    axios.get("{{ url('/regions/fetch-all') }}").then(res => {
-
-                        if(res.data.success == true){
-                            this.regions = res.data.regions
-                        }
-
-                    })
-
-                },
-                fetchCommunes(){
-
-                    axios.get("{{ url('/communes/fetch/') }}"+"/"+this.region).then(res => {
-
-                        if(res.data.success == true){
-                            this.communes = res.data.communes
-                        }
-
-                    })
-
                 },
                 register(){
                     this.loading = true

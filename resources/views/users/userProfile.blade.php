@@ -85,7 +85,7 @@
                                 </div>
                                 <label for="curriculum">Curriculum</label>
                                 <input type="file" class="form-control" id="curriculum" @change="onCurriculumChange" accpet="file/pdf">
-                                <small>Solo está permitido el formato PDF</small>
+                                <small>Solo está permitido el formato Word o PDF</small>
 
                             </div>
                         </div>
@@ -144,23 +144,30 @@
                                             <input type="text" class="form-control" id="address" v-model="address">
                                         </div>
                                         <div class="col">
-                                            <label for="city">Ciudad</label>
-                                            <input type="text" class="form-control" id="city" v-model="city">
+                                            <label for="city">País</label>
+                                            <select class="form-control" v-model="country">
+                                                <option value="" default>Seleccione</option>
+                                                <option :value="country.id" v-for="country in countries">@{{ country.name }}</option>
+                                            </select>
+                                        </div>
+                                        <div class="col">
+                                            <label for="city">Nacionalidad</label>
+                                            <input type="text" class="form-control" v-model="nationality">
                                         </div>
                                     </div>
                                     <div class="row inf-perfil">
 
-                                        <div class="col">
+                                        <div class="col" v-if="country == 4">
                                             <label for="region">Región</label>
                                             <select class="form-control" id="region" v-model="region" @change="fetchCommunes()">
-                                                <option :value="region.id" v-for="region in regions">@{{ region.name }}</option>
+                                                <option :value="region" v-for="region in regions">@{{ region.name }}</option>
                                             </select>
                                         </div>
 
-                                        <div class="col">
+                                        <div class="col" v-if="country == 4">
                                             <label for="commune">Comuna</label>
                                             <select class="form-control" id="commune" v-model="commune">
-                                                <option :value="commune.id" v-for="commune in communes">@{{ commune.name }}</option>
+                                                <option :value="commune.id" v-for="commune in communes">@{{ region.name }} - @{{ commune.name }}</option>
                                             </select>
                                         </div>
 
@@ -207,44 +214,61 @@
                 <div class="content a-academicos">
                         <form action="/action_page.php">
                             <div class="row a-academicos-form">
-                            <div class="col ">
-                            <div class="form-group">
-                                <label for="college">Institución </label>
-                                <input type="text" class="form-control" id="college" v-model="college">
-                            </div>
-                            </div>
-                            <div class="col ">
-                            <div class="form-group">
-                                <label for="educationalLevel">Nivel Educacional</label>
-                                <input type="text" class="form-control" id="educationalLevel" v-model="educationalLevel">
-                            </div>
-                            </div>
-                            <div class="col ">
-                              <div class="form-group">
-                                  <label for="startDate">Fecha de Inicio</label>
-                                  <input type="date" class="form-control" id="startDate" v-model="startDate">
-                              </div>
-                              </div>
-                              <div class="col ">
-                              <div class="form-group">
-                                  <label for="endDate">Fecha de Culminación</label>
-                                  <input type="date" class="form-control" id="endDate" v-model="endDate">
-                              </div>
-                              </div>
-                              <div class="col ">
-                                <div class="form-group">
-                                    <label for="state">Estado</label>
-                                    <select class="form-control" id="state" v-model="state">
-                                        <option value="">Seleccione</option>
-                                        <option value="en curso">En curso</option>
-                                        <option value="finalizado">Finalizado</option>
-                                        <option value="abandonado">Abandonado</option>
-                                    </select>
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label for="college">Institución </label>
+                                        <input type="text" class="form-control" id="college" v-model="college">
+                                    </div>
                                 </div>
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label for="educationalLevel">Nivel Educacional</label>
+                                        <select class="form-control" id="educationalLevel" v-model="educationalLevel">
+                                            <option value="Básico">Básico</option>
+                                            <option value="Medio">Medio</option>
+                                            <option value="Técnico Profesional">Técnico Profesional</option>
+                                            <option value="Magister">Magister</option>
+                                            <option value="Doctorado">Doctorado</option>
+                                            <option value="otros">Otros</option>
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="buttom-content-add">
-                                <button type="button" class="btn btn-primary" @click="storeAcademicBg()">Agregar</button>
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label for="startDate">Fecha de Inicio</label>
+                                        <input type="date" class="form-control" id="startDate" v-model="startDate">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label for="endDate">Fecha de Culminación</label>
+                                        <input type="date" class="form-control" id="endDate" v-model="endDate">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label for="state">Estado</label>
+                                        <select class="form-control" id="state" v-model="state">
+                                            <option value="">Seleccione</option>
+                                            <option value="en curso">En curso</option>
+                                            <option value="finalizado">Finalizado</option>
+                                            <option value="abandonado">Abandonado</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label for="studyField">Campo de estudio</label>
+                                        <input type="text" class="form-control" id="studyField" v-model="studyField">
+                                    </div>
+                                </div>
+
+                                
+                                <div class="col-12">
+                                    <div class="buttom-content-add text-center">
+                                        <button type="button" class="btn btn-primary" @click="storeAcademicBg()">Agregar</button>
+                                    </div>
+                                </div>
                             </div>
                           
                         </form>
@@ -257,6 +281,7 @@
                                         <th>#</th>
                                         <th>Institución</th>
                                         <th>Nivel Educacional</th>
+                                        <th>Campo de Estudio</th>
                                         <th>Fecha de Inicio</th>
                                         <th>Fecha Fin</th>
                                         <th>Estado</th>
@@ -269,10 +294,12 @@
                                         <td>@{{ index + 1 }}</td>
                                         <td>@{{ academicBg.college }}</td>
                                         <td>@{{ academicBg.educational_level }}</td>
+                                        <td>@{{ academicBg.study_field }}</td>
                                         <td>@{{ academicBg.start_date }}</td>
                                         <td>@{{ academicBg.end_date }}</td>
                                         <td>@{{ academicBg.state }}</td>
                                         <td>
+                                            <button class="btn btn-info" @click="editAcademic(academicBg)" data-toggle="modal" data-target="#editModal"><i class="fas fa-edit"></i></button>
                                             <button class="btn btn-danger" @click="eraseAcademicBg(academicBg.id)"><i class="fas fa-trash"></i></button>
                                         </td>
                                       </tr>
@@ -282,16 +309,101 @@
                                 </div>
                         </div>
                 </div>
+
+                <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Editar</h5>
+                                <button id="modalClose" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                            
+                            <div class="container">
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <label for="editCollege">Institución </label>
+                                                <input type="text" class="form-control" id="editCollege" v-model="editCollege">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <label for="editEducationalLevel">Nivel Educacional</label>
+                                                <select class="form-control" id="editEducationalLevel" v-model="editEducationalLevel">
+                                                    <option value="Básico">Básico</option>
+                                                    <option value="Medio">Medio</option>
+                                                    <option value="Técnico Profesional">Técnico Profesional</option>
+                                                    <option value="Magister">Magister</option>
+                                                    <option value="Doctorado">Doctorado</option>
+                                                    <option value="otros">Otros</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <label for="editStartDate">Fecha de Inicio</label>
+                                                <input type="date" class="form-control" id="editStartDate" v-model="editStartDate">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <label for="editEndDate">Fecha de Culminación</label>
+                                                <input type="date" class="form-control" id="editEndDate" v-model="editEndDate">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <label for="state">Estado</label>
+                                                <select class="form-control" id="state" v-model="editState">
+                                                    <option value="">Seleccione</option>
+                                                    <option value="en curso">En curso</option>
+                                                    <option value="finalizado">Finalizado</option>
+                                                    <option value="abandonado">Abandonado</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <label for="editStudyField">Campo de estudio</label>
+                                                <input type="text" class="form-control" id="editStudyField" v-model="editStudyField">
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary" @click="updateAcademicBg()">Actualizar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
               </div>
            
               <div id="rlabora" class="container tab-pane fade"><br>
                 <form action="/action_page.php">
                     <div class="row r-laboral-form">
-                    <div class="col ">
-                        <label for="jobdescription">Resumen Laboral</label><br>
-                        <textarea v-model="jobDescription" id="jobdescription" class="form-control"></textarea>
-                        <!-- <input type="text" class="form-control" i id="#"  name="#"> -->
-                    </div>
+                        <div class="col-lg-4">
+                            <label for="jobdescription">Resumen Laboral</label><br>
+                            <textarea v-model="jobDescription" id="jobdescription" class="form-control" rows="6"></textarea>
+                            <!-- <input type="text" class="form-control" i id="#"  name="#"> -->
+                        </div>
+                        <div class="col-lg-4">
+                            <label for="functions">Descripción de funciones</label><br>
+                            <textarea v-model="functions" id="functions" class="form-control" rows="6"></textarea>
+                            <!-- <input type="text" class="form-control" i id="#"  name="#"> -->
+                        </div>
+                        <div class="col-lg-4">
+                            <label for="awards">Logros</label><br>
+                            <textarea v-model="awards" id="awards" class="form-control" rows="6"></textarea>
+                            <!-- <input type="text" class="form-control" i id="#"  name="#"> -->
+                        </div>
                     </div>
                   <div class="row">
                         <div class="col ">
@@ -458,7 +570,10 @@
                     video:"",
                     videoPreview:"{{ $user->profile->video }}",
                     curriculum:"",
+                    countries:[],
+                    country:"",
                     curriculumPreview:"{{ $user->profile->curriculum }}",
+                    nationality:"{{ $user->profile->nationality }}",
                     name:"{{ Auth::user()->name }}",
                     lastname:"{{ Auth::user()->lastname }}",
                     rut:"{{ $user->profile->rut }}",
@@ -466,7 +581,7 @@
                     gender:"{{ $user->profile->gender }}",
                     civilState:"{{ $user->profile->civil_state }}",
                     address:"{{ $user->profile->address }}",
-                    city:"{{ $user->profile->city }}",
+                    country:"{{ $user->profile->country_id ? $user->profile->country_id : 4 }}",
                     region:"{{ Auth::user()->region_id }}",
                     commune:"{{ Auth::user()->commune_id }}",
                     handicap:"{{ $user->profile->handicap ? $user->profile->handicap : 'no' }}",
@@ -475,13 +590,23 @@
                     homePhone:"{{ $user->profile->home_phone }}",
                     loading:false,
                     academicBgs:[],
+                    studyField:"",
                     college:"",
                     educationalLevel:"",
                     startDate:"",
                     endDate:"",
                     state:"",
+                    academicId:"",
+                    editCollege:"",
+                    editEducationalLevel:"",
+                    editStartDate:"",
+                    editEndDate:"",
+                    editState:"",
+                    editStudyField:"",
                     jobCategories:[],
                     jobDescription:"{{ $user->profile->job_description }}",
+                    functions:"{{ $user->profile->functions }}",
+                    awards:"{{ $user->profile->awards }}",
                     expYears:"{{ $user->profile->experience_year }}",
                     availability:"{{ $user->profile->availability }}",
                     salary:"{{ $user->profile->salary }}",
@@ -516,6 +641,28 @@
 
                         if(res.data.success == true){
                             this.regions = res.data.regions
+
+                            this.regions.forEach((data) => {
+
+                                if("{{ Auth::user()->region_id }}" == data.id){
+                                    this.region = data
+                                }
+
+                            })
+
+                            this.fetchCommunes()
+
+                        }
+
+                    })
+
+                },
+                fetchCountries(){
+
+                    axios.get("{{ url('/country/fetch') }}").then(res => {
+                        
+                        if(res.data.success == true){
+                            this.countries = res.data.countries
                         }
 
                     })
@@ -523,10 +670,13 @@
                 },
                 fetchCommunes(){
 
-                    axios.get("{{ url('/communes/fetch/') }}"+"/"+this.region).then(res => {
+                    //this.region = this.regionName.id
+                
+                    axios.get("{{ url('/communes/fetch/') }}"+"/"+this.region.id).then(res => {
 
                         if(res.data.success == true){
                             this.communes = res.data.communes
+
                         }
 
                     })
@@ -641,12 +791,13 @@
                         gender:this.gender,
                         civilState:this.civilState,
                         address:this.address,
-                        city:this.city,
-                        region:this.region,
+                        country:this.country,
+                        region:this.region.id,
                         commune:this.commune,
                         handicap:this.handicap,
                         phone:this.phone,
                         homePhone:this.homePhone,
+                        nationality:this.nationality
                     })
                     .then(res => {
 
@@ -654,17 +805,22 @@
                         if(res.data.success == true){
                             
                             swal({
-                                title:"Genial",
+                                title:"Tus datos se actualizaron de forma correcta.",
                                 text:res.data.msg,
                                 icon:"success"
                             })
+                            .then(() => {
+                                window.location.reload()
+                            })
+
+                            
 
                         }else{
 
                             swal({
-                                title:"Genial",
+                                title:"Lo sentimos",
                                 text:res.data.msg,
-                                icon:"success"
+                                icon:"error"
                             })
 
                         }
@@ -740,6 +896,7 @@
                             educationalLevel:this.educationalLevel,
                             startDate:this.startDate,
                             endDate:this.endDate,
+                            studyField:this.studyField,
                             state:this.state,
                         })
                         .then(res => {
@@ -759,6 +916,82 @@
                                 this.startDate = ""
                                 this.endDate = ""
                                 this.state  = ""
+
+                                this.fetchAcademicBg()
+
+                            }else{
+
+                                swal({
+                                    title:"Lo sentimos",
+                                    text:res.data.msg,
+                                    icon:"error"
+                                })
+
+                            }
+
+                        })
+                        .catch(err => {
+                            this.loading = false
+                            $.each(err.response.data.errors, function(key, value) {
+                                alertify.error(value[0])
+                
+                            });
+                        })
+
+                    }
+
+                },
+                editAcademic(academic){
+                    this.academicId = academic.id
+                    this.editCollege = academic.college
+                    this.editEducationalLevel = academic.educational_level
+                    this.editStartDate = academic.start_date
+                    this.editEndDate = academic.end_date
+                    this.editState = academic.state
+                    this.editStudyField = academic.study_field
+                },
+                updateAcademicBg(){
+                    this.loading = true
+
+                    if(this.editState != 'en curso' && this.editEndDate == ""){
+                        this.loading = false
+                        alertify.error("Fecha de culminación es requerida")
+
+                    }else{
+
+                        axios.post("{{ url('/profile/academic/update') }}", {
+                            id:this.academicId,
+                            college:this.editCollege,
+                            educationalLevel:this.editEducationalLevel,
+                            startDate:this.editStartDate,
+                            endDate:this.editEndDate,
+                            state:this.editState,
+                            studyField: this.editStudyField
+                        })
+                        .then(res => {
+
+                            this.loading = false
+
+                            if(res.data.success == true){
+
+                                swal({
+                                    title:"Genial",
+                                    text:res.data.msg,
+                                    icon:"success"
+                                })
+
+                                this.editCollege= ""
+                                this.editEducationalLevel = ""
+                                this.editStartDate = ""
+                                this.editEndDate = ""
+                                this.editState  = ""
+                                this.academicId = ""
+                                this.editStudyField = ""
+
+                                $("#modalClose").click();
+                                $('body').removeClass('modal-open');
+                                $('body').css('padding-right', '0px');
+                                $('.modal-backdrop').remove();
 
                                 this.fetchAcademicBg()
 
@@ -845,6 +1078,8 @@
                         salary:this.salary,
                         desiredJob:this.desiredJob,
                         desiredArea:this.desiredArea,
+                        functions:this.functions,
+                        awards:this.awards,
                     })
                     .then(res => {
                         this.loading = false
@@ -989,14 +1224,23 @@
                     
             },
             mounted(){
+
+                this.country = "{{ $user->profile->country_id }}"
+
+
+                if(this.country == ""){
+                    this.country = 4
+                }
+
                 this.toggleTabs("basico")
+                this.fetchCountries()
                 this.fetchRegions()
                 this.fetchAcademicBg()
                 this.fetchJobBackground()
                 this.fetchJobCategories()
                 window.setTimeout(() => {
                     this.fetchCommunes()
-                }, 200);
+                }, 1000);
             }
 
         })
