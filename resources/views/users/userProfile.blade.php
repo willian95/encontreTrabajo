@@ -495,21 +495,77 @@
                             <th>Puesto</th>
                             <th>Fecha de Inicio</th>
                             <th>Fecha Fin</th>
+                            <th>Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr v-for="(jobBackground, index) in jobBackgrounds">
-                            <td>@{{ index + 1 }}</td>
-                            <td>@{{ jobBackground.company }}</td>
-                            <td>@{{ jobBackground.job }}</td>
-                            <td>@{{ jobBackground.start_date }}</td>
-                            <td>@{{ jobBackground.end_date }}</td>
+                                <td>@{{ index + 1 }}</td>
+                                <td>@{{ jobBackground.company }}</td>
+                                <td>@{{ jobBackground.job }}</td>
+                                <td>@{{ jobBackground.start_date }}</td>
+                                <td>@{{ jobBackground.end_date }}</td>
+                                <td>
+                                    <button class="btn btn-info" @click="editJB(jobBackground)" data-toggle="modal" data-target="#editJobModal"><i class="fas fa-edit"></i></button>
+                                    <button class="btn btn-danger" @click="eraseJobBg(jobBackground.id)"><i class="fas fa-trash"></i></button>
+                                </td>
                             </tr>
                         
                         </tbody>
                         </table>
                   </div>
                 </div>
+
+                <div class="modal fade" id="editJobModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Editar</h5>
+                                <button id="modalBgClose" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+
+                            <div class="container">
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <label for="editStudyField">Puesto</label>
+                                                <input type="text" class="form-control" id="editStudyField" v-model="editJobBg">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <label for="editCollege">Empresa </label>
+                                                <input type="text" class="form-control" id="editCollege" v-model="editCompany">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <label for="editStartDate">Fecha de Inicio</label>
+                                                <input type="date" class="form-control" id="editStartDate" v-model="editStartDateBg">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <label for="editEndDate">Fecha de Culminación</label>
+                                                <input type="date" class="form-control" id="editEndDate" v-model="editEndDateBg">
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary" @click="updateJobBg()">Actualizar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
               </div>
 
 
@@ -617,6 +673,11 @@
                     jobBg:"",
                     startDateBg:"",
                     endDateBg:"",
+                    jbId:"",
+                    editCompany:"",
+                    editJobBg:"",
+                    editStartDateBg:"",
+                    editEndDateBg:"",
                     informaticKnowledge:"{{ $user->profile->informatic_knowledge }}",
                     knowledgeHabilities:"{{ $user->profile->knowledge_habilities }}",
                     driverLicense:"{{ $user->profile->driver_license }}",
@@ -1018,6 +1079,111 @@
 
                 },
                 eraseAcademicBg(id){
+
+                    swal({
+                        title: "¿Estás seguro?",
+                        text: "Eliminarás este antecedente académico!",
+                        icon: "warning",
+                        buttons: true,
+                        dangerMode: true,
+                    })
+                    .then((willDelete) => {
+                        if (willDelete) {
+                            
+                            axios.post("{{ url('/profile/academic/delete') }}", {id: id})
+                            .then(res => {
+
+                                if(res.data.success == true){
+
+                                    swal({
+                                        title:"Excelente",
+                                        text:res.data.msg,
+                                        icon:"success"
+                                    })
+
+                                    this.fetchAcademicBg()
+
+                                }else{
+
+                                    swal({
+                                        title:"Lo sentimos",
+                                        text:res.data.msg,
+                                        icon:"error"
+                                    })
+
+                                }
+
+                            })
+
+
+                        }
+                    });
+
+                },
+                editJB(job){
+                    this.jbId = job.id
+                    this.editCompany = job.company
+                    this.editJobBg = job.job
+                    this.editStartDateBg = job.start_date
+                    this.editEndDateBg = job.end_date
+                },
+                updateJobBg(){
+                    this.loading = true
+
+                    axios.post("{{ url('/profile/job-background/update') }}", {
+                        id:this.jbId,
+                        company:this.editCompany,
+                        jobBg:this.editJobBg,
+                        startDateBg:this.editStartDateBg,
+                        endDateBg:this.editEndDateBg
+                    })
+                    .then(res => {
+
+                        this.loading = false
+
+                        if(res.data.success == true){
+
+                            swal({
+                                title:"Genial",
+                                text:res.data.msg,
+                                icon:"success"
+                            })
+
+                            this.jbId = ""
+                            this.editCompany = ""
+                            this.editJobBg = ""
+                            this.editStartDateBg = ""
+                            this.editEndDateBg = ""
+
+                            $("#modalBgClose").click();
+                            $('body').removeClass('modal-open');
+                            $('body').css('padding-right', '0px');
+                            $('.modal-backdrop').remove();
+
+                            this.fetchJobBackground()
+
+                        }else{
+
+                            swal({
+                                title:"Lo sentimos",
+                                text:res.data.msg,
+                                icon:"error"
+                            })
+
+                        }
+
+                    })
+                    .catch(err => {
+                        this.loading = false
+                        $.each(err.response.data.errors, function(key, value) {
+                            alertify.error(value[0])
+            
+                        });
+                    })
+
+
+                },
+                eraseJobBg(id){
 
                     swal({
                         title: "¿Estás seguro?",
