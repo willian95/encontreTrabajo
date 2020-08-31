@@ -117,14 +117,14 @@
 
                                         <div class="col">
                                             <label for="birthDate">Edad</label>
-                                            <input type="date" class="form-control" value="{{ $age }}" disabled>
+                                            <input type="text" class="form-control" value="{{ $age }}" disabled>
                                         </div>
 
 
                                         <div class="col">
                                             <label for="gender">Sexo</label><br>
                                         <!-- <input type="text" class="form-control" id="email"  name="email"> -->
-                                            <select v-model="gender" id="gender" class="form-control">
+                                            <select v-model="gender" id="gender" class="form-control" disabled>
                                                 <option value="" default>Seleccione</option>
                                                 <option value="masculino">Masculino</option>
                                                 <option value="femenino">Femenino</option>
@@ -132,7 +132,7 @@
                                         </div>
                                         <div class="col">
                                             <label for="civilState">Estado Civil</label>
-                                            <select class="form-control"  id="civilState" v-model="civilState">
+                                            <select class="form-control"  id="civilState" v-model="civilState" disabled>
                                                 <option value="" default>Seleccione</option>
                                                 <option value="casado">Casado</option>
                                                 <option value="soltero">Soltero</option>
@@ -145,39 +145,39 @@
                                     <div class="row inf-perfil">
                                         <div class="col">
                                             <label for="address">Dirección</label>
-                                            <input type="text" class="form-control" id="address" v-model="address">
+                                            <input type="text" class="form-control" id="address" v-model="address" disabled>
                                         </div>
                                         <div class="col">
                                             <label for="city">País</label>
-                                            <select class="form-control" v-model="country">
+                                            <select class="form-control" v-model="country" disabled>
                                                 <option value="" default>Seleccione</option>
                                                 <option :value="country.id" v-for="country in countries">@{{ country.name }}</option>
                                             </select>
                                         </div>
                                         <div class="col">
                                             <label for="city">Nacionalidad</label>
-                                            <input type="text" class="form-control" v-model="nationality">
+                                            <input type="text" class="form-control" v-model="nationality" disabled>
                                         </div>
                                     </div>
                                     <div class="row inf-perfil">
 
                                         <div class="col" v-if="country == 4">
                                             <label for="region">Región</label>
-                                            <select class="form-control" id="region" v-model="region" @change="fetchCommunes()">
+                                            <select class="form-control" id="region" v-model="region" @change="fetchCommunes()" disabled>
                                                 <option :value="region" v-for="region in regions">@{{ region.name }}</option>
                                             </select>
                                         </div>
 
                                         <div class="col" v-if="country == 4">
                                             <label for="commune">Comuna</label>
-                                            <select class="form-control" id="commune" v-model="commune">
+                                            <select class="form-control" id="commune" v-model="commune" disabled>
                                                 <option :value="commune.id" v-for="commune in communes">@{{ region.name }} - @{{ commune.name }}</option>
                                             </select>
                                         </div>
 
                                         <div class="col">
                                             <label for="handicap">Posee Discapacidad</label>
-                                            <select class="form-control"  id="handicap" v-model="handicap">
+                                            <select class="form-control"  id="handicap" v-model="handicap" disabled>
                                                 <option value="no">No</option>
                                                 <option value="si">Sí</option>
                                             </select>
@@ -187,15 +187,15 @@
 
                                         <div class="col">
                                             <label for="mail">Email</label>
-                                            <input type="mail" class="form-control" id="mail" v-model="email" readonly>
+                                            <input type="mail" class="form-control" id="mail" v-model="email" disabled>
                                         </div>
                                         <div class="col">
                                             <label for="phone">Telefono Movil</label>
-                                            <input type="text" class="form-control" id="phone"  v-model="phone">
+                                            <input type="text" class="form-control" id="phone"  v-model="phone" disabled>
                                         </div>
                                         <div class="col">
                                             <label for=homePhone>Telefono Fijo</label>
-                                            <input type="text" class="form-control" id="homePhone" v-model="homePhone">
+                                            <input type="text" class="form-control" id="homePhone" v-model="homePhone" disabled>
                                         </div>
                                     </div>
                                 </form>
@@ -252,28 +252,28 @@
                     <div class="row r-laboral-form">
                         <div class="col-lg-4">
                             <label for="jobdescription">Resumen Laboral</label><br>
-                            <textarea v-model="jobDescription" id="jobdescription" class="form-control" rows="6"></textarea>
+                            <textarea v-model="jobDescription" id="jobdescription" class="form-control" rows="6" disabled></textarea>
                             <!-- <input type="text" class="form-control" i id="#"  name="#"> -->
                         </div>
                         <div class="col-lg-4">
                             <label for="functions">Descripción de funciones</label><br>
-                            <textarea v-model="functions" id="functions" class="form-control" rows="6"></textarea>
+                            <textarea v-model="functions" id="functions" class="form-control" rows="6" disabled></textarea>
                             <!-- <input type="text" class="form-control" i id="#"  name="#"> -->
                         </div>
                         <div class="col-lg-4">
                             <label for="awards">Logros</label><br>
-                            <textarea v-model="awards" id="awards" class="form-control" rows="6"></textarea>
+                            <textarea v-model="awards" id="awards" class="form-control" rows="6" disabled></textarea>
                             <!-- <input type="text" class="form-control" i id="#"  name="#"> -->
                         </div>
                     </div>
                   <div class="row">
                         <div class="col ">
                                 <label for="expyears">Años de Experiencia</label>
-                                <input type="text" class="form-control"  id="expyears"  v-model="expYears" @keypress="isNumber($event)">
+                                <input type="text" class="form-control"  id="expyears"  v-model="expYears" @keypress="isNumber($event)" disabled>
                             </div>
                             <div class="col ">
                                 <label for="available">Disponibilidad</label>
-                                <select class="form-control" id="available" v-model="availability">
+                                <select class="form-control" id="available" v-model="availability" disabled>
                                     <option value="">Seleccione</option>
                                     <option value="inmediata">Inmediata</option>
                                     <option value="en unos dias">En unos días</option>
@@ -285,15 +285,15 @@
                             </div>
                             <div class="col ">
                                   <label for="salary">Pretenciones de renta</label>
-                                  <input type="text" class="form-control"  id="salary"  v-model="salary">
+                                  <input type="text" class="form-control"  id="salary"  v-model="salary" disabled>
                               </div>
                               <div class="col ">
                                   <label for="desiredJob">Puesto deseado</label>
-                                  <input type="text" class="form-control"  id="desiredJob"  v-model="desiredJob">
+                                  <input type="text" class="form-control"  id="desiredJob"  v-model="desiredJob" disabled>
                               </div>
                               <div class="col ">
                                   <label for="desiredArea">Area de Preferencia</label>
-                                  <select class="form-control" id="desiredArea" v-model="desiredArea">
+                                  <select class="form-control" id="desiredArea" v-model="desiredArea" disabled>
                                     <option value="">Seleccione</option>
                                     <option :value="jobCategory.id" v-for="jobCategory in jobCategories">@{{ jobCategory.name }}</option>
                                   </select>
@@ -348,25 +348,25 @@
                     <div class="col ">
                     <div class="form-group">
                         <label for="text">Conocimientos Informáticos </label>
-                        <textarea class="form-control" rows="8" id="conocimientos" v-model="informaticKnowledge"></textarea>
+                        <textarea class="form-control" rows="8" id="conocimientos" v-model="informaticKnowledge" disabled></textarea>
                     </div>
                     </div>
                     <div class="col ">
                     <div class="form-group">
                         <label for="text">Conocimientos y Habilidades</label>
-                        <textarea type="text" rows="8" class="form-control" id="habilidades"  v-model="knowledgeHabilities"></textarea>
+                        <textarea type="text" rows="8" class="form-control" id="habilidades"  v-model="knowledgeHabilities" disabled></textarea>
                     </div>
                     </div>
                     <div class="col ">
                       <div class="form-group">
                           <label for="text">Licencia de Conducir</label>
-                          <input type="text" class="form-control" id="licencia"  v-model="driverLicense">
+                          <input type="text" class="form-control" id="licencia"  v-model="driverLicense" disabled>
                       </div>
                       </div>
                       <div class="col ">
                       <div class="form-group">
                           <label for="text">Posee Discapacidad</label>
-                          <input type="text" class="form-control" id="discapacidad"  v-model="handicapDescription">
+                          <input type="text" class="form-control" id="discapacidad"  v-model="handicapDescription" disabled>
                       </div>
                       </div>
                     
