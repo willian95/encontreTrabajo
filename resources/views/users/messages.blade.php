@@ -38,11 +38,15 @@
                                 <h4 class="text-center">@{{ businessName }}</h4>
                             @elseif(\Auth::user()->role_id == 3)
                                 <h4 class="text-center">@{{ userName }}</h4>
+                                @if($offer->status == 'abierto')
                                 <p class="text-center">
                                     <button class="btn btn-success" @click="contract(user)">Contratar</button>
                                 </p>
+                                @else
+                                <p class="text-center">Ya ha realizado una contratación para esta oferta</p>
+                                @endif
                             @endif
-                            <div style="overflow-y: auto; width: 100%; height: 20vh;">
+                            <div style="overflow-y: auto; width: 100%; height: 40vh;">
                                 <div class="row perfil-empresa-form" v-for="proposal in proposals">
 
                                     <div class="col-8" v-if="proposal.is_answer == 0">
