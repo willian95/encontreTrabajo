@@ -6,6 +6,9 @@
 
         <div class="row">
             <div class="col-12">
+                @if(\Auth::user()->is_profile_complete == 0)
+                    <li>Debes completar tu perfil para crear ofertas</li>
+                @endif
                 <h3 class="text-center">Mis ofertas</h3>
             </div>
         </div>

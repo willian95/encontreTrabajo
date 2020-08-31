@@ -38,8 +38,6 @@
                             @if(\Auth::user()->role_id == 3)
                                 @if(\Auth::user()->is_profile_complete == 1)
                                     <li><a href="{{ url('/offers/create') }}">Crear oferta</a></li>
-                                @else
-                                    <li>Debes completar tu perfil para crear ofertas</li>
                                 @endif
                                 <li><a href="{{ url('/plans/available') }}">Planes</a></li>
                                 <li><a href="{{ url('/my-proposals') }}">Ofertas Respondidas</a></li>
