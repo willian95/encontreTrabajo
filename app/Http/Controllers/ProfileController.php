@@ -511,8 +511,6 @@ class ProfileController extends Controller
             if($user->role_id == 2){
 
                 $age = Carbon::parse($profile->birth_date)->age;
-                dd($age);
-
                 return view("users/showUserProfile", ["user" => $user, "profile" => $profile,"age" =>$age]);
 
             }else if($user->role_id == 3){
