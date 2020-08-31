@@ -384,6 +384,44 @@ class ProfileController extends Controller
 
     }
 
+    function updateJobBackground(StoreJobBackgroundRequest $request){
+
+        try{
+
+            //$academicBg = JobBackground::where("id", $request->id)->first();
+            
+            $jobBackground = JobBackground::where("id", $request->id)->first();
+            $jobBackground->job = $request->jobBg;
+            $jobBackground->company = $request->company;
+            $jobBackground->start_date = $request->startDateBg;
+            $jobBackground->end_date = $request->endDateBg;
+            $jobBackground->update();
+
+            $this->isProfileComplete();
+
+            return response()->json(["success" => true, "msg" => "Antecedente laboral Actualizado"]);
+
+        }catch(\Exception $e){
+            return response()->json(["success" => false, "msg" => "Error en el servidor", "err" => $e->getMessage(), "ln" => $e->getLine()]);
+        }
+
+    }
+
+    function deleteJobBackground(Request $request){
+
+        try{
+
+            $jobBg = JobBackground::where("id", $request->id)->where("user_id", \Auth::user()->id)->first();
+            $jobBg->delete();
+
+            return response()->json(["success" => true, "msg" => "Antecedente laboral eliminado"]);
+
+        }catch(\Exception $e){
+            return response()->json(["success" => false, "msg" => "Error en el servidor", "err" => $e->getMessage(), "ln" => $e->getLine()]);
+        }
+
+    }
+
     function storeOthers(Request $request){
 
         try{

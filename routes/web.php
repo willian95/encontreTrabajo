@@ -42,6 +42,8 @@ Route::post('/profile/academic/delete', "ProfileController@deleteAcademicBackgro
 Route::post('/profiles/job-resume/store', "ProfileController@storeJobResume")->middleware('auth');
 Route::get('/profiles/job-background/fetch', "ProfileController@fetchJobBackground")->middleware('auth');
 Route::post('/profiles/job-background/store', "ProfileController@storeJobBackground")->middleware('auth');
+Route::post('/profile/job-background/update', "ProfileController@updateJobBackground")->middleware('auth');
+Route::post('/profile/job-background/delete', "ProfileController@deleteJobBackground")->middleware('auth');
 Route::post('/profiles/others/store', "ProfileController@storeOthers")->middleware('auth');
 Route::get("/profile/show/{email}", "ProfileController@showProfile");
 
