@@ -27,6 +27,8 @@ class LoginController extends Controller
 
                     if (Auth::attempt(['email' => $request->email, 'password' => $request->password], true)) {
                         return response()->json(["success" => true, "msg" => "Usuario autenticado", "role_id" => Auth::user()->role_id]);
+                    }else{
+                        return response()->json(["success" => false, "msg" => "Contraseña inválida"]);
                     }
 
                 }
