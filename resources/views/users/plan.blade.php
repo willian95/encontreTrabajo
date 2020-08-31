@@ -14,7 +14,7 @@
                         <p><strong>Publicaciones: </strong>{{ $plan->post_amount }}</p>
                         <p><strong>Conferencias: </strong>{{ $plan->conference_amount }}</p>
 
-                        <h4 class="text-center">$ {{ number_format($plan->price, 2, ",", ".") }}</h4>
+                        <h4 class="text-center">$ {{ number_format($plan->price, 0, ",", ".") }}</h4>
 
 
                         <p class="text-center">
