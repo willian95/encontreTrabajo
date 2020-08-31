@@ -32,7 +32,7 @@ class ProposalController extends Controller
 
             $user = User::where("id", $offer->user_id)->first();
 
-            $data = ["messageMail" => "Hola ".$user->name.", el usuario ".\Auth::user()->name." ha respondido tu oferta de trabajo. Haz click en el botón para conocer su propuesta", "slug" => $offer->slug];
+            $data = ["messageMail" => "Hola ".$user->name.", el usuario ".\Auth::user()->name." ha respondido tu oferta de trabajo. Haz click en el botón para conocer su propuesta", "link" => url('/').'/offers/detail/'.$offer->slug];
             $to_name = $user->name;
             $to_email = $user->email;
 
