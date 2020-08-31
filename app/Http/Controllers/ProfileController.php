@@ -262,6 +262,20 @@ class ProfileController extends Controller
 
     }
 
+    function fetchShowAcademicBackground(Request $request){
+        
+        try{
+
+            $academicBgs = AcademicBackground::where("user_id", $request->user_id)->get();
+
+            return response()->json(["success" => true, "academicBgs" => $academicBgs]);
+
+        }catch(\Exception $e){
+            return response()->json(["success" => false, "msg" => "Error en el servidor", "err" => $e->getMessage(), "ln" => $e->getLine()]);
+        }
+
+    }
+
     function storeAcademicBackground(StoreAcademicBackgroundRequest $request){
 
         try{
@@ -353,6 +367,20 @@ class ProfileController extends Controller
         try{
 
             $jobBgs = JobBackground::where("user_id", \Auth::user()->id)->get();
+
+            return response()->json(["success" => true, "jobBgs" => $jobBgs]);
+
+        }catch(\Exception $e){
+            return response()->json(["success" => false, "msg" => "Error en el servidor", "err" => $e->getMessage(), "ln" => $e->getLine()]);
+        }
+
+    }
+
+    function fetchShowJobBackground(Request $request){
+        
+        try{
+
+            $jobBgs = JobBackground::where("user_id", $request->user_id)->get();
 
             return response()->json(["success" => true, "jobBgs" => $jobBgs]);
 
@@ -481,6 +509,11 @@ class ProfileController extends Controller
             $profile = Profile::where("user_id", $user->id)->first();
 
             if($user->role_id == 2){
+
+                $age = Carbon::parse($profile->birth_date)->age;
+                dd($age);
+
+                return view("users/showUserProfile", ["user" => $user, "profile" => $profile,"age" =>$age]);
 
             }else if($user->role_id == 3){
                 return view("users/showBusinessProfile", ["user" => $user, "profile" => $profile]);

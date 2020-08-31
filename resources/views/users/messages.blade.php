@@ -37,7 +37,7 @@
                             @if(\Auth::user()->role_id == 2)
                                 <h4 class="text-center">@{{ businessName }}</h4>
                             @elseif(\Auth::user()->role_id == 3)
-                                <h4 class="text-center">@{{ userName }}</h4>
+                                <h4 class="text-center"> <a href="{{ url('/profile/show/'.$user->email) }}">@{{ userName }}</a></h4>
                                 @if($offer->status == 'abierto')
                                 <p class="text-center">
                                     <button class="btn btn-success" @click="contract(user)">Contratar</button>

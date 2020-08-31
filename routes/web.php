@@ -36,11 +36,13 @@ Route::post('/profile/business/update', "ProfileController@businessUserBusinessU
 Route::post('/profile/business/business/update', "ProfileController@businessBusinessUpdate")->middleware('auth');
 Route::post('/profile/update', "ProfileController@update")->middleware('auth');
 Route::get('/profiles/academic/fetch', "ProfileController@fetchAcademicBackground")->middleware('auth');
+Route::post('/profiles/show/academic/fetch', "ProfileController@fetchShowAcademicBackground")->middleware('auth');
 Route::post('/profile/academic/store', "ProfileController@storeAcademicBackground")->middleware('auth');
 Route::post('/profile/academic/update', "ProfileController@updateAcademicBackground")->middleware('auth');
 Route::post('/profile/academic/delete', "ProfileController@deleteAcademicBackground")->middleware('auth');
 Route::post('/profiles/job-resume/store', "ProfileController@storeJobResume")->middleware('auth');
 Route::get('/profiles/job-background/fetch', "ProfileController@fetchJobBackground")->middleware('auth');
+Route::post('/profiles/show/job-background/fetch', "ProfileController@fetchShowJobBackground")->middleware('auth');
 Route::post('/profiles/job-background/store', "ProfileController@storeJobBackground")->middleware('auth');
 Route::post('/profile/job-background/update', "ProfileController@updateJobBackground")->middleware('auth');
 Route::post('/profile/job-background/delete', "ProfileController@deleteJobBackground")->middleware('auth');

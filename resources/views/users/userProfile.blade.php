@@ -285,7 +285,7 @@
                                         <th>Fecha de Inicio</th>
                                         <th>Fecha Fin</th>
                                         <th>Estado</th>
-                                        <th>Eliminar</th>
+                                        <th>Acciones</th>
                                     
                                       </tr>
                                     </thead>
