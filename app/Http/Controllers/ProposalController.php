@@ -64,7 +64,7 @@ class ProposalController extends Controller
             $offer->proposal_updated_at = Carbon::now();
             $offer->update();
 
-            $user = User::where("id", $offer->user_id)->first();
+            $user = User::where("id", $proposal->user_id)->first();
 
             $data = ["messageMail" => "Hola ".$user->name.", la empresa ".\Auth::user()->name." ha respondido tu oferta de trabajo. Haz click en el botón para conocer su respuesta", "slug" => $offer->slug];
             $to_name = $user->name;
