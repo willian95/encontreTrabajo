@@ -23,7 +23,7 @@ class ProposalController extends Controller
             $proposal = new Proposal;
             $proposal->user_id = \Auth::user()->id;
             $proposal->offer_id = $request->offerId;
-            $proposal->proposal = $request->proposal;
+            $proposal->proposal = str_replace("\n", "", $request->proposal);
             $proposal->save();
 
             $offer = Offer::where("id", $request->offerId)->first();
@@ -56,7 +56,7 @@ class ProposalController extends Controller
             $proposal = new Proposal;
             $proposal->user_id = $request->user_id;
             $proposal->offer_id = $request->offerId;
-            $proposal->proposal = $request->proposal;
+            $proposal->proposal = str_replace("\n", ". ", $request->proposal);
             $proposal->is_answer = 1;
             $proposal->save();
 
