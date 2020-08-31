@@ -48,7 +48,12 @@
                     @endif
 
                     @if(\Auth::user()->role_id == 3)
+                    
                         <div class="row perfil-empresa-form">
+
+                            <div class="col-12">
+                                <h4 class="text-center">Respuestas de usuarios</h4>
+                            </div>
 
                             <div class="col-md-8 offset-md-2 col-lg-8 offset-lg-2">
                                 <table class="table">
@@ -68,7 +73,7 @@
                                             <td>@{{ proposal.user.lastname }}</td>
                                             <td>@{{ proposal.user.email }}</td>
                                             <td>
-
+                                                <a :href="'{{ url('/proposal/messages/') }}'+'/'+proposal.offer.slug+'/'+proposal.user.email" class="btn btn-info">Ver mensajes</a>
                                             </td>
                                         </tr>
                                     </tbody>

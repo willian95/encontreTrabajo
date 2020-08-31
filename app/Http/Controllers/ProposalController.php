@@ -90,8 +90,8 @@ class ProposalController extends Controller
             $dataAmount = 20;
             $skip = ($request->page - 1) * $dataAmount;
 
-            $proposals = Proposal::skip($skip)->take($dataAmount)->where('offer_id', $request->offerId)->where("is_answer", 0)->orderBy("id", "desc")->with("user")->has("user")->get();
-            $proposalsCount = Proposal::with("user")->has("user")->where('offer_id', $request->offerId)->where("is_answer", 0)->count();
+            $proposals = Proposal::skip($skip)->take($dataAmount)->where('offer_id', $request->offerId)->where("is_answer", 0)->groupBy("offer_id", "user_id")->orderBy("id", "desc")->with("user")->has("user")->get();
+            $proposalsCount = Proposal::with("user")->has("user")->where('offer_id', $request->offerId)->where("is_answer", 0)->groupBy("offer_id", "user_id")->count();
 
             return response()->json(["success" => true, "proposals" => $proposals, "proposalsCount" => $proposalsCount, "dataAmount" => $dataAmount]);
 
