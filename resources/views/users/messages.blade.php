@@ -33,7 +33,7 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-8 offset-2">
+                        <div class="col-md-8 offset-md-2 col-12">
                             @if(\Auth::user()->role_id == 2)
                                 <h4 class="text-center">@{{ businessName }}</h4>
                             @elseif(\Auth::user()->role_id == 3)
@@ -46,7 +46,7 @@
                                 <p class="text-center">Ya ha realizado una contratación para esta oferta</p>
                                 @endif
                             @endif
-                            <div style="overflow-y: auto; width: 100%; height: 40vh;">
+                            <div style="overflow-y: auto; width: 100%; height: 40vh; overflow-x: hidden;">
                                 <div class="row perfil-empresa-form" v-for="proposal in proposals">
 
                                     <div class="col-8" v-if="proposal.is_answer == 0">
@@ -71,37 +71,40 @@
                     </div>
                     
 
+                    @if($offer->status == "abierto")
+                        @if(\Auth::user()->role_id == 2)
+                        
+                                <div class="row perfil-empresa-form">
 
-                    @if(\Auth::user()->role_id == 2)
-                        <div class="row perfil-empresa-form">
+                                    <div class="col-md-6 offset-md-3 col-lg-6 offset-lg-3">
 
-                            <div class="col-md-6 offset-md-3 col-lg-6 offset-lg-3">
+                                        <textarea class="form-control" rows="4" v-model="proposal"></textarea>
 
-                                <textarea class="form-control" rows="4" v-model="proposal"></textarea>
+                                        <p class="text-center">
+                                            <button class="btn btn-success" @click="sendProposal()">enviar propuesta</button>
+                                        </p>
 
-                                <p class="text-center">
-                                    <button class="btn btn-success" @click="sendProposal()">enviar propuesta</button>
-                                </p>
+                                    </div>
+
+                                </div>
+
+                        @elseif(\Auth::user()->role_id == 3)
+
+                            <div class="row perfil-empresa-form">
+
+                                <div class="col-md-6 offset-md-3 col-lg-6 offset-lg-3">
+
+                                    <textarea class="form-control" rows="4" v-model="proposal"></textarea>
+
+                                    <p class="text-center">
+                                        <button class="btn btn-success" @click="answerProposal()">enviar respuesta</button>
+                                    </p>
+
+                                </div>
 
                             </div>
 
-                        </div>
-                    @elseif(\Auth::user()->role_id == 3)
-
-                        <div class="row perfil-empresa-form">
-
-                            <div class="col-md-6 offset-md-3 col-lg-6 offset-lg-3">
-
-                                <textarea class="form-control" rows="4" v-model="proposal"></textarea>
-
-                                <p class="text-center">
-                                    <button class="btn btn-success" @click="answerProposal()">enviar respuesta</button>
-                                </p>
-
-                            </div>
-
-                        </div>
-
+                        @endif
                     @endif
 				
 				</div>
