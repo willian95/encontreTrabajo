@@ -43,6 +43,7 @@ Route::post('/profiles/job-resume/store', "ProfileController@storeJobResume")->m
 Route::get('/profiles/job-background/fetch', "ProfileController@fetchJobBackground")->middleware('auth');
 Route::post('/profiles/job-background/store', "ProfileController@storeJobBackground")->middleware('auth');
 Route::post('/profiles/others/store', "ProfileController@storeOthers")->middleware('auth');
+Route::get("/profile/show/{email}", "ProfileController@showProfile");
 
 Route::get("/offers/create", "OfferController@create")->middleware('auth');
 Route::post("/offers/store", "OfferController@store")->middleware('auth');
@@ -51,13 +52,21 @@ Route::get("/offers/business/fetch/{page}", "OfferController@businessFetch")->mi
 Route::get("/offers/detail/{slug}", "OfferController@show")->middleware('auth');
 
 Route::post("/proposal/store", "ProposalController@store")->middleware('auth');
+Route::post("/proposal/answer", "ProposalController@answer")->middleware('auth');
 Route::post("/proposal/fetch", "ProposalController@fetch")->middleware('auth');
 Route::get("/my-proposals", "ProposalController@index")->middleware('auth');
 Route::get("/my-proposals/fetch/{page}", "ProposalController@myProposals")->middleware('auth');
+Route::get("/proposal/messages/{offer}/{email}", "ProposalController@messages")->middleware('auth');
+Route::post("/proposal/messages/fetch", "ProposalController@fetchMessages")->middleware('auth');
+
+Route::get("my-applies", "ProposalController@myAppliesView")->middleware('auth');
+Route::get("/my-applies/fetch/{page}", "ProposalController@myApplies")->middleware('auth');
 
 Route::get('plans/available', 'PlanController@index');
 
 Route::post("/cart/store", "CartController@store");
+
+Route::post("/contract", "ContractController@store");
 
 Route::get('/checkout/{cart}', 'CheckoutController@initTransaction')->name('checkout');  
 Route::post('/checkout/webpay/response', 'CheckoutController@response')->name('checkout.webpay.response');  

@@ -51,9 +51,37 @@
 
     </div>
 
+    @if(\Auth::user()->is_profile_complete == 0)
+        <div class="modal fade" id="profileModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <!--<h5 class="modal-title" id="exampleModalLabel"></h5>-->
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h5 class="text-center">Aún con completa su perfil</h5>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">cerrar</button>
+                    <a class="btn btn-primary" href="{{ url('/profile/business') }}">Ir a mi perfil</a>
+                </div>
+                </div>
+            </div>
+        </div>
+    @endif
+
 @endsection
 
 @push("scripts")
+
+    @if(\Auth::user()->is_profile_complete == 0)
+        <script>
+            $('#profileModal').modal({show: true})
+        </script>
+    @endif
 
     <script>
 

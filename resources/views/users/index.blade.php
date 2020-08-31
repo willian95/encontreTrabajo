@@ -4,6 +4,13 @@
 
     <div class="container-fluid" id="user-offers-dev">
         <div class="row" v-cloak>
+
+            <div class="col-12">
+                @if(\Auth::user()->is_profile_complete == 0)
+                    <p>Debes completar tu perfil para visualizar ofertas</p>
+                @endif
+            </div>
+
             <div class="col-md-4" v-for="offer in offers">
                 <div class="card">
                     <div class="card-body">
@@ -17,9 +24,11 @@
                             $ @{{ parseInt(offer.min_wage).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }} <span v-if="offer.max_wage != null">- $ @{{ parseInt(offer.max_wage).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</span>
                         </p>
 
-                        <p class="text-center">
-                            <a :href="'{{ url('/offers/detail/') }}'+'/'+offer.slug" class="btn btn-primary">Ver más</a>
-                        </p>
+                        @if(\Auth::user()->is_profile_complete == 1)
+                            <p class="text-center">
+                                <a :href="'{{ url('/offers/detail/') }}'+'/'+offer.slug" class="btn btn-primary">Ver más</a>
+                            </p>
+                        @endif
 
                     </div>
                 </div>
@@ -48,9 +57,37 @@
 
     </div>
 
+    @if(\Auth::user()->is_profile_complete == 0)
+        <div class="modal fade" id="profileModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <!--<h5 class="modal-title" id="exampleModalLabel"></h5>-->
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h5 class="text-center">Aún con completa su perfil</h5>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">cerrar</button>
+                    <a class="btn btn-primary" href="{{ url('/profile/user') }}">Ir a mi perfil</a>
+                </div>
+                </div>
+            </div>
+        </div>
+    @endif
+
 @endsection
 
 @push("scripts")
+
+    @if(\Auth::user()->is_profile_complete == 0)
+        <script>
+            $('#profileModal').modal({show: true})
+        </script>
+    @endif
 
     <script>
 

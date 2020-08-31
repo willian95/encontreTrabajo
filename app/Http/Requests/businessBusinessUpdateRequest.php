@@ -26,7 +26,8 @@ class businessBusinessUpdateRequest extends FormRequest
         return [
             "ivaCondition" => "required",
             "industry" => "required",
-            "amountEmployees" => "required|integer"
+            "amountEmployees" => "required|integer",
+            "address" => "required"
         ];
     }
 
@@ -36,7 +37,8 @@ class businessBusinessUpdateRequest extends FormRequest
             "ivaCondition.required" => "Condición de IVA es requerida",
             "industry.required" => "Industria es requerida",
             "amountEmployees.required" => "Cantidad de empleados es requerida",
-            "amountEmployees.integer" => "Cantidad de empleados debe ser un número" 
+            "amountEmployees.integer" => "Cantidad de empleados debe ser un número",
+            "address.required" => "Dirección es requerida"
         ];
 
     }

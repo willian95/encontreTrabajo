@@ -5,15 +5,13 @@
     <div class="row" id="proposals-dev">
         <div class="col-12">
 
-            <h3 class="text-center">Ofertas respondidas</h3>
+            <h3 class="text-center">Mis aplicaciones</h3>
 
             <table class="table">
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Nombre</th>
-                        <th>Apellido</th>
-                        <th>Email</th>
+                        <th>Empresa</th>
                         <th>Titulo</th>
                         <th>Puesto</th>
                         <th>Acciones</th>
@@ -23,9 +21,7 @@
                     <tr v-for="(proposal, index) in proposals">
                         <td v-if="page == 1">@{{ index + 1 }}</td>
                         <td v-else>@{{ (index + 1) + (dataAmount * page) }}</td>
-                        <td>@{{ proposal.user.name }}</td>
-                        <td>@{{ proposal.user.lastname }}</td>
-                        <td>@{{ proposal.user.email }}</td>
+                        <td>@{{ proposal.offer.user.business_name }}</td>
                         <td>@{{ proposal.offer.title }}</td>
                         <td>@{{ proposal.offer.job_position }}</td>
                         <td>
@@ -60,13 +56,13 @@
 
                     this.page = page
 
-                    axios.get("{{ url('/my-proposals/fetch') }}"+"/"+this.page)
+                    axios.get("{{ url('/my-applies/fetch') }}"+"/"+this.page)
                     .then(res => {
-
+                        console.log(res)
                         if(res.data.success == true){
 
-                            this.proposals = res.data.proposals
-                            this.pages = Math.ceil(res.data.offersCount / res.data.dataAmount)
+                            this.proposals = res.data.applies
+                            this.pages = Math.ceil(res.data.appliesCount / res.data.dataAmount)
                             this.dataAmount = res.data.dataAmount
 
                         }else{

@@ -38,7 +38,7 @@ class OfferController extends Controller
             $offer->title = $request->title;
             $offer->min_wage = $request->minWage;
             $offer->max_wage = $request->maxWage;
-            $offer->description = $request->description;
+            $offer->description = str_replace("\n", ". ", $request->description);
             $offer->job_position = $request->jobPosition;
             $offer->category_id = $request->category;
             $offer->slug = $slug;
@@ -63,8 +63,8 @@ class OfferController extends Controller
             $dataAmount = 18;
             $skip = ($page - 1) * $dataAmount;
 
-            $offers = Offer::skip($skip)->take($dataAmount)->orderBy("id", "desc")->with("user")->get();
-            $offersCount = Offer::with("user")->count();
+            $offers = Offer::skip($skip)->where("status", "abierto")->take($dataAmount)->orderBy("id", "desc")->with("user")->has("user")->get();
+            $offersCount = Offer::with("user")->where("status", "abierto")->has("user")->count();
 
             return response()->json(["success" => true, "offers" => $offers, "offersCount" => $offersCount, "dataAmount" => $dataAmount]);
 
@@ -80,8 +80,8 @@ class OfferController extends Controller
             $dataAmount = 18;
             $skip = ($page - 1) * $dataAmount;
 
-            $offers = Offer::skip($skip)->take($dataAmount)->where('user_id', \Auth::user()->id)->orderBy("proposal_updated_at", "desc")->with("user")->get();
-            $offersCount = Offer::with("user")->where('user_id', \Auth::user()->id)->count();
+            $offers = Offer::skip($skip)->take($dataAmount)->where('user_id', \Auth::user()->id)->orderBy("proposal_updated_at", "desc")->with("user")->has("user")->get();
+            $offersCount = Offer::with("user")->has("user")->where('user_id', \Auth::user()->id)->count();
 
             return response()->json(["success" => true, "offers" => $offers, "offersCount" => $offersCount, "dataAmount" => $dataAmount]);
 
@@ -95,10 +95,11 @@ class OfferController extends Controller
 
         try{
 
-            $offer = Offer::where("slug", $slug)->with("user", "user.region", "user.commune")->firstOrFail();
+            $offer = Offer::where("slug", $slug)->with("user", "user.region", "user.commune", "user.profile")->has("user")->has("user.profile")->firstOrFail();
             return view("users.offerDetails", ["offer" => $offer]);
 
         }catch(\Exception $e){
+            
             abort(403);
         }
 

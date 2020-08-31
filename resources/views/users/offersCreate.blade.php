@@ -74,10 +74,10 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-4">
+                            <div class="col-md-8 offset-md-2 col-lg-8 offset-lg-2">
                                 <div class="form-group">
                                     <label for="text">Descripción</label>
-                                    <textarea class="form-control" rows="3" v-model="description"></textarea>
+                                    <textarea class="form-control" rows="6" v-model="description"></textarea>
                                 </div>
                             </div>
 

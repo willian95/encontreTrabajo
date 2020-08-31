@@ -103,6 +103,30 @@
 								</div>
 							</div>
 						</div>
+
+						<div class="row">
+							<div class="col">
+								<label for="city">País</label>
+								<select class="form-control" v-model="country">
+									<option value="" default>Seleccione</option>
+									<option :value="country.id" v-for="country in countries">@{{ country.name }}</option>
+								</select>
+							</div>
+
+							<div class="col" v-if="country == 4">
+								<label for="region">Región</label>
+								<select class="form-control" id="region" v-model="region" @change="fetchCommunes()">
+									<option :value="region" v-for="region in regions">@{{ region.name }}</option>
+								</select>
+							</div>
+
+							<div class="col" v-if="country == 4">
+								<label for="commune">Comuna</label>
+								<select class="form-control" id="commune" v-model="commune">
+									<option :value="commune.id" v-for="commune in communes">@{{ region.name }} - @{{ commune.name }}</option>
+								</select>
+							</div>
+						</div>
 						
 						<div class="row">
 							<div class="col-md-4 col-sm-12">
@@ -111,23 +135,29 @@
 									<input type="text" class="form-control" id="businessPhone"  v-model="businessPhone" @keypress="isNumber($event)">
 								</div>
 							</div>
-								<div class="col-md-4 col-sm-12 ">
+							<div class="col-md-4 col-sm-12 ">
+								<div class="form-group">
+									<label for="industry">Industria</label>
+									<input type="text" class="form-control" id="industry"  v-model="industry">
+								</div>
+								</div>
+								<div class="col-md-4 col-sm-12">
 									<div class="form-group">
-										<label for="industry">Industria</label>
-										<input type="text" class="form-control" id="industry"  v-model="industry">
-									</div>
-									</div>
-									<div class="col-md-4 col-sm-12">
-										<div class="form-group">
-											<label for="amountEmployees">Cantidad de Empleados</label>
-											<input type="text" class="form-control" id="amountEmployees"  v-model="amountEmployees" @keypress="isNumber($event)">
-										</div>
+										<label for="amountEmployees">Cantidad de Empleados</label>
+										<input type="text" class="form-control" id="amountEmployees"  v-model="amountEmployees" @keypress="isNumber($event)">
 									</div>
 								</div>
+								<div class="col-md-12 col-sm-12">
+									<div class="form-group">
+										<label for="address">Dirección</label>
+										<textarea type="text" class="form-control" id="address"  v-model="address" ></textarea>
+									</div>
+								</div>
+							</div>
 						
-								<div class="buttom-content-up">
-									<button type="button" class="btn btn-primary" @click="updateBusinessProfile()">Actualizar</button>
-								</div>
+							<div class="buttom-content-up">
+								<button type="button" class="btn btn-primary" @click="updateBusinessProfile()">Actualizar</button>
+							</div>
 					
 							</form>
 						</div>
@@ -151,6 +181,7 @@
             data() {
                 return {
 					image:"",
+					address:"{{ $user->profile->address }}",
 					imagePreview:"{{ Auth::user()->image }}",
                     name:"{{ Auth::user()->name }}",
                     lastname: "{{ Auth::user()->lastname }}",
@@ -161,11 +192,64 @@
 					ivaCondition:"{{ $user->profile->iva_condition }}",
 					industry:"{{ $user->profile->industry }}",
 					amountEmployees:"{{ $user->profile->amount_employees }}",
-                    loading:false
+                    loading:false,
+					region:"{{ Auth::user()->region_id }}",
+                    commune:"{{ Auth::user()->commune_id }}",
+					country:"",
+					regions:[],
+                    communes:[],
+					countries:[]
                 }
             },
             methods: {
 
+				fetchCountries(){
+
+					axios.get("{{ url('/country/fetch') }}").then(res => {
+						
+						if(res.data.success == true){
+							this.countries = res.data.countries
+						}
+
+					})
+
+				},
+				fetchRegions(){
+
+					axios.get("{{ url('/regions/fetch-all') }}").then(res => {
+
+						if(res.data.success == true){
+							this.regions = res.data.regions
+
+							this.regions.forEach((data) => {
+
+								if("{{ Auth::user()->region_id }}" == data.id){
+									this.region = data
+								}
+
+							})
+
+							this.fetchCommunes()
+
+						}
+
+					})
+
+				},
+				fetchCommunes(){
+
+					//this.region = this.regionName.id
+
+					axios.get("{{ url('/communes/fetch/') }}"+"/"+this.region.id).then(res => {
+
+						if(res.data.success == true){
+							this.communes = res.data.communes
+
+						}
+
+					})
+
+				},
 				onImageChange(e){
                     this.image = e.target.files[0];
 
@@ -227,6 +311,10 @@
 						ivaCondition:this.ivaCondition,
 						industry:this.industry,
 						amountEmployees:this.amountEmployees,	
+						countryId:this.country,
+						region:this.region.id,
+						commune:this.commune,
+						address: this.address
 					}).then(res => {
                         this.loading = false
                         if(res.data.success == true){
@@ -269,7 +357,20 @@
                     }
                 }
 
-            }
+            },
+			mounted(){
+
+				this.country = "{{ $user->profile->country_id }}"
+                if(this.country == ""){
+                    this.country = 4
+                }
+				
+				this.fetchCountries()
+				this.fetchRegions()
+				window.setTimeout(() => {
+					this.fetchCommunes()
+				}, 1000);
+			}
 
         })
     </script>

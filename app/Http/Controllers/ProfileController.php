@@ -24,7 +24,7 @@ class ProfileController extends Controller
 
         try{
 
-            $user = User::where("id", \Auth::user()->id)->with("profile")->firstOrFail();
+            $user = User::where("id", \Auth::user()->id)->with("profile")->has("profile")->firstOrFail();
             return view("users.userProfile", ["user" => $user]);
 
         }catch(\Exception $e){
@@ -36,7 +36,7 @@ class ProfileController extends Controller
     function businessIndex(){
         try{
 
-            $user = User::where("id", \Auth::user()->id)->with("profile")->firstOrFail();
+            $user = User::where("id", \Auth::user()->id)->with("profile")->has("profile")->firstOrFail();
             return view("users.businessProfile", ["user" => $user]);
 
         }catch(\Exception $e){
@@ -83,6 +83,8 @@ class ProfileController extends Controller
             }
             $user->update();
 
+            $this->isProfileComplete();
+
             return response()->json(["success" => true, "msg" => "Información del usuario actualizada"]);
 
         }catch(\Exception $e){
@@ -99,13 +101,19 @@ class ProfileController extends Controller
             $user->business_rut = $request->businessRut;
             $user->business_name = $request->businessName;
             $user->business_phone = $request->businessPhone;
+            $user->region_id = $request->region;
+            $user->commune_id = $request->commune;
             $user->update();
 
             $profile = Profile::where("user_id", \Auth::user()->id)->first();
             $profile->iva_condition = $request->ivaCondition;
             $profile->industry = $request->industry;
             $profile->amount_employees = $request->amountEmployees;
+            $profile->country_id = $request->countryId;
+            $profile->address = str_replace("\n", ". ", $request->address);
             $profile->update();
+
+            $this->isProfileComplete();
 
             return response()->json(["success" => true, "msg" => "Información de empresa actualizada"]);
 
@@ -190,6 +198,7 @@ class ProfileController extends Controller
     
                 }
                 
+                
             }catch(\Exception $e){
                 
                 return response()->json(["success" => false, "msg" => "Hubo un problema con el video", "err" => $e->getMessage(), "ln" => $e->getLine()]);
@@ -219,13 +228,15 @@ class ProfileController extends Controller
             $profile->birth_date = $request->birthDate;
             $profile->gender = $request->gender;
             $profile->civil_state = $request->civilState;
-            $profile->address = $request->address;
+            $profile->address = str_replace("\n", ". ", $request->address);
             $profile->country_id = $request->country;
             $profile->handicap = $request->handicap;
             $profile->phone = $request->phone;
             $profile->nationality = $request->nationality;
             $profile->home_phone = $request->homePhone;
             $profile->update();
+
+            $this->isProfileComplete();
             
             return response()->json(["success" => true, "msg" => "Antecedentes básicos actualizados"]);
 
@@ -265,6 +276,8 @@ class ProfileController extends Controller
             $academicBg->study_field = $request->studyField;
             $academicBg->save();
 
+            $this->isProfileComplete();
+
             return response()->json(["success" => true, "msg" => "Antecedente Académico agregado"]);
 
         }catch(\Exception $e){
@@ -285,6 +298,8 @@ class ProfileController extends Controller
             $academicBg->state = $request->state;
             $academicBg->study_field = $request->studyField;
             $academicBg->update();
+
+            $this->isProfileComplete();
 
             return response()->json(["success" => true, "msg" => "Antecedente Académico Actualizado"]);
 
@@ -323,6 +338,8 @@ class ProfileController extends Controller
             $profile->awards = str_replace("\n", ". ", $request->awards);
             $profile->update();
 
+            $this->isProfileComplete();
+
             return response()->json(["success" => true, "msg" => "Resumen laboral actualizado"]);
 
         }catch(\Exception $e){
@@ -357,6 +374,8 @@ class ProfileController extends Controller
             $jobBackground->end_date = $request->endDateBg;
             $jobBackground->save();
 
+            $this->isProfileComplete();
+
             return response()->json(["success" => true, "msg" => "Antecendente laboral agregado"]);
 
         }catch(\Exception $e){
@@ -376,7 +395,59 @@ class ProfileController extends Controller
             $profile->handicap_description = $request->handicapDescription;
             $profile->update();
 
+            $this->isProfileComplete();
+
             return response()->json(["success" => true, "msg" => "Otros antecendentes actualizados"]);
+
+        }catch(\Exception $e){
+            return response()->json(["success" => false, "msg" => "Error en el servidor", "err" => $e->getMessage(), "ln" => $e->getLine()]);
+        }
+
+    }
+
+    function isProfileComplete(){
+
+        if(\Auth::user()->role_id == 2){
+
+            $profile = Profile::where("user_id", \Auth::user()->id)->first();
+
+            if(\Auth::user()->image != url('/')."/images/users/default.jpg" && $profile->video != null && $profile->curriculum != null && $profile->birth_date != null && $profile->gender != null && $profile->civil_state != null && $profile->address != null && $profile->country_id != null && $profile->nationality != null  && $profile->handicap != null && $profile->phone != null && $profile->home_phone != null && AcademicBackground::where("user_id", \Auth::user()->id)->count() > 0 && $profile->job_description != null && $profile->experience_year != null && $profile->availability != null && $profile->salary != null && \Auth::user()->desired_job != null && $profile->desired_area != null){
+
+                $user = User::where("id", \Auth::user()->id)->first();
+                $user->is_profile_complete = 1;
+                $user->update();
+
+            }
+
+        }else if(\Auth::user()->role_id == 3){
+
+            $profile = Profile::where("user_id", \Auth::user()->id)->first();
+
+            if($profile->industry != null && $profile->image != url('/')."images/users/default.jpg" && $profile->country_id != null){
+
+                $user = User::where("id", \Auth::user()->id)->first();
+                $user->is_profile_complete = 1;
+                $user->update();
+
+            }
+
+        }
+
+    }
+
+    function showProfile($email){
+
+        try{
+
+            $user = User::where("email", $email)->first();
+            $profile = Profile::where("user_id", $user->id)->first();
+
+            if($user->role_id == 2){
+
+            }else if($user->role_id == 3){
+                return view("users/showBusinessProfile", ["user" => $user, "profile" => $profile]);
+            }
+
 
         }catch(\Exception $e){
             return response()->json(["success" => false, "msg" => "Error en el servidor", "err" => $e->getMessage(), "ln" => $e->getLine()]);

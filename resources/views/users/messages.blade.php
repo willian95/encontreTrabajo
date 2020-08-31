@@ -31,6 +31,43 @@
                         </div>
 
                     </div>
+
+                    <div class="row">
+                        <div class="col-8 offset-2">
+                            @if(\Auth::user()->role_id == 2)
+                                <h4 class="text-center">@{{ businessName }}</h4>
+                            @elseif(\Auth::user()->role_id == 3)
+                                <h4 class="text-center">@{{ userName }}</h4>
+                                <p class="text-center">
+                                    <button class="btn btn-success" @click="contract(user)">Contratar</button>
+                                </p>
+                            @endif
+                            <div style="overflow-y: auto; width: 100%; height: 20vh;">
+                                <div class="row perfil-empresa-form" v-for="proposal in proposals">
+
+                                    <div class="col-8" v-if="proposal.is_answer == 0">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                @{{ proposal.proposal }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-8 offset-4 text-right" v-else>
+                                        <div class="card">
+                                            <div class="card-body">
+                                                @{{ proposal.proposal }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    
+                    </div>
+                    
+
+
                     @if(\Auth::user()->role_id == 2)
                         <div class="row perfil-empresa-form">
 
@@ -45,35 +82,20 @@
                             </div>
 
                         </div>
-                    @endif
+                    @elseif(\Auth::user()->role_id == 3)
 
-                    @if(\Auth::user()->role_id == 3)
                         <div class="row perfil-empresa-form">
 
-                            <div class="col-md-8 offset-md-2 col-lg-8 offset-lg-2">
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th>#</th>
-                                            <th>Nombre</th>
-                                            <th>Apellido</th>
-                                            <th>Email</th>
-                                            <th>Acciones</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr v-for="(proposal, index) in proposals">
-                                            <td>@{{ (index + 1) * page }}</td>
-                                            <td>@{{ proposal.user.name }}</td>
-                                            <td>@{{ proposal.user.lastname }}</td>
-                                            <td>@{{ proposal.user.email }}</td>
-                                            <td>
+                            <div class="col-md-6 offset-md-3 col-lg-6 offset-lg-3">
 
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                <textarea class="form-control" rows="4" v-model="proposal"></textarea>
+
+                                <p class="text-center">
+                                    <button class="btn btn-success" @click="answerProposal()">enviar respuesta</button>
+                                </p>
+
                             </div>
+
                         </div>
 
                     @endif
@@ -108,6 +130,8 @@
                     commune:"{{ $offer->user->commune ? $offer->user->commune->name : '' }}",
                     address:"{{ $offer->user->profile->address }}",
                     proposal:"",
+                    user:"{{ $user->id }}",
+                    userName:"{{ $user->name.' '.$user->lastname }}",
                     role_id:"{{ \Auth::user()->role_id }}",
                     proposals:[],
                     page:1,
@@ -155,38 +179,102 @@
 
 
                 },
-                fetchProposals(page = 1){
+                answerProposal(){
 
-                    this.page = page
-
-                    axios.post("{{ url('/proposal/fetch') }}", {offerId: this.offerId, page: this.page})
+                    this.loading = true
+                    axios.post("{{ url('/proposal/answer') }}", {offerId: this.offerId, proposal: this.proposal, user_id: this.user})
                     .then(res => {
+
+                        this.loading = false
 
                         if(res.data.success == true){
 
-                            this.proposals = res.data.proposals
-                            this.pages = Math.ceil(res.data.offersCount / res.data.dataAmount)
+                            swal({
+                                title:"Excelente",
+                                text:res.data.msg,
+                                icon:"success"
+                            }).then(res => {
+
+                                window.location.href="{{ url('/home') }}"
+
+                            })
 
                         }else{
-
                             swal({
                                 title:"Lo sentimos",
                                 text:res.data.msg,
                                 icon:"error"
                             })
-
                         }
 
                     })
+                    .catch(err => {
+                        this.loading = false
+                        $.each(err.response.data.errors, function(key, value) {
+                            alertify.error(value[0])
+            
+                        });
+                    })
+
+                },
+                fetchProposals(page = 1){
+
+                    this.page = page
+
+                    axios.post("{{ url('/proposal/messages/fetch') }}", {offerId: this.offerId, user: this.user})
+                    .then(res => {
+
+                        this.proposals = res.data.proposals
+                        
+
+                    })
+
+                },
+                contract(id){
+
+                    swal({
+                        title: "¿Estás seguro?",
+                        text: "Una vez contratado tu publicación desaparecerá",
+                        icon: "warning",
+                        buttons: true,
+                        dangerMode: true,
+                    })
+                    .then((willDelete) => {
+                        if (willDelete) {
+                            axios.post("{{ url('/contract') }}", {offer_id: this.offerId, user_id: this.user}).then(res => {
+
+                                if(res.data.success == true){
+
+                                    swal({
+                                        title:"Excelente",
+                                        text:res.data.msg,
+                                        icon:"success"
+                                    }).then(res => {
+
+                                        window.location.href="{{ url('/home') }}"
+
+                                    })
+
+                                }else{
+
+                                    swal({
+                                        title:"Lo sentimos",
+                                        text:res.data.msg,
+                                        icon:"error"
+                                    })
+
+                                }
+
+                            })
+                        }
+                    });
 
                 }
 
             },
             mounted(){
-                
-                if(this.role_id == 3){
-                    this.fetchProposals()
-                }
+            
+                this.fetchProposals()
 
             }
 
