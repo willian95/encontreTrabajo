@@ -231,7 +231,6 @@
                         businessName:this.businessName,
                         businessRut:this.businessRut,
                         businessPhone:this.businessPhone
-              
                     })
                     .then(res => {  
                         this.loading = false
@@ -281,9 +280,6 @@
                 }
 
                     
-            },
-            mounted(){
-                this.fetchRegions()
             }
 
         })

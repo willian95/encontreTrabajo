@@ -8,7 +8,7 @@ use Illuminate\Support\Str;
 use Carbon\Carbon;
 use App\User;
 use App\Profile;
-use App\ServiceAmount;
+use App\serviceAmount as ServiceAmount;
 
 class RegisterController extends Controller
 {
