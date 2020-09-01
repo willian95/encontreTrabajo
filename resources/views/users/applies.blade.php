@@ -6,8 +6,8 @@
         <div class="col-12">
 
             <h3 class="text-center">Mis aplicaciones</h3>
-
-            <table class="table">
+            <div class="table-mis-app">
+            <table class="table ">
                 <thead>
                     <tr>
                         <th>#</th>
@@ -30,6 +30,7 @@
                     </tr>
                 </tbody>
             </table>
+            </div>
         </div>
     </div>
 

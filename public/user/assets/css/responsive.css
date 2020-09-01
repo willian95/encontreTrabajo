@@ -88,7 +88,22 @@
         
 }
 @media (max-width: 768px) {
-    
+    .ofertas-respond {
+        overflow: auto;
+        margin-bottom: 50px;
+    }
+    .col-md-8.offset-md-2.col-lg-8.offset-lg-2.table-respuestas {
+        overflow: auto;
+        margin-bottom: 50px;
+    }
+    .table-mis-app {
+        overflow: auto;
+        margin-bottom: 50px;
+    }
+    a.btn.btn-info {
+        font-size: 12px;
+        padding: 0px 16px;
+    }
     div#labora table {
         font-size: 10px;
     }
@@ -100,6 +115,7 @@
     }
     .container.content-table-a-academico {
         font-size: 10px;
+        overflow: auto;
     }
     
     .content.a-academicos .col {
@@ -192,9 +208,34 @@
     }
 }
 @media (max-width: 575px) {
-    .content-barra-m {
-        justify-content: center;
+   
+    .content-barra-menu-perfil-menu ul li a {
+        color: #0075a9;
+        padding: 5px 15px;
+    
     }
+    .content-barra-m {
+        display: flex;
+        justify-content: space-between;
+    }
+    /* .card-body {
+        margin-left: 15px;
+    }
+    .card {
+        margin-left: 15px;
+    } */
+    ul.pagination {
+       
+        margin-left: 15px;
+    }
+    .content-work-options {
+        margin-top: 40px;
+        margin-left: 35px;
+        margin-right: 20px;
+    }
+    /* .content-barra-m {
+        justify-content: center;
+    } */
     div#rlabora .col {
         flex: 0 0 100%;
     }
@@ -210,9 +251,9 @@
     .row.inf-media-perfil-basicos .col {
         padding: 0px 40px 0px 40px;
     }
-    li.nav-item.tabs-perfil h3 {
+    /* li.nav-item.tabs-perfil h3 {
         display: none;
-    }
+    } */
     .col-md-6.content-logo {
         height: 30vh;
     }

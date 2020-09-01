@@ -56,20 +56,18 @@ html {
 /**/
 .card:hover {
 
-    box-shadow: 2 0 0 0px #141b4d;
+    /* box-shadow: 2 0 0 0px #141b4d; */
     box-shadow: -4px 7px 17px #cccccc;
     border: 1px solid #0075a90a;
     transition: 0.5s;
 
 
 }
-
-
 .card{
     border: 1px solid #0075a90a;
-
+    border-radius: 15px;
+    margin: 5px;
 }
-
 .content-register {
     overflow: hidden;
 }
@@ -204,6 +202,7 @@ img.img-user {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    text-align: center;
 }
 .div-content-inf-user-img {
     display: flex;
@@ -270,7 +269,7 @@ img.img-user {
 
 }
 .dropdown-menu.show {
-    margin-left: -40px;
+    margin-left: -60px;
 }
 img.img-user-icon {
     width: 25px;
@@ -336,6 +335,7 @@ img.img-menu-perfil {
 .content-barra-menu-perfil-menu ul li a {
     color: #fff;
     padding: 5px 15px;
+
 }
 .content-barra-menu-perfil-menu ul li a {
     text-decoration: none;
@@ -348,6 +348,7 @@ img.img-menu-perfil {
     text-align: center;
     font-weight: bold;
     margin-top: 50px;
+    text-transform: uppercase;
 }
 .row.media-perfil-basicos-publicidad img {
     height: 180px;
@@ -485,7 +486,8 @@ img.ico-tab {
     margin-bottom: 10px;
 }
 a.nav-link.tabs-perfil-a {
-    border: 1px solid #ced4da2e;
+    border:none;
+    /* border: 1px solid #ced4da2e; */
 }
 .col-md-4.media-perfil-c-4 input {
     width: 220px;
@@ -497,19 +499,20 @@ a.nav-link.tabs-perfil-a {
     flex: 0 0 100%!important;
 }
 button.btn.btn-primary.dropdown-toggle.button-user.user-b {
-    background: #daebf3!important;
-    border: 1px solid #daebf3!important;
+    background: transparent!important;
+    border: transparent!important;
+
     color: #000;
     display: flex;
     align-items: center;
 }
 button.btn.btn-primary.dropdown-toggle.button-user.user-b:focus {
-    background: #daebf3!important;
-    border: 1px solid #daebf3!important;
+    background: transparent!important;
+    border: transparent!important;
 }
 button.btn.btn-primary.dropdown-toggle.button-user.user-b:hover {
-    background: #daebf3!important;
-    border: 1px solid #daebf3!important;
+    background: transparent!important;
+    border: transparent!important;
 }
 .search-content {
     width: 250px;
@@ -552,6 +555,211 @@ img.img-barra-search {
     }
     form.form-inline.form-search-content input.form-control.form-control-sm {
         border-radius: 15px;
+        height: 30px;
+    }
+    input.form-control.form-control-sm {
+        border-radius: 15px;
     }
     .swal-button {
         background-color: #0075a9!important;}
+/**/
+.content-content-work-options {
+    margin-top: 20px;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+ul.pagination {
+    display: flex;
+    justify-content: center;
+    padding-top: 20px;
+}
+.content.div-content-inf-user h3 {
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+.options-panel-user li {
+    margin-bottom: 5px;
+}
+p.text-center {
+    margin-top: 20px;
+}
+.row.perfil-empresa-form a {
+    text-transform: uppercase;
+}
+.content-perfil-empresa h4 {
+    text-transform: capitalize;
+}
+button.btn.btn-success {
+    border-radius: 50px;
+    padding: 10px 20px;
+    text-transform: capitalize;
+}
+li.page-item a {
+    border-radius: 50px!important;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #0075a9;
+    border: 1px solid #0075a9;
+}
+li.page-item a:hover {
+    background: #0075a9;
+    color: #fff;
+    transition: 0.5s;
+}
+p.text-center.price-op {
+    text-align: end;
+    display: flex;
+    justify-content: flex-end;
+    color: #0075a9;
+    font-weight: bolder;
+}
+p.text-center.text-b {
+    text-transform: inherit;
+    text-transform: uppercase;
+}
+input#video {
+    border: none;
+}
+input#image {
+    border: none;
+}
+input#curriculum {
+    border: none;
+}
+button.btn.btn-info {
+    background: #0075a9;
+    border: 1px solid;
+}
+button.btn.btn-success {
+    background: #0075a9;
+    border: 1px;
+}
+a.btn.btn-info {
+    background: #0075a9;
+    border: 1px;
+    border-radius: 50px;
+    padding: 10px 15px;
+}
+/* div#proposals-dev {
+    padding: 10px 30px 0px 30px;
+} */
+tbody {
+    text-transform: capitalize;
+}
+.table thead th {
+    vertical-align: bottom;
+    border-bottom: 2px solid #dee2e652;
+}
+.table td, .table th {
+    padding: .75rem;
+    vertical-align: top;
+    border-top: 1px solid #dee2e652;
+}
+.row.perfil-empresa-form {
+    margin-top: 20px;
+}
+.content-content-work-options h3 {
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    /* font-weight: bold; */
+}
+.row.perfil-empresa-form h4 {
+    color: #0075a9;
+    text-transform: uppercase;
+    font-size: 22px;
+
+}
+.content-perfil-empresa h4 {
+    font-size: 20px;
+}
+.row.perfil-empresa-form a {
+    color: #26988a;
+}
+p.text-center.price-op {
+    color: #26988a;
+
+}
+p.price-rango {
+    text-align: end;
+    font-size: 15px;
+    color: #26988a;
+    font-weight: bold;
+}
+textarea.form-control {
+    border-radius: 12px;
+}
+p.text-center.price-ofertas {
+    display: flex;
+    justify-content: flex-end;
+    color: #26988a;
+    margin-bottom: 25px;
+    font-weight: bold;
+}
+a.btn.btn-info {
+    text-transform: capitalize;
+    color: #fff;
+}
+.content-perfil-empresa small {
+    color: #26988a;
+    display: flex;
+    justify-content: flex-end;
+    padding: 15px;
+    font-weight: bold;
+}
+.content-perfil-empresa {
+    margin-left: 15px;
+    margin-right: 15px;
+}
+h4.text-center.price-plan {
+    font-weight: bold;
+    margin-bottom: 25px;
+   
+}
+.box-card {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+.box-card h3 {
+    font-weight: bold;
+}
+.card-body strong {
+    color: #3e4345;
+}
+.content-content-work-options p {
+    text-align: center;
+}
+h3.text-center {
+    margin-top: 20px;
+}
+h3.title-plan {
+    background: #0075a9;
+    margin-top: 20px;
+    color: #fff;
+}
+
+.container.table-responsive-et {
+    overflow: auto;
+}
+img.ico-tab {
+    background: white;
+    border-radius: 50px;
+}
+/**/
+ul {
+    list-style: none;
+}
+.dropdown-item {
+    padding: 6px;
+}
+.dropdown-menu.user-dropdown.show ul {
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+.content-barra-menu-perfil-menu ul li {
+    margin-bottom: 5px;
+}

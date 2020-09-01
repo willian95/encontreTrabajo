@@ -485,7 +485,7 @@
                 </form>
                 <div>
                   
-                <div class="container">
+                <div class="container table-responsive-et">
                         
                         <table class="table table-bordered table-hover table-striped ">
                         <thead>
@@ -573,25 +573,25 @@
                 <div class="content-otros">
                 <form action="/action_page.php">
                     <div class="row a-academicos-form">
-                    <div class="col ">
+                    <div class="col-md-6 ">
                     <div class="form-group">
                         <label for="text">Conocimientos Informáticos </label>
                         <textarea class="form-control" rows="8" id="conocimientos" v-model="informaticKnowledge"></textarea>
                     </div>
                     </div>
-                    <div class="col ">
+                    <div class="col-md-6 ">
                     <div class="form-group">
                         <label for="text">Conocimientos y Habilidades</label>
                         <textarea type="text" rows="8" class="form-control" id="habilidades"  v-model="knowledgeHabilities"></textarea>
                     </div>
                     </div>
-                    <div class="col ">
+                    <div class="col-md-6 ">
                       <div class="form-group">
                           <label for="text">Licencia de Conducir</label>
                           <input type="text" class="form-control" id="licencia"  v-model="driverLicense">
                       </div>
                       </div>
-                      <div class="col ">
+                      <div class="col-md-6 ">
                       <div class="form-group">
                           <label for="text">Posee Discapacidad</label>
                           <input type="text" class="form-control" id="discapacidad"  v-model="handicapDescription">

@@ -14,15 +14,16 @@
             <div class="col-md-4" v-for="offer in offers">
                 <div class="card">
                     <div class="card-body">
+                        <p class="text-center price-op">
+                            $ @{{ parseInt(offer.min_wage).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }} <span v-if="offer.max_wage != null">- $ @{{ parseInt(offer.max_wage).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</span>
+                        </p>
                         <p class="text-center">
                             <img class="round-img" :src="offer.user.image" alt="Card image">
                         </p>
-                        <p class="text-center">@{{ offer.user.business_name }}</p>
+                        <p class="text-center text-b">@{{ offer.user.business_name }}</p>
                         <h5 class="card-title text-center">@{{ offer.job_position }}</h5>
                         <p class="card-text text-center">@{{ offer.title }}</p>
-                        <p class="text-center">
-                            $ @{{ parseInt(offer.min_wage).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }} <span v-if="offer.max_wage != null">- $ @{{ parseInt(offer.max_wage).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</span>
-                        </p>
+                        
 
                         @if(\Auth::user()->is_profile_complete == 1)
                             <p class="text-center">

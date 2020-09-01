@@ -57,14 +57,14 @@
 
                         <div class="row perfil-empresa-form">
 
-                            <div class="col-md-4 ">
+                            <div class="col-md-6 ">
 								<div class="form-group">
 									<label for="jobPosition">Puesto de Trabajo</label>
 									<input type="text" class="form-control" id="jobPosition" v-model="jobPosition">
 								</div>
 							</div>
 
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="text">Categoría</label>
                                     <select class="form-control" v-model="category">
@@ -74,7 +74,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-8 offset-md-2 col-lg-8 offset-lg-2">
+                            <div class="col-md-12 ">
                                 <div class="form-group">
                                     <label for="text">Descripción</label>
                                     <textarea class="form-control" rows="6" v-model="description"></textarea>

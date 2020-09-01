@@ -17,11 +17,12 @@
             <div class="col-md-4" v-for="offer in offers">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title text-center">@{{ offer.job_position }}</h5>
-                        <p class="card-text text-center">@{{ offer.title }}</p>
-                        <p class="text-center">
+                    <p class="text-center price-ofertas">
                             $ @{{ parseInt(offer.min_wage).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }} <span v-if="offer.max_wage != null">- $ @{{ parseInt(offer.max_wage).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</span>
                         </p>
+                        <h5 class="card-title text-center">@{{ offer.job_position }}</h5>
+                        <p class="card-text text-center">@{{ offer.title }}</p>
+                       
 
                         <p class="text-center">
                             <a :href="'{{ url('/offers/detail/') }}'+'/'+offer.slug" class="btn btn-primary">Ver más</a>

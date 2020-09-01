@@ -16,6 +16,9 @@
                     <div class="row perfil-empresa-form">
                         
                         <div class="col-md-6 offset-md-3 col-lg-6offset-lg-3">
+                        <p class="price-rango">
+                                $ @{{ parseInt(minWage).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }} <span v-if="maxWage != ''">- $ @{{ parseInt(maxWage).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</span>
+                            </p>
                             <p class="text-center">
                                 <img class="round-img" :src="businessImage" alt="Card image">
                             </p>
@@ -46,7 +49,7 @@
                                 <p class="text-center">Ya ha realizado una contratación para esta oferta</p>
                                 @endif
                             @endif
-                            <div style="overflow-y: auto; width: 100%; height: 40vh; overflow-x: hidden;">
+                            <div style="overflow-y: auto; width: 100%; height: 20vh; overflow-x: hidden;">
                                 <div class="row perfil-empresa-form" v-for="proposal in proposals">
 
                                     <div class="col-8" v-if="proposal.is_answer == 0">
@@ -78,7 +81,7 @@
 
                                     <div class="col-md-6 offset-md-3 col-lg-6 offset-lg-3">
 
-                                        <textarea class="form-control" rows="4" v-model="proposal"></textarea>
+                                        <textarea class="form-control" rows="4" v-model="proposal" placeholder="Escribe una propuesta"></textarea>
 
                                         <p class="text-center">
                                             <button class="btn btn-success" @click="sendProposal()">enviar propuesta</button>
@@ -94,7 +97,7 @@
 
                                 <div class="col-md-6 offset-md-3 col-lg-6 offset-lg-3">
 
-                                    <textarea class="form-control" rows="4" v-model="proposal"></textarea>
+                                    <textarea class="form-control" rows="4" v-model="proposal" placeholder="Escribe una respuesta"></textarea>
 
                                     <p class="text-center">
                                         <button class="btn btn-success" @click="answerProposal()">enviar respuesta</button>

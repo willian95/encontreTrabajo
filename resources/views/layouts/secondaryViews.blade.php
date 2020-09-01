@@ -34,17 +34,19 @@
                                 </ul>
                             </div>
                             <div class="dropdown d-none-c responsive">
-                                    <button type="button" class="btn btn-primary dropdown-toggle button-user" data-toggle="dropdown">
-                                        <img class="img-menu" src="{{ url('user/assets/img/menu-icon.png') }}" alt="">
-                                        Menú
-                                    </button>
-                                    <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="#">Link 1</a>
-                                        <a class="dropdown-item" href="#">Link 2</a>
-                                        <a class="dropdown-item" href="#">Link 3</a>
-                                        <a class="dropdown-item" href="#">Link 4</a>
-
-                                    </div>
+                            <button type="button" class="btn btn-primary dropdown-toggle button-user user-b menu-user" data-toggle="dropdown" onclick="toggleUserDropdown()"> 
+                            <img class="img-user-icon" src="{{ asset('user/assets/img/user-b.png') }}" alt="">
+                        </button>
+                        <div class="dropdown-menu user-dropdown">
+                            <ul>
+                                    <li><a class="dropdown-item" href="{{ url('/home') }}">Inicio</a></li>
+                                    <li><a href="#">Ofertas</a></li>
+                                    <li><a href="#">Perfil</a></li>
+                                    <li><a href="#">Registro</a></li>
+                                    <li><a href="#">Login</a></li>
+                                    <li><a class="dropdown-item" href="{{ url('/logout') }}">Cerrar sesión</a></li>
+                            </ul>
+                        </div>
                                 </div>
                             </div>
 
@@ -76,6 +78,17 @@
        
 
         </script>
+           <script>
+
+function toggleUserDropdown(){
+    
+    if($(".user-dropdown").hasClass("show")){
+        $(".user-dropdown").removeClass("show")
+    }else{
+        $(".user-dropdown").addClass("show")
+    }
+}
+</script>
 
         @stack('scripts')
 

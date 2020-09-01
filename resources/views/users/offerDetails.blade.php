@@ -16,6 +16,9 @@
                     <div class="row perfil-empresa-form">
                         
                         <div class="col-md-6 offset-md-3 col-lg-6offset-lg-3">
+                             <p class="price-rango">
+                               $ @{{ parseInt(minWage).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }} <span v-if="maxWage != ''">- $ @{{ parseInt(maxWage).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</span>
+                            </p>
                             <p class="text-center">
                                 <img class="round-img" :src="businessImage" alt="Card image">
                             </p>
@@ -36,7 +39,7 @@
 
                             <div class="col-md-6 offset-md-3 col-lg-6 offset-lg-3">
 
-                                <textarea class="form-control" rows="4" v-model="proposal"></textarea>
+                                <textarea class="form-control" rows="4" v-model="proposal" placeholder="Escribe una propuesta"></textarea>
 
                                 <p class="text-center">
                                     <button class="btn btn-success" @click="sendProposal()">enviar propuesta</button>
@@ -55,7 +58,7 @@
                                 <h4 class="text-center">Respuestas de usuarios</h4>
                             </div>
 
-                            <div class="col-md-8 offset-md-2 col-lg-8 offset-lg-2">
+                            <div class="col-md-8 offset-md-2 col-lg-8 offset-lg-2 table-respuestas" >
                                 <table class="table">
                                     <thead>
                                         <tr>

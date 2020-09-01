@@ -13,7 +13,9 @@
     <link rel="icon" href="{{ asset('user/assets/img/Logo-azul.png') }}" type="image/x-icon">
 
     <title>Encontré Trabajo</title>
+
 </head>
+
     <body>
     
     <section class="section-content-user">
@@ -44,15 +46,15 @@
                             @endif
     
                         </ul>
-                        <div class="dropdown d-none-c responsive">
+                        <!-- <div class="dropdown d-none-c responsive">
                             <button type="button" class="btn btn-primary dropdown-toggle button-user" data-toggle="dropdown" onclick="toggleUserDropdown()">
                                     <img class="img-menu" src="{{ asset('user/assets/img/menu-icon.png') }}" alt="">
                                     Menú
                             </button>
-                            <div class="dropdown-menu user-dropdown">
+                            <div class="dropdown-menu ">
                                 <a class="dropdown-item" href="{{ url('/logout') }}">Cerrar sesión</a>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
@@ -70,12 +72,31 @@
                             <img class="img-user-icon" src="{{ asset('user/assets/img/user-b.png') }}" alt="">
                         </button>
                         <div class="dropdown-menu user-dropdown">
-                            <a class="dropdown-item" href="{{ url('/logout') }}">Cerrar sesión</a>
+                            <ul>
+                                <li><a class="dropdown-item" href="{{ url('/home') }}">Inicio</a></li>
+                                @if(\Auth::user()->role_id == 2)
+                                    <li><a class="dropdown-item" href="{{ url('/profile/user') }}">Mi perfil</a></li>
+                                    <li><a class="dropdown-item" href="{{ url('/my-applies') }}">Mis aplicaciones</a></li>
+                                @elseif(\Auth::user()->role_id == 3)
+                                    <li><a class="dropdown-item" href="{{ url('/profile/business') }}">Mi perfil</a></li>
+                                @endif
+                                
+
+                                @if(\Auth::user()->role_id == 3)
+                                    @if(\Auth::user()->is_profile_complete == 1)
+                                        <li><a class="dropdown-item" href="{{ url('/offers/create') }}">Crear oferta</a></li>
+                                    @endif
+                                    <li><a  class="dropdown-item" href="{{ url('/plans/available') }}">Planes</a></li>
+                                    <li><a class="dropdown-item" href="{{ url('/my-proposals') }}">Ofertas Respondidas</a></li>
+                                @endif
+                                <li><a class="dropdown-item" href="{{ url('/logout') }}">Cerrar sesión</a></li>
+                            </ul>
                         </div>
                     </div>
                 </div>
                 <div class="content-work-options">
                     <div class="content-content-work-options">
+                    
                         @yield("content")
                     </div>
                 </div>
@@ -110,8 +131,8 @@
                     $(".user-dropdown").addClass("show")
                 }
             }
-
         </script>
+     
 
     </body>
 </html>
