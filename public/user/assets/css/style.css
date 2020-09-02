@@ -763,3 +763,48 @@ ul {
 .content-barra-menu-perfil-menu ul li {
     margin-bottom: 5px;
 }
+/*modal*/
+img.img-cperfil {
+    width: 200px;
+}
+.content-img-cperfil {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+button.btn.btn-secondary.btn-cerrar {
+    border-radius: 35px;
+    background: #fff;
+    color: #6c757d;
+    border: none;
+    padding: 10px 20px;
+    text-transform: capitalize;
+}
+.col-12.recor-a-cp {
+    display: flex;
+    justify-content: center;
+}
+p.rec-cperfil {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0;
+    padding: 5px;
+}
+img.img-cperfil-alert {
+    width: 30px;
+    height: 30px;
+    padding: 5px;
+}
+.modal-cperfil-cont {
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+.modal-body.body-cperfil-modal {
+    padding: 30px;
+}
+.modal-cperfil-cont .modal-header {
+    border-bottom: 1px solid #fff!important;
+}
