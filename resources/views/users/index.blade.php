@@ -5,9 +5,10 @@
     <div class="container-fluid" id="user-offers-dev">
         <div class="row" v-cloak>
 
-            <div class="col-12">
+            <div class="col-12 recor-a-cp">
                 @if(\Auth::user()->is_profile_complete == 0)
-                    <p>Debes completar tu perfil para visualizar ofertas</p>
+                    <p class="rec-cperfil">Debes completar tu perfil para visualizar ofertas</p>
+                    <img class="img-cperfil-alert" src="{{ asset('user/assets/img/alert.png') }}" alt="Alerta completa tu perfil">
                 @endif
             </div>
 
@@ -59,22 +60,27 @@
     </div>
 
     @if(\Auth::user()->is_profile_complete == 0)
-        <div class="modal fade" id="profileModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                <div class="modal-header">
-                    <!--<h5 class="modal-title" id="exampleModalLabel"></h5>-->
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <h5 class="text-center">Aún con completa su perfil</h5>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">cerrar</button>
-                    <a class="btn btn-primary" href="{{ url('/profile/user') }}">Ir a mi perfil</a>
-                </div>
+        <div class="modal fade modal-cperfil" id="profileModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-cperfil-cont">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <!--<h5 class="modal-title" id="exampleModalLabel"></h5>-->
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body body-cperfil-modal">
+                        <h5 class="text-center">Para visualizar ofertas, completa tu perfil.</h5>
+                        <div class="content-img-cperfil">
+                            <img class="img-cperfil" src="{{ asset('user/assets/img/cperfil.svg') }}" alt="completa tu perfil">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary btn-cerrar" data-dismiss="modal">Omitir</button>
+                        <a class="btn btn-primary" href="{{ url('/profile/user') }}">Ir a mi perfil</a>
+                    </div>
+                    </div>
                 </div>
             </div>
         </div>

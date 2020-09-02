@@ -5,9 +5,10 @@
     <div class="container-fluid" id="user-offers-dev">
 
         <div class="row">
-            <div class="col-12">
+            <div class="col-12 recor-a-cp">
                 @if(\Auth::user()->is_profile_complete == 0)
                     <li>Debes completar tu perfil para crear ofertas</li>
+                    <img class="img-cperfil-alert" src="{{ asset('user/assets/img/alert.png') }}" alt="Alerta completa tu perfil">
                 @endif
                 <h3 class="text-center">Mis ofertas</h3>
             </div>
@@ -65,11 +66,14 @@
                     <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
-                    <h5 class="text-center">Aún con completa su perfil</h5>
+                <div class="modal-body body-cperfil-modal">
+                        <h5 class="text-center">Para crear ofertas, completa tu perfil.</h5>
+                        <div class="content-img-cperfil">
+                            <img class="img-cperfil" src="{{ asset('user/assets/img/cperfil.svg') }}" alt="completa tu perfil">
+                        </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">cerrar</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Omitir</button>
                     <a class="btn btn-primary" href="{{ url('/profile/business') }}">Ir a mi perfil</a>
                 </div>
                 </div>

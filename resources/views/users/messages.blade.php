@@ -49,25 +49,35 @@
                                 <p class="text-center">Ya ha realizado una contratación para esta oferta</p>
                                 @endif
                             @endif
-                            <div style="overflow-y: auto; width: 100%; height: 20vh; overflow-x: hidden;">
+                            <div class="chat-cont-et" style="overflow-y: auto; width: 100%; height: 40vh; overflow-x: hidden;">
                                 <div class="row perfil-empresa-form" v-for="proposal in proposals">
-
+                                    
                                     <div class="col-8" v-if="proposal.is_answer == 0">
-                                        <div class="card">
-                                            <div class="card-body">
-                                                @{{ proposal.proposal }}
+                                       <div class="cont-chat-l">
+                                        <div class="card card-left-p">
+                                                <div class="card-body">
+                                                    @{{ proposal.proposal }}
+                                                </div>
                                             </div>
-                                        </div>
+                                       </div>
                                     </div>
-                                    <div class="col-8 offset-4 text-right" v-else>
-                                        <div class="card">
-                                            <div class="card-body">
-                                                @{{ proposal.proposal }}
+
+
+                                    <div class="col-8 offset-4 text-right " v-else>
+                                        <div class="cont-chat-r">
+                                            <div class="card card-right-p">
+                                                <div class="card-body">
+                                                    @{{ proposal.proposal }}
+                                                </div>
                                             </div>
                                         </div>
+                                        
+
                                     </div>
                                 </div>
                             </div>
+
+                            
 
                         </div>
                     
@@ -79,7 +89,7 @@
                         
                                 <div class="row perfil-empresa-form">
 
-                                    <div class="col-md-6 offset-md-3 col-lg-6 offset-lg-3">
+                                    <div class="col-md-6 offset-md-3 col-lg-6 offset-lg-3 esc-propuesta">
 
                                         <textarea class="form-control" rows="4" v-model="proposal" placeholder="Escribe una propuesta"></textarea>
 
@@ -95,7 +105,7 @@
 
                             <div class="row perfil-empresa-form">
 
-                                <div class="col-md-6 offset-md-3 col-lg-6 offset-lg-3">
+                                <div class="col-md-6 offset-md-3 col-lg-6 offset-lg-3 esc-propuesta">
 
                                     <textarea class="form-control" rows="4" v-model="proposal" placeholder="Escribe una respuesta"></textarea>
 

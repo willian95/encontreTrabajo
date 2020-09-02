@@ -808,3 +808,32 @@ img.img-cperfil-alert {
 .modal-cperfil-cont .modal-header {
     border-bottom: 1px solid #fff!important;
 }
+/*chat*/
+.card.card-left-p {
+    background: #fff;
+    box-shadow: 7px 0px 12px #cccccc2e;
+}
+.card.card-left-p:hover {
+    background: #fff;
+    box-shadow: 7px 0px 12px #cccccc2e;
+}
+.card.card-right-p {
+    color: #fff;
+    background: #0075a9;
+    box-shadow: -4px 7px 17px #cccccc2e;
+    float: inherit;
+    display: flex;
+}
+.card.card-right-p:hover {
+    color: #fff;
+    background: #0075a9;
+    box-shadow: -4px 7px 17px #cccccc2e;
+    float: inherit;
+    display: flex;
+}
+.chat-cont-et {
+    border: 1px solid #ced4da4a;
+    border-radius: 10px;
+    padding: 15px;
+    margin-top: 25px;
+}
