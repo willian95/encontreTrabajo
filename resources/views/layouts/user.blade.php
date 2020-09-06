@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="{{ asset('/alertify/css/themes/bootstrap.css') }}" >
     <link rel="stylesheet" href="{{ asset('/fontawesome/css/all.css') }}" >
     <link rel="icon" href="{{ asset('user/assets/img/Logo-azul.png') }}" type="image/x-icon">
+    
 
     <title>Encontré Trabajo</title>
 
@@ -60,13 +61,17 @@
             </div>
             <div class="col-md-9 content-inf-work">
                 <div class="content-barra-m">
+                    @if(\Auth::user()->role_id == 2)
                     <div class="search-content">
                         <form class="form-inline form-search-content">
-                            <input class="form-control form-control-sm " type="text" placeholder="Buscar"
+                            <input id="search_input" class="form-control form-control-sm " type="text" placeholder="Buscar"
                                 aria-label="Search">
+                            <button type="button" class="btn btn-success" onclick="storeQuery()">
                             <img class="img-barra-search" src="{{ asset('user/assets/img/search.png') }}" alt="">
-                            </form>
+                            </button>
+                        </form>
                     </div>
+                    @endif
                     <div class="dropdown p-rigth">
                         <button type="button" class="btn btn-primary dropdown-toggle button-user user-b" data-toggle="dropdown" onclick="toggleUserDropdown()"> 
                             <img class="img-user-icon" src="{{ asset('user/assets/img/user-b.png') }}" alt="">
@@ -131,6 +136,17 @@
                     $(".user-dropdown").addClass("show")
                 }
             }
+
+            function storeQuery(){
+                alert("ehy")
+                let query = $("#search_input").val()
+                if(query != null){
+                    localStorage.setItem("encontre_trabajo_query", query)
+                    window.location.href="{{ url('/search') }}"
+                }
+                
+            }
+
         </script>
      
 

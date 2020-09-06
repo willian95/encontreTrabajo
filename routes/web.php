@@ -78,6 +78,9 @@ Route::post('/checkout/webpay/finish', 'CheckoutController@finish')->name('check
 
 Route::get("/country/fetch", "CountriesController@fetch");
 
+Route::get("/search", "SearchController@index");
+Route::post("/search", "SearchController@search");
+
 ///////////////////////// ADMIN /////////////////////////////////////
 
 Route::get('/admin/dashboard', "AdminController@index");
