@@ -837,3 +837,9 @@ img.img-cperfil-alert {
     padding: 15px;
     margin-top: 25px;
 }
+/*card inicio*/
+.content-content-work-options .card {
+    border: 1px solid #daebf3;
+    border-radius: 15px;
+    margin: 5px;
+}
