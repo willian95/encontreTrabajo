@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 use App\Http\Requests\OfferStoreRequest;
 use App\Offer;
 use App\serviceAmount;
@@ -41,6 +42,7 @@ class OfferController extends Controller
             $offer->description = str_replace("\n", ". ", $request->description);
             $offer->job_position = $request->jobPosition;
             $offer->category_id = $request->category;
+            $offer->expiration_date = Carbon::now()->addDays(30);
             $offer->slug = $slug;
             $offer->user_id = \Auth::user()->id;
             $offer->save();
@@ -63,8 +65,8 @@ class OfferController extends Controller
             $dataAmount = 18;
             $skip = ($page - 1) * $dataAmount;
 
-            $offers = Offer::skip($skip)->where("status", "abierto")->take($dataAmount)->orderBy("id", "desc")->with("user")->has("user")->get();
-            $offersCount = Offer::with("user")->where("status", "abierto")->has("user")->count();
+            $offers = Offer::skip($skip)->where("status", "abierto")->take($dataAmount)->orderBy("id", "desc")->with("user")->has("user")->whereDate('expiration_date', '>', Carbon::today()->toDateString())->get();
+            $offersCount = Offer::with("user")->where("status", "abierto")->has("user")->whereDate('expiration_date', '>', Carbon::today()->toDateString())->count();
 
             return response()->json(["success" => true, "offers" => $offers, "offersCount" => $offersCount, "dataAmount" => $dataAmount]);
 

@@ -56,12 +56,9 @@ Route::get("/offers/business/fetch/{page}", "OfferController@businessFetch")->mi
 Route::get("/offers/detail/{slug}", "OfferController@show")->middleware('auth');
 
 Route::post("/proposal/store", "ProposalController@store")->middleware('auth');
-Route::post("/proposal/answer", "ProposalController@answer")->middleware('auth');
 Route::post("/proposal/fetch", "ProposalController@fetch")->middleware('auth');
 Route::get("/my-proposals", "ProposalController@index")->middleware('auth');
 Route::get("/my-proposals/fetch/{page}", "ProposalController@myProposals")->middleware('auth');
-Route::get("/proposal/messages/{offer}/{email}", "ProposalController@messages")->middleware('auth');
-Route::post("/proposal/messages/fetch", "ProposalController@fetchMessages")->middleware('auth');
 
 Route::get("my-applies", "ProposalController@myAppliesView")->middleware('auth');
 Route::get("/my-applies/fetch/{page}", "ProposalController@myApplies")->middleware('auth');

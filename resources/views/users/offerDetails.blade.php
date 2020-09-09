@@ -39,10 +39,12 @@
 
                             <div class="col-md-6 offset-md-3 col-lg-6 offset-lg-3">
 
-                                <textarea class="form-control" rows="4" v-model="proposal" placeholder="Escribe una propuesta"></textarea>
-
                                 <p class="text-center">
-                                    <button class="btn btn-success" @click="sendProposal()">enviar propuesta</button>
+                                    @if(App\Proposal::where("user_id", \Auth::user()->id)->where("offer_id", $offer->id)->count() == 0)
+                                        <button class="btn btn-success" @click="sendProposal()">Postularme</button>
+                                    @else
+                                        Ya te has postulado a esta oferta
+                                    @endif
                                 </p>
 
                             </div>
@@ -66,7 +68,7 @@
                                             <th>Nombre</th>
                                             <th>Apellido</th>
                                             <th>Email</th>
-                                            <th>Acciones</th>
+                                            <th>Ver Perfil</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -76,7 +78,7 @@
                                             <td>@{{ proposal.user.lastname }}</td>
                                             <td>@{{ proposal.user.email }}</td>
                                             <td>
-                                                <a :href="'{{ url('/proposal/messages/') }}'+'/'+proposal.offer.slug+'/'+proposal.user.email" class="btn btn-info">Ver mensajes</a>
+                                                <a :href="'{{ url('/profile/show/') }}'+'/'+proposal.user.email" class="btn btn-info">Ver perfil</a>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -127,7 +129,7 @@
 
                 sendProposal(){
                     this.loading = true
-                    axios.post("{{ url('/proposal/store') }}", {offerId: this.offerId, proposal: this.proposal})
+                    axios.post("{{ url('/proposal/store') }}", {offerId: this.offerId})
                     .then(res => {
 
                         this.loading = false
