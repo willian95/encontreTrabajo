@@ -66,7 +66,7 @@
                         <form class="form-inline form-search-content">
                             <input id="search_input" class="form-control form-control-sm " type="text" placeholder="Buscar"
                                 aria-label="Search">
-                            <button type="button" class="btn btn-success btn-azul-c" onclick="storeQuery()">
+                            <button type="button" class="btn btn-success" onclick="storeQuery()">
                             <img class="img-barra-search" src="{{ asset('user/assets/img/search.png') }}" alt="">
                             </button>
                         </form>

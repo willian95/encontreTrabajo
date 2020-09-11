@@ -78,7 +78,7 @@
                                             <td>@{{ proposal.user.lastname }}</td>
                                             <td>@{{ proposal.user.email }}</td>
                                             <td>
-                                                <a :href="'{{ url('/profile/show/') }}'+'/'+proposal.user.email" class="btn btn-info inf-perfil-btn">Ver perfil</a>
+                                                <a :href="'{{ url('/profile/show/') }}'+'/'+proposal.user.email" class="btn btn-info">Ver perfil</a>
                                             </td>
                                         </tr>
                                     </tbody>

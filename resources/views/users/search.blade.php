@@ -22,7 +22,7 @@
                             <img class="round-img" :src="offer.user.image" alt="Card image">
                         </p>
                         <p class="text-center text-b">@{{ offer.user.business_name }}</p>
-                        <h5 class="card-title text-center t-upper">@{{ offer.job_position }}</h5>
+                        <h5 class="card-title text-center">@{{ offer.job_position }}</h5>
                         <p class="card-text text-center">@{{ offer.title }}</p>
                         
 
