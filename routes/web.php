@@ -78,6 +78,14 @@ Route::get("/country/fetch", "CountriesController@fetch");
 Route::get("/search", "SearchController@index");
 Route::post("/search", "SearchController@search");
 
+Route::get("/usuario", function(){
+    return view("users.usersView");
+});
+
+Route::get("/empresa", function(){
+    return view("users.businessView");
+});
+
 ///////////////////////// ADMIN /////////////////////////////////////
 
 Route::get('/admin/dashboard', "AdminController@index");
