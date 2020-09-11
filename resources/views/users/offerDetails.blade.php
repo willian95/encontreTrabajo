@@ -16,9 +16,9 @@
                     <div class="row perfil-empresa-form">
                         
                         <div class="col-md-6 offset-md-3 col-lg-6offset-lg-3">
-                             <p class="price-rango">
+                             <!-- <p class="price-rango">
                                $ @{{ parseInt(minWage).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }} <span v-if="maxWage != ''">- $ @{{ parseInt(maxWage).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</span>
-                            </p>
+                            </p> -->
                             <p class="text-center">
                                 <img class="round-img" :src="businessImage" alt="Card image">
                             </p>
@@ -28,7 +28,7 @@
                             <p><strong>Dirección: </strong><span v-if="region">@{{ region }}, </span> <span v-if="commune">@{{ commune }} , </span> @{{ address }}</p>
                             <p><strong>Puesto:</strong> @{{ jobPosition }}</p>
                             <p>
-                                <strong>Rango Salarial: </strong>$ @{{ parseInt(minWage).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }} <span v-if="maxWage != ''">- $ @{{ parseInt(maxWage).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</span>
+                                <strong>Rango Salarial: </strong><span class="price-rango"> $ @{{ parseInt(minWage).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }} <span v-if="maxWage != ''">- $ @{{ parseInt(maxWage).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</span></span>
                             </p>
                             
                         </div>
@@ -88,7 +88,10 @@
 
                     @endif
 				
-				</div>
+                </div>
+                <!-- <div class="img-mensaje-svg">
+                   <img class="img-cperfil-alert" src="{{ asset('user/assets/img/mensaje.svg') }}" alt="">
+                </div> -->
        		</div>
 
 		</div>

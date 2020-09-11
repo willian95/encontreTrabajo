@@ -536,8 +536,11 @@ img.img-barra-search {
     /* justify-content: center; */
     align-content: center;
     background-color: #0075a9;
-    width: 26%;
+    width: 16.666667%;
     z-index: 999;
+}
+.col-md-10.content-inf-work {
+    padding: 0;
 }
     .col-md-3.content-inf-user.f-b {
         display: flex;
@@ -583,9 +586,7 @@ ul.pagination {
 p.text-center {
     margin-top: 20px;
 }
-.row.perfil-empresa-form a {
-    text-transform: uppercase;
-}
+
 .content-perfil-empresa h4 {
     text-transform: capitalize;
 }
@@ -638,6 +639,7 @@ button.btn.btn-success {
     border: 1px;
 }
 a.btn.btn-info {
+    font-size: 12px;
     background: #0075a9;
     border: 1px;
     border-radius: 50px;
@@ -670,6 +672,7 @@ tbody {
     color: #0075a9;
     text-transform: uppercase;
     font-size: 22px;
+    font-weight: bold;
 
 }
 .content-perfil-empresa h4 {
@@ -677,12 +680,18 @@ tbody {
 }
 .row.perfil-empresa-form a {
     color: #26988a;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+/*descripcion para postularme*/
+.content-content-work-options p {
+    text-align: center;
 }
 p.text-center.price-op {
     color: #26988a;
 
 }
-p.price-rango {
+span.price-rango {
     text-align: end;
     font-size: 15px;
     color: #26988a;
@@ -729,9 +738,9 @@ h4.text-center.price-plan {
 .card-body strong {
     color: #3e4345;
 }
-.content-content-work-options p {
+/* .content-content-work-options p {
     text-align: center;
-}
+} */
 h3.text-center {
     margin-top: 20px;
 }
@@ -836,4 +845,43 @@ img.img-cperfil-alert {
     border-radius: 10px;
     padding: 15px;
     margin-top: 25px;
+}
+/*card inicio*/
+.content-content-work-options .card {
+    border: 1px solid #daebf3;
+    border-radius: 15px;
+    margin: 5px;
+}
+h5.card-title.text-center.t-upper {
+    text-transform: uppercase;
+}
+.content-barra-m button.btn.btn-success {
+    background: #daebf3;
+}
+.content-barra-m button.btn.btn-success:active {
+    background: #daebf3;
+}
+button.btn.btn-success.btn-azul-c:focus {
+
+    outline:none !important;
+    outline-width: 0 !important;
+    box-shadow: none;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+}
+.content-perfil-empresa {
+    padding: 20px;
+    border-radius: 5px;
+    background: #daebf3;
+    margin-bottom: 40px;
+    box-shadow: 7px 0px 12px #cccccc2e;
+}
+.t-upper {
+    text-transform: uppercase;
+}
+a.btn.btn-info.inf-perfil-btn {
+    font-size: 13px;
+}
+div#user-search-dev strong {
+    color: #0075a9;
 }
