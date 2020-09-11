@@ -16,9 +16,9 @@
                     <div class="row perfil-empresa-form">
                         
                         <div class="col-md-6 offset-md-3 col-lg-6offset-lg-3">
-                             <p class="price-rango">
+                             <!-- <p class="price-rango">
                                $ @{{ parseInt(minWage).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }} <span v-if="maxWage != ''">- $ @{{ parseInt(maxWage).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</span>
-                            </p>
+                            </p> -->
                             <p class="text-center">
                                 <img class="round-img" :src="businessImage" alt="Card image">
                             </p>
@@ -28,7 +28,7 @@
                             <p><strong>Dirección: </strong><span v-if="region">@{{ region }}, </span> <span v-if="commune">@{{ commune }} , </span> @{{ address }}</p>
                             <p><strong>Puesto:</strong> @{{ jobPosition }}</p>
                             <p>
-                                <strong>Rango Salarial: </strong>$ @{{ parseInt(minWage).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }} <span v-if="maxWage != ''">- $ @{{ parseInt(maxWage).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</span>
+                                <strong>Rango Salarial: </strong><span class="price-rango"> $ @{{ parseInt(minWage).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }} <span v-if="maxWage != ''">- $ @{{ parseInt(maxWage).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</span></span>
                             </p>
                             
                         </div>
@@ -39,10 +39,12 @@
 
                             <div class="col-md-6 offset-md-3 col-lg-6 offset-lg-3">
 
-                                <textarea class="form-control" rows="4" v-model="proposal" placeholder="Escribe una propuesta"></textarea>
-
                                 <p class="text-center">
-                                    <button class="btn btn-success" @click="sendProposal()">enviar propuesta</button>
+                                    @if(App\Proposal::where("user_id", \Auth::user()->id)->where("offer_id", $offer->id)->count() == 0)
+                                        <button class="btn btn-success" @click="sendProposal()">Postularme</button>
+                                    @else
+                                        Ya te has postulado a esta oferta
+                                    @endif
                                 </p>
 
                             </div>
@@ -66,7 +68,7 @@
                                             <th>Nombre</th>
                                             <th>Apellido</th>
                                             <th>Email</th>
-                                            <th>Acciones</th>
+                                            <th>Ver Perfil</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -76,7 +78,7 @@
                                             <td>@{{ proposal.user.lastname }}</td>
                                             <td>@{{ proposal.user.email }}</td>
                                             <td>
-                                                <a :href="'{{ url('/proposal/messages/') }}'+'/'+proposal.offer.slug+'/'+proposal.user.email" class="btn btn-info">Ver mensajes</a>
+                                                <a :href="'{{ url('/profile/show/') }}'+'/'+proposal.user.email" class="btn btn-info inf-perfil-btn">Ver perfil</a>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -86,7 +88,10 @@
 
                     @endif
 				
-				</div>
+                </div>
+                <!-- <div class="img-mensaje-svg">
+                   <img class="img-cperfil-alert" src="{{ asset('user/assets/img/mensaje.svg') }}" alt="">
+                </div> -->
        		</div>
 
 		</div>
@@ -127,7 +132,7 @@
 
                 sendProposal(){
                     this.loading = true
-                    axios.post("{{ url('/proposal/store') }}", {offerId: this.offerId, proposal: this.proposal})
+                    axios.post("{{ url('/proposal/store') }}", {offerId: this.offerId})
                     .then(res => {
 
                         this.loading = false

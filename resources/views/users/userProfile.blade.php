@@ -589,6 +589,18 @@
                       <div class="form-group">
                           <label for="text">Licencia de Conducir</label>
                           <input type="text" class="form-control" id="licencia"  v-model="driverLicense">
+                          <select class="form-control">
+                            <option value="A1">A1</option>
+                            <option value="A2">A2</option>
+                            <option value="A3">A3</option>
+                            <option value="A4">A4</option>
+                            <option value="A5">A5</option>
+                            <option value="B">B</option>
+                            <option value="C">C</option>
+                            <option value="D">D</option>
+                            <option value="E">E</option>
+                            <option value="F">F</option>
+                          </select>
                       </div>
                       </div>
                       <div class="col-md-6 ">

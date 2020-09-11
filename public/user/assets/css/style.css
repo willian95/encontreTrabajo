@@ -682,7 +682,7 @@ p.text-center.price-op {
     color: #26988a;
 
 }
-p.price-rango {
+span.price-rango {
     text-align: end;
     font-size: 15px;
     color: #26988a;
@@ -842,4 +842,33 @@ img.img-cperfil-alert {
     border: 1px solid #daebf3;
     border-radius: 15px;
     margin: 5px;
+}
+h5.card-title.text-center.t-upper {
+    text-transform: uppercase;
+}
+button.btn.btn-success.btn-azul-c {
+    background: #daebf3;
+}
+button.btn.btn-success.btn-azul-c:active {
+    background: #daebf3;
+}
+button.btn.btn-success.btn-azul-c:focus {
+
+    outline:none !important;
+    outline-width: 0 !important;
+    box-shadow: none;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+}
+.content-perfil-empresa {
+    padding: 20px;
+    background: #daebf3;
+    margin-bottom: 40px;
+    box-shadow: 7px 0px 12px #cccccc2e;
+}
+.t-upper {
+    text-transform: uppercase;
+}
+a.btn.btn-info.inf-perfil-btn {
+    font-size: 13px;
 }

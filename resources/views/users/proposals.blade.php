@@ -16,7 +16,7 @@
                             <th>Email</th>
                             <th>Titulo</th>
                             <th>Puesto</th>
-                            <th>Acciones</th>
+                            <th>Perfil</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -29,7 +29,7 @@
                             <td>@{{ proposal.offer.title }}</td>
                             <td>@{{ proposal.offer.job_position }}</td>
                             <td>
-                                <a :href="'{{ url('/proposal/messages/') }}'+'/'+proposal.offer.slug+'/'+proposal.user.email" class="btn btn-info">Ver mensajes</a>
+                                <a :href="'{{ url('/profile/show/') }}'+'/'+proposal.user.email" class="btn btn-info">Ver perfil</a>
                             </td>
                         </tr>
                     </tbody>

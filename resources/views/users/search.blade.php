@@ -2,9 +2,9 @@
 
 @section("content")
 
-    <div class="container-fluid" id="user-offers-dev">
-        <div class="row" v-cloak>
-
+    <div class="container-fluid" id="user-search-dev">
+        <div class="row" v-cloak>   
+            <h3><strong>Resultados de: </strong>@{{ search }}</h3>
             <div class="col-12 recor-a-cp">
                 @if(\Auth::user()->is_profile_complete == 0)
                     <p class="rec-cperfil">Debes completar tu perfil para visualizar ofertas</p>
@@ -59,85 +59,43 @@
 
     </div>
 
-    @if(\Auth::user()->is_profile_complete == 0)
-        <div class="modal fade modal-cperfil" id="profileModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-cperfil-cont">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                    <div class="modal-header">
-                        <!--<h5 class="modal-title" id="exampleModalLabel"></h5>-->
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body body-cperfil-modal">
-                        <h5 class="text-center">Para visualizar ofertas, completa tu perfil.</h5>
-                        <div class="content-img-cperfil">
-                            <img class="img-cperfil" src="{{ asset('user/assets/img/cperfil.svg') }}" alt="completa tu perfil">
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary btn-cerrar" data-dismiss="modal">Omitir</button>
-                        <a class="btn btn-primary" href="{{ url('/profile/user') }}">Ir a mi perfil</a>
-                    </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    @endif
 
 @endsection
 
 @push("scripts")
 
-    @if(\Auth::user()->is_profile_complete == 0)
-        <script>
-            $('#profileModal').modal({show: true})
-        </script>
-    @endif
-
     <script>
 
         const devArea = new Vue({
-            el: '#user-offers-dev',
+            el: '#user-search-dev',
             data() {
                 return {
-                    offers:[],
+                    search:"",
+                    offers:"",
                     page:1,
                     pages:0
                 }
             },
             methods: {
 //
-                fetch(page = 1){
+                async query(){
 
-                    this.page = page
-                    axios.get("{{ url('/offers/fetch') }}"+"/"+this.page)
-                    .then(res => {
+                    let offersRes = await axios.post("{{ url('/search') }}", {search: this.search, page: this.page})
+                    if(offersRes.data.success == true){
 
-                        if(res.data.success == true){
+                        this.offers = offersRes.data.offers
+                        this.pages = Math.ceil(offersRes.data.offersCount / offersRes.data.dataAmount)
+                        
+                    }
 
-                            this.offers = res.data.offers
-                            this.pages = Math.ceil(res.data.offersCount / res.data.dataAmount)
-                            
-                        }else{
+                },
 
-                            swal({
-                                title:"Lo sentimos",
-                                text:res.data.msg,
-                                icon:"error"
-                            })
-
-                        }
-
-                    })
-
-
-                }
 
             },
             mounted(){
-                this.fetch()
+                
+                this.search = window.localStorage.getItem("encontre_trabajo_query")
+                this.query()
             }
         })
 

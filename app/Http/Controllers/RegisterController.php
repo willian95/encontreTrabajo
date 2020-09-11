@@ -37,10 +37,8 @@ class RegisterController extends Controller
             $user->business_name = $request->businessName;
             $user->business_rut = $request->businessRut;
             $user->business_phone = $request->businessPhone;
+            $user->expire_free_trial = env("expiration_free_trial");
             
-            if($request->role_id == 3){
-                $user->expire_free_trial = Carbon::now()->addMonths(6);
-            }
             
             $user->save();
 

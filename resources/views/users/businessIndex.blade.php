@@ -21,7 +21,7 @@
                     <p class="text-center price-ofertas">
                             $ @{{ parseInt(offer.min_wage).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }} <span v-if="offer.max_wage != null">- $ @{{ parseInt(offer.max_wage).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</span>
                         </p>
-                        <h5 class="card-title text-center">@{{ offer.job_position }}</h5>
+                        <h5 class="card-title text-center t-upper">@{{ offer.job_position }}</h5>
                         <p class="card-text text-center">@{{ offer.title }}</p>
                        
 
