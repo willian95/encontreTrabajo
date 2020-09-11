@@ -88,6 +88,14 @@
         
 }
 @media (max-width: 768px) {
+    .content-inf-user.f-b {
+        max-width: 100%;
+        padding: 0;
+    }
+    .content-inf-work {
+        width: 100%;
+        max-width: 100%;
+    }
     .ofertas-respond {
         overflow: auto;
         margin-bottom: 50px;

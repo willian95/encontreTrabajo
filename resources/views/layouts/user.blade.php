@@ -21,7 +21,7 @@
     
     <section class="section-content-user">
         <div class="div_section-content-user row">
-            <div class="col-md-3 content-inf-user f-b">
+            <div class="col-md-2 content-inf-user f-b">
                 <div class="content div-content-inf-user">
                     <div class="div-content-inf-user-img"> 
                         <img class="img-user" src="{{ Auth::user()->image }}" alt="">
@@ -59,7 +59,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-9 content-inf-work">
+            <div class="col-md-10 content-inf-work">
                 <div class="content-barra-m">
                     @if(\Auth::user()->role_id == 2)
                     <div class="search-content">
