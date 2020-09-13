@@ -153,12 +153,54 @@
                             <div class="_layer -bottom"></div>
                         </div>
                         <nav class="menuppal">
-                        <ul>
-                            <li><a href="#">Opcion 1</a></li>
-                            <li><a href="#">Opcion 2</a></li>
-                            <li><a href="#">Opcion 3</a></li>
-                            <li><a href="#">Opcion 4</a></li>
-                        </ul>
+                        <div class="menu-lateral-empresa-resp">
+                            <div class="content-encontre-trabajo-caja-info">
+                                <div class="content-encontre-trabajo-caja-info-img-porc">
+                                    <span class="content-encontre-trabajo-caja-info-img-porc_span"><p>100%</p></span>
+                                    <img class="content-encontre-trabajo-caja-info_img" src="{{ asset('user/assets/img/login.jpg') }}" alt="foto usuario">
+                                </div>
+                                <h3 class="content-encontre-trabajo-caja-info_h3 empresa_h3">Empresa 1</h3>
+                                <h4 class="content-encontre-trabajo-caja-info_h4 empresa_h4">@Nombre</h4>
+                            </div>
+
+                            <div class="opciones-menu-resp-empresas">
+                                <div class="buscador-barra-lateral-empresa m-bottom">
+                                    <div class="buscador-barra-lateral-empresa-head">
+                                        <img class="buscador-barra-lateral-empresa-head_img" src="{{ asset('user/assets/img/search.png') }}" alt="">
+                                        <p>Titulo del aviso</p>
+                                    </div>
+                                    <div class="buscador-barra-lateral-empresa-head-bucador">
+                                            <input class="buscador-barra-lateral-empresa-head-bucador_input" type="text" placeholder="Titulo">
+                                            <button class="buscador-barra-lateral-empresa-head-bucador_button"><img class="buscador-barra-lateral-empresa-head-bucador_button_img" src="{{ asset('user/assets/img/search.png') }}" alt=""></button>
+                                    </div>
+                                </div>
+                                <div class="check-barra-lateral-empresa m-bottom">
+                                    <div class="check-barra-lateral-empresa-head">
+                                    <img class="check-barra-lateral-empresa-head_img" src="{{ asset('user/assets/img/search.png') }}" alt="">
+                                        <p>Estado del aviso</p>
+                                    </div>
+                                    <div class="informacion-empresa-encontre-trabajo">
+                                    <label class="check-empresa-encontre-trabajo"><input class="check-empresa-encontre-trabajo_input" type="checkbox"  value="" >Activos</label>
+                                    <label class="check-empresa-encontre-trabajo"><input class="check-empresa-encontre-trabajo_input" type="checkbox"  value="" >Vencidos</label>
+                                    <label class="check-empresa-encontre-trabajo"><input class="check-empresa-encontre-trabajo_input" type="checkbox"  value="" >Archivados</label>
+                                    <label class="check-empresa-encontre-trabajo"><input class="check-empresa-encontre-trabajo_input" type="checkbox"  value="" >Rechazados</label>
+                                </div>
+                                </div>
+                                <div class="check-barra-lateral-empresa m-bottom">
+                                    <div class="check-barra-lateral-empresa-head">
+                                    <img class="check-barra-lateral-empresa-head_img" src="{{ asset('user/assets/img/search.png') }}" alt="">
+                                        <p>Profesionales</p>
+                                    </div>
+                                    <div class="informacion-empresa-encontre-trabajo">
+                                    <label class="check-empresa-encontre-trabajo"><input class="check-empresa-encontre-trabajo_input" type="checkbox"  value="" >Administración</label>
+                                    <label class="check-empresa-encontre-trabajo"><input class="check-empresa-encontre-trabajo_input" type="checkbox"  value="" >Atención al cliente</label>
+                                    <label class="check-empresa-encontre-trabajo"><input class="check-empresa-encontre-trabajo_input" type="checkbox"  value="" >Calicenter</label>
+                                    <label class="check-empresa-encontre-trabajo"><input class="check-empresa-encontre-trabajo_input" type="checkbox"  value="" >Compras</label>
+                                </div>
+                                </div>
+
+                          </div> 
+                        </div>
                         </nav>
                         </div>
                     </div>

@@ -1162,6 +1162,28 @@ li.opciones-perfil-encontre-trabajo-usuario_li.bb-n {
     display: flex;
     justify-content: space-evenly;
 }
+.menu-lateral-usuario-resp {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+}
+li.menu-lateral-usuario_ul_li.menu-resp-li {
+    font-size: 15px;
+}
+.buscador-barra-lateral-empresa.m-bottom {
+    width: 250px;
+}
+.check-barra-lateral-empresa.m-bottom {
+    width: 250px;
+}
+.opciones-menu-resp-empresas {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 /*empresa*/
 .menu-lateral-empresa {
     height: 100vh;
@@ -1179,11 +1201,11 @@ h3.content-encontre-trabajo-caja-info_h3.empresa_h3 {
 label.check-empresa-encontre-trabajo {
     margin-bottom: 4px;
 }
-.row {
+/* .row {
     width: 100%;
     max-width: 100%;
     margin: 0;
-}
+} */
 h4.content-encontre-trabajo-caja-info_h4.empresa_h4 {
     color: #0075a9;
 }

@@ -153,12 +153,26 @@
                             <div class="_layer -bottom"></div>
                         </div>
                         <nav class="menuppal">
-                        <ul>
-                            <li><a href="#">Opcion 1</a></li>
-                            <li><a href="#">Opcion 2</a></li>
-                            <li><a href="#">Opcion 3</a></li>
-                            <li><a href="#">Opcion 4</a></li>
-                        </ul>
+                          <div class="menu-lateral-usuario-resp">
+                            <div class="content-encontre-trabajo-caja-info">
+                              <div class="content-encontre-trabajo-caja-info-img-porc">
+                                  <span class="content-encontre-trabajo-caja-info-img-porc_span"><p>100%</p></span>
+                                  <img class="content-encontre-trabajo-caja-info_img" src="{{ asset('user/assets/img/login.jpg') }}" alt="foto usuario">
+                              </div>
+                                <h3 class="content-encontre-trabajo-caja-info_h3">Nombre</h3>
+                                <h4 class="content-encontre-trabajo-caja-info_h4">@Nombre</h4>
+                            </div>
+                              <ul class="menu-lateral-usuario_ul">
+                                <li class="menu-lateral-usuario_ul_li menu-resp-li" ><a href="#"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/search.png') }}" alt=""><p>Curriculum vitae</p></a></li>
+                                <li class="menu-lateral-usuario_ul_li menu-resp-li" ><a href="#"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/search.png') }}" alt=""><p>Mi cuenta</p></a></li>
+                                <li class="menu-lateral-usuario_ul_li menu-resp-li" ><a href="#"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/search.png') }}" alt=""><p>Mis postulaciones</p></a></li>
+                                <li class="menu-lateral-usuario_ul_li menu-resp-li" ><a href="#"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/search.png') }}" alt=""><p>Subir video presentación</p></a></li>
+                                <li class="menu-lateral-usuario_ul_li menu-resp-li" ><a href="#"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/search.png') }}" alt=""><p>Notificaciones</p></a></li>
+                                <li class="menu-lateral-usuario_ul_li menu-resp-li" ><a href="#"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/search.png') }}" alt=""><p>Cambiar contraseña</p></a></li>
+                                <li class="menu-lateral-usuario_ul_li menu-resp-li" ><a href="#"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/search.png') }}" alt=""><p>Cerrar sesión</p></a></li>
+                              </ul>
+
+                          </div>
                         </nav>
                         </div>
                     </div>
