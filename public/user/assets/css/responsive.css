@@ -88,6 +88,81 @@
         
 }
 @media (max-width: 768px) {
+    input.caja-input-buscador-usuario_input {
+        width: 255px;
+    }
+    .col-md-4.col-logo-usuario {
+        flex: 0 0 25%;
+        max-width: 25%;
+    }
+    .menu-lateral-usuario {
+        height: 100%;
+    }
+    .caja-verde-usuario {
+        width: 29%;
+    }
+    .contenido-publicitario-empresas {
+        display: flex;
+        flex-direction: row;
+    }
+    .col-md-12.opciones-perfil-encontre-trabajo-usuario-info {
+        margin-left: 20px;
+        margin-right: 20px;
+        z-index: 99;
+    }
+    .d-n-768 {
+        display: none;
+    }
+    .w-100 {
+        width: 100%;
+        max-width: 100%;
+        flex: 0 0 100%;
+    }
+    p.opciones-perfil-encontre-trabajo-usuario_li_p {
+        width: 270px;
+    }
+    .opciones-perfil-encontre-trabajo-usuario-publicidad {
+        margin-right: 20px;
+    }
+    .opciones-perfil-encontre-trabajo-usuario-cajas-contenedoras-head h4 {
+        font-size: 15px;
+    }
+    p.cajas-contenedoras-perfil_p {
+        font-size: 1rem;
+        margin-bottom: 5px;
+    }
+    .opciones-perfil-encontre-trabajo-usuario-cajas-contenedoras-perfil-inf {
+        width: auto;
+    }
+    h5.cajas-contenedoras-postulaciones_h5 {
+        font-size: 1rem;
+    }
+    h5.cajas-contenedoras-estadisticas_h5 {
+        font-size: 1rem;
+    }
+    .col-md-8.f-a-c {
+        width: 0%;
+        padding: 0;
+    }
+    .caja-input-buscador-usuario {
+        display: none;
+    }
+    .caja-ico-mensaje {
+        display: none;
+    }
+    img.encontre-trabajo-usuario_row-img-usuario_img ,.encontre-trabajo-usuario_row-col-12-col-4 h3 {
+        display: none;
+    }
+    .opciones-perfil-encontre-trabajo-usuario-cajapublicitaria {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        margin-top: 0;
+    }
+    .opciones-perfil-encontre-trabajo-usuario-cajas-contenedoras-perfil {
+        margin-bottom: 20px;
+    }
+  
     .content-inf-user.f-b {
         max-width: 100%;
         padding: 0;
@@ -216,7 +291,33 @@
     }
 }
 @media (max-width: 575px) {
-   
+    .sub-localidad {
+        font-size: 12px;
+    }
+    .opciones-inf-empresas-opciones-select {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .opciones-inf-empresas-opciones-select-1, .opciones-inf-empresas-opciones-select-2, .opciones-inf-empresas-opciones-select-3 {
+        margin-bottom: 10px!important;
+        width: 100%!important;
+        display: flex!important;
+        justify-content: space-between!important;
+    }
+    .opciones-inf-empresas-opciones-select-2,.opciones-inf-empresas-opciones-select-1,.opciones-inf-empresas-opciones-select-3 {
+        display: flex;
+        height: 40px;
+        margin-bottom: 8px;
+        justify-content: space-between;
+    }
+    .opciones-inf-empresas-subt-list {
+        font-size: 12px;
+    }
+    .opciones-inf-empresas-subt-list p {
+        padding-right: 10px;
+        padding-left: 10px;
+        font-size: 12px;
+    }
     .content-barra-menu-perfil-menu ul li a {
         color: #0075a9;
         padding: 5px 15px;
@@ -300,10 +401,21 @@
     ul.nav.nav-tabs {
         margin-left: 10px;
     }
+    .opciones-inf-empresas-opciones-select-2, .opciones-inf-empresas-opciones-select-1, .opciones-inf-empresas-opciones-select-3 {
    
+        margin-bottom: 10px!important;
+    }
 }
 @media (max-width: 320px) {
+    .opciones-inf-empresas-opciones-select-2, .opciones-inf-empresas-opciones-select-1, .opciones-inf-empresas-opciones-select-3
+    {
+        font-size: 12px;
+    }
     img.ico-tab {
         width: 25px;
     }
+    
+    .col-md-12.opciones-perfil-encontre-trabajo-usuario-info {
+        margin-left: 0px;
+        margin-right: 0px;
 }

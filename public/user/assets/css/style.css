@@ -1,7 +1,9 @@
 html {
     overflow-x: hidden;
 }
-
+a:hover {
+    text-decoration: none;
+}
 [v-cloak] {
     display: none;
 }
@@ -869,6 +871,13 @@ button.btn.btn-success.btn-azul-c:focus {
     -moz-box-shadow: none;
     -webkit-box-shadow: none;
 }
+button:focus {
+    outline:none !important;
+    outline-width: 0 !important;
+    box-shadow: none;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+}
 .content-perfil-empresa {
     padding: 20px;
     border-radius: 5px;
@@ -884,4 +893,478 @@ a.btn.btn-info.inf-perfil-btn {
 }
 div#user-search-dev strong {
     color: #0075a9;
+}
+/*Usuario encontre trabajo*/
+li.menu-lateral-usuario_ul_li p:hover {
+    color: #000;
+    transition: 0.5s;
+}
+.encontre-trabajo-usuario_row-col-12 {
+    background: #0075a9;
+    padding: 0;
+    margin: 0;
+    height: 90px;
+    position: fixed;
+    z-index: 999;
+}
+img.encontre-trabajo-usuario_row-col-12-logo-img {
+    width: 120px;
+}
+.encontre-trabajo-usuario_row-col-12-logo-col-4 {
+    margin: 20px 60px;
+}
+img.caja-input-buscador-usuario-lupa_img {
+    width: 20px;
+}
+img.encontre-trabajo-usuario_row-img-usuario_img {
+    max-width: 65px;
+    height: 65px;
+    border-radius: 50px;
+    object-fit: cover;
+}
+.encontre-trabajo-usuario_row-col-12-col-4 {
+    display: flex;
+    max-height: max-content;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 90px;
+    background: #0075a9;
+
+}
+input.caja-input-buscador-usuario_input {
+    width: 300px;
+}
+button.caja-input-buscador-usuario_button {
+    background: #188a75;
+    position: relative;
+    border: 2px solid #188a75;
+    right: 6px;
+}
+.encontre-trabajo-usuario_row-col-12-col-4 h3 {
+    color: #ffff;
+    font-size: 20px;
+}
+.cont-menu-h-usuario {
+    display: flex;
+    align-items: center;
+}
+.caja-ico-mensaje {
+    position: relative;
+}
+span.caja-ico-mensaje_span {
+    background: #188a75;
+    color: #fff;
+    width: 20px;
+    padding: 5px;
+    height: 20px;
+    border-radius: 15px;
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* right: 5px; */
+    bottom: -5px;
+    position: absolute;
+    right: -15px;
+}
+img.content-encontre-trabajo-caja-info_img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50px;
+    border: 4px solid #188a75;
+
+}
+.content-encontre-trabajo-caja-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 20px;
+}
+.menu-lateral-usuario {
+    height: 100vh;
+    background: #0075a9;
+    position: fixed;
+    padding-top: 90px;
+}
+h3.content-encontre-trabajo-caja-info_h3 {
+    color: #fff;
+    padding-top: 20px;
+    font-size: 20px;
+}h4.content-encontre-trabajo-caja-info_h4 {
+    color: #ffff;
+    font-size: 15px;
+}
+
+.content-encontre-trabajo-caja-info-img-porc {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+span.content-encontre-trabajo-caja-info-img-porc_span p {
+    color: #fff;
+    font-size: 8px;
+    background: #188a75;
+    height: 25px;
+    width: 25px;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+span.content-encontre-trabajo-caja-info-img-porc_span {
+    position: absolute;
+ 
+    right: 0;
+
+}
+.opciones-perfil-encontre-trabajo-usuario {
+    margin-top: 90px;
+}
+img.menu-lateral-usuario_ul_li_img {
+    width: 15px;
+}
+li.menu-lateral-usuario_ul_li a {
+    display: flex;
+    align-items: center;
+}
+li.menu-lateral-usuario_ul_li p {
+    margin: 0;
+    color: #fff;
+    padding: 5px 10px 0px 10px;
+}
+ul.menu-lateral-usuario_ul {
+    padding: 10px;
+}
+img.opciones-perfil-encontre-trabajo-usuario-publicidad_img {
+    width: 150px;
+    height: 250px;
+    object-fit: cover;
+    /* margin-top: 80%; */
+    /* padding: 150px; */
+}
+/* .opciones-perfil-encontre-trabajo-usuario-publicidad {
+    margin-top: 180px;
+    display: flex;
+    justify-content: flex-end;
+}
+.col-md-8.opciones-perfil-encontre-trabajo-usuario-info {
+    margin-top: 180px;
+} */
+.porcentaje-perfil-encontre-trabajo-usuario {
+    border: 5px solid #188a75;
+    width: 150px;
+    height: 150px;
+    border-radius: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
+    color: #188a75;
+    font-weight: bold;
+}
+.col-md-12.opciones-perfil-encontre-trabajo-usuario-info {
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+img.opciones-perfil-encontre-trabajo-usuario_li_img {
+    width: 20px;
+    margin-right: 12px;
+}
+
+p.opciones-perfil-encontre-trabajo-usuario_li_p {
+    margin: 0;
+    color: #188a75;
+    width: 400px;
+    text-align: center;
+}
+ul.opciones-perfil-encontre-trabajo-usuario_ul {
+    padding: 0;
+    margin-top: 30px;
+}
+li.opciones-perfil-encontre-trabajo-usuario_li {
+    display: flex;
+    /* justify-content: space-between; */
+    align-items: center;
+    padding-bottom: 2px;
+    border-bottom: 1px solid #edf3f2;
+    margin-bottom: 10px;
+}
+.caja-verde-usuario {
+    position: fixed;
+    bottom: 0;
+    width: 18.7%;
+    height: 30px;
+    background: #188a75;
+}
+.opciones-perfil-encontre-trabajo-usuario-cajas-contenedoras-perfil {
+    height: 280px;
+    border: 1px solid #1010102b;
+    border-radius: 10px 10px 0px 0px;
+    /* padding: 20px; */
+}
+.opciones-perfil-encontre-trabajo-usuario-cajas-contenedoras-head img {
+    width: 20px;
+}
+.opciones-perfil-encontre-trabajo-usuario-cajas-contenedoras-head {
+    color: #fff;
+    background: #188a75;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+    border-radius: 10px 10px 0px 0px;
+
+}
+.cajas-contenedoras-perfil_h5:before {
+    content: "°";
+    color: #188a75;
+    /* font-size: 20px; */
+}
+.opciones-perfil-encontre-trabajo-usuario-cajas-contenedoras-perfil-inf {
+    padding: 25px 35px;
+    width: 300px;
+}
+p.cajas-contenedoras-perfil_p {
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+
+}
+h5.cajas-contenedoras-perfil_h5 {
+    font-size: 15px;
+    margin: 0;
+}
+h5.cajas-contenedoras-estadisticas_h5 {
+    margin: 0;
+}
+h5.cajas-contenedoras-postulaciones_h5 {
+    font-size: 18px;
+}
+.opciones-perfil-encontre-trabajo-usuario-cajapublicitaria {
+    position: absolute;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 100px;
+}
+li.opciones-perfil-encontre-trabajo-usuario_li.bb-n {
+    border-bottom: none;
+}
+.opciones-perfil-encontre-trabajo-usuario-ul {
+    padding-bottom: 50px;
+}
+.opciones-perfil-encontre-trabajo-usuario-cajas-contenedoras .container {
+    display: flex;
+    justify-content: space-evenly;
+}
+.menu-lateral-usuario-resp {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+}
+li.menu-lateral-usuario_ul_li.menu-resp-li {
+    font-size: 15px;
+}
+.buscador-barra-lateral-empresa.m-bottom {
+    width: 250px;
+}
+.check-barra-lateral-empresa.m-bottom {
+    width: 250px;
+}
+.opciones-menu-resp-empresas {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+/*empresa*/
+.menu-lateral-empresa {
+    height: 100vh;
+    background: #e9e9e9;
+    position: fixed;
+    width: 17%;
+    padding: 90px 10px 20px 10px;
+    overflow: auto;
+}
+h3.content-encontre-trabajo-caja-info_h3.empresa_h3 {
+    color: #0075a9;
+    padding-top: 5px;
+    margin-bottom: 0;
+}
+label.check-empresa-encontre-trabajo {
+    margin-bottom: 4px;
+}
+/* .row {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+} */
+h4.content-encontre-trabajo-caja-info_h4.empresa_h4 {
+    color: #0075a9;
+}
+.opciones-inf-empresas {
+    /* display: flex; */
+    margin-top: 200px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+.opciones-inf-empresas-opciones-select {
+    display: flex;
+    flex-wrap: wrap;
+    background: #eef6f9;
+    padding: 15px;
+    justify-content: space-between;
+    align-items: center;
+}
+.opciones-inf-empresas-opciones-select-2, .opciones-inf-empresas-opciones-select-1, .opciones-inf-empresas-opciones-select-3 {
+    display: flex;
+    height: 40px;
+
+}
+.opciones-inf-empresas-opciones-select-2 p,.opciones-inf-empresas-opciones-select-3 p {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    padding-right: 10px;
+}
+.opciones-inf-empresas-subt {
+    display: flex;
+    justify-content: space-between;
+}
+.opciones-inf-empresas-subt-list {
+    display: flex;
+}
+.opciones-inf-empresas-subt-list p {
+    padding-right: 20px;
+    padding-left: 20px;
+}
+.informacion-empresa-encontre-trabajo {
+    display: flex;
+    flex-direction: column;
+    padding: 5px 0px 0px 10px;
+}
+
+img.buscador-barra-lateral-empresa-head_img {
+    width: 12px;
+}
+.buscador-barra-lateral-empresa-head {
+    display: flex;
+    align-items: center;
+    background: #188a75;
+    color: #fff;
+    padding: 5px;
+}
+.buscador-barra-lateral-empresa-head p {
+    margin: 0;
+    padding-left: 15px;
+    font-size: 12px;
+}
+input.buscador-barra-lateral-empresa-head-bucador_input {
+    width: 65%;
+    font-size: 12px;
+    border: 2px solid #188a75;
+    border-radius: 5px;
+    background: #f5f0f0;
+    height: 30px;
+}
+img.buscador-barra-lateral-empresa-head-bucador_button_img {
+    width: 20px;
+}
+button.buscador-barra-lateral-empresa-head-bucador_button {
+    background: #188a75;
+    border: 0px solid #188a75;
+}
+.buscador-barra-lateral-empresa {
+    border: 1px solid #c7bbbb;
+}
+.buscador-barra-lateral-empresa-head-bucador {
+    /* display: flex; */
+    text-align: center;
+    padding: 10px;
+}
+img.check-barra-lateral-empresa-head_img {
+    width: 12px;
+}
+.check-barra-lateral-empresa-head {
+    display: flex;
+    align-items: center;
+}
+.check-barra-lateral-empresa-head p {
+    margin: 0;
+    padding-left: 15px;
+    font-size: 12px;
+    color: #fff;
+}
+.check-barra-lateral-empresa-head {
+    display: flex;
+    align-items: center;
+    background: #188a75;
+    color: #fff;
+    padding: 5px;
+}
+.check-barra-lateral-empresa {
+    border: 1px solid #c7bbbb;
+}
+label.check-empresa-encontre-trabajo {
+    font-size: 10px;
+    line-height: 8px;
+}
+.m-bottom {
+    margin-bottom: 5px;
+}
+input.check-empresa-encontre-trabajo_input {
+    margin-right: 5px;
+}
+img.caja-mis-avisos_img {
+    width: 20px;
+ }
+ .caja-mis-avisos-col-2 {
+     display: flex;
+     justify-content: flex-end;
+ }
+ .caja-mis-avisos {
+    border: 1px solid #e9e9e9;
+    padding: 22px;
+}
+.contenido-publicitario-empresas_img {
+    width: 150px;
+    height: 250px;
+    padding: 5px;
+    object-fit: cover;
+}
+.contenido-publicitario-empresas {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 110px;
+}
+.col-md-8.f-a-c {
+    width: 100%;
+    padding: 0;
+}
+.alert-dismissible .close {
+    z-index: 9;
+}
+.alert-dismissible {
+    padding-right: 12px;
+}
+.alert-dismissible .close {
+    z-index: 9;
+    position: absolute;
+    top: 4px;
+    right: 0;
+    padding: .75rem 1.25rem;
+    color: inherit;
+}
+.opciones-inf-empresas p span {
+    padding-right: 5px;
+    padding-left: 5px;
 }
