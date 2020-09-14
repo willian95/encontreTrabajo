@@ -26,7 +26,10 @@ class LoginController extends Controller
                 }else{
 
                     if (Auth::attempt(['email' => $request->email, 'password' => $request->password], true)) {
-                        return response()->json(["success" => true, "msg" => "Usuario autenticado", "role_id" => Auth::user()->role_id]);
+
+                        $url = redirect()->intended()->getTargetUrl();
+
+                        return response()->json(["success" => true, "msg" => "Usuario autenticado", "role_id" => Auth::user()->role_id, "url" => $url]);
                     }
                         
                     return response()->json(["success" => false, "msg" => "Contraseña inválida"]);
