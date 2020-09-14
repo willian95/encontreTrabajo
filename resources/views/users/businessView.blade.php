@@ -164,7 +164,7 @@
                             </div>
 
                             <div class="opciones-menu-resp-empresas">
-                                <div class="buscador-barra-lateral-empresa m-bottom">
+                                <div class="buscador-barra-lateral-empresa m-bottom caja-menu-resp-empresa">
                                     <div class="buscador-barra-lateral-empresa-head">
                                         <img class="buscador-barra-lateral-empresa-head_img" src="{{ asset('user/assets/img/search.png') }}" alt="">
                                         <p>Titulo del aviso</p>
@@ -174,7 +174,7 @@
                                             <button class="buscador-barra-lateral-empresa-head-bucador_button"><img class="buscador-barra-lateral-empresa-head-bucador_button_img" src="{{ asset('user/assets/img/search.png') }}" alt=""></button>
                                     </div>
                                 </div>
-                                <div class="check-barra-lateral-empresa m-bottom">
+                                <div class="check-barra-lateral-empresa m-bottom caja-menu-resp-empresa">
                                     <div class="check-barra-lateral-empresa-head">
                                     <img class="check-barra-lateral-empresa-head_img" src="{{ asset('user/assets/img/search.png') }}" alt="">
                                         <p>Estado del aviso</p>
@@ -186,7 +186,7 @@
                                     <label class="check-empresa-encontre-trabajo"><input class="check-empresa-encontre-trabajo_input" type="checkbox"  value="" >Rechazados</label>
                                 </div>
                                 </div>
-                                <div class="check-barra-lateral-empresa m-bottom">
+                                <div class="check-barra-lateral-empresa m-bottom caja-menu-resp-empresa">
                                     <div class="check-barra-lateral-empresa-head">
                                     <img class="check-barra-lateral-empresa-head_img" src="{{ asset('user/assets/img/search.png') }}" alt="">
                                         <p>Profesionales</p>
