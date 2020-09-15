@@ -530,59 +530,6 @@
                     };
                     reader.readAsDataURL(file);
                 },
-                onVideoChange(e){
-                    this.video = e.target.files[0];
-
-                    let files = e.target.files || e.dataTransfer.files;
-                    if (!files.length)
-                        return;
-
-                    this.validateFile(this.video, files[0])
-          
-                    //this.createVideo(files[0]);
-                },
-                validateFile(file, files) {
-
-                    var video = document.createElement('video');
-                    video.preload = 'metadata';
-
-                    var vm = this
-                    video.onloadedmetadata = function() {
-                        
-                        window.URL.revokeObjectURL(video.src);
-
-                        if (video.duration < 1) {
-
-                            swal({
-                                title:"Lo sentimos",
-                                text:"El video dura menos de un segundo",
-                                icon:"error"
-                            })
-                            $("#video").val("")
-                            return;
-
-                        }else if(video.duration > 60){
-
-                            swal({
-                                title:"Lo sentimos",
-                                text:"El video dura más de un minuto",
-                                icon:"error"
-                            })
-
-                            $("#video").val("")
-                            return
-                        }else{
-
-                            vm.createVideo(files)
-                            
-
-                        }
-
-                        
-                    }
-
-                    video.src = URL.createObjectURL(file);
-                },
                 createVideo(file) {
                     let reader = new FileReader();
                     let vm = this;
@@ -621,14 +568,6 @@
 
                             this.academicBgs = res.data.academicBgs
                             
-                        }else{
-
-                            swal({
-                                title:"Lo sentimos",
-                                text:res.data.msg,
-                                icon:"error"
-                            })
-
                         }
 
                     })
@@ -643,14 +582,6 @@
 
                             this.jobCategories = res.data.jobCategories
                             
-                        }else{
-
-                            swal({
-                                title:"Lo sentimos",
-                                text:res.data.msg,
-                                icon:"error"
-                            })
-
                         }
 
                     })
@@ -663,14 +594,6 @@
 
                         if(res.data.success == true){
                             this.jobBackgrounds = res.data.jobBgs
-                        }else{
-
-                            swal({
-                                title:"Lo sentimos",
-                                text:res.data.msg,
-                                icon:"error"
-                            })
-
                         }
 
                     })
