@@ -148,19 +148,19 @@ License: You must have a valid license purchased only from themeforest(the above
 
 							<li class="nav-item mb-5" data-toggle="tooltip" data-placement="right" data-container="body" data-boundary="window" title="Planes">
 								<a href="{{ url('/admin/plans') }}" class="nav-link btn btn-icon btn-text-white btn-hover-text-white btn-lg">
-									<i class="flaticon-notes"></i>
+									<i class="far fa-bookmark"></i>
 								</a>
 							</li>
 
 							<li class="nav-item mb-5" data-toggle="tooltip" data-placement="right" data-container="body" data-boundary="window" title="Ofertas">
 								<a href="{{ url('/admin/offers') }}" class="nav-link btn btn-icon btn-text-white btn-hover-text-white btn-lg">
-									<i class="flaticon-notes"></i>
+									<i class="far fa-flag"></i>
 								</a>
 							</li>
 
 							<li class="nav-item mb-5" data-toggle="tooltip" data-placement="right" data-container="body" data-boundary="window" title="Carrusel">
 								<a href="{{ url('/admin/carousels') }}" class="nav-link btn btn-icon btn-text-white btn-hover-text-white btn-lg">
-									<i class="flaticon-notes"></i>
+									<i class="far fa-images"></i>
 								</a>
 							</li>
 
