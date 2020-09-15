@@ -587,9 +587,8 @@
                     </div>
                     <div class="col-md-6 ">
                       <div class="form-group">
-                          <label for="text">Licencia de Conducir</label>
-                          <input type="text" class="form-control" id="licencia"  v-model="driverLicense">
-                          <select class="form-control">
+                          <label for="licencia">Licencia de Conducir</label>
+                          <select class="form-control" id="licencia" v-model="driverLicense">
                             <option value="A1">A1</option>
                             <option value="A2">A2</option>
                             <option value="A3">A3</option>
