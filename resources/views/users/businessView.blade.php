@@ -137,10 +137,10 @@
                     <div class="encontre-trabajo-usuario_row-col-12-col-4">
                         <div class="caja-input-buscador-usuario">
                             <input class="caja-input-buscador-usuario_input" type="text" placeholder="Busca tu nuevo trabajo | Ubicacion">
-                            <button class="caja-input-buscador-usuario_button"><img class="caja-input-buscador-usuario-lupa_img" src="{{ asset('user/assets/img/search.png') }}" alt="buscar"></button>                        
+                            <button class="caja-input-buscador-usuario_button"><img class="caja-input-buscador-usuario-lupa_img" src="{{ asset('user/assets/img/search-b.png') }}" alt="buscar"></button>                        
                         </div>
                         <div class="caja-ico-mensaje">
-                            <img class="caja-input-buscador-usuario-lupa_img" src="{{ asset('user/assets/img/search.png') }}" alt="buscar">
+                            <img class="caja-input-buscador-usuario-lupa_img" src="{{ asset('user/assets/img/chat.png') }}" alt="chat">
                             <span class="caja-ico-mensaje_span">1</span>
                         </div>
                         <h3>Maria</h3>
@@ -166,12 +166,12 @@
                             <div class="opciones-menu-resp-empresas">
                                 <div class="buscador-barra-lateral-empresa m-bottom caja-menu-resp-empresa">
                                     <div class="buscador-barra-lateral-empresa-head">
-                                        <img class="buscador-barra-lateral-empresa-head_img" src="{{ asset('user/assets/img/search.png') }}" alt="">
+                                        <img class="buscador-barra-lateral-empresa-head_img" src="{{ asset('user/assets/img/search-b.png') }}" alt="">
                                         <p>Titulo del aviso</p>
                                     </div>
                                     <div class="buscador-barra-lateral-empresa-head-bucador">
                                             <input class="buscador-barra-lateral-empresa-head-bucador_input" type="text" placeholder="Titulo">
-                                            <button class="buscador-barra-lateral-empresa-head-bucador_button"><img class="buscador-barra-lateral-empresa-head-bucador_button_img" src="{{ asset('user/assets/img/search.png') }}" alt=""></button>
+                                            <button class="buscador-barra-lateral-empresa-head-bucador_button"><img class="buscador-barra-lateral-empresa-head-bucador_button_img" src="{{ asset('user/assets/img/search-b.png') }}" alt=""></button>
                                     </div>
                                 </div>
                                 <div class="check-barra-lateral-empresa m-bottom caja-menu-resp-empresa">
@@ -222,12 +222,12 @@
                   </div>
                 <div class="buscador-barra-lateral-empresa m-bottom">
                       <div class="buscador-barra-lateral-empresa-head">
-                        <img class="buscador-barra-lateral-empresa-head_img" src="{{ asset('user/assets/img/search.png') }}" alt="">
+                        <img class="buscador-barra-lateral-empresa-head_img" src="{{ asset('user/assets/img/search-b.png') }}" alt="">
                         <p>Titulo del aviso</p>
                       </div>
                       <div class="buscador-barra-lateral-empresa-head-bucador">
                             <input class="buscador-barra-lateral-empresa-head-bucador_input" type="text" placeholder="Titulo">
-                            <button class="buscador-barra-lateral-empresa-head-bucador_button"><img class="buscador-barra-lateral-empresa-head-bucador_button_img" src="{{ asset('user/assets/img/search.png') }}" alt=""></button>
+                            <button class="buscador-barra-lateral-empresa-head-bucador_button"><img class="buscador-barra-lateral-empresa-head-bucador_button_img" src="{{ asset('user/assets/img/search-b.png') }}" alt=""></button>
                       </div>
                 </div>
                 <div class="check-barra-lateral-empresa m-bottom">
@@ -308,7 +308,7 @@
                         <div class="row">
                             <div class="col-md-2">
                                 <div class="caja-mis-avisos-col-2">
-                                    <img class="caja-mis-avisos_img" src="{{ asset('user/assets/img/search.png') }}" alt="">
+                                    <img class="caja-mis-avisos_img" src="{{ asset('user/assets/img/alert.png') }}" alt="">
                                 </div>
                             </div>
                             <div class="col-md-10">

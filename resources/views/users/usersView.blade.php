@@ -137,10 +137,10 @@
                     <div class="encontre-trabajo-usuario_row-col-12-col-4">
                         <div class="caja-input-buscador-usuario">
                             <input class="caja-input-buscador-usuario_input" type="text" placeholder="Busca tu nuevo trabajo | Ubicacion">
-                            <button class="caja-input-buscador-usuario_button"><img class="caja-input-buscador-usuario-lupa_img" src="{{ asset('user/assets/img/search.png') }}" alt="buscar"></button>                        
+                            <button class="caja-input-buscador-usuario_button"><img class="caja-input-buscador-usuario-lupa_img" src="{{ asset('user/assets/img/search-b.png') }}" alt="buscar"></button>                        
                         </div>
                         <div class="caja-ico-mensaje">
-                            <img class="caja-input-buscador-usuario-lupa_img" src="{{ asset('user/assets/img/search.png') }}" alt="buscar">
+                            <img class="caja-input-buscador-usuario-lupa_img" src="{{ asset('user/assets/img/chat.png') }}" alt="chat">
                             <span class="caja-ico-mensaje_span">1</span>
                         </div>
                         <h3>Maria</h3>
@@ -163,13 +163,13 @@
                                 <h4 class="content-encontre-trabajo-caja-info_h4">@Nombre</h4>
                             </div>
                               <ul class="menu-lateral-usuario_ul">
-                                <li class="menu-lateral-usuario_ul_li menu-resp-li" ><a href="#"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/search.png') }}" alt=""><p>Curriculum vitae</p></a></li>
-                                <li class="menu-lateral-usuario_ul_li menu-resp-li" ><a href="#"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/search.png') }}" alt=""><p>Mi cuenta</p></a></li>
-                                <li class="menu-lateral-usuario_ul_li menu-resp-li" ><a href="#"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/search.png') }}" alt=""><p>Mis postulaciones</p></a></li>
-                                <li class="menu-lateral-usuario_ul_li menu-resp-li" ><a href="#"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/search.png') }}" alt=""><p>Subir video presentación</p></a></li>
-                                <li class="menu-lateral-usuario_ul_li menu-resp-li" ><a href="#"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/search.png') }}" alt=""><p>Notificaciones</p></a></li>
-                                <li class="menu-lateral-usuario_ul_li menu-resp-li" ><a href="#"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/search.png') }}" alt=""><p>Cambiar contraseña</p></a></li>
-                                <li class="menu-lateral-usuario_ul_li menu-resp-li" ><a href="#"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/search.png') }}" alt=""><p>Cerrar sesión</p></a></li>
+                                <li class="menu-lateral-usuario_ul_li menu-resp-li" ><a href="#"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/ico-editar.png') }}" alt=""><p>Curriculum vitae</p></a></li>
+                                <li class="menu-lateral-usuario_ul_li menu-resp-li" ><a href="#"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/ico-usuario.png') }}" alt=""><p>Mi cuenta</p></a></li>
+                                <li class="menu-lateral-usuario_ul_li menu-resp-li" ><a href="#"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/control.png') }}" alt=""><p>Mis postulaciones</p></a></li>
+                                <li class="menu-lateral-usuario_ul_li menu-resp-li" ><a href="#"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/play.png') }}" alt=""><p>Subir video presentación</p></a></li>
+                                <li class="menu-lateral-usuario_ul_li menu-resp-li" ><a href="#"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/alarm.png') }}" alt=""><p>Notificaciones</p></a></li>
+                                <li class="menu-lateral-usuario_ul_li menu-resp-li" ><a href="#"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/alarm.png') }}" alt=""><p>Cambiar contraseña</p></a></li>
+                                <li class="menu-lateral-usuario_ul_li menu-resp-li" ><a href="#"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/logout.png') }}" alt=""><p>Cerrar sesión</p></a></li>
                               </ul>
 
                           </div>
@@ -193,13 +193,13 @@
                       <h4 class="content-encontre-trabajo-caja-info_h4">@Nombre</h4>
                   </div>
                   <ul class="menu-lateral-usuario_ul">
-                    <li class="menu-lateral-usuario_ul_li" ><a href="#"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/search.png') }}" alt=""><p>Curriculum vitae</p></a></li>
-                    <li class="menu-lateral-usuario_ul_li" ><a href="#"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/search.png') }}" alt=""><p>Mi cuenta</p></a></li>
-                    <li class="menu-lateral-usuario_ul_li" ><a href="#"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/search.png') }}" alt=""><p>Mis postulaciones</p></a></li>
-                    <li class="menu-lateral-usuario_ul_li" ><a href="#"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/search.png') }}" alt=""><p>Subir video presentación</p></a></li>
-                    <li class="menu-lateral-usuario_ul_li" ><a href="#"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/search.png') }}" alt=""><p>Notificaciones</p></a></li>
-                    <li class="menu-lateral-usuario_ul_li" ><a href="#"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/search.png') }}" alt=""><p>Cambiar contraseña</p></a></li>
-                    <li class="menu-lateral-usuario_ul_li" ><a href="#"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/search.png') }}" alt=""><p>Cerrar sesión</p></a></li>
+                    <li class="menu-lateral-usuario_ul_li" ><a href="#"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/ico-editar.png') }}" alt=""><p>Curriculum vitae</p></a></li>
+                    <li class="menu-lateral-usuario_ul_li" ><a href="#"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/ico-usuario.png') }}" alt=""><p>Mi cuenta</p></a></li>
+                    <li class="menu-lateral-usuario_ul_li" ><a href="#"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/control.png') }}" alt=""><p>Mis postulaciones</p></a></li>
+                    <li class="menu-lateral-usuario_ul_li" ><a href="#"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/play.png') }}" alt=""><p>Subir video presentación</p></a></li>
+                    <li class="menu-lateral-usuario_ul_li" ><a href="#"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/alarm.png') }}" alt=""><p>Notificaciones</p></a></li>
+                    <li class="menu-lateral-usuario_ul_li" ><a href="#"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/alarm.png') }}" alt=""><p>Cambiar contraseña</p></a></li>
+                    <li class="menu-lateral-usuario_ul_li" ><a href="#"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/logout.png') }}" alt=""><p>Cerrar sesión</p></a></li>
                   </ul>
               </div>
               <div class="caja-verde-usuario"></div>
@@ -215,13 +215,13 @@
                       </div> 
                       <div class="opciones-perfil-encontre-trabajo-usuario-ul">
                         <ul class="opciones-perfil-encontre-trabajo-usuario_ul">
-                          <li class="opciones-perfil-encontre-trabajo-usuario_li"><img class="opciones-perfil-encontre-trabajo-usuario_li_img"src="{{ asset('user/assets/img/search.png') }}" alt=""><p class="opciones-perfil-encontre-trabajo-usuario_li_p">Adjuntaste  tu CV</p></li>
-                          <li class="opciones-perfil-encontre-trabajo-usuario_li"><img class="opciones-perfil-encontre-trabajo-usuario_li_img"src="{{ asset('user/assets/img/search.png') }}" alt=""><p class="opciones-perfil-encontre-trabajo-usuario_li_p">Adjuntaste tu foto</p></li>
-                          <li class="opciones-perfil-encontre-trabajo-usuario_li"><img class="opciones-perfil-encontre-trabajo-usuario_li_img"src="{{ asset('user/assets/img/search.png') }}" alt=""><p class="opciones-perfil-encontre-trabajo-usuario_li_p">RUT</p></li>
-                          <li class="opciones-perfil-encontre-trabajo-usuario_li"><img class="opciones-perfil-encontre-trabajo-usuario_li_img"src="{{ asset('user/assets/img/search.png') }}" alt=""><p class="opciones-perfil-encontre-trabajo-usuario_li_p">Celular</p></li>
-                          <li class="opciones-perfil-encontre-trabajo-usuario_li"><img class="opciones-perfil-encontre-trabajo-usuario_li_img"src="{{ asset('user/assets/img/search.png') }}" alt=""><p class="opciones-perfil-encontre-trabajo-usuario_li_p">Referencias Laborales</p></li>
-                          <li class="opciones-perfil-encontre-trabajo-usuario_li"><img class="opciones-perfil-encontre-trabajo-usuario_li_img"src="{{ asset('user/assets/img/search.png') }}" alt=""><p class="opciones-perfil-encontre-trabajo-usuario_li_p">Resumen Educacional</p></li>
-                          <li class="opciones-perfil-encontre-trabajo-usuario_li bb-n"><img class="opciones-perfil-encontre-trabajo-usuario_li_img"src="{{ asset('user/assets/img/search.png') }}" alt=""><p class="opciones-perfil-encontre-trabajo-usuario_li_p">Dirección</p></li>
+                          <li class="opciones-perfil-encontre-trabajo-usuario_li"><h6>✔</h6><p class="opciones-perfil-encontre-trabajo-usuario_li_p">Adjuntaste  tu CV</p></li>
+                          <li class="opciones-perfil-encontre-trabajo-usuario_li"><h6>✔</h6><p class="opciones-perfil-encontre-trabajo-usuario_li_p">Adjuntaste tu foto</p></li>
+                          <li class="opciones-perfil-encontre-trabajo-usuario_li"><h6>✔</h6><p class="opciones-perfil-encontre-trabajo-usuario_li_p">RUT</p></li>
+                          <li class="opciones-perfil-encontre-trabajo-usuario_li"><h6>✔</h6><p class="opciones-perfil-encontre-trabajo-usuario_li_p">Celular</p></li>
+                          <li class="opciones-perfil-encontre-trabajo-usuario_li"><h6>✔</h6><p class="opciones-perfil-encontre-trabajo-usuario_li_p">Referencias Laborales</p></li>
+                          <li class="opciones-perfil-encontre-trabajo-usuario_li"><h6>✔</h6><p class="opciones-perfil-encontre-trabajo-usuario_li_p">Resumen Educacional</p></li>
+                          <li class="opciones-perfil-encontre-trabajo-usuario_li bb-n"><h6>✔</h6><p class="opciones-perfil-encontre-trabajo-usuario_li_p">Dirección</p></li>
                         </ul>
                       </div>                 
                     </div>
@@ -242,7 +242,7 @@
                         <div class="opciones-perfil-encontre-trabajo-usuario-cajas-contenedoras-perfil">
                           <div class="opciones-perfil-encontre-trabajo-usuario-cajas-contenedoras-head">
                             <h4>Perfil</h4>
-                             <img src="{{ asset('user/assets/img/search.png') }}" alt="">
+                             <img src="{{ asset('user/assets/img/ico-editar.png') }}" alt="">
                           </div>
                           <div class="opciones-perfil-encontre-trabajo-usuario-cajas-contenedoras-perfil-inf">
                             <h5 class="cajas-contenedoras-perfil_h5">Nombre:</h5>
@@ -259,7 +259,7 @@
                         <div class="opciones-perfil-encontre-trabajo-usuario-cajas-contenedoras-perfil">
                           <div class="opciones-perfil-encontre-trabajo-usuario-cajas-contenedoras-head">
                             <h4>Postulaciones</h4>
-                             <img src="{{ asset('user/assets/img/search.png') }}" alt="">
+                             <img src="{{ asset('user/assets/img/control.png') }}" alt="">
                           </div>
                           <div class="opciones-perfil-encontre-trabajo-usuario-cajas-contenedoras-perfil-inf">
                             <h5 class="cajas-contenedoras-postulaciones_h5">Analista Senior de RRHH</h5>
@@ -273,7 +273,7 @@
                         <div class="opciones-perfil-encontre-trabajo-usuario-cajas-contenedoras-perfil">
                           <div class="opciones-perfil-encontre-trabajo-usuario-cajas-contenedoras-head">
                             <h4>Estadisticas</h4>
-                             <img src="{{ asset('user/assets/img/search.png') }}" alt="">
+                             <img src="{{ asset('user/assets/img/control.png') }}" alt="">
                           </div>
                           <div class="opciones-perfil-encontre-trabajo-usuario-cajas-contenedoras-perfil-inf">
                             <h5 class="cajas-contenedoras-estadisticas_h5">Postulaciones:</h5>
