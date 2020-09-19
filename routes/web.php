@@ -21,9 +21,9 @@ Route::get('/', "LoginController@index")->name("login")->middleware('guest');
 Route::post('/login', "LoginController@login");
 Route::get('/logout', "LoginController@logout");
 
-Route::get("/register", "RegisterController@index");
+Route::get("/register", "RegisterController@index")->middleware("guest");
 Route::post("/register", "RegisterController@register");
-Route::get("/register/validate/{registerHash}", "RegisterController@verify");
+Route::get("/register/validate/{registerHash}", "RegisterController@verify")->middleware("guest");
 
 Route::get("/regions/fetch-all", "RegionController@fetchAll");
 Route::get("/communes/fetch/{region_id}", "CommuneController@fetchByRegion");

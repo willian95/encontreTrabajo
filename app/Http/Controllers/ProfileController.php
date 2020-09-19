@@ -17,6 +17,7 @@ use App\AcademicBackground;
 use App\JobBackground;
 use App\User;
 use App\Profile;
+use App\Region;
 
 class ProfileController extends Controller
 {
@@ -25,7 +26,10 @@ class ProfileController extends Controller
         try{
 
             $user = User::where("id", \Auth::user()->id)->with("profile")->has("profile")->firstOrFail();
-            return view("users.userProfile", ["user" => $user]);
+            $moveRegionArray = explode(",", $user->profile->move_regions);
+            $moveRegions = Region::whereIn("id", $moveRegionArray)->get();
+           
+            return view("users.userProfile", ["user" => $user,"moveRegions" => json_encode($moveRegions)]);
 
         }catch(\Exception $e){
             abort(403);
@@ -342,6 +346,18 @@ class ProfileController extends Controller
 
         try{
 
+            $regionString= "";
+
+            $i = 0;
+            foreach($request->moveRegions as $regions){
+                $regionString .= $regions['id'];
+                if($i < count($request->moveRegions)-1){
+                    $regionString .= ",";
+                }
+
+                $i++;
+            }
+
             $profile = Profile::where("user_id", \Auth::user()->id)->first();
             $profile->job_description = str_replace("\n", ". ", $request->jobDescription);
             $profile->experience_year = $request->expYears;
@@ -350,6 +366,7 @@ class ProfileController extends Controller
             $profile->desired_area = $request->desiredArea;
             $profile->functions = str_replace("\n", ".", $request->functions);
             $profile->awards = str_replace("\n", ". ", $request->awards);
+            $profile->move_regions = $regionString;
             $profile->update();
 
             $this->isProfileComplete();
@@ -454,11 +471,46 @@ class ProfileController extends Controller
 
         try{
 
+            $driverString = "";
+
+            if($request->licenseA1 == true){
+                $driverString .= "licenseA1:true, ";
+            }
+            if($request->licenseA2 == true){
+                $driverString .= "licenseA2:true, ";
+            }
+            if($request->licenseA3 == true){
+                $driverString .= "licenseA3:true, ";
+            }
+            if($request->licenseA4 == true){
+                $driverString .= "licenseA4:true, ";
+            }
+            if($request->licenseA5 == true){
+                $driverString .= "licenseA5:true, ";
+            }
+            if($request->licenseB == true){
+                $driverString .= "licenseB:true, ";
+            }
+            if($request->licenseC == true){
+                $driverString .= "licenseC:true, ";
+            }
+            if($request->licenseD == true){
+                $driverString .= "licenseD:true, ";
+            }
+            if($request->licenseE == true){
+                $driverString .= "licenseE:true, ";
+            }
+            if($request->licenseF == true){
+                $driverString .= "licenseF:true, ";
+            }
+
             $profile = Profile::where("user_id", \Auth::user()->id)->first();
             $profile->informatic_knowledge = str_replace("\n", ". ", $request->informaticKnowledge);
             $profile->knowledge_habilities = str_replace("\n", ". ", $request->knowledgeHabilities);
-            $profile->driver_license = $request->driverLicense;
+            $profile->driver_license = $driverString;
             $profile->handicap_description = $request->handicapDescription;
+            $profile->handicap_percentage = $request->handicapPercentage;
+            $profile->necesary_condition = $request->necesaryCondition;
             $profile->update();
 
             $this->isProfileComplete();
@@ -511,7 +563,10 @@ class ProfileController extends Controller
             if($user->role_id == 2){
 
                 $age = Carbon::parse($profile->birth_date)->age;
-                return view("users/showUserProfile", ["user" => $user, "profile" => $profile,"age" =>$age]);
+                $moveRegionArray = explode(",", $profile->move_regions);
+                $moveRegions = Region::whereIn("id", $moveRegionArray)->get();
+           
+                return view("users/showUserProfile", ["user" => $user, "profile" => $profile,"age" =>$age, "moveRegions" => json_encode($moveRegions)]);
 
             }else if($user->role_id == 3){
                 return view("users/showBusinessProfile", ["user" => $user, "profile" => $profile]);

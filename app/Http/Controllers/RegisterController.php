@@ -47,6 +47,7 @@ class RegisterController extends Controller
                 $serviceAmount->user_id = $user->id;
                 $serviceAmount->save();
             }
+            //
 
             $profile = new Profile;
             $profile->user_id = $user->id;

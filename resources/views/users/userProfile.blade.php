@@ -438,6 +438,43 @@
                                   </select>
                               </div>
                   </div>
+                  <div class="row">
+                  <div class="col-md-4">
+                        <label for="available">Disponibilidad de viaje</label>
+                        <select class="form-control" id="available" v-model="travelAvailable">
+                            <option value="1">Sí</option>
+                            <option value="0">No</option>
+                            
+                        </select>
+                    </div>
+                    <div class="col-md-4 ">
+                        <label for="available">Disponibilidad de cambiar residencia</label>
+                        <select class="form-control" id="available" v-model="changeResidence">
+                            <option value="1">Sí</option>
+                            <option value="0">No</option>
+                            
+                        </select>
+                    </div>
+                    <div class="col-md-4 ">
+                        <label for="region">Seleccione regiones a las cuales pueda trabajar</label>
+                        <select class="form-control" id="region" @change="selectMoveRegion()" v-model="moveRegion">
+                            <option :value="region" v-for="region in regions">@{{ region.name }}</option>
+                        </select>
+                        <small>(max. 3 regiones)</small>
+                        
+                        <div class="card" v-for="moveRegion in moveRegions">
+                            <div class="card-body">
+                                @{{ moveRegion.name }}
+
+                                <button type="button" class="btn" @click="removeMoveRegion(moveRegion.id)">
+                                    X
+                                </button>
+
+                            </div>
+                        </div>
+
+                    </div>
+                  </div>
                     
                   
                 </form>
@@ -587,26 +624,125 @@
                     </div>
                     <div class="col-md-6 ">
                       <div class="form-group">
-                          <label for="licencia">Licencia de Conducir</label>
-                          <select class="form-control" id="licencia" v-model="driverLicense">
-                            <option value="A1">A1</option>
-                            <option value="A2">A2</option>
-                            <option value="A3">A3</option>
-                            <option value="A4">A4</option>
-                            <option value="A5">A5</option>
-                            <option value="B">B</option>
-                            <option value="C">C</option>
-                            <option value="D">D</option>
-                            <option value="E">E</option>
-                            <option value="F">F</option>
-                          </select>
+                            <label for="licencia">Licencia de Conducir</label>
+                        
+                            <div class="row">
+                                <div class="col-2">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="licenseA1" v-model="licenseA1">
+                                        <label class="form-check-label" for="licenseA1">
+                                            A1
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="licenseA2" v-model="licenseA2">
+                                        <label class="form-check-label" for="licenseA2">
+                                            A2
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="licenseA3" v-model="licenseA3">
+                                        <label class="form-check-label" for="licenseA3">
+                                            A3
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="licenseA4" v-model="licenseA4">
+                                        <label class="form-check-label" for="licenseA4">
+                                            A4
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="licenseA5" v-model="licenseA5">
+                                        <label class="form-check-label" for="licenseA5">
+                                            A5
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-2">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="licenseB" v-model="licenseB">
+                                        <label class="form-check-label" for="licenseB">
+                                            B
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="licenseC" v-model="licenseC">
+                                        <label class="form-check-label" for="licenseC">
+                                            C
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="licenseD" v-model="licenseD">
+                                        <label class="form-check-label" for="licenseD">
+                                            D
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="licenseE" v-model="licenseE">
+                                        <label class="form-check-label" for="licenseE">
+                                            E
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="licenseF" v-model="licenseF">
+                                        <label class="form-check-label" for="licenseF">
+                                            F
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
                       </div>
                       </div>
                       <div class="col-md-6 ">
-                      <div class="form-group">
-                          <label for="text">Posee Discapacidad</label>
-                          <input type="text" class="form-control" id="discapacidad"  v-model="handicapDescription">
+                        <div class="form-group">
+                            <label for="text">Describa que tipo de discapacidad usted posee</label>
+                            <textarea class="form-control" id="discapacidad"  v-model="handicapDescription"></textarea>
+                        </div>
                       </div>
+
+                      <div class="col-md-6 ">
+                        <div class="form-group">
+                            <label for="text">Con las condiciones necesarias para poder desarrollar su trabajo de forma óptima acorde a su discapacidad</label>
+                            <textarea class="form-control" id="necesaryCondition"  v-model="necesaryCondition"></textarea>
+                        </div>
+                      </div>
+
+                      <div class="col-md-6 ">
+                        <div class="form-group">
+                            <label for="text">Porcentaje de discapacidad</label>
+                            <select class="form-control" class="form-control" v-model="handicapPercentage">
+                                <option value="0">0 %</option>
+                                <option value="10">10 %</option>
+                                <option value="20">20 %</option>
+                                <option value="30">30 %</option>
+                                <option value="40">40 %</option>
+                                <option value="50">50 %</option>
+                                <option value="60">60 %</option>
+                                <option value="70">70 %</option>
+                                <option value="80">80 %</option>
+                                <option value="90">90 %</option>
+                                <option value="100">100 %</option>
+                            </select>
+                        </div>
                       </div>
                     
                     </div>
@@ -679,6 +815,10 @@
                     salary:"{{ $user->profile->salary }}",
                     desiredJob:"{{ \Auth::user()->desired_job }}",
                     desiredArea:"{{ $user->profile->desired_area }}",
+                    travelAvailable:"{{ $user->profile->travel_available }}",
+                    changeResidence:"{{ $user->profile->change_residence }}",
+                    moveRegion:"",
+                    moveRegions:JSON.parse('{!! $moveRegions !!}'),
                     jobBackgrounds:[],
                     company:"",
                     jobBg:"",
@@ -692,10 +832,21 @@
                     informaticKnowledge:"{{ $user->profile->informatic_knowledge }}",
                     knowledgeHabilities:"{{ $user->profile->knowledge_habilities }}",
                     driverLicense:"{{ $user->profile->driver_license }}",
+                    licenseA1:false,
+                    licenseA2:false,
+                    licenseA3:false,
+                    licenseA4:false,
+                    licenseA5:false,
+                    licenseB:false,
+                    licenseC:false,
+                    licenseD:false,
+                    licenseE:false,
+                    licenseF:false,
                     handicapDescription:"{{ $user->profile->handicap_description }}",
+                    necesaryCondition:"{{ $user->profile->necesary_condition }}",
+                    handicapPercentage:"{{ $user->profile->handicap_percentage }}",
                     regions:[],
-                    communes:[]
-
+                    communes:[],
 
                 }
             },
@@ -1257,6 +1408,7 @@
                         desiredArea:this.desiredArea,
                         functions:this.functions,
                         awards:this.awards,
+                        moveRegions:this.moveRegions
                     })
                     .then(res => {
                         this.loading = false
@@ -1363,8 +1515,19 @@
                     axios.post("{{ url('/profiles/others/store') }}", {
                         informaticKnowledge:this.informaticKnowledge,
                         knowledgeHabilities:this.knowledgeHabilities,
-                        driverLicense:this.driverLicense,
-                        handicapDescription:this.handicapDescription
+                        licenseA1: this.licenseA1,
+                        licenseA2: this.licenseA2,
+                        licenseA3: this.licenseA3,
+                        licenseA4: this.licenseA4,
+                        licenseA5: this.licenseA5,
+                        licenseB: this.licenseB,
+                        licenseC: this.licenseC,
+                        licenseD: this.licenseD,
+                        licenseE: this.licenseE,
+                        licenseF: this.licenseF,
+                        handicapDescription:this.handicapDescription,
+                        necesaryCondition:this.necesaryCondition,
+                        handicapPercentage: this.handicapPercentage
                     })
                     .then(res => {
 
@@ -1397,17 +1560,89 @@
                         });
                     })
 
+                },
+                selectMoveRegion(){
+
+                    if(this.moveRegions.length < 3){
+                        var exists = false
+                        this.moveRegions.forEach((data) =>{
+
+                            if(data.id == this.moveRegion.id){
+                                exists = true
+                            }
+
+                        })
+
+                        if(!exists)
+                            this.moveRegions.push(this.moveRegion)
+                    }
+
+                    this.moveRegion = ""
+                    
+
+                },
+                removeMoveRegion(region){
+                    
+                    var i = ""
+                    this.moveRegions.forEach((data, index) => {
+
+                        if(data.id = region){
+                            i = index
+                        }
+
+                    })
+
+                    this.moveRegions.splice(i, 1)
+
                 }
                     
             },
             mounted(){
 
                 this.country = "{{ $user->profile->country_id }}"
-
-
                 if(this.country == ""){
                     this.country = 4
                 }
+
+                let explode = this.driverLicense.split(",")
+                explode.forEach((data) =>{
+                    
+                    if(data != ""){
+                        let result = data.split(":")
+                        if(result[0].trim() == "licenseA1"){
+                            this.licenseA1 = result[1]
+                        }
+                        else if(result[0].trim() == "licenseA2"){
+                            this.licenseA2 = result[1]
+                        }
+                        else if(result[0].trim() == "licenseA3"){
+                            this.licenseA3 = result[1]
+                        }
+                        else if(result[0].trim() == "licenseA4"){
+                            this.licenseA4 = result[1]
+                        }
+                        else if(result[0].trim() == "licenseA5"){
+                            this.licenseA5 = result[1]
+                        }
+                        else if(result[0].trim() == "licenseB"){
+                            this.licenseB = result[1]
+                        }
+                        else if(result[0].trim() == "licenseC"){
+                            this.licenseC = result[1]
+                        }
+                        else if(result[0].trim() == "licenseD"){
+                            this.licenseD = result[1]
+                        }
+                        else if(result[0].trim() == "licenseE"){
+                            this.licenseE = result[1]
+                        }
+                        else if(result[0].trim() == "licenseF"){
+                            this.licenseF = result[1]
+                        }
+                    }
+                    
+
+                })
 
                 this.toggleTabs("basico")
                 this.fetchCountries()

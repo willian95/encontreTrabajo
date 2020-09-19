@@ -299,6 +299,34 @@
                                   </select>
                               </div>
                   </div>
+                  <div class="row">
+                    <div class="col-md-4">
+                        <label for="available">Disponibilidad de viaje</label>
+                        <select class="form-control" id="available" v-model="travelAvailable" disabled>
+                            <option value="1">Sí</option>
+                            <option value="0">No</option>
+                            
+                        </select>
+                    </div>
+                    <div class="col-md-4 ">
+                        <label for="available">Disponibilidad de cambiar residencia</label>
+                        <select class="form-control" id="available" v-model="changeResidence" disabled>
+                            <option value="1">Sí</option>
+                            <option value="0">No</option>
+                            
+                        </select>
+                    </div>
+                    <div class="col-md-4 ">
+                        
+                        <div class="card" v-for="moveRegion in moveRegions">
+                            <div class="card-body">
+                                @{{ moveRegion.name }}
+
+                            </div>
+                        </div>
+
+                    </div>
+                  </div>
                     
                   
                 </form>
@@ -345,29 +373,55 @@
                 <div class="content-otros">
                 <form action="/action_page.php">
                     <div class="row a-academicos-form">
-                    <div class="col ">
+                    <div class="col-md-4">
                     <div class="form-group">
                         <label for="text">Conocimientos Informáticos </label>
                         <textarea class="form-control" rows="8" id="conocimientos" v-model="informaticKnowledge" disabled></textarea>
                     </div>
                     </div>
-                    <div class="col ">
+                    <div class="col-md-4">
                     <div class="form-group">
                         <label for="text">Conocimientos y Habilidades</label>
                         <textarea type="text" rows="8" class="form-control" id="habilidades"  v-model="knowledgeHabilities" disabled></textarea>
                     </div>
                     </div>
-                    <div class="col ">
+                    <div class="col-md-4">
                       <div class="form-group">
                           <label for="text">Licencia de Conducir</label>
-                          <input type="text" class="form-control" id="licencia"  v-model="driverLicense" disabled>
+                          <input type="text" class="form-control" id="licencia"  v-model="driverLicenseString" disabled>
                       </div>
                       </div>
-                      <div class="col ">
+                      <div class="col-md-4">
                       <div class="form-group">
-                          <label for="text">Posee Discapacidad</label>
+                          <label for="text">Descripción del tipo de discapacidad que el usuario posee</label>
                           <input type="text" class="form-control" id="discapacidad"  v-model="handicapDescription" disabled>
                       </div>
+                      </div>
+
+                      <div class="col-md-6 ">
+                        <div class="form-group">
+                            <label for="text">Condiciones necesarias para poder desarrollar su trabajo de forma óptima acorde a su discapacidad</label>
+                            <textarea class="form-control" id="necesaryCondition"  v-model="necesaryCondition" disabled></textarea>
+                        </div>
+                      </div>
+
+                      <div class="col-md-6 ">
+                        <div class="form-group">
+                            <label for="text">Porcentaje de discapacidad</label>
+                            <select class="form-control" class="form-control" v-model="handicapPercentage" disabled>
+                                <option value="0">0 %</option>
+                                <option value="10">10 %</option>
+                                <option value="20">20 %</option>
+                                <option value="30">30 %</option>
+                                <option value="40">40 %</option>
+                                <option value="50">50 %</option>
+                                <option value="60">60 %</option>
+                                <option value="70">70 %</option>
+                                <option value="80">80 %</option>
+                                <option value="90">90 %</option>
+                                <option value="100">100 %</option>
+                            </select>
+                        </div>
                       </div>
                     
                     </div>
@@ -437,6 +491,9 @@
                     salary:"{{ $profile->salary }}",
                     desiredJob:"{{ $user->desired_job }}",
                     desiredArea:"{{ $profile->desired_area }}",
+                    travelAvailable:"{{ $user->profile->travel_available }}",
+                    changeResidence:"{{ $user->profile->change_residence }}",
+                    moveRegions:JSON.parse('{!! $moveRegions !!}'),
                     jobBackgrounds:[],
                     company:"",
                     jobBg:"",
@@ -450,11 +507,13 @@
                     informaticKnowledge:"{{ $profile->informatic_knowledge }}",
                     knowledgeHabilities:"{{ $profile->knowledge_habilities }}",
                     driverLicense:"{{ $profile->driver_license }}",
+                    driverLicenseString:"",
                     handicapDescription:"{{ $profile->handicap_description }}",
+                    necesaryCondition:"{{ $user->profile->necesary_condition }}",
+                    handicapPercentage:"{{ $user->profile->handicap_percentage }}",
                     regions:[],
-                    communes:[]
-
-
+                    communes:[],
+                    
                 }
             },
             methods: {
@@ -610,6 +669,38 @@
                 if(this.country == ""){
                     this.country = 4
                 }
+                
+                if(this.driverLicense.length != ""){
+
+                    var explode = this.driverLicense.split(",")
+                    explode.forEach((data, index) =>{
+                        
+                        if(data != ""){
+                            let result = data.split(":")
+                            
+                            if(result.length > 1){
+                                if(result[1].trim() == "true"){
+                                    let string = result[0].trim().substr(7, result[0].trim().length)
+                                    this.driverLicenseString += string
+
+                                    if(index + 2 < explode.length){
+                                        this.driverLicenseString += ", "
+                                    }
+                                }
+                            }
+                        }
+                        
+
+                    })
+
+                }else{
+
+                    this.driverLicenseString = "No posee Licencia"
+
+                }
+                
+
+                
 
                 this.toggleTabs("basico")
                 this.fetchCountries()
