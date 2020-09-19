@@ -166,7 +166,7 @@ License: You must have a valid license purchased only from themeforest(the above
 
 							<li class="nav-item mb-5" data-toggle="tooltip" data-placement="right" data-container="body" data-boundary="window" title="Cerrar sesión">
 								<a href="{{ url('/logout') }}" class="nav-link btn btn-icon btn-text-white btn-hover-text-white btn-lg">
-									<i class="far fa-power-off"></i>
+									<i class="fas fa-power-off"></i>
 								</a>
 							</li>
 
