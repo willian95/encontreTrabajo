@@ -23,8 +23,7 @@
                         </p>
                         <h5 class="card-title text-center t-upper">@{{ offer.job_position }}</h5>
                         <p class="card-text text-center">@{{ offer.title }}</p>
-                       
-
+                        <p class="text-center">@{{ offer.status }}</p>
                         <p class="text-center">
                             <a :href="'{{ url('/offers/detail/') }}'+'/'+offer.slug" class="btn btn-primary">Ver más</a>
                         </p>
