@@ -74,7 +74,7 @@
                 return {
                     password: "",
                     password_confirmation:"",
-                    receovery_hash:"{{ $hash }}"
+                    receovery_hash:"{{ $hash }}",
                     loading:false
                 }
             },
