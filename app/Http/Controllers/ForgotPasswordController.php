@@ -24,7 +24,7 @@ class ForgotPasswordController extends Controller
             $user = User::where('recovery_hash', $recovery_hash)->first();
             
             if($user){
-                return view('passwordRestore', ["recovery_hash" => $recovery_hash]);
+                return view('passwordRestore', ["hash" => $recovery_hash]);
             }else{
                 abort(403);
             }
