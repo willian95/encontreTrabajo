@@ -23,7 +23,7 @@ Route::get('/logout', "LoginController@logout");
 
 Route::get("/forgot-password", "ForgotPasswordController@index");
 Route::post("/forgot-password/send", "ForgotPasswordController@send");
-Route::get("/password/recovery/restore/{hash}", "ForgotPasswordController@restore");
+Route::get("/password/recovery/restore/{recovery_hash}", "ForgotPasswordController@restore");
 Route::post("/password/restore", "ForgotPasswordController@update");
 
 Route::get("/register", "RegisterController@index")->middleware("guest");
