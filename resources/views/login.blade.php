@@ -122,15 +122,14 @@
 
                             }else if(res.data.role_id == 2 || res.data.role_id == 3){
 
-                                /*swal({
+                                swal({
                                     title: "Excelente!",
                                     text: res.data.msg,
                                     icon: "success"
-                                }).then(() => {*/
+                                }).then(() => {
                                     //console.log(res.data)
                                     window.location.href=res.data.url
-                               // })
-
+                               })
                             }
 
                         }else{
