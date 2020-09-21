@@ -26,10 +26,6 @@
                             <div class="content-barra-menu-perfil-menu-monitor">
                                 <ul>
                                     <li><a href="{{ url('/home') }}">Inicio</a></li>
-                                    <li><a href="#">Ofertas</a></li>
-                                    <li><a href="#">Perfil</a></li>
-                                    <li><a href="#">Registro</a></li>
-                                    <li><a href="#">Login</a></li>
 
                                 </ul>
                             </div>
