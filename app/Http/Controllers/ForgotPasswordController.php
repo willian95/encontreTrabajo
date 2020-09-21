@@ -54,7 +54,7 @@ class ForgotPasswordController extends Controller
                 $to_email = $user->email;
                 //return response()->json(env("MAIL_FROM_ADDRESS"));
                 $data = ["user" => $user];
-                \Mail::send("emails.recoveryMail", $data, function($message) use ($to_name, $to_email) {
+                \Mail::send("emails.recoveryPassword", $data, function($message) use ($to_name, $to_email) {
 
                     $message->to($to_email, $to_name)->subject("¡Recupera tu clave!");
                     $message->from(env("MAIL_FROM_ADDRESS"), env("MAIL_FROM_NAME"));
