@@ -21,6 +21,11 @@ Route::get('/', "LoginController@index")->name("login")->middleware('guest');
 Route::post('/login', "LoginController@login");
 Route::get('/logout', "LoginController@logout");
 
+Route::get("/forgot-password", "ForgotPasswordController@index");
+Route::post("/forgot-password/send", "ForgotPasswordController@send");
+Route::get("/password/recovery/restore/{hash}", "ForgotPasswordController@restore");
+Route::post("/password/restore", "ForgotPasswordController@update");
+
 Route::get("/register", "RegisterController@index")->middleware("guest");
 Route::post("/register", "RegisterController@register");
 Route::get("/register/validate/{registerHash}", "RegisterController@verify")->middleware("guest");

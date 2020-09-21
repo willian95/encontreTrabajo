@@ -52,6 +52,10 @@
                                         
                                     </div>
 
+                                    <p style="margin-top:1rem;">
+                                        <a href="{{ url('/forgot-password') }}">¿Olvidaste tu contraseña?</a>
+                                    </p>
+
                                     <p class="text-center" style="margin-top:3rem;">
                                         <small>¿Aún no tienes una cuenta?</small>
                                     </p>
