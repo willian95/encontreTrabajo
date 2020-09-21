@@ -40,11 +40,6 @@
                         <div class="dropdown-menu user-dropdown">
                             <ul>
                                     <li><a class="dropdown-item" href="{{ url('/home') }}">Inicio</a></li>
-                                    <li><a href="#">Ofertas</a></li>
-                                    <li><a href="#">Perfil</a></li>
-                                    <li><a href="#">Registro</a></li>
-                                    <li><a href="#">Login</a></li>
-                                    <li><a class="dropdown-item" href="{{ url('/logout') }}">Cerrar sesión</a></li>
                             </ul>
                         </div>
                                 </div>
