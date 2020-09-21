@@ -30,6 +30,9 @@ Route::get("/communes/fetch/{region_id}", "CommuneController@fetchByRegion");
 Route::get("/job-categories/fetch-all", "JobCategoryController@fetchAll");
 
 Route::get('/home', "HomeController@index")->middleware('auth');
+Route::get("/user/offer", function(){
+    return view("users.index");
+});
 
 Route::get("/profile/show/{email}", "ProfileController@showProfile")->middleware("auth");
 
@@ -82,8 +85,8 @@ Route::post("/cart/store", "CartController@store")->middleware('auth')->middlewa
 Route::post("/contract", "ContractController@store");
 
 Route::get('/checkout/{cart}', 'CheckoutController@initTransaction')->name('checkout')->middleware('auth')->middleware('business');  
-Route::post('/checkout/webpay/response', 'CheckoutController@response')->name('checkout.webpay.response')->middleware('auth')->middleware('business');  
-Route::post('/checkout/webpay/finish', 'CheckoutController@finish')->name('checkout.webpay.finish')->middleware('auth')->middleware('business');
+Route::post('/checkout/webpay/response', 'CheckoutController@response')->name('checkout.webpay.response');  
+Route::post('/checkout/webpay/finish', 'CheckoutController@finish')->name('checkout.webpay.finish');
 
 Route::get("/country/fetch", "CountriesController@fetch");
 

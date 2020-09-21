@@ -38,6 +38,7 @@ class SearchController extends Controller
                     }
                 }      
             })
+            ->where("status", "abierto")
             ->whereDate('expiration_date', '>', Carbon::today()->toDateString())
             ->take($dataAmount)
             ->orderBy("id", "desc")

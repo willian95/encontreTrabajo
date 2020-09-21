@@ -2,37 +2,37 @@
 
 @section("content")
 
-    <div class="row" id="proposals-dev">
-        <div class="col-12">
+    
+        <div class="col-md-10" id="proposals-dev" style="margin-top: 100px;">
 
             <h3 class="text-center">Mis aplicaciones</h3>
             <div class="table-mis-app">
-            <table class="table ">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Empresa</th>
-                        <th>Titulo</th>
-                        <th>Puesto</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr v-for="(proposal, index) in proposals">
-                        <td v-if="page == 1">@{{ index + 1 }}</td>
-                        <td v-else>@{{ (index + 1) + (dataAmount * page) }}</td>
-                        <td>@{{ proposal.offer.user.business_name }}</td>
-                        <td>@{{ proposal.offer.title }}</td>
-                        <td>@{{ proposal.offer.job_position }}</td>
-                        <td>
-                            <a :href="'{{ url('/profile/show/') }}'+'/'+proposal.offer.user.email" class="btn btn-info">Ver perfil</a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+                <table class="table ">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Empresa</th>
+                            <th>Titulo</th>
+                            <th>Puesto</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="(proposal, index) in proposals">
+                            <td v-if="page == 1">@{{ index + 1 }}</td>
+                            <td v-else>@{{ (index + 1) + (dataAmount * page) }}</td>
+                            <td>@{{ proposal.offer.user.business_name }}</td>
+                            <td>@{{ proposal.offer.title }}</td>
+                            <td>@{{ proposal.offer.job_position }}</td>
+                            <td>
+                                <a :href="'{{ url('/profile/show/') }}'+'/'+proposal.offer.user.email" class="btn btn-info">Ver perfil</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
-    </div>
+    
 
 @endsection
 

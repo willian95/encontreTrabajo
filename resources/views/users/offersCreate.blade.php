@@ -1,9 +1,9 @@
-@extends("layouts.user")
+@extends("layouts.business")
 
 @section("content")
 
     <div class="container mt-3 perfil-encontre-trabajo" id="offersCreate-dev">
-        <h2>Oferta</h2>
+        <h2 style="margin-top: 100px;">Oferta</h2>
 		<br>
 		<div class="loader-cover" v-if="loading == true">
 			<div class="loader"></div>
@@ -250,8 +250,6 @@
                     $("#cover").css("display", "block")
                 },
                 cartStore(plan_id, price){
-
-                    alert(price)
 
                     this.loading = true
 

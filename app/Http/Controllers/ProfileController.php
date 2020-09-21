@@ -529,7 +529,7 @@ class ProfileController extends Controller
 
             $profile = Profile::where("user_id", \Auth::user()->id)->first();
 
-            if(\Auth::user()->image != url('/')."/images/users/default.jpg" && $profile->video != null && $profile->curriculum != null && $profile->birth_date != null && $profile->gender != null && $profile->civil_state != null && $profile->address != null && $profile->country_id != null && $profile->nationality != null  && $profile->handicap != null && $profile->phone != null && $profile->home_phone != null && AcademicBackground::where("user_id", \Auth::user()->id)->count() > 0 && $profile->job_description != null && $profile->experience_year != null && $profile->availability != null && $profile->salary != null && \Auth::user()->desired_job != null && $profile->desired_area != null){
+            if(\Auth::user()->image != url('/')."/images/users/default.jpg" && $profile->video != null && $profile->curriculum != null && $profile->address != null && AcademicBackground::where("user_id", \Auth::user()->id)->count() > 0){
 
                 $user = User::where("id", \Auth::user()->id)->first();
                 $user->is_profile_complete = 1;

@@ -80,7 +80,9 @@
                                 <div class="a-basicos-postulante-curriculum j-center">
                                     <img class="basicos-postulante-c-4" src="{{ asset('user/assets/img/icons8-contrato-de-trabajo-100.png') }}" alt="postulante" v-if="curriculumPreview == ''">
 
-                                    <img class="basicos-postulante-c-4" style="width: 100%; cursor: pointer;" src="{{ asset('user/assets/img/document-download-outline.png') }}" alt="postulante" v-if="curriculumPreview != ''" @click="download()">                               
+                                    <iframe id="iframepdf" :src="curriculumPreview" v-if="curriculumPreview != ''"></iframe>
+
+                                    {{--<img class="basicos-postulante-c-4" style="width: 100%; cursor: pointer;" src="{{ asset('user/assets/img/document-download-outline.png') }}" alt="postulante" v-if="curriculumPreview != ''" @click="download()">--}}                               
                                 </div>
                                 <label for="curriculum">Curriculum</label>
 

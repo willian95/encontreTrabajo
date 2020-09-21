@@ -82,8 +82,8 @@ class OfferController extends Controller
             $dataAmount = 18;
             $skip = ($page - 1) * $dataAmount;
 
-            $offers = Offer::skip($skip)->take($dataAmount)->where('user_id', \Auth::user()->id)->orderBy("proposal_updated_at", "desc")->with("user")->has("user")->get();
-            $offersCount = Offer::with("user")->has("user")->where('user_id', \Auth::user()->id)->count();
+            $offers = Offer::skip($skip)->take($dataAmount)->where('user_id', \Auth::user()->id)->orderBy("proposal_updated_at", "desc")->with("user")->has("user")->with("user.region")->has("user.region")->get();
+            $offersCount = Offer::with("user")->has("user")->where('user_id', \Auth::user()->id)->with("user.region")->has("user.region")->count();
 
             return response()->json(["success" => true, "offers" => $offers, "offersCount" => $offersCount, "dataAmount" => $dataAmount]);
 
@@ -98,10 +98,14 @@ class OfferController extends Controller
         try{
 
             $offer = Offer::where("slug", $slug)->with("user", "user.region", "user.commune", "user.profile")->has("user")->has("user.profile")->firstOrFail();
-            return view("users.offerDetails", ["offer" => $offer]);
+            
+            if(\Auth::user()->role_id == 2){
+                return view("users.offerDetailsUser", ["offer" => $offer]);
+            }else if(\Auth::user()->role_id == 3){
+                return view("users.offerDetails", ["offer" => $offer]);
+            }
 
         }catch(\Exception $e){
-            
             abort(403);
         }
 

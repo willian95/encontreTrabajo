@@ -2,8 +2,8 @@
 
 @section("content")
 
-    <div class="row" id="proposals-dev">
-        <div class="col-12">
+    <div class="col-10" id="proposals-dev" style="margin-top: 100px;">
+      
 
             <h3 class="text-center">Ofertas respondidas</h3>
             <div class="ofertas-respond">
@@ -35,7 +35,7 @@
                     </tbody>
                 </table>
                 </div>
-        </div>
+        
     </div>
 
 @endsection

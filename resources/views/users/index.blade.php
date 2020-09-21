@@ -2,8 +2,8 @@
 
 @section("content")
 
-    <div class="container-fluid" id="user-offers-dev">
-        <div class="row" v-cloak>
+    <div class="col-md-10 w-100" id="user-offers-dev">
+        <div class="row" v-cloak style="margin-top: 100px;">
 
             <div class="col-12 recor-a-cp">
                 @if(\Auth::user()->is_profile_complete == 0)
