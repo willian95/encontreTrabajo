@@ -541,7 +541,18 @@ class ProfileController extends Controller
 
             $profile = Profile::where("user_id", \Auth::user()->id)->first();
 
-            dd(\Auth::user());
+            if(\Auth::user()->commune_id != null){
+                dd("commune");
+            }
+            if(\Auth::user()->image != url('/')."images/users/default.jpg"){
+                dd("image");
+            } 
+            if(\Auth::user()->region_id != null){
+                dd("region");
+            } 
+            if($profile->address != null){
+                dd("address");
+            }
 
             if(\Auth::user()->commune_id != null && \Auth::user()->image != url('/')."images/users/default.jpg" && \Auth::user()->region_id != null && $profile->address != null){
 
