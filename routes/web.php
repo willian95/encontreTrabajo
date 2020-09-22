@@ -42,7 +42,8 @@ Route::get("/user/offer", function(){
 Route::get("/profile/show/{email}", "ProfileController@showProfile")->middleware("auth");
 
 Route::post('/profiles/show/academic/fetch', "ProfileController@fetchShowAcademicBackground")->middleware('auth');
-Route::get('/profiles/job-background/fetch', "ProfileController@fetchJobBackground")->middleware('auth');
+Route::post('/profiles/show/job-background/fetch', "ProfileController@fetchShowJobBackground")->middleware('auth');
+
 Route::middleware(['auth', 'user'])->group(function(){
 
     Route::get('/profile/user', "ProfileController@index");
@@ -52,7 +53,7 @@ Route::middleware(['auth', 'user'])->group(function(){
     Route::post('/profile/academic/update', "ProfileController@updateAcademicBackground");
     Route::post('/profile/academic/delete', "ProfileController@deleteAcademicBackground");
     Route::post('/profiles/job-resume/store', "ProfileController@storeJobResume");
-    Route::post('/profiles/show/job-background/fetch', "ProfileController@fetchShowJobBackground");
+    Route::get('/profiles/job-background/fetch', "ProfileController@fetchJobBackground");
     Route::post('/profiles/job-background/store', "ProfileController@storeJobBackground");
     Route::post('/profile/job-background/update', "ProfileController@updateJobBackground");
     Route::post('/profile/job-background/delete', "ProfileController@deleteJobBackground");
