@@ -94,11 +94,11 @@
                     </div>
                     <div class="opciones-perfil-encontre-trabajo-usuario-cajas-contenedoras-perfil-inf">
                     <h5 class="cajas-contenedoras-perfil_h5">Nombre:</h5>
-                    <p class="cajas-contenedoras-perfil_p">Ana Smith</p>
+                    <p class="cajas-contenedoras-perfil_p">{{ \Auth::user()->name }}</p>
                     <h5 class="cajas-contenedoras-perfil_h5">Genero:</h5>
-                    <p class="cajas-contenedoras-perfil_p">Femenino</p>
+                    <p class="cajas-contenedoras-perfil_p">{{ App\User::where('id', \Auth::user()->id)->with('profile')->first()->profile->gender }}</p>
                     <h5 class="cajas-contenedoras-perfil_h5">Nacionalidad:</h5>
-                    <p class="cajas-contenedoras-perfil_p">Chilena</p>
+                    <p class="cajas-contenedoras-perfil_p">{{ App\User::where('id', \Auth::user()->id)->with('profile')->first()->nationality }}</p>
                     </div>
                     
                 </div>
@@ -110,10 +110,15 @@
                         <img src="{{ asset('user/assets/img/control.png') }}" alt="">
                     </div>
                     <div class="opciones-perfil-encontre-trabajo-usuario-cajas-contenedoras-perfil-inf">
-                    <h5 class="cajas-contenedoras-postulaciones_h5">Analista Senior de RRHH</h5>
-                    <h5 class="cajas-contenedoras-postulaciones_h5">Analista de Recursos Humanos</h5>
-                    <h5 class="cajas-contenedoras-postulaciones_h5">Jefe de RRHH</h5>
-                    </div>
+                        
+                        @if(App\Proposal::where("user_id", \Auth::user()->id)->with("offer")->count() == 0)
+                            <h5 class="cajas-contenedoras-postulaciones_h5">Aún no te has postulado a alguna oferta</h5>
+                        @endif
+
+                        @foreach(App\Proposal::where("user_id", \Auth::user()->id)->with("offer")->take(3)->get() as $proposal)
+                            <h5 class="cajas-contenedoras-postulaciones_h5">{{ $proposal->title }}</h5> 
+                        @endforeach
+                    </div>  
                     
                 </div>
                 </div>
@@ -125,11 +130,11 @@
                     </div>
                     <div class="opciones-perfil-encontre-trabajo-usuario-cajas-contenedoras-perfil-inf">
                     <h5 class="cajas-contenedoras-estadisticas_h5">Postulaciones:</h5>
-                    <p class="cajas-contenedoras-estadisticas_p">5</p>
+                    <p class="cajas-contenedoras-estadisticas_p">{{ App\Proposal::where("user_id", \Auth::user()->id)->with("offer")->count() }}</p>
                     <h5 class="cajas-contenedoras-estadisticas_h5">Empresas distintas:</h5>
-                    <p class="cajas-contenedoras-estadisticas_p">2</p>
-                    <h5 class="cajas-contenedoras-estadisticas_h5">Ofertas guardadas:</h5>
-                    <p class="cajas-contenedoras-estadisticas_p">42</p>
+                    <p class="cajas-contenedoras-estadisticas_p">{{ App\Proposal::where("user_id", \Auth::user()->id)->whereHas("offer",function($q){
+                        $q->groupBy("user_id")
+                    })->count() }}</p>
                     </div>
                 </div>
                 </div>
