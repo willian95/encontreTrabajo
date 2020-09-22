@@ -241,13 +241,17 @@
                             $profile_percentage = 0;
 
                             if(\Auth::user()->image != url('/')."images/users/default.jpg"){
-                                $profile_percentage += 40;
+                                $profile_percentage += 25;
                             }
-                            if($profile->industry != null){
-                                $profile_percentage += 30;
+                            if(\Auth::user()->commune_id != null){
+                                $profile_percentage += 25;
                             }
-                            if($profile->country_id != null){
-                                $profile_percentage += 30;
+                            if(\Auth::user()->region_id != null){
+                                $profile_percentage += 25;
+                            }
+
+                            if(\Auth::user()->address != null){
+                                $profile_percentage += 25;
                             }
 
                         @endphp
