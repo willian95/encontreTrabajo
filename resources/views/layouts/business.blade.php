@@ -246,7 +246,7 @@
                             if($profile->industry != null){
                                 $profile_percentage += 30;
                             }
-                            if($profile->country_id != nul){
+                            if($profile->country_id != null){
                                 $profile_percentage += 30;
                             }
 
