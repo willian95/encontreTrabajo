@@ -133,7 +133,7 @@
                     <p class="cajas-contenedoras-estadisticas_p">{{ App\Proposal::where("user_id", \Auth::user()->id)->with("offer")->count() }}</p>
                     <h5 class="cajas-contenedoras-estadisticas_h5">Empresas distintas:</h5>
                     <p class="cajas-contenedoras-estadisticas_p">{{ App\Proposal::where("user_id", \Auth::user()->id)->whereHas("offer",function($q){
-                        $q->groupBy("user_id")
+                        $q->groupBy("user_id");
                     })->count() }}</p>
                     </div>
                 </div>
