@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="{{ asset('/alertify/css/themes/bootstrap.css') }}" >
     <link rel="stylesheet" href="{{ asset('/fontawesome/css/all.css') }}" >
     <link rel="icon" href="{{ asset('user/assets/img/Logo-azul.png') }}" type="image/x-icon">
-    
+    @stack("css")
 
     <title>Encontré Trabajo</title>
 
@@ -123,6 +123,7 @@
 /* #188a75 */
 
 </style>
+
     <body>
 <section class="encontre-trabajo-usuario">
     <div class="row encontre-trabajo-usuario_row">
@@ -249,7 +250,6 @@
                             <li class="menu-lateral-usuario_ul_li menu-resp-li" ><a href="{{ url('/offers/create') }}"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/play.png') }}" alt="">Crear oferta</a></li>
                         @endif
                         <li class="menu-lateral-usuario_ul_li menu-resp-li" ><a href="{{ url('/my-proposals') }}"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/alarm.png') }}" alt="">Ofertas respondidas</a></li>
-                        <li class="menu-lateral-usuario_ul_li menu-resp-li" ><a href="#"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/alarm.png') }}" alt="">Cambiar contraseña</a></li>
                         <li class="menu-lateral-usuario_ul_li" ><a href="{{ url('/logout') }}"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/logout.png') }}" alt="">Cerrar sesión</a></li>
                     </ul>
                 {{--<div class="buscador-barra-lateral-empresa m-bottom">

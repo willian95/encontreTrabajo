@@ -319,7 +319,7 @@
                         </select>
                     </div>
                     <div class="col-md-4 ">
-                        
+                        <label>Regiones a las cuales pueda trabajar</label>
                         <div class="card" v-for="moveRegion in moveRegions">
                             <div class="card-body">
                                 @{{ moveRegion.name }}

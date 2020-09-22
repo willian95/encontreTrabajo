@@ -1,5 +1,9 @@
 @extends("layouts.business")
 
+@push("css")
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+@endpush
 
 @section("content")
 
@@ -61,7 +65,7 @@
                                 <h4 class="text-center">Respuestas de usuarios</h4>
                             </div>
 
-                            <div class="col-md-8 offset-md-2 col-lg-8 offset-lg-2 table-respuestas" >
+                            <div class="col-md-10 offset-md-1 col-lg-10 offset-lg-1 table-respuestas" >
                                 <table class="table">
                                     <thead>
                                         <tr>
@@ -69,6 +73,7 @@
                                             <th>Nombre</th>
                                             <th>Apellido</th>
                                             <th>Email</th>
+                                            <th>Conferencia</th>
                                             <th>Ver Perfil</th>
                                         </tr>
                                     </thead>
@@ -79,11 +84,42 @@
                                             <td>@{{ proposal.user.lastname }}</td>
                                             <td>@{{ proposal.user.email }}</td>
                                             <td>
+                                                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#conferenceModal" @click="setGuest(proposal.user.id)">Solicitar</button>
+                                            </td>
+                                            <td>
                                                 <a :href="'{{ url('/profile/show/') }}'+'/'+proposal.user.email" class="btn btn-info">Ver perfil</a>
                                             </td>
                                         </tr>
                                     </tbody>
                                 </table>
+                            </div>
+                        </div>
+
+                        <div class="modal fade" id="conferenceModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Video conferencia</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <label>Fecha y Hora</label>
+                                            <div class='input-group date' id='datetimepicker1'>
+                                                <input type='text' class="form-control" style="font-size: 14px"/>
+                                                <span class="input-group-addon">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                        <button type="button" class="btn btn-primary" @click="scheduleDate()">Agendar Conferencia</button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
@@ -102,8 +138,18 @@
 @endsection
 
 @push("scripts")
-
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/momentjs/2.14.1/moment.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
+    <script src='https://meet.jit.si/external_api.js'></script>
     <script>
+        
+        $(function () {
+            $('#datetimepicker1').datetimepicker();
+        });
+
         const devPlace = new Vue({
             el: '#offersDetails-dev',
             data() {
@@ -125,8 +171,8 @@
                     role_id:"{{ \Auth::user()->role_id }}",
                     proposals:[],
                     page:1,
-                    pages:0
-
+                    pages:0,
+                    guest_id:0
                 }
             },
             methods: {
@@ -169,6 +215,9 @@
 
 
                 },
+                setGuest(guest_id){
+                    this.guest_id = guest_id
+                },
                 fetchProposals(page = 1){
 
                     this.page = page
@@ -193,7 +242,17 @@
 
                     })
 
+                },
+                scheduleDate(){
+
+                    axios.post("conference/schedule", {guest_id: this.guest_id}).then(res =>{
+
+                        
+
+                    })
+
                 }
+                
 
             },
             mounted(){
