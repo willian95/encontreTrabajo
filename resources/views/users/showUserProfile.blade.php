@@ -624,7 +624,7 @@
 
                     axios.post("{{ url('/profiles/show/academic/fetch') }}", {user_id: "{{ $user->id }}"})
                     .then(res => {
-
+                        console.log("academic", res)
                         if(res.data.success == true){
 
                             this.academicBgs = res.data.academicBgs
