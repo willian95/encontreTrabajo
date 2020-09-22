@@ -41,7 +41,7 @@ Route::get("/user/offer", function(){
 
 Route::get("/profile/show/{email}", "ProfileController@showProfile")->middleware("auth");
 
-oute::post('/profiles/show/academic/fetch', "ProfileController@fetchShowAcademicBackground")->middleware('auth');
+Route::post('/profiles/show/academic/fetch', "ProfileController@fetchShowAcademicBackground")->middleware('auth');
 Route::get('/profiles/job-background/fetch', "ProfileController@fetchJobBackground")->middleware('auth');
 Route::middleware(['auth', 'user'])->group(function(){
 
