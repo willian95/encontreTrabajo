@@ -236,7 +236,22 @@
               <div class="menu-lateral-empresa">
                   <div class="content-encontre-trabajo-caja-info">
                      <div class="content-encontre-trabajo-caja-info-img-porc">
-                        <span class="content-encontre-trabajo-caja-info-img-porc_span"><p>100%</p></span>
+                        @php
+                            $profile = App\Profile::where("user_id", Auth::user()->id)->first();
+                            $profile_percentage = 0;
+
+                            if(\Auth::user()->image != url('/')."images/users/default.jpg"){
+                                $profile_percentage += 40;
+                            }
+                            if($profile->industry != null){
+                                $profile_percentage += 30;
+                            }
+                            if($profile->country_id != nul){
+                                $profile_percentage += 30;
+                            }
+
+                        @endphp
+                        <span class="content-encontre-trabajo-caja-info-img-porc_span"><p>{{ $profile_percentage }}%</p></span>
                         <img class="content-encontre-trabajo-caja-info_img" src="{{ Auth::user()->image }}" alt="foto usuario">
                      </div>
                       <h3 class="content-encontre-trabajo-caja-info_h3 empresa_h3">{{ Auth::user()->business_name }}</h3>

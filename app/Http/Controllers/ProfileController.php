@@ -541,7 +541,7 @@ class ProfileController extends Controller
 
             $profile = Profile::where("user_id", \Auth::user()->id)->first();
 
-            if($profile->industry != null && $profile->image != url('/')."images/users/default.jpg" && $profile->country_id != null){
+            if($profile->industry != null && \Auth::user()->image != url('/')."images/users/default.jpg" && $profile->country_id != null){
 
                 $user = User::where("id", \Auth::user()->id)->first();
                 $user->is_profile_complete = 1;
