@@ -508,9 +508,9 @@ class ProfileController extends Controller
             $profile->informatic_knowledge = str_replace("\n", ". ", $request->informaticKnowledge);
             $profile->knowledge_habilities = str_replace("\n", ". ", $request->knowledgeHabilities);
             $profile->driver_license = $driverString;
-            $profile->handicap_description = $request->handicapDescription;
+            $profile->handicap_description = str_replace("\n", ". ", $request->handicapDescription);
             $profile->handicap_percentage = $request->handicapPercentage;
-            $profile->necesary_condition = $request->necesaryCondition;
+            $profile->necesary_condition = str_replace("\n", ". ", $request->necesaryCondition);
             $profile->update();
 
             $this->isProfileComplete();
