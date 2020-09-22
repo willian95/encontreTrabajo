@@ -542,7 +542,7 @@ class ProfileController extends Controller
             $profile = Profile::where("user_id", \Auth::user()->id)->first();
 
             if(\Auth::user()->commune_id != null){
-                dd("commune");
+                dd(\Auth::user()->commune_id);
             }
             if(\Auth::user()->image != url('/')."images/users/default.jpg"){
                 dd("image");
