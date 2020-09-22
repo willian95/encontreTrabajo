@@ -250,7 +250,7 @@
                                 $profile_percentage += 25;
                             }
 
-                            if(\Auth::user()->address != null){
+                            if($profile->address != null){
                                 $profile_percentage += 25;
                             }
 
