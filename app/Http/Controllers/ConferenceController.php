@@ -33,7 +33,7 @@ class ConferenceController extends Controller
             ssh2_auth_password($connection, env('JITSI_SERVER_USER'), env('JITSI_SERVER_PASSWORD'));
             ssh2_exec($connection, 'prosodyctl register '.$username.' '.env('JITSI_DOMAIN').' '.$password);
 
-            $data = ["businessName" => \Auth::user()->business_name, "datetime" => $request->date_time, "link" => url('/conference/'.$room_name)];
+            $data = ["businessName" => \Auth::user()->business_name, "date_time" => $request->date_time, "link" => url('/conference/'.$room_name)];
             $to_name = User::where("id", $request->guest_id)->first()->name;
             $to_email = User::where("id", $request->guest_id)->first()->email;
 
