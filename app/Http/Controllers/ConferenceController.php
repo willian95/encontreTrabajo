@@ -15,14 +15,14 @@ class ConferenceController extends Controller
 
         try{
             
-            $random = Str::random(40);
+            $room_name = Str::random(40);
             $password = Str::random(15);
             $name = explode(" ", \Auth::user()->name);
             $username = $name[0].Str::random(4);
 
             $appointment = new Appointment;
             $appointment->user_id = \Auth::user()->id;
-            $appointment->room_name = $random;
+            $appointment->room_name = $room_name;
             $appointment->guest_id = $request->guest_id;
             $appointment->name = $username;
             $appointment->password = $password;
