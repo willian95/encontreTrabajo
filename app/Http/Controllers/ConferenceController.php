@@ -63,7 +63,7 @@ class ConferenceController extends Controller
 
         try{
 
-            return view("user.conference", ["room_name", $room_name]);
+            return view("users.conference", ["room_name", $room_name]);
 
         }catch(\Exception $e){
 
