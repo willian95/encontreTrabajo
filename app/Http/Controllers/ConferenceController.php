@@ -92,7 +92,7 @@ class ConferenceController extends Controller
         try{
             if(Appointment::where('room_name', $request->room_name)->count() > 0){
 
-                $appointment = App\Appointment::where("room_name", $request->room_name)->first();
+                $appointment = Appointment::where("room_name", $request->room_name)->first();
 
                 if(\Auth::user()->id == $appointment->user_id || \Auth::user()->id == $appointment->guest_id){
 
