@@ -124,11 +124,14 @@ class ConferenceController extends Controller
 
                 }
 
-            }else
+            }else{
                 return response()->json(["success" => false, "msg" => "Sala no encontrada"]);
             }
             
 
+        }catch(\Exception $e){
+
+            return response()->json(["success" => false, "err" => $e->getMessage(), "ln" => $e->getLine(), "msg" => "Hubo un problema"]);
         }
 
     }
