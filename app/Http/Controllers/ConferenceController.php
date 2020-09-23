@@ -60,16 +60,99 @@ class ConferenceController extends Controller
     }
 
     function conferenceRoom($room_name){
-
+        
         try{
 
-            return view("users.conference", ["room_name" => $room_name]);
+            return view("users.conferenceLogin", ["room_name" => $room_name]);
 
         }catch(\Exception $e){
 
             return response()->json(["success" => false, "err" => $e->getMessage(), "ln" => $e->getLine(), "msg" => "Hubo un problema"]);
         }
+    }
 
+    function conferenceShowRoom(Request $request, $room_name){
+        
+        try{    
+
+            if($request->password == Appointment::where("room_name", $room_name)->first()->password){
+                return view("users.conference", ["room_name" => $room_name]);
+            }
+
+            echo "Credenciales inválidas";
+
+        }catch(\Exception $e){
+
+            return response()->json(["success" => false, "err" => $e->getMessage(), "ln" => $e->getLine(), "msg" => "Hubo un problema"]);
+        }
+    }
+
+    function conferenceLogin(Request $request){
+
+        try{
+            if(Appointment::where('room_name', $request->room_name)->count() > 0){
+
+                $appointment = App\Appointment::where("room_name", $request->room_name)->first();
+
+                if(\Auth::user()->id == $appointment->user_id || \Auth::user()->id == $appointment->guest_id){
+
+                    if(Carbon::now()->gte($appointment->date_time) && $appointment->date_time->lt($appointment->date_time->addDay())){
+
+                        return response()->json(["success" => true]);
+
+                    }else{
+
+                        if($appointment->date_time->lt(Carbon::now())){
+                            return response()->json(["success" => false, "msg" => "La conferencia comienza el ".$appointment->date_time]);
+                        }
+                        else if($appointment->date_time->addDay()->gt(Carbon\Carbon::now())){
+
+                            return response()->json(["success" => false, "msg" => "La conferencia ha expirado"]);
+
+                        }
+                        
+
+                    }
+
+                }else{
+
+                    return response()->json(["success" => false, "msg" => "Usted no ha sido invitado a esta conferencia"]);
+
+                }
+
+            }else
+                return response()->json(["success" => false, "msg" => "Sala no encontrada"]);
+            }
+
+
+                @php
+                    
+                @endphp
+
+                @if(\Auth::user()->id == $appointment->user_id || \Auth::user()->id == $appointment->guest_id)
+
+                    @if(Carbon\Carbon::now()->gte($appointment->date_time) && $appointment->date_time->lt($appointment->date_time->addDay()))
+                    
+                        <div id="meet"></div>
+
+                    @else
+
+                        @if($appointment->date_time->lt(Carbon\Carbon::now()))
+                            <h3>La conferencia comienza el {{ $appointment->date_time }}</h3>
+                        @elseif($appointment->date_time->addDay()->gt(Carbon\Carbon::now()))
+                            <h3>La conferencia ha expirado</h3>
+                        @endif
+
+                    @endif
+
+                @else
+                    <h3 class="text-center">Usted no ha sido invitado a esta conferencia</h3>
+                @endif
+
+            @
+
+            @endif
+        }
 
     }
 
