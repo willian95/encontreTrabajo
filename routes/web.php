@@ -17,6 +17,8 @@ use Illuminate\Support\Facades\Route;
     return view('welcome');
 });*/
 
+Route::get("/conference/{room_name}", "ConferenceController@conferenceRoom")->middleware('auth');
+
 Route::get('/', "LoginController@index")->name("login")->middleware('guest');
 Route::post('/login', "LoginController@login");
 Route::get('/logout', "LoginController@logout");
@@ -99,13 +101,15 @@ Route::get("/country/fetch", "CountriesController@fetch");
 Route::get("/search", "SearchController@index");
 Route::post("/search", "SearchController@search");
 
-Route::get("/usuario", function(){
+/*Route::get("/usuario", function(){
     return view("users.usersView");
 });
 
 Route::get("/empresa", function(){
     return view("users.businessView");
-});
+});*/
+
+Route::post("conference/schedule", "ConferenceController@store");
 
 ///////////////////////// ADMIN /////////////////////////////////////
 

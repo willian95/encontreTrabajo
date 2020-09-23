@@ -19,6 +19,8 @@ class CreateAppointmentsTable extends Migration
             $table->string("room_name");
             $table->unsignedBigInteger('guest_id');
             $table->timestamp("date_time");
+            $table->string("name");
+            $table->string("password");
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');

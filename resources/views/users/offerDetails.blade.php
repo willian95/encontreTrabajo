@@ -1,8 +1,7 @@
 @extends("layouts.business")
 
-@push("css")
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+@push('css')
+    <link rel="stylesheet" href="{{ asset('/pickr.js/pickr.css') }}">
 @endpush
 
 @section("content")
@@ -106,13 +105,8 @@
                                     </div>
                                     <div class="modal-body">
                                         <div class="form-group">
-                                            <label>Fecha y Hora</label>
-                                            <div class='input-group date' id='datetimepicker1'>
-                                                <input type='text' class="form-control" style="font-size: 14px"/>
-                                                <span class="input-group-addon">
-                                                <span class="glyphicon glyphicon-calendar"></span>
-                                                </span>
-                                            </div>
+                                            <label>Fecha y hora</label>
+                                            <input type="text" id="datetime" class="form-control">
                                         </div>
                                     </div>
                                     <div class="modal-footer">
@@ -139,16 +133,30 @@
 
 @push("scripts")
     
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/momentjs/2.14.1/moment.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
-    <script src='https://meet.jit.si/external_api.js'></script>
+    <script src="{{ asset('pickr.js/pickr.js') }}"></script>
+
     <script>
-        
-        $(function () {
-            $('#datetimepicker1').datetimepicker();
-        });
+
+        $(document).ready(function(){
+            var input = document.getElementById('datetime');
+            var picker = new Picker(input, {
+                headers:true,
+                indicators:true,
+                format: 'DD/MM/YYYY HH:mm',
+                text:{
+                    title: 'Selecciona Hora y Fecha',
+                    cancel: 'Cancelar',
+                    confirm: 'OK',
+                    year: 'Año',
+                    month: 'Mes',
+                    day: 'Día',
+                    hour: 'Hora',
+                    minute: 'Minuto',
+                    second: 'Sgundo',
+                    millisecond: 'Millisecond',
+                }
+            });
+        })
 
         const devPlace = new Vue({
             el: '#offersDetails-dev',
@@ -168,6 +176,8 @@
                     commune:"{{ $offer->user->commune ? $offer->user->commune->name : '' }}",
                     address:"{{ $offer->user->profile->address }}",
                     proposal:"",
+                    date:"",
+                    time:"",
                     role_id:"{{ \Auth::user()->role_id }}",
                     proposals:[],
                     page:1,
@@ -176,7 +186,6 @@
                 }
             },
             methods: {
-
                 sendProposal(){
                     this.loading = true
                     axios.post("{{ url('/proposal/store') }}", {offerId: this.offerId})
@@ -245,7 +254,9 @@
                 },
                 scheduleDate(){
 
-                    axios.post("conference/schedule", {guest_id: this.guest_id}).then(res =>{
+                    this.dateTime = $("#datetime").val()
+
+                    axios.post("{{ url('conference/schedule')}}", {guest_id: this.guest_id, date_time: this.dateTime}).then(res =>{
 
                         
 

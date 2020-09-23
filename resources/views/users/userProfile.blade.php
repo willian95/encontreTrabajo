@@ -726,7 +726,7 @@
 
                       <div class="col-md-6 ">
                         <div class="form-group">
-                            <label for="text">Con las condiciones necesarias para poder desarrollar su trabajo de forma óptima acorde a su discapacidad</label>
+                            <label for="text">¿Cuáles son las condiciones necesarias para poder desarrollar su trabajo de forma óptima? Ejem.: Rampla para silla de ruedas, teclado especial braille, etc</label>
                             <textarea class="form-control" id="necesaryCondition"  v-model="necesaryCondition"></textarea>
                         </div>
                       </div>
