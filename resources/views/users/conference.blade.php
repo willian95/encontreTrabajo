@@ -13,7 +13,7 @@
 
             @if(\Auth::user()->id == $appointment->user_id || \Auth::user()->id == $appointment->guest_id)
 
-                @if(\Carbon::now()->gte($appointment->date_time) && $appointment->date_time->lt($appointment->date_time->addDay())
+                @if(Carbon::now()->gte($appointment->date_time) && $appointment->date_time->lt($appointment->date_time->addDay())
 
                     <div id="#meet"></div>
 
