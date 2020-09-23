@@ -13,7 +13,7 @@
 
             @if(\Auth::user()->id == $appointment->user_id || \Auth::user()->id == $appointment->guest_id)
 
-                @if(1==1)
+                @if(Carbon::now()->gte($appointment->date_time) && $appointment->date_time->lt($appointment->date_time->addDay())
 
                     <div id="#meet"></div>
 
@@ -41,25 +41,3 @@
 
 @endsection
 
-@push('scripts')
-
-    <script src='https://meet.jit.si/external_api.js'></script>
-
-    <script>
-
-        $(document).ready(function(){
-
-            const domain = 'jitsivideo.sytes.net';
-            const options = {
-                roomName: '{{ $room_name }}',
-                width: 700,
-                height: 700,
-                parentNode: document.querySelector('#meet')
-            };
-            const api = new JitsiMeetExternalAPI(domain, options);
-
-        })
-
-    </script>
-
-@endpush
