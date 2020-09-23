@@ -98,7 +98,11 @@ class ConferenceController extends Controller
 
                     if(Carbon::now()->gte($appointment->date_time) && $appointment->date_time->lt($appointment->date_time->addDay())){
 
-                        return response()->json(["success" => true]);
+                        if($request->password == Appointment::where('room_name', $request->room_name)->first()->password){
+                            return response()->json(["success" => true]);
+                        }else{
+                            return response()->json(["success" => false, "msg" => "clave no encontrada"]);
+                        }
 
                     }else{
 

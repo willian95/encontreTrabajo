@@ -85,31 +85,11 @@
 
                 login(){
                     this.loading = true
-                    axios.post("{{ url('/login') }}", {email: this.email, password: this.password}).then(res => {
+                    axios.post("{{ url('/conference/login') }}", {room_name: "{{ $room_name }}", password: this.password}).then(res => {
                         this.loading = false
                         if(res.data.success == true){
 
-                            if(res.data.role_id == 1){
-                                swal({
-                                    title: "Excelente!",
-                                    text: res.data.msg,
-                                    icon: "success"
-                                }).then(() => {
-                                    window.location.href="{{ url('/admin/dashboard') }}"
-                                })
-                                
-
-                            }else if(res.data.role_id == 2 || res.data.role_id == 3){
-
-                                swal({
-                                    title: "Excelente!",
-                                    text: res.data.msg,
-                                    icon: "success"
-                                }).then(() => {
-                                    //console.log(res.data)
-                                    window.location.href=res.data.url
-                               })
-                            }
+                            window.location.href="{{ url('/conference/room/') }}"+"/"+"{{ $room_name }}"+"?password="+this.password
 
                         }else{
                             this.loading = false
