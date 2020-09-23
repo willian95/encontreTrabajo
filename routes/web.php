@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get("/conference/{room_name}", "ConferenceController@conferenceRoom")->middleware('auth');
 Route::get("/conference/room/{room_name}", "ConferenceController@showRoom")->middleware('auth');
-Route::post("/conference/login", "ConferenceController@login")->middleware('auth');
+Route::post("/conference/login", "ConferenceController@conferenceLogin")->middleware('auth');
 
 Route::get('/', "LoginController@index")->name("login")->middleware('guest');
 Route::post('/login', "LoginController@login");
