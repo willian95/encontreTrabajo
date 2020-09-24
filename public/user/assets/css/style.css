@@ -1217,6 +1217,7 @@ h4.content-encontre-trabajo-caja-info_h4.empresa_h4 {
 /**/
 .opciones-inf-empresas {
     /* display: flex; */
+    margin-top: 15px;
     margin-left: 20px;
     margin-right: 20px;
 }
