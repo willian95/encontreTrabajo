@@ -51,6 +51,8 @@ class ConferenceController extends Controller
                 $message->from( env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'));
             });
 
+            return response()->json(["success" => true, "msg" => "Correos con credenciales enviados"]);
+
 
         }catch(\Exception $e){
 

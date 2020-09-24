@@ -16,6 +16,10 @@
         <div class="tab-content" v-cloak>
           	<div id="iusuario" class="container tab-pane active "><br>
 				<div class="content-perfil-empresa">
+
+                    @if(Carbon\Carbon::create(\Auth::user()->expire_free_trial)->greaterThanOrEqualTo(Carbon\Carbon::now()))
+                        <small>Tus conferencias gratis terminan el {{ Carbon\Carbon::create(\Auth::user()->expire_free_trial)->format('d/m/Y') }}</small>
+                    @endif
                         
                     <div class="row perfil-empresa-form">
                         
@@ -256,11 +260,42 @@
 
                     this.dateTime = $("#datetime").val()
 
-                    axios.post("{{ url('conference/schedule')}}", {guest_id: this.guest_id, date_time: this.dateTime}).then(res =>{
+                    if(this.dateTime != null){
 
-                        
+                        axios.post("{{ url('conference/schedule')}}", {guest_id: this.guest_id, date_time: this.dateTime}).then(res =>{
 
-                    })
+                            if(res.data.success == true){
+
+                                swal({
+                                    title:"Genial",
+                                    text:res.data.msg,
+                                    icon:"success"
+                                }).then(res => {
+
+                                    window.location.href="{{ url('/home') }}"
+
+                                })
+
+                            }else{
+
+                                swal({
+                                    title:"Lo sentimos",
+                                    text:res.data.msg,
+                                    icon:"danger"
+                                })
+
+                            }
+
+                        })
+
+                    }else{
+
+                        swal({
+                            text:"Necesitamos la fecha y hora de la reunión para continuar",
+                            icon:"danger"
+                        })
+
+                    }
 
                 }
                 
