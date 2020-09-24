@@ -262,7 +262,7 @@
                       <h4 class="content-encontre-trabajo-caja-info_h4 empresa_h4">{{Auth::user()->email }}</h4>
                   </div>
                     <ul class="menu-lateral-usuario_ul">
-                        
+                        <li class="menu-lateral-usuario_ul_li menu-resp-li" ><a href="{{ url('/profile/home') }}"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/ico-usuario.png') }}" alt="">Inicio</a></li>
                         <li class="menu-lateral-usuario_ul_li menu-resp-li" ><a href="{{ url('/profile/business') }}"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/ico-usuario.png') }}" alt="">Mi perfil</a></li>
                         <li class="menu-lateral-usuario_ul_li menu-resp-li" ><a href="{{ url('/plans/available') }}"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/control.png') }}" alt="">Planes</a></li>
                         @if(\Auth::user()->is_profile_complete == 1)
