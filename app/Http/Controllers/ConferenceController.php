@@ -43,8 +43,8 @@ class ConferenceController extends Controller
             });
 
             $data = ["username" => $username, "password" => $password, "date_time" => $request->date_time, "link" => url('/conference/'.$room_name)];
-            $to_name = User::where("id", $request->guest_id)->first()->name;
-            $to_email = User::where("id", $request->guest_id)->first()->email;
+            $to_name = User::where("id", \Auth::user()->id)->first()->name;
+            $to_email = User::where("id", \Auth::user()->id)->first()->email;
 
             \Mail::send("emails.conferenceBusinessNotification", $data, function($message) use ($to_name, $to_email) {
                 $message->to($to_email, $to_name)->subject("¡Tienes una conferencia!");
