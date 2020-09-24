@@ -261,9 +261,9 @@
                     this.dateTime = $("#datetime").val()
 
                     if(this.dateTime != null){
-
+                        this.loading = true
                         axios.post("{{ url('conference/schedule')}}", {guest_id: this.guest_id, date_time: this.dateTime}).then(res =>{
-
+                            this.loading = false
                             if(res.data.success == true){
 
                                 swal({
