@@ -39,6 +39,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    protected $dates = ['expire_free_trial'];
+
     public function role(){
         return $this->belongsTo(Role::class);
     }
