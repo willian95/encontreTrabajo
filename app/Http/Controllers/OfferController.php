@@ -47,7 +47,7 @@ class OfferController extends Controller
             $offer->user_id = \Auth::user()->id;
             $offer->save();
 
-            if($user->expire_free_trial->lt(Carbon::now())){
+            if(\Auth::user()->expire_free_trial->lt(Carbon::now())){
                 dd("entre");
                 /*$serviceAmount = serviceAmount::where("user_id", \Auth::user()->id)->first();
                 $serviceAmount->post_amount = $serviceAmount->post_amount - 1;
