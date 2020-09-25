@@ -123,12 +123,14 @@ class ProfileController extends Controller
 
             //$this->isProfileComplete();
 
-            if(\Auth::user()->commune_id != null && \Auth::user()->image != url('/')."images/users/default.jpg" && \Auth::user()->region_id != null && $profile->address != null){
+            if(\Auth::user()->role_id == 3){
+                if(\Auth::user()->commune_id != null && \Auth::user()->image != url('/')."images/users/default.jpg" && \Auth::user()->region_id != null && $profile->address != null){
 
-                $user = User::where("id", \Auth::user()->id)->first();
-                $user->is_profile_complete = 1;
-                $user->update();
-
+                    $user = User::where("id", \Auth::user()->id)->first();
+                    $user->is_profile_complete = 1;
+                    $user->update();
+    
+                }
             }
 
             return response()->json(["success" => true, "msg" => "Información de empresa actualizada"]);
