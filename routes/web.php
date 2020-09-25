@@ -130,8 +130,14 @@ Route::get('/admin/offers', "AdminOfferController@index")->middleware('auth');
 Route::get('/admin/offers/fetch/{page}', "AdminOfferController@fetch");
 Route::post('/admin/offers/search', "AdminOfferController@search");
 
-Route::get('/admin/carousels', "AdminCarouselController@index")->middleware('auth');
+Route::get("/admin/landing-business", "LandingBusinessController@index");
+Route::get("/admin/landing-business/fetch", "LandingBusinessController@fetch");
+Route::post("/admin/landing-business/store", "LandingBusinessController@store");
+Route::post("/admin/landing-business/update", "LandingBusinessController@update");
+Route::post("/admin/landing-business/delete", "LandingBusinessController@delete");
+
+/*Route::get('/admin/carousels', "AdminCarouselController@index")->middleware('auth');
 Route::get('/admin/carousels/fetch', "AdminCarouselController@fetch");
 Route::post('/admin/carousels/store', "AdminCarouselController@store");
 Route::post('/admin/carousels/update', "AdminCarouselController@update");
-Route::post('/admin/carousels/delete', "AdminCarouselController@delete");
+Route::post('/admin/carousels/delete', "AdminCarouselController@delete");*/

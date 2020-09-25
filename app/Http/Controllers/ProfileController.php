@@ -18,6 +18,7 @@ use App\JobBackground;
 use App\User;
 use App\Profile;
 use App\Region;
+use App\JobCategory;
 
 class ProfileController extends Controller
 {
@@ -28,8 +29,11 @@ class ProfileController extends Controller
             $user = User::where("id", \Auth::user()->id)->with("profile")->has("profile")->firstOrFail();
             $moveRegionArray = explode(",", $user->profile->move_regions);
             $moveRegions = Region::whereIn("id", $moveRegionArray)->get();
-           
-            return view("users.userProfile", ["user" => $user,"moveRegions" => json_encode($moveRegions)]);
+
+            $desiredAreasArray = explode(",", $user->profile->desired_areas);
+            $desiredAreas = JobCategory::whereIn("id", $desiredAreasArray)->get();
+
+            return view("users.userProfile", ["user" => $user,"moveRegions" => json_encode($moveRegions), "desiredAreas" => json_encode($desiredAreas)]);
 
         }catch(\Exception $e){
             abort(403);
@@ -347,6 +351,7 @@ class ProfileController extends Controller
         try{
 
             $regionString= "";
+            $desiredString="";
 
             $i = 0;
             foreach($request->moveRegions as $regions){
@@ -358,12 +363,22 @@ class ProfileController extends Controller
                 $i++;
             }
 
+            $i = 0;
+            foreach($request->desiredArea as $desiredArea){
+                $desiredString .= $desiredArea['id'];
+                if($i < count($request->desiredArea)-1){
+                    $desiredString .= ",";
+                }
+
+                $i++;
+            }
+
             $profile = Profile::where("user_id", \Auth::user()->id)->first();
             $profile->job_description = str_replace("\n", ". ", $request->jobDescription);
             $profile->experience_year = $request->expYears;
             $profile->availability = $request->availability;
             $profile->salary = $request->salary;
-            $profile->desired_area = $request->desiredArea;
+            $profile->desired_areas = $desiredString;
             $profile->functions = str_replace("\n", ".", $request->functions);
             $profile->awards = str_replace("\n", ". ", $request->awards);
             $profile->move_regions = $regionString;

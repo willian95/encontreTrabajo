@@ -437,10 +437,20 @@
                               </div>
                               <div class="col ">
                                   <label for="desiredArea">Area de Preferencia</label>
-                                  <select class="form-control" id="desiredArea" v-model="desiredArea">
+                                  <select class="form-control" id="desiredArea" v-model="desiredArea" @change="setDesiredArea()">
                                     <option value="">Seleccione</option>
-                                    <option :value="jobCategory.id" v-for="jobCategory in jobCategories">@{{ jobCategory.name }}</option>
+                                    <option :value="jobCategory" v-for="jobCategory in jobCategories">@{{ jobCategory.name }}</option>
                                   </select>
+                                  <div class="card" v-for="desiredArea in desiredAreas">
+                                    <div class="card-body">
+                                        @{{ desiredArea.name }}
+
+                                        <button type="button" class="btn" @click="removeDesiredArea(desiredArea.id)">
+                                            X
+                                        </button>
+
+                                    </div>
+                                </div>
                               </div>
                   </div>
                   <div class="row">
@@ -852,6 +862,7 @@
                     handicapPercentage:"{{ $user->profile->handicap_percentage }}",
                     regions:[],
                     communes:[],
+                    desiredAreas:JSON.parse('{!! $desiredAreas !!}')
 
                 }
             },
@@ -1410,7 +1421,7 @@
                         availability:this.availability,
                         salary:this.salary,
                         desiredJob:this.desiredJob,
-                        desiredArea:this.desiredArea,
+                        desiredArea:this.desiredAreas,
                         functions:this.functions,
                         awards:this.awards,
                         moveRegions:this.moveRegions
@@ -1428,9 +1439,9 @@
                         }else{
 
                             swal({
-                                title:"Genial",
+                                title:"Lo sentimos",
                                 text:res.data.msg,
-                                icon:"success"
+                                icon:"error"
                             })
 
                         }
@@ -1584,6 +1595,40 @@
 
                     this.moveRegion = ""
                     
+
+                },
+                setDesiredArea(){
+
+
+                    var exists = false
+                    this.desiredAreas.forEach((data) =>{
+
+                        if(data.id == this.desiredArea.id){
+                            exists = true
+                        }
+
+                    })
+
+                    if(!exists)
+                        this.desiredAreas.push(this.desiredArea)
+                 
+
+                    this.desiredArea = ""
+
+                },
+                removeDesiredArea(desiredArea){
+
+                    var i = ""
+                    
+                    this.desiredAreas.forEach((data, index) => {
+
+                        if(data.id == desiredArea){
+                            i = index
+                        }
+
+                    })
+
+                    this.desiredAreas.splice(i, 1)
 
                 },
                 removeMoveRegion(region){

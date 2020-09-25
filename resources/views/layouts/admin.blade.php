@@ -158,8 +158,14 @@ License: You must have a valid license purchased only from themeforest(the above
 								</a>
 							</li>
 
-							<li class="nav-item mb-5" data-toggle="tooltip" data-placement="right" data-container="body" data-boundary="window" title="Carrusel">
+							<!--<li class="nav-item mb-5" data-toggle="tooltip" data-placement="right" data-container="body" data-boundary="window" title="Carrusel">
 								<a href="{{ url('/admin/carousels') }}" class="nav-link btn btn-icon btn-text-white btn-hover-text-white btn-lg">
+									<i class="far fa-images"></i>
+								</a>
+							</li>-->
+
+							<li class="nav-item mb-5" data-toggle="tooltip" data-placement="right" data-container="body" data-boundary="window" title="Empresas">
+								<a href="{{ url('/admin/landing-business') }}" class="nav-link btn btn-icon btn-text-white btn-hover-text-white btn-lg">
 									<i class="far fa-images"></i>
 								</a>
 							</li>

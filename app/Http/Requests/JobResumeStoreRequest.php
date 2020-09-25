@@ -29,7 +29,7 @@ class JobResumeStoreRequest extends FormRequest
             "availability" => "required",
             "salary" => "required|numeric",
             "desiredJob" => "required",
-            "desiredArea" => "required|integer|exists:job_categories,id"
+            "desiredArea" => "required"
         ];
     }
 
@@ -43,9 +43,7 @@ class JobResumeStoreRequest extends FormRequest
             "salary.required" => "Pretensiones de renta es requerido",
             "salary.numeric" => "Pretensiones de renta debe ser un número",
             "desiredJob.required" => "Cargo deseado es requerido",
-            "desiredArea.required" => "Area de preferencia es requerida",
-            "desiredArea.integer" => "Area de preferencia deve ser un número",
-            "desiredArea.exists" => "Area de preferencia elegida no es válida"
+            "desiredArea.required" => "Area de preferencia es requerida"
         ];
 
     }
