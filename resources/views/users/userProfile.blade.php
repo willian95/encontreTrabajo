@@ -74,7 +74,7 @@
                                 </video>
                             </div>
                                 <label for="video">Video de Presentación</label>
-                                <input type="file" class="form-control" id="video" @change="onVideoChange" accpet="video/*">
+                                <input type="file" class="form-control" id="video" @change="onVideoChange" accept="video/*">
 
                             </div>
                             <div class="col-md-4 media-perfil-c-4">
@@ -88,7 +88,7 @@
                                 <label for="curriculum">Curriculum</label>
                                 <input type="file" class="form-control" id="curriculum" @change="onCurriculumChange" accpet="file/pdf">
                                 <small>Solo está permitido el formato Word o PDF</small>
-                                <p>
+                                <p v-if="curriculumPreview">
                                     <button class="btn btn-success" @click="download()">Descargar</button>
                                 </p>
 

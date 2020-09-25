@@ -121,7 +121,15 @@ class ProfileController extends Controller
             $profile->address = str_replace("\n", ". ", $request->address);
             $profile->update();
 
-            $this->isProfileComplete();
+            //$this->isProfileComplete();
+
+            if(\Auth::user()->commune_id != null && \Auth::user()->image != url('/')."images/users/default.jpg" && \Auth::user()->region_id != null && $profile->address != null){
+
+                $user = User::where("id", \Auth::user()->id)->first();
+                $user->is_profile_complete = 1;
+                $user->update();
+
+            }
 
             return response()->json(["success" => true, "msg" => "Información de empresa actualizada"]);
 
