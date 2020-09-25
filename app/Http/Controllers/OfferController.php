@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use App\User;
 use App\Http\Requests\OfferStoreRequest;
 use App\Offer;
 use App\serviceAmount;
@@ -47,7 +48,7 @@ class OfferController extends Controller
             $offer->user_id = \Auth::user()->id;
             $offer->save();
 
-            if(\Auth::user()->expire_free_trial->lt(Carbon::now())){
+            if(User::where('id', \Auth::user()->id)->expire_free_trial->lt(Carbon::now())){
                 dd("entre");
                 /*$serviceAmount = serviceAmount::where("user_id", \Auth::user()->id)->first();
                 $serviceAmount->post_amount = $serviceAmount->post_amount - 1;
