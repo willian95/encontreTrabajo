@@ -28,8 +28,8 @@
 						</div>-->
                         <div class="row">
                             <div class="col-12">
-                                @if(Carbon\Carbon::create(\Auth::user()->expire_free_trial)->greaterThanOrEqualTo(Carbon\Carbon::now()))
-                                    <small>Tus publicaciones gratis terminan el {{ Carbon\Carbon::create(\Auth::user()->expire_free_trial)->format('d/m/Y') }}</small>
+                                @if(App\User::where("id", \Auth::user()->id)->first()->expire_free_trial->gt(Carbon\Carbon::now()))
+                                    <small>Tus publicaciones gratis terminan el {{ \Auth::user()->expire_free_trial->format('d/m/Y') }}</small>
                                 @endif
                             </div>
                         </div>
@@ -83,7 +83,7 @@
 
                         </div>
 						
-                        @if(Carbon\Carbon::create(\Auth::user()->expire_free_trial)->greaterThanOrEqualTo(Carbon\Carbon::now()))
+                        @if(App\User::where("id", \Auth::user()->id)->first()->expire_free_trial->gt(Carbon\Carbon::now()))
                             <div class="buttom-content-up">
                                 <button type="button" class="btn btn-primary" @click="store()">Publicar</button>
                             </div>
@@ -245,6 +245,7 @@
 
                 },
                 openChildWindow(index) {
+                    window.localStorage.setItem("paymentStatusTrabajo", "rechazado")
                     this.childWin = window.open("{{ url('/checkout/') }}"+"/"+index, 'print_popup', 'width=600,height=600')
                     
                     $("#cover").css("display", "block")

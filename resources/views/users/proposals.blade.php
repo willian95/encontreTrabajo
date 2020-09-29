@@ -1,4 +1,4 @@
-@extends("layouts.user")
+@extends("layouts.business")
 
 @section("content")
 
@@ -30,6 +30,7 @@
                             <td>@{{ proposal.offer.job_position }}</td>
                             <td>
                                 <a :href="'{{ url('/profile/show/') }}'+'/'+proposal.user.email" class="btn btn-info">Ver perfil</a>
+                                <a :href="'{{ url('/offers/detail/') }}'+'/'+proposal.offer.slug" class="btn btn-info">Ver oferta</a>
                             </td>
                         </tr>
                     </tbody>

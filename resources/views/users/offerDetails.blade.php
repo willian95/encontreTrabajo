@@ -11,15 +11,15 @@
 		<div class="loader-cover" v-if="loading == true">
 			<div class="loader"></div>
 		</div>
-      
+
+        <div style="position: fixed; top: 0; bottom: 0; left:0; right: 0; width: 100%; background: rgba(0, 0, 0, 0.6); z-index: 999999; display:none;" id="cover">
+
+        </div>
+
         <!-- Tab panes -->
         <div class="tab-content" v-cloak>
           	<div id="iusuario" class="container tab-pane active "><br>
 				<div class="content-perfil-empresa">
-
-                    @if(Carbon\Carbon::create(\Auth::user()->expire_free_trial)->greaterThanOrEqualTo(Carbon\Carbon::now()))
-                        <small>Tus conferencias gratis terminan el {{ Carbon\Carbon::create(\Auth::user()->expire_free_trial)->format('d/m/Y') }}</small>
-                    @endif
                         
                     <div class="row perfil-empresa-form">
                         
@@ -30,6 +30,9 @@
                             <p class="text-center">
                                 <img class="round-img" :src="businessImage" alt="Card image">
                             </p>
+                            @if(App\User::where('id', \Auth::user()->id)->first()->expire_free_trial->gt(Carbon\Carbon::now()))
+                                <small>Tus conferencias gratis terminan el {{ App\User::where('id', \Auth::user()->id)->first()->expire_free_trial->format('d/m/Y') }}</small>
+                            @endif
                             <h4 class="text-center">@{{ title }}</h4>
                             <p>@{{ description }}</p>
                             <p><strong>Nombre de la empresa: </strong> <a href="{{ url('/profile/show/'.$offer->user->email) }}">@{{ businessName }}</a></p>
@@ -87,7 +90,18 @@
                                             <td>@{{ proposal.user.lastname }}</td>
                                             <td>@{{ proposal.user.email }}</td>
                                             <td>
-                                                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#conferenceModal" @click="setGuest(proposal.user.id)">Solicitar</button>
+                                                @if(App\User::where("id", \Auth::user()->id)->first()->expire_free_trial->gt(Carbon\Carbon::now()))
+                                                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#conferenceModal" @click="setGuest(proposal.user.id)">Solicitar</button>
+                                                @else
+                                                    @if(App\ServiceAmount::where("user_id", \Auth::user()->id)->first()->conference_amount > 0)
+                                                        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#conferenceModal" @click="setGuest(proposal.user.id)">Solicitar</button>
+                                                    @else
+
+                                                        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#planModal">Comprar plan</button>
+
+                                                    @endif
+
+                                                @endif
                                             </td>
                                             <td>
                                                 <a :href="'{{ url('/profile/show/') }}'+'/'+proposal.user.email" class="btn btn-info">Ver perfil</a>
@@ -127,6 +141,57 @@
                 <!-- <div class="img-mensaje-svg">
                    <img class="img-cperfil-alert" src="{{ asset('user/assets/img/mensaje.svg') }}" alt="">
                 </div> -->
+
+                <!-- Modal -->
+                <div class="modal fade" id="planModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title text-center" id="exampleModalLabel">Planes disponibles</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                
+                                <div class="container-fluid">
+
+                                    <div class="row">
+                                        @foreach(App\Plan::all() as $plan)
+
+                                            <div class="col-md-4 col-lg-4">
+
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <h3 class="text-center">{{ $plan->title }}</h3>
+
+                                                        <p><strong>Publicaciones: </strong>{{ $plan->post_amount }}</p>
+                                                        <p><strong>Conferencias: </strong>{{ $plan->conference_amount }}</p>
+
+                                                        <h4 class="text-center">$ {{ number_format($plan->price, 0, ",", ".") }}</h4>
+
+
+                                                        <p class="text-center">
+                                                            <button class="btn btn-success" @click="cartStore('{{ $plan->id }}', '{{ $plan->price }}')">Comprar</button>
+                                                        </p>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                        @endforeach
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal" id="modalClose">Cerrar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
        		</div>
 
 		</div>
@@ -186,7 +251,9 @@
                     proposals:[],
                     page:1,
                     pages:0,
-                    guest_id:0
+                    guest_id:0,
+                    childWin:null,
+                    intervalID:null,
                 }
             },
             methods: {
@@ -297,6 +364,65 @@
 
                     }
 
+                },
+                cartStore(plan_id, price){
+
+                    this.loading = true
+
+                    axios.post("{{ url('/cart/store') }}", {
+                        price: price, 
+                        plan_id: plan_id
+                    }).then(res => {
+
+                        this.loading = false
+
+                        if(res.data.success == true){
+
+                            this.openChildWindow(res.data.index)
+
+                        }else{
+
+                            swal({
+                                title:"Lo sentimos",
+                                text:res.data.msg,
+                                icon:"error"
+                            })
+
+                        }
+
+                        
+
+                    })
+                    .catch(err => {
+                        this.loading = false
+                        
+                    })
+
+                },
+                openChildWindow(index) {
+
+                    $("#modalClose").click();
+                    $('body').removeClass('modal-open');
+                    $('body').css('padding-right', '0px');
+                    $('.modal-backdrop').remove();
+                   
+                    $("#cover").css("display", "block")
+                    window.localStorage.setItem("paymentStatusTrabajo", "rechazado")
+                    this.childWin = window.open("{{ url('/checkout/') }}"+"/"+index, 'print_popup', 'width=600,height=600')
+                    
+                    
+                },
+                checkWindow() {
+                    if (this.childWin && this.childWin.closed) {
+                        window.clearInterval(this.intervalID);
+                        $("#cover").css("display", "none")
+                        if (localStorage.getItem("paymentStatusTrabajo") == 'aprobado') {
+                            window.reload()
+
+                        } else if (localStorage.getItem("paymentStatusTrabajo") == 'rechazado') {
+                            $("#cover").css("display", "none")
+                        }
+                    }
                 }
                 
 
@@ -306,6 +432,8 @@
                 if(this.role_id == 3){
                     this.fetchProposals()
                 }
+
+                this.intervalID = window.setInterval(this.checkWindow, 500);
 
             }
 

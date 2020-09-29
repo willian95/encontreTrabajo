@@ -78,7 +78,7 @@ Route::middleware(['auth', 'business'])->group(function(){
 
 Route::get("/offers/fetch/{page}", "OfferController@userFetch")->middleware('auth');
 Route::get("/offers/business/fetch/{page}", "OfferController@businessFetch")->middleware('auth')->middleware('business');
-Route::get("/offers/detail/{slug}", "OfferController@show")->middleware('auth');
+Route::get("/offers/detail/{slug}", "OfferController@show")->middleware('auth')->middleware('auth');
 
 Route::post("/proposal/store", "ProposalController@store")->middleware('auth');
 Route::post("/proposal/fetch", "ProposalController@fetch")->middleware('auth');

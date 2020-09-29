@@ -29,7 +29,7 @@ class RegisterRequest extends FormRequest
             "email" => "required|email|unique:users",
             "lastname" => "required",
             "desiredJob" => "required_if:role_id,==,2",
-            "password" => "required|confirmed",
+            "password" => "required|confirmed|min:6",
             "businessName" => "required_if:role_id,==,3",
             "businessRut" => "required_if:role_id,==,3",
             "businessPhone" => "required_if:role_id,==,3"
@@ -49,7 +49,8 @@ class RegisterRequest extends FormRequest
             "BusinessRut.required_if" => "Rut de empresa es requerido",
             "BusinessPhone.required_if" => "Teléfono de empresa es requerido",
             "password.required" => "Constraseña es requerida",
-            "password.confirmed" => "Constraseñas no coinciden"
+            "password.confirmed" => "Constraseñas no coinciden",
+            "password.min" => "Contraseña debe tener 6 caracteres como mínimo"
         ];
 
     }

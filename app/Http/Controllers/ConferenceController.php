@@ -51,6 +51,13 @@ class ConferenceController extends Controller
                 $message->from( env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'));
             });
 
+            if(User::where('id', \Auth::user()->id)->first()->expire_free_trial->lt(Carbon::now())){
+                //dd("entre");
+                $serviceAmount = serviceAmount::where("user_id", \Auth::user()->id)->first();
+                $serviceAmount->conference_amount = $serviceAmount->conference_amount - 1;
+                $serviceAmount->update();
+            }
+
             return response()->json(["success" => true, "msg" => "Correos con credenciales enviados"]);
 
 

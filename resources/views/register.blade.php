@@ -64,10 +64,10 @@
                                 </div>
                                 </div>
                                 <div class="col">
-                                <div class="form-group">
-                                    <label for="puesto">Puesto Deseado</label>
-                                    <input type="text" class="form-control" id="puesto"  v-model="desiredJob">
-                                </div>
+                                    <div class="form-group">
+                                        <label for="puesto">Puesto Deseado</label>
+                                        <input type="text" class="form-control" id="puesto"  v-model="desiredJob">
+                                    </div>
                                 </div>
                                 </div>
                                 
@@ -75,7 +75,9 @@
                                 <div class="col r-col-100">
                                 <div class="form-group">
                                     <label for="pwd">Contraseña</label>
-                                    <input type="password" class="form-control" id="pwd"  v-model="password">
+                                    <input type="password" class="form-control" id="pwd"  v-model="password" @keyup="checkPass()">
+                                    <small>@{{ passStrength }}</small>
+                                    
                                 </div>
                                 </div>
                                 <div class="col r-col-100">
@@ -149,7 +151,8 @@
                                 <div class="col r-col-100">
                                     <div class="form-group">
                                         <label for="pwd2">Contraseña</label>
-                                        <input type="password" class="form-control" id="pwd2"  v-model="password">
+                                        <input type="password" class="form-control" id="pwd2"  v-model="password" @keyup="checkPass()">
+                                        <small>@{{ passStrength }}</small>
                                     </div>
                                 </div>
                                 <div class="col r-col-100">
@@ -184,7 +187,7 @@
 @endsection
 
 @push("scripts")
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/zxcvbn/4.2.0/zxcvbn.js"></script>
     <script>
         const devArea = new Vue({
             el: '#register-dev',
@@ -195,7 +198,6 @@
                     lastname:"",
                     email: "",
                     desiredJob:"",
-                    password: "",
                     regions:[],
                     region:"",
                     communes:[],
@@ -205,6 +207,7 @@
                     businessName:"",
                     businessRut:"",
                     businessPhone:"",
+                    passStrength:"Mínimo 6 caracteres",
                     loading:false
                 }
             },
@@ -215,6 +218,31 @@
                     this.roleId = type
                     this.clear()
                    
+                },
+                checkPass(){
+
+                    let score = zxcvbn(this.password).score
+
+                    if(score == 0 && this.password.length >= 6){
+                        this.passStrength = "Mala seguridad"
+                    }
+
+                    else if(score == 1 && this.password.length >= 6){
+                        this.passStrength = "Baja seguridad"
+                    }
+
+                    else if(score == 2 && this.password.length >= 6){
+                        this.passStrength = "Debil seguridad"
+                    }
+
+                    else if(score == 3 && this.password.length >= 6){
+                        this.passStrength = "Buena seguridad"
+                    }
+
+                    else if(score == 4 && this.password.length >= 6){
+                        this.passStrength = "Excelente seguridad"
+                    }
+
                 },
                 register(){
                     this.loading = true
@@ -276,6 +304,7 @@
                     this.businessPhone = ""
                     this.businessName = ""
                     this.businessRut = ""
+                    this.passStrength = "Mínimo 6 caracteres"
 
                 }
 
