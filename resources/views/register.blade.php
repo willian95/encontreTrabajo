@@ -243,6 +243,10 @@
                         this.passStrength = "Excelente seguridad"
                     }
 
+                    else{
+                        this.passStrength = "Mínimo 6 caracteres"
+                    }
+
                 },
                 register(){
                     this.loading = true
