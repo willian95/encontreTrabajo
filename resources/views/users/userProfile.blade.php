@@ -961,7 +961,7 @@
                     })
 
                     if(!exist){
-                        this.choosenInformaticKnowledge.push(id)
+                        this.choosenInformaticKnowledge.push(id+"")
                         this.choosenInformaticKnowledgeNames.push(name)
                     }else{
                         this.choosenInformaticKnowledge.splice(index, 1)
@@ -1028,8 +1028,9 @@
                 checkCard(id){
 
                     let name = ""
-                    
-                    if(this.choosenInformaticKnowledge.includes(id)){
+                    //console.log("checkcard", id, this.choosenInformaticKnowledge)
+                    if(this.choosenInformaticKnowledge.includes(id+"")){
+                        
                         name = "custom-card-active"
                     }
                         
@@ -1835,8 +1836,6 @@
                 })
 
                 this.informaticKnowledge = this.choosenInformaticKnowledgeNames.toString()
-
-                console.log("id list", this.choosenInformaticKnowledge)
 
                 this.toggleTabs("basico")
                 this.fetchCountries()
