@@ -3,18 +3,15 @@
 @section("content")
 
 
-    <div class="container" id="profile-dev">
+    <div class="container container-perfil-usuario" id="profile-dev">
         <div class="loader-cover" v-if="loading == true">
             <div class="loader"></div>
         </div>
 
         <div class="row">
-        
-
                 <div class="col-md-4 media-perfil-c-4">
                     <div class="a-basicos-postulante-img j-center"><img class="basicos-postulante-c-4" :src="imagePreview" alt="postulante"></div>
-                    <label for="image">Foto de Perfil</label>
-
+                    <label class="text-center-input-curriculum" for="image">Foto de Perfil</label>
                 </div>
                 <div class="col-md-4 media-perfil-c-4">
                     <div class="a-basicos-postulante-video j-center">
@@ -23,240 +20,256 @@
                             <source :src="videoPreview" type="video/mp4">
                         </video>
                     </div>
-                        <label for="video">Video de Presentación</label>
-
-
-                    </div>
-                    <div class="col-md-4 media-perfil-c-4">
-                        <div class="a-basicos-postulante-curriculum j-center">
-                            <img class="basicos-postulante-c-4" src="{{ asset('user/assets/img/icons8-contrato-de-trabajo-100.png') }}" alt="postulante" v-if="curriculumPreview == ''">
-
-                            <iframe id="iframepdf" :src="curriculumPreview" v-if="curriculumPreview != ''"></iframe>
-
-                            {{--<img class="basicos-postulante-c-4" style="width: 100%; cursor: pointer;" src="{{ asset('user/assets/img/document-download-outline.png') }}" alt="postulante" v-if="curriculumPreview != ''" @click="download()">--}}                               
-                        </div>
-                        <label for="curriculum">Curriculum</label>
-
-
-                    </div>
+                        <label class="text-center-input-curriculum" for="video">Video de Presentación</label>
                 </div>
-                <div class="content-abasico-basicos">
-                    <div class="row inf-media-perfil-basicos">
-                        <div class="col-lg-9">
-                            <div class="row">
-                                <div class="col-12">
-                                    <h2>Antecedentes básicos</h2>
-                                </div>
-                                    
-                                <div class="col-md-8 offset-md-2">
-                                    <label for="name">Nombre Completo</label>
-                                    <input type="text" class="form-control" id="name" v-model="name" disabled>
-                                </div>
-                    
-                                <div class="col-md-8 offset-md-2">
-                                    <label for="rut">RUT</label>
-                                    <input type="text" class="form-control" id="rut" v-model="rut" disabled>
-                                </div>
-                                                
-                                <div class="col-md-8 offset-md-2">
-                                    <label for="birthDate">Fecha de Nacimiento</label>
-                                    <input type="date" class="form-control" id="birthDate" v-model="birthDate" disabled>
-                                </div>
-
-                                <div class="col-md-8 offset-md-2">
-                                    <label for="birthDate">Edad</label>
-                                    <input type="text" class="form-control" value="{{ $age }}" disabled>
-                                </div>
-
-
-                                <div class="col-md-8 offset-md-2">
-                                    <label for="gender">Sexo</label><br>
-                                    <input type="text" class="form-control" v-model="gender" disabled>
-                                </div>
-
-                                <div class="col-md-8 offset-md-2">
-                                    <label for="civilState">Estado Civil</label>
-                                    <input type="text" class="form-control" v-model="civilState" disabled>
-                                </div>
-                                        
-                                <div class="col-md-8 offset-md-2">
-                                    <label for="address">Dirección</label>
-                                    <input type="text" class="form-control" id="address" v-model="address" disabled>
-                                </div>
-
-                                <div class="col-md-8 offset-md-2" v-if="country == 4">
-                                    <label for="region">Región</label>
-                                    <select class="form-control" id="region" v-model="region" @change="fetchCommunes()" disabled>
-                                        <option :value="region" v-for="region in regions">@{{ region.name }}</option>
-                                    </select>
-                                </div>
-
-                                <div class="col-md-8 offset-md-2" v-if="country == 4">
-                                    <label for="commune">Comuna</label>
-                                    <select class="form-control" id="commune" v-model="commune" disabled>
-                                        <option :value="commune.id" v-for="commune in communes">@{{ region.name }} - @{{ commune.name }}</option>
-                                    </select>
-                                </div>
-
-                                <div class="col-md-8 offset-md-2">
-                                    <label for="handicap">Posee Discapacidad</label>
-                                    <input type="text" class="form-control" id="address" v-model="handicap" disabled>
-                                </div>
-                                
-                                <div class="col-12">
-                                    <h2>Información de contacto</h2>
-                                </div>
-                                
-
-                                <div class="col-md-8 offset-md-2">
-                                    <label for="mail">Mail</label>
-                                    <input type="mail" class="form-control" id="mail" v-model="email" disabled>
-                                </div>
-                                <div class="col-md-8 offset-md-2">
-                                    <label for=homePhone>Telefono Fijo</label>
-                                    <input type="text" class="form-control" id="homePhone" v-model="homePhone" disabled>
-                                </div>
-                                <div class="col-md-8 offset-md-2">
-                                    <label for="phone">Telefono Movil</label>
-                                    <input type="text" class="form-control" id="phone"  v-model="phone" disabled>
-                                </div>
-                                
-                                <div class="col-12">
-                                    <h2>Información Académica</h2>
-                                </div>
-
-                                <div class="col-md-12">
-                                    <table class="table table-bordered table-hover table-striped">
-                                        <thead>
-                                            <tr>
-                                            <th>#</th>
-                                            <th>Institución</th>
-                                            <th>Nivel Educacional</th>
-                                            <th>Campo de Estudio</th>
-                                            <th>Fecha de Inicio</th>
-                                            <th>Fecha Fin</th>
-                                            <th>Estado</th>
-                                        
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr v-for="(academicBg, index) in academicBgs">
-                                                <td>@{{ index + 1 }}</td>
-                                                <td>@{{ academicBg.college }}</td>
-                                                <td>@{{ academicBg.educational_level }}</td>
-                                                <td>@{{ academicBg.study_field }}</td>
-                                                <td>@{{ academicBg.start_date }}</td>
-                                                <td>@{{ academicBg.end_date }}</td>
-                                                <td>@{{ academicBg.state }}</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-
-                                <div class="col-12">
-                                    <h2>Resumen Laboral</h2>
-                                </div>
-
-                                <div class="col-md-8 offset-md-2">
-                                    <textarea v-model="jobDescription" id="jobdescription" class="form-control" rows="6" disabled></textarea>
-                                </div>
-
-                                <div class="col-md-8 offset-md-2">
-                                    <label for="expyears">Años de Experiencia</label>
-                                    <input type="text" class="form-control"  id="expyears"  v-model="expYears" disabled>
-                                </div>
-
-                                <div class="col-md-8 offset-md-2">
-                                    <label for="salary">Pretenciones de renta</label>
-                                    <input type="text" class="form-control"  id="salary"  v-model="salary" disabled>
-                                </div>
-
-                                <div class="col-md-8 offset-md-2">
-                                    <label for="desiredJob">Puesto deseado</label>
-                                    <input type="text" class="form-control"  id="desiredJob"  v-model="desiredJob" disabled>
-                                </div>
-                                <div class="col-md-8 offset-md-2">
-                                    <label for="desiredArea">Area de Preferencia</label>
-                                    
-                                </div>
-
-                                <div class="col-12">
-                                    <h2>Antecedentes Laborales</h2>
-                                </div>
-
-                                <div class="col-12">
-                                    <table class="table table-bordered table-hover table-striped ">
-                                        <thead>
-                                            <tr>
-                                            <th>#</th>
-                                            <th>Empresa</th>
-                                            <th>Puesto</th>
-                                            <th>Fecha de Inicio</th>
-                                            <th>Fecha Fin</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr v-for="(jobBackground, index) in jobBackgrounds">
-                                                <td>@{{ index + 1 }}</td>
-                                                <td>@{{ jobBackground.company }}</td>
-                                                <td>@{{ jobBackground.job }}</td>
-                                                <td>@{{ jobBackground.start_date }}</td>
-                                                <td>@{{ jobBackground.end_date }}</td>
-                                                
-                                            </tr>
-                                        
-                                        </tbody>
-                                    </table>
-                                </div>
-
-                                <div class="col-12">
-                                    <h2>Otros Antecedentes</h2>
-                                </div>
-
-                                <div class="col-md-8 offset-md-2">
-                                    <div class="form-group">
-                                        <label for="text">Conocimientos Informáticos </label>
-                                        <textarea class="form-control" rows="8" id="conocimientos" v-model="informaticKnowledge" disabled></textarea>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-12 offset-lg-1">
-                                    <div class="form-group">
-                                        <label for="text">Conocimientos y Habilidades</label>
-                                        <textarea type="text" rows="8" class="form-control" id="habilidades"  v-model="knowledgeHabilities" disabled></textarea>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-12 offset-lg-1">
-                                    <div class="form-group">
-                                        <label for="text">Licencia de Conducir</label>
-                                        <input type="text" class="form-control" id="licencia"  v-model="driverLicenseString" disabled>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-10 offset-lg-1">
-                                    <label for="available">Disponibilidad de viaje</label>
-                                    <input type="text" class="form-control" id="licencia"  v-model="travelAvailable" disabled>
-                                </div>
-
-                                <div class="col-lg-12 offset-lg-1">
-                                    <div class="form-group">
-                                        <label for="text">Tiene alguna discapacidad</label>
-                                        <input type="text" class="form-control" id="discapacidad"  v-model="handicapDescription" disabled>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3">
-                            <div class="row media-perfil-basicos-publicidad">
-                                <img class="publicidad" src="{{ asset('user/assets/img/login.jpg') }}" alt="publicidad">
-                                <img class="publicidad" src="{{ asset('user/assets/img/login.jpg') }}" alt="publicidad">
-                            </div>
-                        </div>
-                        
+                <div class="col-md-4 media-perfil-c-4">
+                    <div class="a-basicos-postulante-curriculum j-center">
+                            <img class="basicos-postulante-c-4" src="{{ asset('user/assets/img/icons8-contrato-de-trabajo-100.png') }}" alt="postulante" v-if="curriculumPreview == ''">
+                        <iframe id="iframepdf" :src="curriculumPreview" v-if="curriculumPreview != ''"></iframe>
+                        {{--<img class="basicos-postulante-c-4" style="width: 100%; cursor: pointer;" src="{{ asset('user/assets/img/document-download-outline.png') }}" alt="postulante" v-if="curriculumPreview != ''" @click="download()">--}}                               
                     </div>
+                    <label class="text-center-input-curriculum" for="curriculum">Curriculum</label>
                 </div>
         </div>
+        <div class="row">
+            <div class="col-md-12">
+                    <div class="content-abasico-basicos">
+                        <div class="row inf-media-perfil-basicos">
+                            <div class="col-md-9">
+                                    <div class="container antecedentes_container">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <h2 class="text-center letra-azul" style="padding-top: 20px;">Antecedentes básicos</h2>
+                                            </div>
+                                                
+                                            <div class="col-md-8 offset-md-2 pb-20">
+                                                <label for="name">Nombre Completo</label>
+                                                <input type="text" class="form-control" id="name" v-model="name" disabled>
+                                            </div>
+                                
+                                            <div class="col-md-8 offset-md-2 pb-20">
+                                                <label for="rut">RUT</label>
+                                                <input type="text" class="form-control" id="rut" v-model="rut" disabled>
+                                            </div>
+                                                            
+                                            <div class="col-md-8 offset-md-2 pb-20">
+                                                <label for="birthDate">Fecha de Nacimiento</label>
+                                                <input type="date" class="form-control" id="birthDate" v-model="birthDate" disabled>
+                                            </div>
+
+                                            <div class="col-md-8 offset-md-2 pb-20">
+                                                <label for="birthDate">Edad</label>
+                                                <input type="text" class="form-control" value="{{ $age }}" disabled>
+                                            </div>
+
+                                            <div class="col-md-8 offset-md-2 pb-20">
+                                                <label for="gender">Sexo</label><br>
+                                                <input type="text" class="form-control" v-model="gender" disabled>
+                                            </div>
+
+                                            <div class="col-md-8 offset-md-2 pb-20">
+                                                <label for="civilState">Estado Civil</label>
+                                                <input type="text" class="form-control" v-model="civilState" disabled>
+                                            </div>
+                                                    
+                                            <div class="col-md-8 offset-md-2 pb-20">
+                                                <label for="address">Dirección</label>
+                                                <input type="text" class="form-control" id="address" v-model="address" disabled>
+                                            </div>
+
+                                            <div class="col-md-8 offset-md-2 pb-20" v-if="country == 4">
+                                                <label for="region">Región</label>
+                                                <select class="form-control" id="region" v-model="region" @change="fetchCommunes()" disabled>
+                                                    <option :value="region" v-for="region in regions">@{{ region.name }}</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="col-md-8 offset-md-2 pb-20" v-if="country == 4">
+                                                <label for="commune">Comuna</label>
+                                                <select class="form-control" id="commune" v-model="commune" disabled>
+                                                    <option :value="commune.id" v-for="commune in communes">@{{ region.name }} - @{{ commune.name }}</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="col-md-8 offset-md-2 pb-20">
+                                                <label for="handicap">Posee Discapacidad</label>
+                                                <input type="text" class="form-control" id="address" v-model="handicap" disabled>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="container informacionc_container">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <h2 class="text-center letra-azul" style="padding-top: 20px;">Información de contacto</h2>
+                                            </div>
+                                            <div class="col-md-8 offset-md-2 pb-20">
+                                                <label for="mail">Mail</label>
+                                                <input type="mail" class="form-control" id="mail" v-model="email" disabled>
+                                            </div>
+                                            <div class="col-md-8 offset-md-2 pb-20">
+                                                <label for=homePhone>Telefono Fijo</label>
+                                                <input type="text" class="form-control" id="homePhone" v-model="homePhone" disabled>
+                                            </div>
+                                            <div class="col-md-8 offset-md-2 pb-20">
+                                                <label for="phone">Telefono Movil</label>
+                                                <input type="text" class="form-control" id="phone"  v-model="phone" disabled>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="container informacionacademica_container">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <h2 class="text-center letra-azul" style="padding-top: 20px;">Información Académica</h2>
+                                            </div>
+
+                                            <div class="col-md-12">
+                                                <table class="table table-bordered table-hover table-striped offset-md-2" >
+                                                    <thead>
+                                                        <tr>
+                                                        <th>#</th>
+                                                        <th>Institución</th>
+                                                        <th>Nivel Educacional</th>
+                                                        <th>Campo de Estudio</th>
+                                                        <th>Fecha de Inicio</th>
+                                                        <th>Fecha Fin</th>
+                                                        <th>Estado</th>
+                                                    
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr v-for="(academicBg, index) in academicBgs">
+                                                            <td>@{{ index + 1 }}</td>
+                                                            <td>@{{ academicBg.college }}</td>
+                                                            <td>@{{ academicBg.educational_level }}</td>
+                                                            <td>@{{ academicBg.study_field }}</td>
+                                                            <td>@{{ academicBg.start_date }}</td>
+                                                            <td>@{{ academicBg.end_date }}</td>
+                                                            <td>@{{ academicBg.state }}</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                 
+
+                                    <div class="container resumenl_container">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <h2 class="text-center letra-azul" style="padding-top: 20px;">Resumen Laboral</h2>
+                                            </div>
+                                            <div class="col-md-12 offset-lg-1">
+                                                <div class="form-group offset-md-2">
+                                                    <label for="text">Resumen Laboral</label>
+                                                    <textarea v-model="jobDescription" id="jobdescription" class="form-control " rows="8" disabled></textarea>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-8 offset-md-2 pb-20">
+                                                <label for="expyears">Años de Experiencia</label>
+                                                <input type="text" class="form-control"  id="expyears"  v-model="expYears" disabled>
+                                            </div>
+
+                                            <div class="col-md-8 offset-md-2 pb-20">
+                                                <label for="salary">Pretenciones de renta</label>
+                                                <input type="text" class="form-control"  id="salary"  v-model="salary" disabled>
+                                            </div>
+
+                                            <div class="col-md-8 offset-md-2 pb-20">
+                                                <label for="desiredJob">Puesto deseado</label>
+                                                <input type="text" class="form-control"  id="desiredJob"  v-model="desiredJob" disabled>
+                                            </div>
+                                            <div class="col-md-8 offset-md-2 pb-20">
+                                                <label for="desiredArea">Area de Preferencia</label>
+                                        
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                   <div class="container">
+                                       <div class="row">
+                                            <div class="col-12">
+                                                <h2 class="text-center letra-azul" style="padding-top: 20px;">Antecedentes Laborales</h2>
+                                            </div>
+                                            <div class="col-12">
+                                                <table class="table table-bordered table-hover table-striped offset-md-2">
+                                                    <thead>
+                                                        <tr>
+                                                        <th>#</th>
+                                                        <th>Empresa</th>
+                                                        <th>Puesto</th>
+                                                        <th>Fecha de Inicio</th>
+                                                        <th>Fecha Fin</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr v-for="(jobBackground, index) in jobBackgrounds">
+                                                            <td>@{{ index + 1 }}</td>
+                                                            <td>@{{ jobBackground.company }}</td>
+                                                            <td>@{{ jobBackground.job }}</td>
+                                                            <td>@{{ jobBackground.start_date }}</td>
+                                                            <td>@{{ jobBackground.end_date }}</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                       </div>
+                                   </div>
+                                   <div class="container antecedentes_container">
+                                       <div class="row">
+                                        <div class="col-12">
+                                                <h2 class="text-center letra-azul" style="padding-top: 20px;">Otros Antecedentes</h2>
+                                            </div>
+
+                                            <div class="col-md-12 offset-lg-1">
+                                                <div class="form-group offset-md-2">
+                                                    <label for="text">Conocimientos Informáticos </label>
+                                                    <textarea class="form-control" rows="8" id="conocimientos" v-model="informaticKnowledge" disabled></textarea>
+                                                </div>
+                                            </div>
+                                        
+
+                                            <div class="col-md-12 offset-lg-1">
+                                                <div class="form-group offset-md-2">
+                                                    <label for="text">Conocimientos y Habilidades</label>
+                                                    <textarea type="text" rows="8" class="form-control" id="habilidades"  v-model="knowledgeHabilities" disabled></textarea>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-8 offset-md-2">
+                                                <div class="form-group">
+                                                    <label for="text">Licencia de Conducir</label>
+                                                    <input type="text" class="form-control" id="licencia"  v-model="driverLicenseString" disabled>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-8 offset-md-2">
+                                                <label for="available">Disponibilidad de viaje</label>
+                                                <input type="text" class="form-control" id="licencia"  v-model="travelAvailable" disabled>
+                                            </div>
+
+                                            <div class="col-md-8 offset-md-2">
+                                                <div class="form-group">
+                                                    <label for="text">Tiene alguna discapacidad</label>
+                                                    <input type="text" class="form-control" id="discapacidad"  v-model="handicapDescription" disabled>
+                                                </div>
+                                            </div>
+                                       </div>
+                                   </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="row media-perfil-basicos-publicidad">
+                                    <img class="publicidad" src="{{ asset('user/assets/img/login.jpg') }}" alt="publicidad">
+                                    <img class="publicidad" src="{{ asset('user/assets/img/login.jpg') }}" alt="publicidad">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
 
             
            
