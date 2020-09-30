@@ -406,7 +406,7 @@ img.img-menu-perfil {
     text-align: center;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
 }
 input:focus, input.form-control:focus {
@@ -418,9 +418,13 @@ input:focus, input.form-control:focus {
     -webkit-box-shadow: none;
 }
 img.basicos-postulante-c-4 {
-    width: 250px;
-    height: 150px;
+    /* width: 250px;*/
+    height: 185px; 
     object-fit: contain;
+}
+.a-basicos-postulante-video, .a-basicos-postulante-curriculum.j-center {
+    /* width: 250px; */
+    height: 185px;
 }
 div#basicos {
     display: flex;
@@ -1160,6 +1164,9 @@ li.opciones-perfil-encontre-trabajo-usuario_li.bb-n {
 .opciones-perfil-encontre-trabajo-usuario-ul {
     padding-bottom: 50px;
 }
+.opciones-perfil-encontre-trabajo-usuario-cajas-contenedoras {
+    margin-bottom: 20px;
+}
 .opciones-perfil-encontre-trabajo-usuario-cajas-contenedoras .container {
     display: flex;
     justify-content: space-evenly;
@@ -1378,4 +1385,32 @@ img.caja-mis-avisos_img {
 .opciones-inf-empresas p span {
     padding-right: 5px;
     padding-left: 5px;
+}
+/*cambios en curriculum*/
+.container-perfil-usuario {
+    margin-top: 30px;
+}
+.text-center-input-curriculum {
+    display: flex;
+    justify-content: center;
+    padding-top: 10px;
+    font-weight: bold;
+}
+.pb-20 {
+    padding-bottom: 15px;
+}
+.tabla-curriculum {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.letra-azul {
+    color: #0075a9;
+    font-weight: bold;
+}
+.a-basicos-postulante-img.j-center,.a-basicos-postulante-video.j-center, .a-basicos-postulante-curriculum.j-center {
+
+    border: 1px solid #e9ecef30;
+    border-radius: 5px;
+    background: #e9ecef1c;
+    padding: 0;
 }
