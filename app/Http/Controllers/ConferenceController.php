@@ -105,7 +105,11 @@ class ConferenceController extends Controller
 
                 if(\Auth::user()->id == $appointment->user_id || \Auth::user()->id == $appointment->guest_id){
 
-                    if(Carbon::now()->gte($appointment->date_time) && $appointment->date_time->lt($appointment->date_time->addDay())){
+                    if($appointment->date_time->addDay()->gt(Carbon\Carbon::now())){
+
+                        return response()->json(["success" => false, "msg" => "La conferencia ha expirado"]);
+
+                    }else{
 
                         if($request->password == Appointment::where('room_name', $request->room_name)->first()->password){
                             return response()->json(["success" => true]);
@@ -113,7 +117,11 @@ class ConferenceController extends Controller
                             return response()->json(["success" => false, "msg" => "clave no encontrada"]);
                         }
 
-                    }else{
+                    }
+
+                        
+
+                    /*}else{
 
                         if($appointment->date_time->lt(Carbon::now())){
                             return response()->json(["success" => false, "msg" => "La conferencia comienza el ".$appointment->date_time]);
@@ -125,7 +133,7 @@ class ConferenceController extends Controller
                         }
                         
 
-                    }
+                    }*/
 
                 }else{
 

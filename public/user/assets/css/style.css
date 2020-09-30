@@ -1214,6 +1214,11 @@ label.check-empresa-encontre-trabajo {
 h4.content-encontre-trabajo-caja-info_h4.empresa_h4 {
     color: #0075a9;
 }
+
+.custom-card-active{
+    background-color: #4FC1E9;
+}
+
 /**/
 .opciones-inf-empresas {
     /* display: flex; */

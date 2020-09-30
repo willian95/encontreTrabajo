@@ -29,20 +29,20 @@
                 </a>
               </li>
               <li class="nav-item tabs-perfil">
-                <a class="nav-link tabs-perfil-a" data-toggle="tab" href="#rlabora" @click="toggleTabs('rlabora')">
-                    <div class="content-ico-tab">
-                        <img class="ico-tab" src="{{ asset('user/assets/img/laboral.png') }}" alt="">
-                    </div>
-                    <h3>Resumen Laboral</h3>
-                </a>
-              </li>
-              <li class="nav-item tabs-perfil">
                     <a class="nav-link tabs-perfil-a" data-toggle="tab" href="#labora"  @click="toggleTabs('labora')">
                         <div class="content-ico-tab">
                             <img class="ico-tab" src="{{ asset('user/assets/img/alaboral.png') }}" alt="">
                         </div>
                         <h3>Antecedentes Laboral</h3>
                     </a>
+              </li>
+              <li class="nav-item tabs-perfil">
+                <a class="nav-link tabs-perfil-a" data-toggle="tab" href="#rlabora" @click="toggleTabs('rlabora')">
+                    <div class="content-ico-tab">
+                        <img class="ico-tab" src="{{ asset('user/assets/img/laboral.png') }}" alt="">
+                    </div>
+                    <h3>Resumen Laboral</h3>
+                </a>
               </li>
               <li class="nav-item tabs-perfil">
                     <a class="nav-link tabs-perfil-a" data-toggle="tab" href="#otro"  @click="toggleTabs('otro')">
@@ -61,7 +61,8 @@
                 <div class="content a-basicos">
                     <div class="row media-perfil">
                         <div class="col-md-4 media-perfil-c-4">
-                            <div class="a-basicos-postulante-img j-center"><img class="basicos-postulante-c-4" :src="imagePreview" alt="postulante"></div>
+                            <div class="a-basicos-postulante-img j-center">
+                            <img class="basicos-postulante-c-4" :src="imagePreview" alt="postulante"></div>
                             <label for="image">Foto de Perfil</label>
                             <input type="file" class="form-control" id="image" ref="file" @change="onImageChange" accept="image/*">
 
@@ -232,6 +233,7 @@
                                             <option value="Básico">Básico</option>
                                             <option value="Medio">Medio</option>
                                             <option value="Técnico Profesional">Técnico Profesional</option>
+                                            <option value="Universitario">Universitario</option>
                                             <option value="Magister">Magister</option>
                                             <option value="Doctorado">Doctorado</option>
                                             <option value="otros">Otros</option>
@@ -300,8 +302,8 @@
                                         <td>@{{ academicBg.college }}</td>
                                         <td>@{{ academicBg.educational_level }}</td>
                                         <td>@{{ academicBg.study_field }}</td>
-                                        <td>@{{ academicBg.start_date }}</td>
-                                        <td>@{{ academicBg.end_date }}</td>
+                                        <td>@{{ dateFormatter(academicBg.start_date) }}</td>
+                                        <td>@{{ dateFormatter(academicBg.end_date) }}</td>
                                         <td>@{{ academicBg.state }}</td>
                                         <td>
                                             <button class="btn btn-info" @click="editAcademic(academicBg)" data-toggle="modal" data-target="#editModal"><i class="fas fa-edit"></i></button>
@@ -555,8 +557,8 @@
                                 <td>@{{ index + 1 }}</td>
                                 <td>@{{ jobBackground.company }}</td>
                                 <td>@{{ jobBackground.job }}</td>
-                                <td>@{{ jobBackground.start_date }}</td>
-                                <td>@{{ jobBackground.end_date }}</td>
+                                <td>@{{ dateFormatter(jobBackground.start_date) }}</td>
+                                <td>@{{ dateFormatter(jobBackground.end_date) }}</td>
                                 <td>
                                     <button class="btn btn-info" @click="editJB(jobBackground)" data-toggle="modal" data-target="#editJobModal"><i class="fas fa-edit"></i></button>
                                     <button class="btn btn-danger" @click="eraseJobBg(jobBackground.id)"><i class="fas fa-trash"></i></button>
@@ -625,19 +627,19 @@
                 <div class="content-otros">
                 <form action="/action_page.php">
                     <div class="row a-academicos-form">
-                    <div class="col-md-6 ">
+                    <div class="col-md-12 ">
                     <div class="form-group">
                         <label for="text">Conocimientos Informáticos </label>
-                        <textarea class="form-control" rows="8" id="conocimientos" v-model="informaticKnowledge"></textarea>
+                        <input class="form-control" id="conocimientos" v-model="informaticKnowledge" @click="showInformaticKnowledgeModal()">
                     </div>
                     </div>
-                    <div class="col-md-6 ">
-                    <div class="form-group">
-                        <label for="text">Conocimientos y Habilidades</label>
-                        <textarea type="text" rows="8" class="form-control" id="habilidades"  v-model="knowledgeHabilities"></textarea>
+                    <div class="col-md-12 ">
+                        <div class="form-group">
+                            <label for="text">Conocimientos y Habilidades</label>
+                            <textarea type="text" rows="8" class="form-control" id="habilidades"  v-model="knowledgeHabilities"></textarea>
+                        </div>
                     </div>
-                    </div>
-                    <div class="col-md-6 ">
+                    <div class="col-md-12 ">
                       <div class="form-group">
                             <label for="licencia">Licencia de Conducir</label>
                         
@@ -727,21 +729,21 @@
                             </div>
                       </div>
                       </div>
-                      <div class="col-md-6 ">
+                      <div class="col-md-12 ">
                         <div class="form-group">
                             <label for="text">Describa que tipo de discapacidad usted posee</label>
                             <textarea class="form-control" id="discapacidad"  v-model="handicapDescription"></textarea>
                         </div>
                       </div>
 
-                      <div class="col-md-6 ">
+                      <div class="col-md-12 ">
                         <div class="form-group">
                             <label for="text">¿Cuáles son las condiciones necesarias para poder desarrollar su trabajo de forma óptima? Ejem.: Rampla para silla de ruedas, teclado especial braille, etc</label>
                             <textarea class="form-control" id="necesaryCondition"  v-model="necesaryCondition"></textarea>
                         </div>
                       </div>
 
-                      <div class="col-md-6 ">
+                      <div class="col-md-12 ">
                         <div class="form-group">
                             <label for="text">Porcentaje de discapacidad</label>
                             <select class="form-control" class="form-control" v-model="handicapPercentage">
@@ -767,6 +769,31 @@
                   
                 </form>
               </div>
+
+                <!-- Modal -->
+                <div class="modal fade" id="informaticKnowledgeModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-scrollable">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="staticBackdropLabel">Conocimientos informáticos</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="card" v-for="know in informaticKnowledgeList" v-bind:class="checkCard(know.id)" @click="chooseInformaticKnowledge(know.id, know.name)">
+                                <div class="card-body">
+                                    @{{ know.name }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal" @click="closeInformaticKnowledge()">Cerrar</button>
+                            <button type="button" class="btn btn-primary" data-dismiss="modal" @click="acceptInformaticKnowledge()">Aceptar</button>
+                        </div>
+                        </div>
+                    </div>
+                </div>
 
             
             </div>
@@ -862,7 +889,53 @@
                     handicapPercentage:"{{ $user->profile->handicap_percentage }}",
                     regions:[],
                     communes:[],
-                    desiredAreas:JSON.parse('{!! $desiredAreas !!}')
+                    desiredAreas:JSON.parse('{!! $desiredAreas !!}'),
+                    informaticKnowledgeList:[
+                        {id: 1, name: "Hojas de cálculo"},
+                        {id: 2, name: "Intranet"},
+                        {id: 3, name: "Gmail"},
+                        {id: 4, name: "Procesadores de texto"},
+                        {id: 5, name: "Bases de datos Oracle"},
+                        {id: 6, name: "MySQL"},
+                        {id: 7, name: "PostgreSQL"},
+                        {id: 8, name: "Internet"},
+                        {id: 9, name: "Redes Internas"},
+                        {id: 10, name: "TCP/IP"},
+                        {id: 11, name: "Routers"},
+                        {id: 12, name: "WAP"},
+                        {id: 13, name: "Wireless"},
+                        {id: 14, name: "Google Analytics"},
+                        {id: 15, name: "Google Adwords"},
+                        {id: 16, name: "SEO"},
+                        {id: 17, name: "SEM"},
+                        {id: 18, name: "Wordpress"},
+                        {id: 19, name: "Blogger"},
+                        {id: 20, name: "Redes Sociales"},
+                        {id: 21, name: "Adobe Dreamweaver"},
+                        {id: 22, name: "Adobe Flash"},
+                        {id: 23, name: "Photoshop"},
+                        {id: 24, name: "Adobe InDesign"},
+                        {id: 25, name: "Adobe Illustrator"},
+                        {id: 26, name: "Premiere Pro"},
+                        {id: 27, name: "Microsoft Office"},
+                        {id: 28, name: "Mac"},
+                        {id: 29, name: "Windows"},
+                        {id: 30, name: "Linux"},
+                        {id: 31, name: "CRM"},
+                        {id: 32, name: "SAP"},
+                        {id: 33, name: "Peoplesoft"},
+                        {id: 34, name: "Jira"},
+                        {id: 35, name: "Trello"},
+                        {id: 36, name: "Java"},
+                        {id: 37, name: "Javascript"},
+                        {id: 38, name: "XML"},
+                        {id: 39, name: "ASP/.NET"},
+                        {id: 40, name: "PHP"},
+                        {id: 41, name: "HTML"}
+                    ],
+                    selectInformaticLnowledge:"",
+                    choosenInformaticKnowledge:[],
+                    choosenInformaticKnowledgeNames:[],
 
                 }
             },
@@ -873,6 +946,37 @@
                     $(".tab-pane").css("display", "none")
                     $("#"+tab).css("display", "block")
                     $("#"+tab).addClass("active")
+                },
+                chooseInformaticKnowledge(id, name){
+
+                    var exist = false
+                    var index = 0
+                    this.choosenInformaticKnowledge.forEach((data, i) => {
+
+                        if(data == id){
+                            exist = true
+                            index = i
+                        }
+
+                    })
+
+                    if(!exist){
+                        this.choosenInformaticKnowledge.push(id)
+                        this.choosenInformaticKnowledgeNames.push(name)
+                    }else{
+                        this.choosenInformaticKnowledge.splice(index, 1)
+                        this.choosenInformaticKnowledgeNames.splice(index, 1)
+                    }
+
+                },
+                acceptInformaticKnowledge(){
+                    this.informaticKnowledge = this.choosenInformaticKnowledgeNames.toString()
+                },
+                closeInformaticKnowledge(){
+                    if(this.informaticKnowledge == ""){
+                        this.informaticKnowledge = ""
+                    }
+                    
                 },
                 fetchRegions(){
 
@@ -921,6 +1025,17 @@
                     })
 
                 },
+                checkCard(id){
+
+                    let name = ""
+                    
+                    if(this.choosenInformaticKnowledge.includes(id)){
+                        name = "custom-card-active"
+                    }
+                        
+                    return name
+
+                }, 
                 onImageChange(e){
                     this.image = e.target.files[0];
 
@@ -1016,6 +1131,9 @@
                         vm.curriculum = e.target.result;
                     };
                     reader.readAsDataURL(file);
+                },
+                showInformaticKnowledgeModal(){
+                    $("#informaticKnowledgeModal").modal('show');
                 },
                 update(){
                     this.loading = true
@@ -1477,6 +1595,13 @@
                     
 
                 },
+                dateFormatter(date){
+                    
+                    let year = date.substring(0, 4)
+                    let month = date.substring(5, 7)
+                    let day = date.substring(8, 10)
+                    return day+"-"+month+"-"+year
+                },
                 storeJobBackground(){
                     
                     this.loading = true
@@ -1529,7 +1654,7 @@
                     
                     this.loading = true
                     axios.post("{{ url('/profiles/others/store') }}", {
-                        informaticKnowledge:this.informaticKnowledge,
+                        informaticKnowledge:this.choosenInformaticKnowledge.toString(),
                         knowledgeHabilities:this.knowledgeHabilities,
                         licenseA1: this.licenseA1,
                         licenseA2: this.licenseA2,
@@ -1693,6 +1818,25 @@
                     
 
                 })
+
+                let explodeInformatic = this.informaticKnowledge.split(",")
+                this.choosenInformaticKnowledge = explodeInformatic
+
+                this.informaticKnowledgeList.forEach((data) => {
+                    
+                    this.choosenInformaticKnowledge.forEach((data2) => {
+
+                        if(data.id == data2){
+                            this.choosenInformaticKnowledgeNames.push(data.name)
+                        }
+
+                    })
+                    
+                })
+
+                this.informaticKnowledge = this.choosenInformaticKnowledgeNames.toString()
+
+                console.log("id list", this.choosenInformaticKnowledge)
 
                 this.toggleTabs("basico")
                 this.fetchCountries()

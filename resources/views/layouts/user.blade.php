@@ -140,7 +140,7 @@
                                 <img class="caja-input-buscador-usuario-lupa_img" src="{{ asset('user/assets/img/chat.png') }}" alt="chat">
                                 <span class="caja-ico-mensaje_span">1</span>
                             </div>--}}
-                            <h3>{{ Auth::user()->name }} {{ Auth::user()->lastname }}</h3>
+                            {{--<h3>{{ Auth::user()->name }} {{ Auth::user()->lastname }}</h3>
                             <img class="encontre-trabajo-usuario_row-img-usuario_img" src="{{ Auth::user()->image }}" alt="foto de usuario">
                             <div class="cont-menu-h-usuario">
 
@@ -148,7 +148,7 @@
                                 <div class="_layer -top"></div>
                                 <div class="_layer -mid"></div>
                                 <div class="_layer -bottom"></div>
-                            </div>
+                            </div>--}}
                             <nav class="menuppal">
                                 <div class="menu-lateral-usuario-resp">
                                 <div class="content-encontre-trabajo-caja-info">
@@ -215,7 +215,7 @@
                                 <li class="menu-lateral-usuario_ul_li" ><a href="{{ url('home') }}"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/ico-editar.png') }}" alt=""><p>Inicio</p></a></li>
                                 {{--<li class="menu-lateral-usuario_ul_li" ><a href="{{ url('/user/offer') }}"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/ico-editar.png') }}" alt=""><p>Ofertas</p></a></li>--}}
                                 <li class="menu-lateral-usuario_ul_li" ><a href="{{ url('/profile/user') }}"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/ico-editar.png') }}" alt=""><p>Mi perfil</p></a></li>
-                                <li class="menu-lateral-usuario_ul_li" ><a href="{{ url('/profile/show/'.\Auth::user()->email) }}"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/ico-editar.png') }}" alt=""><p>Mi Curriculo</p></a></li>
+                                <li class="menu-lateral-usuario_ul_li" ><a href="{{ url('/profile/show/'.\Auth::user()->email) }}"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/ico-editar.png') }}" alt=""><p>Mi Curriculum</p></a></li>
                                 <li class="menu-lateral-usuario_ul_li" ><a href="{{ url('/my-applies') }}"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/control.png') }}" alt=""><p>Mis postulaciones</p></a></li>
                                 <li class="menu-lateral-usuario_ul_li" ><a href="{{ url('/logout') }}"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/logout.png') }}" alt=""><p>Cerrar sesión</p></a></li>
                             </ul>
