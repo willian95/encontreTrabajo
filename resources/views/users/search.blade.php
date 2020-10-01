@@ -2,7 +2,7 @@
 
 @section("content")
 
-    <div class="col-md-8" id="user-search-dev">
+    <div class="col-md-8 resultados-busqueda" id="user-search-dev">
         <div class="row" v-cloak>   
             <h3><strong>Resultados de: </strong>@{{ search }}</h3>
             <div class="col-12 recor-a-cp">

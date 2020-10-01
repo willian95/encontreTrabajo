@@ -1,6 +1,9 @@
 
 /* Normal desktop :992px. */
 @media (min-width: 992px) and (max-width: 1197px) {
+    h4.content-encontre-trabajo-caja-info_h4   {
+        font-size: 10px;
+    }
     .content.a-academicos label {
         font-size: 12px;
     }
@@ -88,6 +91,46 @@
         
 }
 @media (max-width: 768px) {
+    .content-abasico-basicos-curriculum textarea {
+        margin-left: 3%;
+        margin-right: 3%;
+        width: 94%;
+    }
+    .letra-azul {
+        font-size: 25px;
+    }
+    .container.resumenl_container label {
+        padding-left: 15px;
+    }
+    .container.antecedentes_container label {
+        padding-left: 15px;
+    }
+    .content-abasico-basicos-curriculum {
+        margin-left: 15px;
+    }
+    img.basicos-postulante-c-4 {
+        width: 180px;
+        height: 180px;
+
+    }
+    .row.media-perfil-basicos-publicidad {
+        margin-left: 0px;
+    }
+    video#productVideo, iframe#iframepdf {
+        width: 180px!important;
+        height: 180px;
+    }
+    .a-basicos-postulante-video, .a-basicos-postulante-curriculum.j-center {
+        /* width: 250px; */
+        height: 180px;
+    }
+    .content-encontre-trabajo-usuario {
+        margin-left: 15px;
+    }
+   .table-responsive-cv {
+        overflow: auto;
+        font-size: 10px;
+    }
     input.caja-input-buscador-usuario_input {
         width: 255px;
     }
@@ -349,7 +392,7 @@
         flex: 0 0 100%;
     }
     .row.media-perfil-basicos-publicidad {
-        flex-direction: row;
+        flex-direction: column;
         display: flex;
         justify-content: center;
     }
@@ -388,10 +431,7 @@
     .content-barra-menu-perfil-menu-monitor {
         display: none;
     }
-    .row.media-perfil-basicos-publicidad {
-        flex-direction: row;
-        display: flex;
-    }
+   
     div#labora .col {
         flex: 0 0 100%;
     }
