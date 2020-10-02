@@ -7,11 +7,12 @@
         <div class="loader-cover" v-if="loading == true">
             <div class="loader"></div>
         </div>
-        @if($user->profile->is_curriculum_validated == 1 || $user->id == \Auth::user()->id )
 
-            @if($user->profile->is_curriculum_validated == 0 && $user->id == \Auth::user()->id )
-                <h3>Curriculum aún no ha sido verificado</h3>
-            @endif
+            <div class="row">
+                <div class="col-12">
+                    <button class="btn btn-primary" @click="validate()">validar</button>
+                </div>
+            </div>
 
             <div class="row">
                 <div class="col-md-4 media-perfil-c-4">
@@ -274,9 +275,7 @@
                     </div>
                 </div>
             </div>
-        @else
-            <h2 class="text-center">Este curriculum no ha sido validado aún</h2>
-        @endif
+
         
     </div>
 
@@ -308,6 +307,7 @@
                     country:"",
                     curriculumPreview:"{{ $profile->curriculum }}",
                     nationality:"{{ $profile->nationality }}",
+                    userId:"{{ $user->id }}",
                     name:"{{ $user->name }} {{ $user->lastname }}",
                     rut:"{{ $profile->rut }}",
                     birthDate:"{{ $profile->birth_date }}",
@@ -367,52 +367,6 @@
                     handicapPercentage:"{{ $user->profile->handicap_percentage }}",
                     regions:[],
                     communes:[],
-                    informaticKnowledgeList:[
-                        {id: 1, name: "Hojas de cálculo"},
-                        {id: 2, name: "Intranet"},
-                        {id: 3, name: "Gmail"},
-                        {id: 4, name: "Procesadores de texto"},
-                        {id: 5, name: "Bases de datos Oracle"},
-                        {id: 6, name: "MySQL"},
-                        {id: 7, name: "PostgreSQL"},
-                        {id: 8, name: "Internet"},
-                        {id: 9, name: "Redes Internas"},
-                        {id: 10, name: "TCP/IP"},
-                        {id: 11, name: "Routers"},
-                        {id: 12, name: "WAP"},
-                        {id: 13, name: "Wireless"},
-                        {id: 14, name: "Google Analytics"},
-                        {id: 15, name: "Google Adwords"},
-                        {id: 16, name: "SEO"},
-                        {id: 17, name: "SEM"},
-                        {id: 18, name: "Wordpress"},
-                        {id: 19, name: "Blogger"},
-                        {id: 20, name: "Redes Sociales"},
-                        {id: 21, name: "Adobe Dreamweaver"},
-                        {id: 22, name: "Adobe Flash"},
-                        {id: 23, name: "Photoshop"},
-                        {id: 24, name: "Adobe InDesign"},
-                        {id: 25, name: "Adobe Illustrator"},
-                        {id: 26, name: "Premiere Pro"},
-                        {id: 27, name: "Microsoft Office"},
-                        {id: 28, name: "Mac"},
-                        {id: 29, name: "Windows"},
-                        {id: 30, name: "Linux"},
-                        {id: 31, name: "CRM"},
-                        {id: 32, name: "SAP"},
-                        {id: 33, name: "Peoplesoft"},
-                        {id: 34, name: "Jira"},
-                        {id: 35, name: "Trello"},
-                        {id: 36, name: "Java"},
-                        {id: 37, name: "Javascript"},
-                        {id: 38, name: "XML"},
-                        {id: 39, name: "ASP/.NET"},
-                        {id: 40, name: "PHP"},
-                        {id: 41, name: "HTML"}
-                    ],
-                    selectInformaticLnowledge:"",
-                    choosenInformaticKnowledge:[],
-                    choosenInformaticKnowledgeNames:[],
                     
                 }
             },
@@ -511,6 +465,23 @@
                 download(){
                     window.open(this.curriculumPreview, '_blank')
                 },
+                validate(){
+
+                    axios.post("{{ url('/admin/curriculum-validate/user') }}", {user_id: this.userId})
+                    .then(res => {
+
+                        if(res.data.success == true){
+
+                            alert(res.data.msg)
+                            window.location.href="{{ url('/admin/curriculum-validate') }}"
+
+                        }else{
+                            alert(res.data.msg)
+                        }
+
+                    })
+
+                },
                 fetchAcademicBg(){
 
                     axios.post("{{ url('/profiles/show/academic/fetch') }}", {user_id: "{{ $user->id }}"})
@@ -592,26 +563,6 @@
 
                 }
                 
-                if(this.informaticKnowledge.length > 0){
-                    let explodeInformatic = this.informaticKnowledge.split(",")
-                    this.choosenInformaticKnowledge = explodeInformatic
-
-                    this.informaticKnowledgeList.forEach((data) => {
-                        
-                        this.choosenInformaticKnowledge.forEach((data2) => {
-
-                            if(data.id == data2){
-                                this.choosenInformaticKnowledgeNames.push(data.name)
-                            }
-
-                        })
-                        
-                    })
-
-                    this.informaticKnowledge = this.choosenInformaticKnowledgeNames.toString()
-                }else{
-                    this.informaticKnowledge = "No posee conocimientos informáticos"
-                }
 
             
                 this.fetchCountries()

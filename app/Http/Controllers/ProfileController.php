@@ -552,12 +552,18 @@ class ProfileController extends Controller
 
         if(\Auth::user()->role_id == 2){
 
+           
+
             $profile = Profile::where("user_id", \Auth::user()->id)->first();
+            $profile->is_curriculum_validated = 0;
+            $profile->update();
+
 
             if(\Auth::user()->image != url('/')."/images/users/default.jpg" && $profile->video != null && $profile->curriculum != null && $profile->address != null && AcademicBackground::where("user_id", \Auth::user()->id)->count() > 0){
 
                 $user = User::where("id", \Auth::user()->id)->first();
                 $user->is_profile_complete = 1;
+                
                 $user->update();
 
             }
@@ -569,7 +575,7 @@ class ProfileController extends Controller
             if(\Auth::user()->commune_id != null && \Auth::user()->image != url('/')."images/users/default.jpg" && \Auth::user()->region_id != null && $profile->address != null){
 
                 $user = User::where("id", \Auth::user()->id)->first();
-                $user->is_profile_complete = 1;
+                
                 $user->update();
 
             }
@@ -585,16 +591,29 @@ class ProfileController extends Controller
             $user = User::where("email", $email)->first();
             $profile = Profile::where("user_id", $user->id)->first();
 
-            if($user->role_id == 2){
+            if(\Auth::user()->role_id == 1){
 
                 $age = Carbon::parse($profile->birth_date)->age;
                 $moveRegionArray = explode(",", $profile->move_regions);
                 $moveRegions = Region::whereIn("id", $moveRegionArray)->get();
-           
-                return view("users/showUserProfile", ["user" => $user, "profile" => $profile,"age" =>$age, "moveRegions" => json_encode($moveRegions)]);
 
-            }else if($user->role_id == 3){
-                return view("users/showBusinessProfile", ["user" => $user, "profile" => $profile]);
+                return view("users.showAdminUserProfile", ["user" => $user, "profile" => $profile,"age" =>$age, "moveRegions" => json_encode($moveRegions)]);
+            }
+
+            else{
+
+                if($user->role_id == 2){
+
+                    $age = Carbon::parse($profile->birth_date)->age;
+                    $moveRegionArray = explode(",", $profile->move_regions);
+                    $moveRegions = Region::whereIn("id", $moveRegionArray)->get();
+               
+                    return view("users.showUserProfile", ["user" => $user, "profile" => $profile,"age" =>$age, "moveRegions" => json_encode($moveRegions)]);
+    
+                }else if($user->role_id == 3){
+                    return view("users.showBusinessProfile", ["user" => $user, "profile" => $profile]);
+                }
+
             }
 
 
@@ -604,6 +623,32 @@ class ProfileController extends Controller
 
     }
 
+
+    function validateUser(){
+
+        try{
+
+            $user = Profile::where("user_id", \Auth::user()->id)->first();
+            $user->is_curriculum_validated = 0;
+            $user->request_for_curriculum_validation = 1;
+            $user->update();
+
+            $data = ["messageMail" => "Hola Admin, el usuario ".$user->name.", quiere validar su correo", "link" => url('/').'/profile/show/'.$user->email];
+            $to_name = "admin";
+            $to_email = env('ADMIN_EMAIL');
+
+            \Mail::send("emails.adminCurriculumValidation", $data, function($message) use ($to_name, $to_email) {
+                $message->to($to_email, $to_name)->subject("¡Un usuario quiere validar su curriculum!");
+                $message->from( env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'));
+            });
+
+            return response()->json(["success" => true, "msg" => "Se ha enviado una solicitud al administrador"]);
+
+        }catch(\Exception $e){
+            return response()->json(["success" => false, "msg" => "Hubo un problema", "err" => $e->getMessage(), "ln" => $e->getLine()]);
+        }
+
+    }
 
 
 }

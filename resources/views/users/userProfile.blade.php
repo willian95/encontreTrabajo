@@ -8,7 +8,7 @@
             <div class="loader"></div>
             </div>
             <h2>Mi Perfil</h2>
-            <br>
+            <button class="btn btn-info" @click="validate()">Validar mi perfil</button>
             <!-- Nav tabs -->
             <ul class="nav nav-tabs ">
               <li class="nav-item tabs-perfil">
@@ -810,6 +810,7 @@
             el: '#profile-dev',
             data() {
                 return {
+                    isCurriculumValidated:"{{ $user->profile->is_curriculum_validated }}",
                     image:"",
                     imagePreview:"{{ Auth::user()->image }}",
                     video:"",
@@ -1137,60 +1138,74 @@
                     $("#informaticKnowledgeModal").modal('show');
                 },
                 update(){
-                    this.loading = true
-                    axios.post("{{ url('/profile/update') }}",{
-                        image:this.image,
-                        video:this.video,
-                        curriculum:this.curriculum,
-                        name:this.name,
-                        lastname:this.lastname,
-                        rut:this.rut,
-                        birthDate:this.birthDate,
-                        gender:this.gender,
-                        civilState:this.civilState,
-                        address:this.address,
-                        country:this.country,
-                        region:this.region.id,
-                        commune:this.commune,
-                        handicap:this.handicap,
-                        phone:this.phone,
-                        homePhone:this.homePhone,
-                        nationality:this.nationality
+
+                    swal({
+                        title: "¿Estás seguro?",
+                        text: "Al cambiar tu perfil deberás persionar el botón validar mi perfil al finalizar la edición!",
+                        icon: "warning",
+                        buttons: true,
+                        dangerMode: true,
                     })
-                    .then(res => {
-
-                        this.loading = false
-                        if(res.data.success == true){
-                            
-                            swal({
-                                title:"Tus datos se actualizaron de forma correcta.",
-                                text:res.data.msg,
-                                icon:"success"
+                    .then((willDelete) => {
+                        if (willDelete) {
+                            this.loading = true
+                            axios.post("{{ url('/profile/update') }}",{
+                                image:this.image,
+                                video:this.video,
+                                curriculum:this.curriculum,
+                                name:this.name,
+                                lastname:this.lastname,
+                                rut:this.rut,
+                                birthDate:this.birthDate,
+                                gender:this.gender,
+                                civilState:this.civilState,
+                                address:this.address,
+                                country:this.country,
+                                region:this.region.id,
+                                commune:this.commune,
+                                handicap:this.handicap,
+                                phone:this.phone,
+                                homePhone:this.homePhone,
+                                nationality:this.nationality
                             })
-                            .then(() => {
-                                window.location.reload()
+                            .then(res => {
+
+                                this.loading = false
+                                if(res.data.success == true){
+                                    
+                                    swal({
+                                        title:"Tus datos se actualizaron de forma correcta.",
+                                        text:res.data.msg,
+                                        icon:"success"
+                                    })
+                                    .then(() => {
+                                        window.location.reload()
+                                    })
+
+                                    
+
+                                }else{
+
+                                    swal({
+                                        title:"Lo sentimos",
+                                        text:res.data.msg,
+                                        icon:"error"
+                                    })
+
+                                }
+
+                            })
+                            .catch(err => {
+                                this.loading = false
+                                $.each(err.response.data.errors, function(key, value) {
+                                    alertify.error(value[0])
+                    
+                                });
                             })
 
-                            
-
-                        }else{
-
-                            swal({
-                                title:"Lo sentimos",
-                                text:res.data.msg,
-                                icon:"error"
-                            })
 
                         }
-
-                    })
-                    .catch(err => {
-                        this.loading = false
-                        $.each(err.response.data.errors, function(key, value) {
-                            alertify.error(value[0])
-            
-                        });
-                    })
+                    });
 
                 },
                 download(){
@@ -1309,7 +1324,7 @@
                     this.editStudyField = academic.study_field
                 },
                 updateAcademicBg(){
-                    this.loading = true
+                    
 
                     if(this.editState != 'en curso' && this.editEndDate == ""){
                         this.loading = false
@@ -1317,6 +1332,8 @@
 
                     }else{
 
+                       
+                        this.loading = true
                         axios.post("{{ url('/profile/academic/update') }}", {
                             id:this.academicId,
                             college:this.editCollege,
@@ -1371,6 +1388,7 @@
                 
                             });
                         })
+                        
 
                     }
 
@@ -1425,6 +1443,7 @@
                     this.editEndDateBg = job.end_date
                 },
                 updateJobBg(){
+
                     this.loading = true
 
                     axios.post("{{ url('/profile/job-background/update') }}", {
@@ -1533,45 +1552,58 @@
                 },
                 storeJobResume(){
 
-                    this.loading = true
-                    axios.post("{{ url('/profiles/job-resume/store') }}", {
-                        jobDescription:this.jobDescription,
-                        expYears:this.expYears,
-                        availability:this.availability,
-                        salary:this.salary,
-                        desiredJob:this.desiredJob,
-                        desiredArea:this.desiredAreas,
-                        functions:this.functions,
-                        awards:this.awards,
-                        moveRegions:this.moveRegions
+                    swal({
+                        title: "¿Estás seguro?",
+                        text: "Al cambiar tu perfil deberás persionar el botón validar mi perfil al finalizar la edición!",
+                        icon: "warning",
+                        buttons: true,
+                        dangerMode: true,
                     })
-                    .then(res => {
-                        this.loading = false
-                        if(res.data.success == true){
-                            
-                            swal({
-                                title:"Genial",
-                                text:res.data.msg,
-                                icon:"success"
+                    .then((willDelete) => {
+                        if (willDelete) {
+                            this.loading = true
+                            axios.post("{{ url('/profiles/job-resume/store') }}", {
+                                jobDescription:this.jobDescription,
+                                expYears:this.expYears,
+                                availability:this.availability,
+                                salary:this.salary,
+                                desiredJob:this.desiredJob,
+                                desiredArea:this.desiredAreas,
+                                functions:this.functions,
+                                awards:this.awards,
+                                moveRegions:this.moveRegions
+                            })
+                            .then(res => {
+                                this.loading = false
+                                if(res.data.success == true){
+                                    
+                                    swal({
+                                        title:"Genial",
+                                        text:res.data.msg,
+                                        icon:"success"
+                                    })
+
+                                }else{
+
+                                    swal({
+                                        title:"Lo sentimos",
+                                        text:res.data.msg,
+                                        icon:"error"
+                                    })
+
+                                }
+
+                            })
+                            .catch(err => {
+                                this.loading = false
+                                $.each(err.response.data.errors, function(key, value) {
+                                    alertify.error(value[0])
+                                });
                             })
 
-                        }else{
-
-                            swal({
-                                title:"Lo sentimos",
-                                text:res.data.msg,
-                                icon:"error"
-                            })
 
                         }
-
-                    })
-                    .catch(err => {
-                        this.loading = false
-                        $.each(err.response.data.errors, function(key, value) {
-                            alertify.error(value[0])
-                        });
-                    })
+                    });
                     
 
                 },
@@ -1605,6 +1637,8 @@
                 },
                 storeJobBackground(){
                     
+                
+                
                     this.loading = true
                     axios.post("{{ url('/profiles/job-background/store') }}", {
                         company:this.company,
@@ -1649,58 +1683,74 @@
             
                         });
                     })
+                    
 
                 },
                 storeOthers(){
                     
-                    this.loading = true
-                    axios.post("{{ url('/profiles/others/store') }}", {
-                        informaticKnowledge:this.choosenInformaticKnowledge.toString(),
-                        knowledgeHabilities:this.knowledgeHabilities,
-                        licenseA1: this.licenseA1,
-                        licenseA2: this.licenseA2,
-                        licenseA3: this.licenseA3,
-                        licenseA4: this.licenseA4,
-                        licenseA5: this.licenseA5,
-                        licenseB: this.licenseB,
-                        licenseC: this.licenseC,
-                        licenseD: this.licenseD,
-                        licenseE: this.licenseE,
-                        licenseF: this.licenseF,
-                        handicapDescription:this.handicapDescription,
-                        necesaryCondition:this.necesaryCondition,
-                        handicapPercentage: this.handicapPercentage
+                    swal({
+                        title: "¿Estás seguro?",
+                        text: "Al cambiar tu perfil deberás persionar el botón validar mi perfil al finalizar la edición!",
+                        icon: "warning",
+                        buttons: true,
+                        dangerMode: true,
                     })
-                    .then(res => {
+                    .then((willDelete) => {
+                        if (willDelete) {
+                            this.loading = true
+                            axios.post("{{ url('/profiles/others/store') }}", {
+                                informaticKnowledge:this.choosenInformaticKnowledge.toString(),
+                                knowledgeHabilities:this.knowledgeHabilities,
+                                licenseA1: this.licenseA1,
+                                licenseA2: this.licenseA2,
+                                licenseA3: this.licenseA3,
+                                licenseA4: this.licenseA4,
+                                licenseA5: this.licenseA5,
+                                licenseB: this.licenseB,
+                                licenseC: this.licenseC,
+                                licenseD: this.licenseD,
+                                licenseE: this.licenseE,
+                                licenseF: this.licenseF,
+                                handicapDescription:this.handicapDescription,
+                                necesaryCondition:this.necesaryCondition,
+                                handicapPercentage: this.handicapPercentage
+                            })
+                            .then(res => {
 
-                        this.loading = false
+                                this.loading = false
 
-                        if(res.data.success == true){
+                                if(res.data.success == true){
 
-                            swal({
-                                title:"Genial",
-                                text:res.data.msg,
-                                icon:"success"
+                                    swal({
+                                        title:"Genial",
+                                        text:res.data.msg,
+                                        icon:"success"
+                                    })
+
+                                }else{
+
+                                    swal({
+                                        title:"Lo sentimos",
+                                        text:res.data.msg,
+                                        icon:"error"
+                                    })
+
+                                }
+
+                            })
+                            .catch(err => {
+                                this.loading = false
+                                $.each(err.response.data.errors, function(key, value) {
+                                    alertify.error(value[0])
+                    
+                                });
                             })
 
-                        }else{
-
-                            swal({
-                                title:"Lo sentimos",
-                                text:res.data.msg,
-                                icon:"error"
-                            })
 
                         }
-
-                    })
-                    .catch(err => {
-                        this.loading = false
-                        $.each(err.response.data.errors, function(key, value) {
-                            alertify.error(value[0])
-            
-                        });
-                    })
+                    });
+                        
+                    
 
                 },
                 selectMoveRegion(){
@@ -1769,6 +1819,35 @@
                     })
 
                     this.moveRegions.splice(i, 1)
+
+                },
+                validate(){
+
+                    this.loading = true
+
+                    axios.post("{{ url('/profiles/validate-user') }}").then(res => {
+                        this.loading = false
+                        
+                        if(res.data.success == true){
+                            
+                            swal({
+                                title:"Genial",
+                                text:res.data.msg,
+                                icon:"success"
+                            })
+
+                        }else{
+
+                            swal({
+                                title:"Lo sentimos",
+                                text:res.data.msg,
+                                icon:"error"
+                            })
+
+                        }
+
+                    })
+
 
                 }
                     

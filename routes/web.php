@@ -62,6 +62,7 @@ Route::middleware(['auth', 'user'])->group(function(){
     Route::post('/profile/job-background/update', "ProfileController@updateJobBackground");
     Route::post('/profile/job-background/delete', "ProfileController@deleteJobBackground");
     Route::post('/profiles/others/store', "ProfileController@storeOthers");
+    Route::post("/profiles/validate-user", "ProfileController@validateUser");
 
 });
 
@@ -135,6 +136,14 @@ Route::get("/admin/landing-business/fetch", "LandingBusinessController@fetch");
 Route::post("/admin/landing-business/store", "LandingBusinessController@store");
 Route::post("/admin/landing-business/update", "LandingBusinessController@update");
 Route::post("/admin/landing-business/delete", "LandingBusinessController@delete");
+
+
+Route::get("/admin/curriculum-validate", "CurriculumValidateController@index");
+Route::get("/admin/curriculum-validate/fetch/{page}", "CurriculumValidateController@fetch");
+Route::post("/admin/curriculum-validate/user", "CurriculumValidateController@approveCurriculum");
+/*Route::post("/admin/landing-business/store", "LandingBusinessController@store");
+Route::post("/admin/landing-business/update", "LandingBusinessController@update");
+Route::post("/admin/landing-business/delete", "LandingBusinessController@delete");*/
 
 /*Route::get('/admin/carousels', "AdminCarouselController@index")->middleware('auth');
 Route::get('/admin/carousels/fetch', "AdminCarouselController@fetch");
