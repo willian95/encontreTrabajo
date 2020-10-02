@@ -910,7 +910,9 @@ li.menu-lateral-usuario_ul_li p:hover {
     height: 90px;
     position: fixed;
     z-index: 999;
+    margin-left: 15px;
 }
+
 img.encontre-trabajo-usuario_row-col-12-logo-img {
     width: 120px;
 }
@@ -1413,4 +1415,7 @@ img.caja-mis-avisos_img {
     border-radius: 5px;
     background: #e9ecef1c;
     padding: 0;
+}
+.resultados-busqueda {
+    margin-top: 40px;
 }
