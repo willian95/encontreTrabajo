@@ -308,7 +308,7 @@ class ProfileController extends Controller
             $academicBg->study_field = $request->studyField;
             $academicBg->save();
 
-            $this->isProfileComplete();
+            //$this->isProfileComplete();
 
             return response()->json(["success" => true, "msg" => "Antecedente Académico agregado"]);
 
@@ -331,7 +331,7 @@ class ProfileController extends Controller
             $academicBg->study_field = $request->studyField;
             $academicBg->update();
 
-            $this->isProfileComplete();
+            //$this->isProfileComplete();
 
             return response()->json(["success" => true, "msg" => "Antecedente Académico Actualizado"]);
 
@@ -444,7 +444,7 @@ class ProfileController extends Controller
             $jobBackground->end_date = $request->endDateBg;
             $jobBackground->save();
 
-            $this->isProfileComplete();
+            //$this->isProfileComplete();
 
             return response()->json(["success" => true, "msg" => "Antecendente laboral agregado"]);
 
@@ -467,7 +467,7 @@ class ProfileController extends Controller
             $jobBackground->end_date = $request->endDateBg;
             $jobBackground->update();
 
-            $this->isProfileComplete();
+            //$this->isProfileComplete();
 
             return response()->json(["success" => true, "msg" => "Antecedente laboral Actualizado"]);
 
