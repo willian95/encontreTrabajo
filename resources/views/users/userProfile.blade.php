@@ -729,19 +729,6 @@
                             </div>
                       </div>
                       </div>
-                      <div class="col-md-12 ">
-                        <div class="form-group">
-                            <label for="text">Describa que tipo de discapacidad usted posee</label>
-                            <textarea class="form-control" id="discapacidad"  v-model="handicapDescription"></textarea>
-                        </div>
-                      </div>
-
-                      <div class="col-md-12 ">
-                        <div class="form-group">
-                            <label for="text">¿Cuáles son las condiciones necesarias para poder desarrollar su trabajo de forma óptima? Ejem.: Rampla para silla de ruedas, teclado especial braille, etc</label>
-                            <textarea class="form-control" id="necesaryCondition"  v-model="necesaryCondition"></textarea>
-                        </div>
-                      </div>
 
                       <div class="col-md-12 ">
                         <div class="form-group">
@@ -761,6 +748,21 @@
                             </select>
                         </div>
                       </div>
+
+                      <div class="col-md-12 ">
+                        <div class="form-group">
+                            <label for="text">Describa que tipo de discapacidad usted posee</label>
+                            <textarea class="form-control" id="discapacidad"  v-model="handicapDescription"></textarea>
+                        </div>
+                      </div>
+
+                      <div class="col-md-12 ">
+                        <div class="form-group">
+                            <label for="text">¿Cuáles son las condiciones necesarias para poder desarrollar su trabajo de forma óptima? Ejem.: Rampla para silla de ruedas, teclado especial braille, etc</label>
+                            <textarea class="form-control" id="necesaryCondition"  v-model="necesaryCondition"></textarea>
+                        </div>
+                      </div>
+
                     
                     </div>
                     <div class="buttom-content-up">

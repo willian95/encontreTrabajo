@@ -1,8 +1,8 @@
-@extends("layouts.user")
+@extends("layouts.business")
 
 @section("content")
 
-    <div class="container-fluid" id="user-offers-dev">
+    <div class="col-md-8" id="user-offers-dev" style="margin-top: 100px; padding-left: 40px;">
 
         <div class="row">
             <div class="col-12 recor-a-cp">

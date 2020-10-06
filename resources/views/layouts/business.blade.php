@@ -141,18 +141,24 @@
                             <span class="caja-ico-mensaje_span">1</span>
                         </div>--}}
                         <div class="caja-input-buscador-usuario">
-                            <input class="caja-input-buscador-usuario_input" type="text" placeholder="Busca tus ofertas de trabajo" id="search_input">
-                            <button class="caja-input-buscador-usuario_button" onclick="storeQuery()"><img class="caja-input-buscador-usuario-lupa_img" src="{{ asset('user/assets/img/search-b.png') }}" alt="buscar"></button>                        
+                            <!--<input class="caja-input-buscador-usuario_input" type="text" placeholder="Busca tus ofertas de trabajo" id="search_input">
+                            <button class="caja-input-buscador-usuario_button" onclick="storeQuery()"><img class="caja-input-buscador-usuario-lupa_img" src="{{ asset('user/assets/img/search-b.png') }}" alt="buscar"></button>-->
+                            <select class="caja-input-buscador-usuario_input" id="job_category_id">
+                                <option>Buscador a usuarios por sus categorías</option>
+                                @foreach(App\JobCategory::all() as $category)
+                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                @endforeach
+                            </select>
+                            <button class="caja-input-buscador-usuario_button" onclick="storeQuery()"><img class="caja-input-buscador-usuario-lupa_img" src="{{ asset('user/assets/img/search-b.png') }}" alt="buscar"></button>
                         </div>
-                        <h3>{{ Auth::user()->business_name }}</h3>
-                        <img class="encontre-trabajo-usuario_row-img-usuario_img" src="{{ Auth::user()->image }}" alt="foto de usuario">
+                        
                         <div class="cont-menu-h-usuario">
 
-                        <div class="hamburger">
+                        <!--<div class="hamburger">
                             <div class="_layer -top"></div>
                             <div class="_layer -mid"></div>
                             <div class="_layer -bottom"></div>
-                        </div>
+                        </div>-->
                         <nav class="menuppal">
                         <div class="menu-lateral-empresa-resp">
                             <div class="content-encontre-trabajo-caja-info">
@@ -269,6 +275,7 @@
                         @if(\Auth::user()->is_profile_complete == 1)
                             <li class="menu-lateral-usuario_ul_li menu-resp-li" ><a href="{{ url('/offers/create') }}"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/play.png') }}" alt="">Crear oferta</a></li>
                         @endif
+                        <li class="menu-lateral-usuario_ul_li menu-resp-li" ><a href="{{ url('/my-offers') }}"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/alarm.png') }}" alt="">Mis ofertas</a></li>
                         <li class="menu-lateral-usuario_ul_li menu-resp-li" ><a href="{{ url('/my-proposals') }}"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/alarm.png') }}" alt="">Ofertas respondidas</a></li>
                         <li class="menu-lateral-usuario_ul_li" ><a href="{{ url('/logout') }}"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/logout.png') }}" alt="">Cerrar sesión</a></li>
                     </ul>
@@ -350,10 +357,10 @@
 
             function storeQuery(){
            
-                let query = $("#search_input").val()
+                let query = $("#job_category_id").val()
                 if(query != null){
-                    localStorage.setItem("encontre_trabajo_query", query)
-                    window.location.href="{{ url('/search') }}"
+                    localStorage.setItem("encontre_trabajo_categories_query", query)
+                    window.location.href="{{ url('/business/search') }}"
                 }
                 
             }
