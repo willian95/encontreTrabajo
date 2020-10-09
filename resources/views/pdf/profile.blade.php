@@ -137,6 +137,11 @@
                 <p>{{ $profile->desired_job }}</p>
             </div> 
 
+            <div>
+                <h5 for="name">Areas de preferencia</h5>
+                <p>{{ $desiredAreaString }}</p>
+            </div> 
+
 
 
                                 

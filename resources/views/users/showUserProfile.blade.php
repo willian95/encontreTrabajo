@@ -179,7 +179,7 @@
                                         </div>
                                         <div class="col-md-8 offset-md-2 pb-20">
                                             <label for="desiredArea">Area de Preferencia</label>
-                                            <input type="text" class="form-control" v-model="desiredAreaString">
+                                            <input type="text" class="form-control" v-model="desiredAreaString" disabled>
                                         </div>                                    
                                 </div>
                             </div>
