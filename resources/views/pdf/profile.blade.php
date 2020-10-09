@@ -206,7 +206,7 @@
                 <table>
                     <tr>
                         @foreach($jobReferences as $reference)
-                        <td style="width: 30%;">
+                        <td style="width: 60px;">
                      
                             <p>Señor (a) {{ $reference->person_name }}</p>
                             <p>{{ $reference->business_name }}</p>
