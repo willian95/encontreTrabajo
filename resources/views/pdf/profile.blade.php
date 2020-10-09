@@ -19,7 +19,7 @@
             </div>
             <div>
                 <p for="name">RUT</p>
-                <h5>{{ $user->rut }}</h5>
+                <h5>{{ $profile->rut }}</h5>
             </div>
             <div>
                 <p for="name">Fecha de Nacimiento</p>
@@ -29,34 +29,40 @@
                 <p for="name">Edad</p>
                 <h5>{{ $age }}</h5>
             </div>
-            {{--<div class="col-md-8 offset-md-2 pb-20">
-                <label for="gender">Sexo</label><br>
-                <input type="text" class="form-control" v-model="gender" disabled>
+            <div>
+                <p for="name">Sexo</p>
+                <h5>{{ $profile->gender }}</h5>
             </div>
+            <div>
+                <p for="name">Estado Civil</p>
+                <h5>{{ $profile->civil_state }}</h5>
+            </div>
+            <div>
+                <p for="name">Dirección</p>
+                <h5>{{ $profile->address }}</h5>
+            </div>
+
+            @if($user->country_id == 4)
+                <div>
+                    <p for="name">Región</p>
+                    <h5>{{ $user->region->name }}</h5>
+                </div>
+                
+                <div>
+                    <p for="name">Comuna</p>
+                    <h5>{{ $user->commune->name }}</h5>
+                </div>
+            @endif
+
+            <div>
+                <p for="name">Posee Discapacidad</p>
+                <h5>{{ $user->commune->name }}</h5>
+            </div>
+            
             <div class="col-md-8 offset-md-2 pb-20">
-                <label for="civilState">Estado Civil</label>
-                <input type="text" class="form-control" v-model="civilState" disabled>
-            </div>
-            <div class="col-md-8 offset-md-2 pb-20">
-                <label for="address">Dirección</label>
-                <input type="text" class="form-control" id="address" v-model="address" disabled>
-            </div>
-            <div class="col-md-8 offset-md-2 pb-20" v-if="country == 4">
-                <label for="region">Región</label>
-                <select class="form-control" id="region" v-model="region" @change="fetchCommunes()" disabled>
-                    <option :value="region" v-for="region in regions">@{{ region.name }}</option>
-                </select>
-            </div>
-            <div class="col-md-8 offset-md-2 pb-20" v-if="country == 4">
-                <label for="commune">Comuna</label>
-                <select class="form-control" id="commune" v-model="commune" disabled>
-                    <option :value="commune.id" v-for="commune in communes">@{{ region.name }} - @{{ commune.name }}</option>
-                </select>
-            </div>
-            <div class="col-md-8 offset-md-2 pb-20">
-                <label for="handicap">Posee Discapacidad</label>
-                <input type="text" class="form-control" id="address" v-model="handicap" disabled>
-            </div>--}}                                    
+                <p for="name">Posee Discapacidad</p>
+                <h5>{{ $profile->handicap }}</h5>
+            </div>                             
                                 
                         
     </body>
