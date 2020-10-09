@@ -640,6 +640,49 @@ class ProfileController extends Controller
             $academicBackground = AcademicBackground::where("user_id", $user->id)->get();
             $jobBackground = JobBackground::where("user_id", $user->id)->get();
             $age = Carbon::parse($profile->birth_date)->age;
+            $informaticKnowledgeList = [
+                ["id" => 1, "name"=> "Hojas de cálculo"],
+                ["id"=> 2, "name" => "Intranet"],
+                ["id"=> 3, "name" => "Gmail"],
+                ["id"=> 4, "name" => "Procesadores de texto"],
+                ["id"=> 5, "name" => "Bases de datos Oracle"],
+                ["id"=> 6, "name" => "MySQL"],
+                ["id"=> 7, "name" => "PostgreSQL"],
+                ["id"=> 8, "name" => "Internet"],
+                ["id"=> 9, "name" => "Redes Internas"],
+                ["id"=> 10, "name" => "TCP/IP"],
+                ["id"=> 11, "name" => "Routers"],
+                ["id"=> 12, "name" => "WAP"],
+                ["id"=> 13, "name" => "Wireless"],
+                ["id"=> 14, "name" => "Google Analytics"],
+                ["id"=> 15, "name" => "Google Adwords"],
+                ["id"=> 16, "name" => "SEO"],
+                ["id"=> 17, "name" => "SEM"],
+                ["id"=> 18, "name" => "Wordpress"],
+                ["id"=> 19, "name" => "Blogger"],
+                ["id"=> 20, "name" => "Redes Sociales"],
+                ["id"=> 21, "name" => "Adobe Dreamweaver"],
+                ["id"=> 22, "name" => "Adobe Flash"],
+                ["id"=> 23, "name" => "Photoshop"],
+                ["id"=> 24, "name" => "Adobe InDesign"],
+                ["id"=> 25, "name" => "Adobe Illustrator"],
+                ["id"=> 26, "name" => "Premiere Pro"],
+                ["id"=> 27, "name" => "Microsoft Office"],
+                ["id"=> 28, "name" => "Mac"],
+                ["id"=> 29, "name" => "Windows"],
+                ["id"=> 30, "name" => "Linux"],
+                ["id"=> 31, "name" => "CRM"],
+                ["id"=> 32, "name" => "SAP"],
+                ["id"=> 33, "name" => "Peoplesoft"],
+                ["id"=> 34, "name" => "Jira"],
+                ["id"=> 35, "name" => "Trello"],
+                ["id"=> 36, "name" => "Java"],
+                ["id"=> 37, "name" => "Javascript"],
+                ["id"=> 38, "name" => "XML"],
+                ["id"=> 39, "name" => "ASP/.NET"],
+                ["id"=> 40, "name" => "PHP"],
+                ["id"=> 41, "name" => "HTML"]
+            ];
 
             $desireAreaExplode = explode(",", $profile->desired_areas);
             $desiredAreasArray = JobCategory::whereIn("id", $desireAreaExplode)->get();
@@ -656,6 +699,26 @@ class ProfileController extends Controller
 
                 $i++;
             }
+
+            $informaticKnowledgeArray = explode(",", $profile->informatic_knowledge);
+            $informaticKnowledgeString = "";
+            $i = 0;
+
+            foreach($informaticKnowledgeArray as $informaticKnowledge){
+
+                foreach($informaticKnowledgeList as $list){
+                    if($list['id'] = $informaticKnowledge){
+                        $informaticKnowledgeString .= $list['name'];
+                        if($i < count($informaticKnowledgeArray) - 1){
+                            $informaticKnowledgeString .= ", ";
+                        }
+                    }
+                }
+                
+                $i++;
+            }
+
+            dd($informaticKnowledgeString);
            
             $pdf = PDF::loadView('pdf.profile', ["user" => $user, "profile" => $profile, "age" => $age, "academicBackground" => $academicBackground, "desiredAreaString" => $desiredAreaString, "jobBackground" => $jobBackground]);
             return $pdf->stream('profile.pdf');

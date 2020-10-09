@@ -167,7 +167,16 @@
                         </tr>
                     @endforeach
                 </tbody>
-            </table>            
+            </table> 
+
+            <div class="col-12">
+                <h2 class="text-center text-info" style="padding-top: 20px;">Otros Antecedentes</h2>
+            </div>         
+
+            <div>
+                <h5 for="name">Conocimientos Informáticos</h5>
+                <p>{{ $desiredAreaString }}</p>
+            </div>
                         
     </body>
 </html>
