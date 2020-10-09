@@ -184,6 +184,11 @@
             </div>
 
             <div>
+                <h5 for="name">Licencias de Conducir</h5>
+                <p>{{ $licenseString }}</p>
+            </div>
+
+            <div>
                 <h5 for="name">Disponibilidad de viaje</h5>
                 @if($profile->change_residence == 0)
                     <p>No</p>
