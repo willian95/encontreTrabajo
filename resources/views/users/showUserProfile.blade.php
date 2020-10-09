@@ -133,7 +133,7 @@
                                                         <th>Nivel Educacional</th>
                                                         <th>Campo de Estudio</th>
                                                         <th>Fecha de Inicio</th>
-                                                        <th>Fecha Fin</th>
+                                                        <th>Fecha Término</th>
                                                         <th>Estado</th>
                                                         </tr>
                                                     </thead>
@@ -195,7 +195,7 @@
                                                  <th>Empresa</th>
                                                  <th>Puesto</th>
                                                  <th>Fecha de Inicio</th>
-                                                 <th>Fecha Fin</th>
+                                                 <th>Fecha Término</th>
                                                  </tr>
                                              </thead>
                                              <tbody>
