@@ -177,6 +177,25 @@
                 <h5 for="name">Conocimientos Informáticos</h5>
                 <p>{{ $informaticKnowledgeString }}</p>
             </div>
+
+            <div>
+                <h5 for="name">Conocimientos y Habilidades</h5>
+                <p>{{ $profile->knowledge_hablities }}</p>
+            </div>
+
+            <div>
+                <h5 for="name">Disponibilidad de viaje</h5>
+                @if($profile->change_residence == 0)
+                    <p>No</p>
+                @else
+                    <p>Sí</p>
+                @endif
+            </div>
+
+            <div>
+                <h5 for="name">Tiene alguna discapacidad</h5>
+                <p>{{ $profile->handicap_description }}</p>
+            </div>
                         
     </body>
 </html>

@@ -717,8 +717,11 @@ class ProfileController extends Controller
                 
                 $i++;
             }
-           
-            $pdf = PDF::loadView('pdf.profile', ["user" => $user, "profile" => $profile, "age" => $age, "academicBackground" => $academicBackground, "desiredAreaString" => $desiredAreaString, "jobBackground" => $jobBackground, "informaticKnowledgeString" => $informaticKnowledgeString]);
+            $licenseString = str_replace("license", "", $profile->driver_license);
+            $licenseString = str_replace(":true", "", $licenseString);
+            
+
+            $pdf = PDF::loadView('pdf.profile', ["user" => $user, "profile" => $profile, "age" => $age, "academicBackground" => $academicBackground, "desiredAreaString" => $desiredAreaString, "jobBackground" => $jobBackground, "informaticKnowledgeString" => $informaticKnowledgeString, "licenseString" => $licenseString]);
             return $pdf->stream('profile.pdf');
 
         }catch(\Exception $e){

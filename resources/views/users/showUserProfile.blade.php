@@ -237,7 +237,8 @@
                                         </div>
                                         <div class="col-md-8 offset-md-2">
                                             <label for="available">Disponibilidad de viaje</label>
-                                            <input type="text" class="form-control" id="licencia"  v-model="travelAvailable" disabled>
+                                            <input type="text" class="form-control" id="licencia" value="No" v-if="travelAvailable == 0" disabled>
+                                            <input type="text" class="form-control" id="licencia" value="Sí" v-if="travelAvailable == 1" disabled>
                                         </div>
                                         <div class="col-md-8 offset-md-2">
                                             <div class="form-group">
