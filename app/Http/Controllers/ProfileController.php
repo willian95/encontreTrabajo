@@ -19,6 +19,7 @@ use App\User;
 use App\Profile;
 use App\Region;
 use App\JobCategory;
+use PDF;
 
 class ProfileController extends Controller
 {
@@ -363,35 +364,15 @@ class ProfileController extends Controller
             $regionString= "";
             $desiredString="";
 
-            $i = 0;
-            foreach($request->moveRegions as $regions){
-                $regionString .= $regions['id'];
-                if($i < count($request->moveRegions)-1){
-                    $regionString .= ",";
-                }
-
-                $i++;
-            }
-
-            $i = 0;
-            foreach($request->desiredArea as $desiredArea){
-                $desiredString .= $desiredArea['id'];
-                if($i < count($request->desiredArea)-1){
-                    $desiredString .= ",";
-                }
-
-                $i++;
-            }
-
             $profile = Profile::where("user_id", \Auth::user()->id)->first();
             $profile->job_description = str_replace("\n", ". ", $request->jobDescription);
             $profile->experience_year = $request->expYears;
             $profile->availability = $request->availability;
             $profile->salary = $request->salary;
-            $profile->desired_areas = $desiredString;
+            $profile->desired_areas = $request->desiredArea;
             $profile->functions = str_replace("\n", ".", $request->functions);
             $profile->awards = str_replace("\n", ". ", $request->awards);
-            $profile->move_regions = $regionString;
+            $profile->move_regions = $request->moveRegions;
             $profile->update();
 
             $this->isProfileComplete();
@@ -643,6 +624,23 @@ class ProfileController extends Controller
             });
 
             return response()->json(["success" => true, "msg" => "Se ha enviado una solicitud al administrador"]);
+
+        }catch(\Exception $e){
+            return response()->json(["success" => false, "msg" => "Hubo un problema", "err" => $e->getMessage(), "ln" => $e->getLine()]);
+        }
+
+    }
+
+    function download($email){
+
+        try{
+
+            $user = User::where("email", $email)->first();
+            $profile = Profile::where("user_id", $user->id)->first();
+            $academicBackground = AcademicBackground::where("user_id", $user->id)->get();
+           
+            $pdf = PDF::loadView('pdf.profile', ["user" => $user]);
+            return $pdf->download('profile.pdf');
 
         }catch(\Exception $e){
             return response()->json(["success" => false, "msg" => "Hubo un problema", "err" => $e->getMessage(), "ln" => $e->getLine()]);

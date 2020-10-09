@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Offer;
+use App\Profile;
 
 class SearchController extends Controller
 {
@@ -121,6 +122,60 @@ class SearchController extends Controller
             return response()->json(["success" => false, "msg" => "Error en el servidor", "ln" => $e->getLine(), "err" => $e->getMessage()]);
         }
 
+    }
+
+    function businessIndex(){
+        return view("users.businessSearch");
+    }
+
+    function businessSearch(Request $request){
+        try{
+            
+            $usersArray = [];
+            $dataAmount = 18;
+            $skip = ($request->page - 1) * $dataAmount;
+            $usersCount = 0;
+            $count = 0;
+            $offsetCount = 0;
+
+            foreach(Profile::has("user")->with("user")->get() as $profile){
+                
+                
+                    if($count >= $dataAmount){
+                        break;
+                    }
+
+                    if(strlen($profile->desired_areas) > 0){
+                        $areasArray = explode(",", $profile->desired_areas);
+                        if($offsetCount >= $skip){
+                            if(in_array($request->search."", $areasArray)){
+                                $usersArray[] = [
+                                    "users" => $profile
+                                ];
+                                $count++;
+                            }
+                        }
+                
+                        $offsetCount++;
+
+
+                    }
+                
+                
+            }
+
+            foreach(Profile::has("user")->with("user")->get() as $profile){
+                $areasArray = explode(",", $profile->desired_areas);
+                if(in_array($request->search."", $areasArray)){
+                    $usersCount++;
+                }
+            }
+
+            return response()->json(["success" => true, "users" => $usersArray, "dataAmount" => $dataAmount, "usersCount" => $usersCount]);
+
+        }catch(\Exception $e){
+            return response()->json(["success" => false, "msg" => "Error en el servidor", "ln" => $e->getLine(), "err" => $e->getMessage()]);
+        }
     }
 
 }

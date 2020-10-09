@@ -6,7 +6,7 @@
     <div class="container mt-3 perfil-encontre-trabajo" id="profile-dev">
         <div class="loader-cover" v-if="loading == true">
             <div class="loader"></div>
-            </div>
+        </div>
             <h2>Mi Perfil</h2>
             <button class="btn btn-info" @click="validate()">Validar mi perfil</button>
             <!-- Nav tabs -->
@@ -79,12 +79,11 @@
 
                             </div>
                             <div class="col-md-4 media-perfil-c-4">
-                                <div class="a-basicos-postulante-curriculum j-center">
+                                <div class="a-basicos-postulante-curriculum j-center" v-if="curriculumPreview.substring(curriculumPreview.length - 3, curriculumPreview.length) == 'pdf' || curriculumPreview.substring(curriculumPreview.length - 3, curriculumPreview.length) == 'PDF'">
                                     <img class="basicos-postulante-c-4" src="{{ asset('user/assets/img/icons8-contrato-de-trabajo-100.png') }}" alt="postulante" v-if="curriculumPreview == ''">
 
                                     <iframe id="iframepdf" :src="curriculumPreview" v-if="curriculumPreview != ''"></iframe>
-                                    
-                                    {{--<img class="basicos-postulante-c-4" style="width: 100%; cursor: pointer;" src="{{ asset('user/assets/img/document-download-outline.png') }}" alt="postulante"  @click="download()">--}}                            
+                                                               
                                 </div>
                                 <label for="curriculum">Curriculum</label>
                                 <input type="file" class="form-control" id="curriculum" @change="onCurriculumChange" accpet="file/pdf">
@@ -218,7 +217,7 @@
               </div>
               <div id="academico" class="container tab-pane fade a-academicos"><br>
                 <div class="content a-academicos">
-                        <form action="/action_page.php">
+                        <!--<form action="/action_page.php">-->
                             <div class="row a-academicos-form">
                                 <div class="col-lg-4">
                                     <div class="form-group">
@@ -248,7 +247,7 @@
                                 </div>
                                 <div class="col-lg-4">
                                     <div class="form-group">
-                                        <label for="endDate">Fecha de Culminación</label>
+                                        <label for="endDate">Fecha de Término</label>
                                         <input type="date" class="form-control" id="endDate" v-model="endDate">
                                     </div>
                                 </div>
@@ -278,7 +277,7 @@
                                 </div>
                             </div>
                           
-                        </form>
+                        <!--</form>-->
                         <div>
                                 <div class="container content-table-a-academico">
               
@@ -290,7 +289,7 @@
                                         <th>Nivel Educacional</th>
                                         <th>Campo de Estudio</th>
                                         <th>Fecha de Inicio</th>
-                                        <th>Fecha Fin</th>
+                                        <th>Fecha Término</th>
                                         <th>Estado</th>
                                         <th>Acciones</th>
                                     
@@ -357,7 +356,7 @@
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="form-group">
-                                                <label for="editEndDate">Fecha de Culminación</label>
+                                                <label for="editEndDate">Fecha de Término</label>
                                                 <input type="date" class="form-control" id="editEndDate" v-model="editEndDate">
                                             </div>
                                         </div>
@@ -392,119 +391,11 @@
                 </div>
 
               </div>
-           
-              <div id="rlabora" class="container tab-pane fade"><br>
-                <form action="/action_page.php">
-                    <div class="row r-laboral-form">
-                        <div class="col-lg-4">
-                            <label for="jobdescription">Resumen Laboral</label><br>
-                            <textarea v-model="jobDescription" id="jobdescription" class="form-control" rows="6"></textarea>
-                            <!-- <input type="text" class="form-control" i id="#"  name="#"> -->
-                        </div>
-                        <div class="col-lg-4">
-                            <label for="functions">Descripción de funciones</label><br>
-                            <textarea v-model="functions" id="functions" class="form-control" rows="6"></textarea>
-                            <!-- <input type="text" class="form-control" i id="#"  name="#"> -->
-                        </div>
-                        <div class="col-lg-4">
-                            <label for="awards">Logros</label><br>
-                            <textarea v-model="awards" id="awards" class="form-control" rows="6"></textarea>
-                            <!-- <input type="text" class="form-control" i id="#"  name="#"> -->
-                        </div>
-                    </div>
-                  <div class="row">
-                        <div class="col ">
-                                <label for="expyears">Años de Experiencia</label>
-                                <input type="text" class="form-control"  id="expyears"  v-model="expYears" @keypress="isNumber($event)">
-                            </div>
-                            <div class="col ">
-                                <label for="available">Disponibilidad</label>
-                                <select class="form-control" id="available" v-model="availability">
-                                    <option value="">Seleccione</option>
-                                    <option value="inmediata">Inmediata</option>
-                                    <option value="en unos dias">En unos días</option>
-                                    <option value="proxima semana">Próxima semana</option>
-                                    <option value="en 2 semanas">En 2 semanas</option>
-                                    <option value="en 1 mes">En 1 mes</option>
-                                    <option value="sin disponibilidad">Sin disponibilidad</option>
-                                </select>
-                            </div>
-                            <div class="col ">
-                                  <label for="salary">Pretenciones de renta</label>
-                                  <input type="text" class="form-control"  id="salary"  v-model="salary">
-                              </div>
-                              <div class="col ">
-                                  <label for="desiredJob">Puesto deseado</label>
-                                  <input type="text" class="form-control"  id="desiredJob"  v-model="desiredJob">
-                              </div>
-                              <div class="col ">
-                                  <label for="desiredArea">Area de Preferencia</label>
-                                  <select class="form-control" id="desiredArea" v-model="desiredArea" @change="setDesiredArea()">
-                                    <option value="">Seleccione</option>
-                                    <option :value="jobCategory" v-for="jobCategory in jobCategories">@{{ jobCategory.name }}</option>
-                                  </select>
-                                  <div class="card" v-for="desiredArea in desiredAreas">
-                                    <div class="card-body">
-                                        @{{ desiredArea.name }}
-
-                                        <button type="button" class="btn" @click="removeDesiredArea(desiredArea.id)">
-                                            X
-                                        </button>
-
-                                    </div>
-                                </div>
-                              </div>
-                  </div>
-                  <div class="row">
-                  <div class="col-md-4">
-                        <label for="available">Disponibilidad de viaje</label>
-                        <select class="form-control" id="available" v-model="travelAvailable">
-                            <option value="1">Sí</option>
-                            <option value="0">No</option>
-                            
-                        </select>
-                    </div>
-                    <div class="col-md-4 ">
-                        <label for="available">Disponibilidad de cambiar residencia</label>
-                        <select class="form-control" id="available" v-model="changeResidence">
-                            <option value="1">Sí</option>
-                            <option value="0">No</option>
-                            
-                        </select>
-                    </div>
-                    <div class="col-md-4 ">
-                        <label for="region">Seleccione regiones a las cuales pueda trabajar</label>
-                        <select class="form-control" id="region" @change="selectMoveRegion()" v-model="moveRegion">
-                            <option :value="region" v-for="region in regions">@{{ region.name }}</option>
-                        </select>
-                        <small>(max. 3 regiones)</small>
-                        
-                        <div class="card" v-for="moveRegion in moveRegions">
-                            <div class="card-body">
-                                @{{ moveRegion.name }}
-
-                                <button type="button" class="btn" @click="removeMoveRegion(moveRegion.id)">
-                                    X
-                                </button>
-
-                            </div>
-                        </div>
-
-                    </div>
-                  </div>
-                    
-                  
-                </form>
-                <div class="buttom-content-rlaboral">
-                        <button type="submit" class="btn btn-primary" @click="storeJobResume()">Actualizar</button>
-                    </div>
-
-
-              </div>
+        
 
 
               <div id="labora" class="container tab-pane fade"><br>
-                <form action="/action_page.php">
+          
                     <div class="row a-laboral-form">
                     <div class="col ">
                     <div class="form-group">
@@ -526,7 +417,7 @@
                       </div>
                       <div class="col ">
                       <div class="form-group">
-                          <label for="endDateBg">Fecha de Culminación</label>
+                          <label for="endDateBg">Fecha de Término</label>
                           <input type="date" class="form-control" id="endDateBg"  v-model="endDateBg">
                       </div>
                       </div>
@@ -536,7 +427,7 @@
                         <button type="button" class="btn btn-primary" @click="storeJobBackground()">Agregar</button>
                     </div>
                   
-                </form>
+     
                 <div>
                   
                 <div class="container table-responsive-et">
@@ -548,7 +439,7 @@
                             <th>Empresa</th>
                             <th>Puesto</th>
                             <th>Fecha de Inicio</th>
-                            <th>Fecha Fin</th>
+                            <th>Fecha Término</th>
                             <th>Acciones</th>
                             </tr>
                         </thead>
@@ -603,7 +494,7 @@
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="form-group">
-                                                <label for="editEndDate">Fecha de Culminación</label>
+                                                <label for="editEndDate">Fecha de Término</label>
                                                 <input type="date" class="form-control" id="editEndDate" v-model="editEndDateBg">
                                             </div>
                                         </div>
@@ -622,180 +513,327 @@
 
               </div>
 
-
-              <div id="otro" class="container tab-pane fade"><br>
-                <div class="content-otros">
-                <form action="/action_page.php">
-                    <div class="row a-academicos-form">
-                    <div class="col-md-12 ">
-                    <div class="form-group">
-                        <label for="text">Conocimientos Informáticos </label>
-                        <input class="form-control" id="conocimientos" v-model="informaticKnowledge" @click="showInformaticKnowledgeModal()">
-                    </div>
-                    </div>
-                    <div class="col-md-12 ">
-                        <div class="form-group">
-                            <label for="text">Conocimientos y Habilidades</label>
-                            <textarea type="text" rows="8" class="form-control" id="habilidades"  v-model="knowledgeHabilities"></textarea>
+              <div id="rlabora" class="container tab-pane fade"><br>
+    
+                    <div class="row r-laboral-form">
+                        <div class="col-lg-4">
+                            <label for="jobdescription">Resumen Laboral</label><br>
+                            <textarea v-model="jobDescription" id="jobdescription" class="form-control" rows="6"></textarea>
+                            <!-- <input type="text" class="form-control" i id="#"  name="#"> -->
+                        </div>
+                        <div class="col-lg-4">
+                            <label for="functions">Descripción de funciones</label><br>
+                            <textarea v-model="functions" id="functions" class="form-control" rows="6"></textarea>
+                            <!-- <input type="text" class="form-control" i id="#"  name="#"> -->
+                        </div>
+                        <div class="col-lg-4">
+                            <label for="awards">Logros</label><br>
+                            <textarea v-model="awards" id="awards" class="form-control" rows="6"></textarea>
+                            <!-- <input type="text" class="form-control" i id="#"  name="#"> -->
                         </div>
                     </div>
-                    <div class="col-md-12 ">
-                      <div class="form-group">
-                            <label for="licencia">Licencia de Conducir</label>
-                        
-                            <div class="row">
-                                <div class="col-2">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="licenseA1" v-model="licenseA1">
-                                        <label class="form-check-label" for="licenseA1">
-                                            A1
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="col-2">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" id="licenseA2" v-model="licenseA2">
-                                        <label class="form-check-label" for="licenseA2">
-                                            A2
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="col-2">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" id="licenseA3" v-model="licenseA3">
-                                        <label class="form-check-label" for="licenseA3">
-                                            A3
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="col-2">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" id="licenseA4" v-model="licenseA4">
-                                        <label class="form-check-label" for="licenseA4">
-                                            A4
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="col-2">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" id="licenseA5" v-model="licenseA5">
-                                        <label class="form-check-label" for="licenseA5">
-                                            A5
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-2">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" id="licenseB" v-model="licenseB">
-                                        <label class="form-check-label" for="licenseB">
-                                            B
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="col-2">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" id="licenseC" v-model="licenseC">
-                                        <label class="form-check-label" for="licenseC">
-                                            C
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="col-2">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" id="licenseD" v-model="licenseD">
-                                        <label class="form-check-label" for="licenseD">
-                                            D
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="col-2">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" id="licenseE" v-model="licenseE">
-                                        <label class="form-check-label" for="licenseE">
-                                            E
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="col-2">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" id="licenseF" v-model="licenseF">
-                                        <label class="form-check-label" for="licenseF">
-                                            F
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                      </div>
-                      </div>
-
-                      <div class="col-md-12 ">
-                        <div class="form-group">
-                            <label for="text">Porcentaje de discapacidad</label>
-                            <select class="form-control" class="form-control" v-model="handicapPercentage">
-                                <option value="0">0 %</option>
-                                <option value="10">10 %</option>
-                                <option value="20">20 %</option>
-                                <option value="30">30 %</option>
-                                <option value="40">40 %</option>
-                                <option value="50">50 %</option>
-                                <option value="60">60 %</option>
-                                <option value="70">70 %</option>
-                                <option value="80">80 %</option>
-                                <option value="90">90 %</option>
-                                <option value="100">100 %</option>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label for="expyears">Años de Experiencia</label>
+                            <input type="text" class="form-control"  id="expyears"  v-model="expYears" @keypress="isNumber($event)">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="available">Disponibilidad</label>
+                            <select class="form-control" id="available" v-model="availability">
+                                <option value="">Seleccione</option>
+                                <option value="inmediata">Inmediata</option>
+                                <option value="en unos dias">En unos días</option>
+                                <option value="proxima semana">Próxima semana</option>
+                                <option value="en 2 semanas">En 2 semanas</option>
+                                <option value="en 1 mes">En 1 mes</option>
+                                <option value="sin disponibilidad">Sin disponibilidad</option>
                             </select>
                         </div>
-                      </div>
-
-                      <div class="col-md-12 ">
-                        <div class="form-group">
-                            <label for="text">Describa que tipo de discapacidad usted posee</label>
-                            <textarea class="form-control" id="discapacidad"  v-model="handicapDescription"></textarea>
+                        <div class="col-md-4">
+                            <label for="salary">Pretenciones de renta</label>
+                            <input type="text" class="form-control"  id="salary"  v-model="salary">
                         </div>
-                      </div>
-
-                      <div class="col-md-12 ">
-                        <div class="form-group">
-                            <label for="text">¿Cuáles son las condiciones necesarias para poder desarrollar su trabajo de forma óptima? Ejem.: Rampla para silla de ruedas, teclado especial braille, etc</label>
-                            <textarea class="form-control" id="necesaryCondition"  v-model="necesaryCondition"></textarea>
+                        <div class="col-md-4">
+                            <label for="desiredJob">Puesto deseado</label>
+                            <input type="text" class="form-control"  id="desiredJob"  v-model="desiredJob">
                         </div>
-                      </div>
+                        <div class="col-md-8">
+                            <label for="desiredArea">Area de Preferencia</label>
+                            <input type="text" class="form-control" v-model="desiredAreaString" @click="showDesiredAreaModal()">
+                        </div>
+                        
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label for="available">Disponibilidad de viaje</label>
+                            <select class="form-control" id="available" v-model="travelAvailable">
+                                <option value="1">Sí</option>
+                                <option value="0">No</option>
+                                
+                            </select>
+                        </div>
+                        <div class="col-md-4 ">
+                            <label for="available">Disponibilidad de cambiar residencia</label>
+                            <select class="form-control" id="available" v-model="changeResidence">
+                                <option value="1">Sí</option>
+                                <option value="0">No</option>
+                                
+                            </select>
+                        </div>
+                        <div class="col-md-4 ">
+                            <label for="region">Seleccione regiones a las cuales pueda trabajar</label>
+                            <input type="text" class="form-control" @click="showRegionsModal()" v-model="moveRegions">
+                            {{--<select class="form-control" id="region" @change="selectMoveRegion()" v-model="moveRegion">
+                                <option :value="region" v-for="region in regions">@{{ region.name }}</option>
+                            </select>
+                            <small>(max. 3 regiones)</small>
+                            
+                            <div class="card" v-for="moveRegion in moveRegions">
+                                <div class="card-body">
+                                    @{{ moveRegion.name }}
 
-                    
+                                    <button type="button" class="btn" @click="removeMoveRegion(moveRegion.id)">
+                                        X
+                                    </button>
+
+                                </div>
+                            </div>--}}
+
+                        </div>
+                    </div>
+                
+                    <div class="buttom-content-rlaboral">
+                        <button type="submit" class="btn btn-primary" @click="storeJobResume()">Actualizar</button>
+                    </div>
+
+              </div>
+
+
+            <div id="otro" class="container tab-pane fade"><br>
+                <div class="content-otros">
+
+                    <div class="row a-academicos-form">
+                        <div class="col-md-12 ">
+                            <div class="form-group">
+                                <label for="text">Conocimientos Informáticos </label>
+                                <input class="form-control" id="conocimientos" v-model="informaticKnowledge" @click="showInformaticKnowledgeModal()">
+                            </div>
+                        </div>
+                        <div class="col-md-12 ">
+                            <div class="form-group">
+                                <label for="text">Conocimientos y Habilidades</label>
+                                <textarea type="text" rows="8" class="form-control" id="habilidades"  v-model="knowledgeHabilities"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-12 ">
+                            <div class="form-group">
+                                    <label for="licencia">Licencia de Conducir</label>
+                                
+                                    <div class="row">
+                                        <div class="col-2">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="licenseA1" v-model="licenseA1">
+                                                <label class="form-check-label" for="licenseA1">
+                                                    A1
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-2">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="" id="licenseA2" v-model="licenseA2">
+                                                <label class="form-check-label" for="licenseA2">
+                                                    A2
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-2">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="" id="licenseA3" v-model="licenseA3">
+                                                <label class="form-check-label" for="licenseA3">
+                                                    A3
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-2">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="" id="licenseA4" v-model="licenseA4">
+                                                <label class="form-check-label" for="licenseA4">
+                                                    A4
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-2">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="" id="licenseA5" v-model="licenseA5">
+                                                <label class="form-check-label" for="licenseA5">
+                                                    A5
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-2">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="" id="licenseB" v-model="licenseB">
+                                                <label class="form-check-label" for="licenseB">
+                                                    B
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-2">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="" id="licenseC" v-model="licenseC">
+                                                <label class="form-check-label" for="licenseC">
+                                                    C
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-2">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="" id="licenseD" v-model="licenseD">
+                                                <label class="form-check-label" for="licenseD">
+                                                    D
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-2">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="" id="licenseE" v-model="licenseE">
+                                                <label class="form-check-label" for="licenseE">
+                                                    E
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-2">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="" id="licenseF" v-model="licenseF">
+                                                <label class="form-check-label" for="licenseF">
+                                                    F
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 ">
+                            <div class="form-group">
+                                <label for="text">Porcentaje de discapacidad</label>
+                                <select class="form-control" class="form-control" v-model="handicapPercentage">
+                                    <option value="0">0 %</option>
+                                    <option value="10">10 %</option>
+                                    <option value="20">20 %</option>
+                                    <option value="30">30 %</option>
+                                    <option value="40">40 %</option>
+                                    <option value="50">50 %</option>
+                                    <option value="60">60 %</option>
+                                    <option value="70">70 %</option>
+                                    <option value="80">80 %</option>
+                                    <option value="90">90 %</option>
+                                    <option value="100">100 %</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 ">
+                            <div class="form-group">
+                                <label for="text">Describa que tipo de discapacidad usted posee</label>
+                                <textarea class="form-control" id="discapacidad"  v-model="handicapDescription"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 ">
+                            <div class="form-group">
+                                <label for="text">¿Cuáles son las condiciones necesarias para poder desarrollar su trabajo de forma óptima? Ejem.: Rampla para silla de ruedas, teclado especial braille, etc</label>
+                                <textarea class="form-control" id="necesaryCondition"  v-model="necesaryCondition"></textarea>
+                            </div>
+                        </div>
+
+                        
                     </div>
                     <div class="buttom-content-up">
                         <button type="button" class="btn btn-primary" @click="storeOthers()">Actualizar</button>
                     </div>
-                  
-                </form>
-              </div>
+                </div>
 
-                <!-- Modal -->
-                <div class="modal fade" id="informaticKnowledgeModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-scrollable">
-                        <div class="modal-content">
+            </div>
+
+            <!-- Modal -->
+            <div class="modal fade" id="informaticKnowledgeModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-scrollable">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Conocimientos informáticos</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="card" v-for="know in informaticKnowledgeList" v-bind:class="checkCard(know.id)" @click="chooseInformaticKnowledge(know.id, know.name)">
+                            <div class="card-body">
+                                @{{ know.name }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" @click="closeInformaticKnowledge()">Cerrar</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" @click="acceptInformaticKnowledge()">Aceptar</button>
+                    </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal -->
+            <div class="modal fade" id="moveRegionsModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-scrollable">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Regiones</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="card" v-for="region in regions" v-bind:class="checkMoveRegionCard(region.id)" @click="chooseMoveRegion(region.id, region.name)">
+                            <div class="card-body">
+                                @{{ region.name }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" @click="closeMoveRegion()">Cerrar</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" @click="acceptMoveRegion()">Aceptar</button>
+                    </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal -->
+            <div class="modal fade" id="desiredAreaModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-scrollable">
+                    <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="staticBackdropLabel">Conocimientos informáticos</h5>
+                            <h5 class="modal-title" id="staticBackdropLabel">Areas de preferencia</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         <div class="modal-body">
-                            <div class="card" v-for="know in informaticKnowledgeList" v-bind:class="checkCard(know.id)" @click="chooseInformaticKnowledge(know.id, know.name)">
+
+                            <div class="card" v-for="jobCategory in jobCategories" v-bind:class="checkDesiredAreaCard(jobCategory.id)" @click="chooseDesiredArea(jobCategory.id, jobCategory.name)">
                                 <div class="card-body">
-                                    @{{ know.name }}
+                                    @{{ jobCategory.name }}
                                 </div>
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal" @click="closeInformaticKnowledge()">Cerrar</button>
-                            <button type="button" class="btn btn-primary" data-dismiss="modal" @click="acceptInformaticKnowledge()">Aceptar</button>
-                        </div>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal" @click="closeDesiredArea()">Cerrar</button>
+                            <button type="button" class="btn btn-primary" data-dismiss="modal" @click="acceptDesiredArea()">Aceptar</button>
                         </div>
                     </div>
                 </div>
+                
+            </div>
 
             
             </div>
@@ -863,7 +901,9 @@
                     travelAvailable:"{{ $user->profile->travel_available }}",
                     changeResidence:"{{ $user->profile->change_residence }}",
                     moveRegion:"",
-                    moveRegions:JSON.parse('{!! $moveRegions !!}'),
+                    moveRegions:"{{ $user->profile->move_regions }}",
+                    choosenMoveRegion:[],
+                    choosenMoveRegionNames:[],
                     jobBackgrounds:[],
                     company:"",
                     jobBg:"",
@@ -892,7 +932,7 @@
                     handicapPercentage:"{{ $user->profile->handicap_percentage }}",
                     regions:[],
                     communes:[],
-                    desiredAreas:JSON.parse('{!! $desiredAreas !!}'),
+                    //desiredAreas:JSON.parse('{!! $desiredAreas !!}'),
                     informaticKnowledgeList:[
                         {id: 1, name: "Hojas de cálculo"},
                         {id: 2, name: "Intranet"},
@@ -939,6 +979,9 @@
                     selectInformaticLnowledge:"",
                     choosenInformaticKnowledge:[],
                     choosenInformaticKnowledgeNames:[],
+                    choosenDesiredArea:[],
+                    choosenDesiredAreaNames:[],
+                    desiredAreaString:"{{ $user->profile->desired_areas }}"
 
                 }
             },
@@ -949,6 +992,31 @@
                     $(".tab-pane").css("display", "none")
                     $("#"+tab).css("display", "block")
                     $("#"+tab).addClass("active")
+                },
+                chooseMoveRegion(id, name){
+
+
+                    var exist = false
+                    var index = 0
+                    this.choosenMoveRegion.forEach((data, i) => {
+
+                        if(data == id){
+                            exist = true
+                            index = i
+                        }
+
+                    })
+
+                    if(!exist){
+                        if(this.choosenMoveRegion.length < 3){
+                            this.choosenMoveRegion.push(id+"")
+                            this.choosenMoveRegionNames.push(name)
+                        }
+                    }else{
+                        this.choosenMoveRegion.splice(index, 1)
+                        this.choosenMoveRegionNames.splice(index, 1)
+                    }
+
                 },
                 chooseInformaticKnowledge(id, name){
 
@@ -972,12 +1040,50 @@
                     }
 
                 },
+                chooseDesiredArea(id, name){
+                    var exist = false
+                    var index = 0
+                    this.choosenDesiredArea.forEach((data, i) => {
+
+                        if(data == id){
+                            exist = true
+                            index = i
+                        }
+
+                    })
+
+                    if(!exist){
+                        this.choosenDesiredArea.push(id+"")
+                        this.choosenDesiredAreaNames.push(name)
+                    }else{
+                        this.choosenDesiredArea.splice(index, 1)
+                        this.choosenDesiredAreaNames.splice(index, 1)
+                    }
+                },
                 acceptInformaticKnowledge(){
                     this.informaticKnowledge = this.choosenInformaticKnowledgeNames.toString()
                 },
                 closeInformaticKnowledge(){
                     if(this.informaticKnowledge == ""){
                         this.informaticKnowledge = ""
+                    }
+                    
+                },
+                acceptDesiredArea(){
+                    this.desiredAreaString = this.choosenDesiredAreaNames.toString()
+                },
+                closeDesiredArea(){
+                    if(this.desiredAreaString == ""){
+                        this.desiredAreaString = ""
+                    }
+                    
+                },
+                acceptMoveRegion(){
+                    this.moveRegions = this.choosenMoveRegionNames.toString()
+                },
+                closeMoveRegion(){
+                    if(this.moveRegions == ""){
+                        this.moveRegions = ""
                     }
                     
                 },
@@ -997,6 +1103,26 @@
                             })
 
                             this.fetchCommunes()
+                            if(this.moveRegions.length > 0){
+                    
+                                let explodeRegions = this.moveRegions.split(",")
+                                this.choosenMoveRegion = explodeRegions
+
+                                this.regions.forEach((data) => {
+                                    
+                                    this.choosenMoveRegion.forEach((data2) => {
+
+                                        if(data.id == data2){
+                                            this.choosenMoveRegionNames.push(data.name)
+                                        }
+
+                                    })
+                                    
+                                })
+
+                                this.moveRegions = this.choosenMoveRegionNames.toString()
+                            }
+                            
 
                         }
 
@@ -1040,6 +1166,28 @@
                     return name
 
                 }, 
+                checkDesiredAreaCard(id){
+
+                    let name = ""
+                    //console.log("checkcard", id, this.choosenInformaticKnowledge)
+                    if(this.choosenDesiredArea.includes(id+"")){
+                        
+                        name = "custom-card-active"
+                    }
+                        
+                    return name
+
+                }, 
+                checkMoveRegionCard(id){
+                    let name = ""
+                    //console.log("checkcard", id, this.choosenInformaticKnowledge)
+                    if(this.choosenMoveRegion.includes(id+"")){
+                        
+                        name = "custom-card-active"
+                    }
+                        
+                    return name
+                },
                 onImageChange(e){
                     this.image = e.target.files[0];
 
@@ -1138,6 +1286,12 @@
                 },
                 showInformaticKnowledgeModal(){
                     $("#informaticKnowledgeModal").modal('show');
+                },
+                showDesiredAreaModal(){
+                    $("#desiredAreaModal").modal('show');
+                },
+                showRegionsModal(){
+                    $("#moveRegionsModal").modal('show');
                 },
                 update(){
 
@@ -1243,6 +1397,25 @@
                         if(res.data.success == true){
 
                             this.jobCategories = res.data.jobCategories
+
+                            //this.desiredAreaString = this.choosenDesiredAreaNames.toString()
+
+                            let explodeDesiredArea = this.desiredAreaString.split(",")
+                            this.choosenDesiredArea = explodeDesiredArea
+
+                            this.jobCategories.forEach((data) => {
+                                
+                                this.choosenDesiredArea.forEach((data2) => {
+
+                                    if(data.id == data2){
+                                        this.choosenDesiredAreaNames.push(data.name)
+                                    }
+
+                                })
+                                
+                            })
+
+                            this.desiredAreaString = this.choosenDesiredAreaNames.toString()
                             
                         }else{
 
@@ -1262,7 +1435,7 @@
 
                     if(this.state != 'en curso' && this.endDate == ""){
                         this.loading = false
-                        alertify.error("Fecha de culminación es requerida")
+                        alertify.error("Fecha de término es requerida")
 
                     }else{
 
@@ -1330,7 +1503,7 @@
 
                     if(this.editState != 'en curso' && this.editEndDate == ""){
                         this.loading = false
-                        alertify.error("Fecha de culminación es requerida")
+                        alertify.error("Fecha de término es requerida")
 
                     }else{
 
@@ -1570,10 +1743,10 @@
                                 availability:this.availability,
                                 salary:this.salary,
                                 desiredJob:this.desiredJob,
-                                desiredArea:this.desiredAreas,
+                                desiredArea:this.choosenDesiredArea.toString(),
                                 functions:this.functions,
                                 awards:this.awards,
-                                moveRegions:this.moveRegions
+                                moveRegions:this.choosenMoveRegion.toString()
                             })
                             .then(res => {
                                 this.loading = false
@@ -1915,8 +2088,6 @@
                     })
                     
                 })
-
-                this.informaticKnowledge = this.choosenInformaticKnowledgeNames.toString()
 
                 this.toggleTabs("basico")
                 this.fetchCountries()

@@ -13,6 +13,8 @@
                 <h3>Curriculum aún no ha sido verificado</h3>
             @endif
 
+            <a class="btn btn-info" href="{{ url('/profile/download/'.$user->email) }}" target="_blank">Descargar PDF</a>
+
             <div class="row">
                 <div class="col-md-4 media-perfil-c-4">
                     <div class="a-basicos-postulante-img j-center"><img class="basicos-postulante-c-4" :src="imagePreview" alt="postulante"></div>
@@ -28,13 +30,17 @@
                         <label class="text-center-input-curriculum" for="video">Video de Presentación</label>
                 </div>
                 <div class="col-md-4 media-perfil-c-4">
-                    <div class="a-basicos-postulante-curriculum j-center">
+                    <div class="a-basicos-postulante-curriculum j-center" v-if="curriculumPreview.substring(curriculumPreview.length - 3, curriculumPreview.length) == 'pdf' || curriculumPreview.substring(curriculumPreview.length - 3, curriculumPreview.length) == 'PDF'">
                             <img class="basicos-postulante-c-4" src="{{ asset('user/assets/img/icons8-contrato-de-trabajo-100.png') }}" alt="postulante" v-if="curriculumPreview == ''">
-                        <iframe id="iframepdf" :src="curriculumPreview" v-if="curriculumPreview != ''"></iframe>
-                        {{--<img class="basicos-postulante-c-4" style="width: 100%; cursor: pointer;" src="{{ asset('user/assets/img/document-download-outline.png') }}" alt="postulante" v-if="curriculumPreview != ''" @click="download()">--}}                               
+                        <iframe id="iframepdf" :src="curriculumPreview" v-if="curriculumPreview != ''"></iframe>                               
                     </div>
                     <label class="text-center-input-curriculum" for="curriculum">Curriculum</label>
+                    <p v-if="curriculumPreview">
+                        <button class="btn btn-success" @click="download()">Descargar</button>
+                    </p>
                 </div>
+
+                
         </div>
         <div class="row">
             <div class="col-md-9">
@@ -240,6 +246,17 @@
                                         </div>
                                 </div>
                             </div>
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-lg-4" v-for="reference in references">
+                                        <p>Señor (a) @{{ reference.person_name }}</p>
+                                        <p>@{{ reference.business_name }}</p>
+                                        <p>@{{ reference.person_job_position }}</p>
+                                        <p>Fono: @{{ reference.person_telephone }}</p>
+                                        <p>@{{ reference.person_email }}</p>
+                                    </div>
+                                </div>
+                            </div>
                     </div>
                 </div>
             </div>
@@ -388,7 +405,7 @@
                     selectInformaticLnowledge:"",
                     choosenInformaticKnowledge:[],
                     choosenInformaticKnowledgeNames:[],
-                    
+                    references:[]
                 }
             },
             methods: {
@@ -526,6 +543,13 @@
                     })
                     
 
+                },
+                fetchJobReferences(){
+
+                    axios.get("{{ url('/my-references/fetch-by-id') }}"+"/"+"{{ $user->id }}").then(res => {
+                        this.references = res.data.references
+                    })
+
                 }
                     
             },
@@ -594,6 +618,7 @@
                 this.fetchAcademicBg()
                 this.fetchJobBackground()
                 this.fetchJobCategories()
+                this.fetchJobReferences()
                 window.setTimeout(() => {
                     this.fetchCommunes()
                 }, 1000);

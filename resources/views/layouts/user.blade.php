@@ -215,7 +215,9 @@
                             <ul class="menu-lateral-usuario_ul">
                                 <li class="menu-lateral-usuario_ul_li" ><a href="{{ url('home') }}"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/ico-editar.png') }}" alt=""><p>Inicio</p></a></li>
                                 {{--<li class="menu-lateral-usuario_ul_li" ><a href="{{ url('/user/offer') }}"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/ico-editar.png') }}" alt=""><p>Ofertas</p></a></li>--}}
+                                
                                 <li class="menu-lateral-usuario_ul_li" ><a href="{{ url('/profile/user') }}"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/ico-editar.png') }}" alt=""><p>Mi perfil</p></a></li>
+                                <li class="menu-lateral-usuario_ul_li" ><a href="{{ url('/my-references') }}"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/ico-editar.png') }}" alt=""><p>Referencias laborales</p></a></li>
                                 <li class="menu-lateral-usuario_ul_li" ><a href="{{ url('/profile/show/'.\Auth::user()->email) }}"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/ico-editar.png') }}" alt=""><p>Mi Curriculum</p></a></li>
                                 <li class="menu-lateral-usuario_ul_li" ><a href="{{ url('/my-applies') }}"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/control.png') }}" alt=""><p>Mis postulaciones</p></a></li>
                                 <li class="menu-lateral-usuario_ul_li" ><a href="{{ url('/logout') }}"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/logout.png') }}" alt=""><p>Cerrar sesión</p></a></li>
@@ -240,19 +242,10 @@
                             <li><a href="{{ url('/home') }}">Inicio</a></li>
                             @if(\Auth::user()->role_id == 2)
                                 <li><a href="{{ url('/profile/user') }}">Mi perfil</a></li>
+                                <li><a href="{{ url('/my-references') }}">Referencias laborales</a></li>
                                 <li><a href="{{ url('/my-applies') }}">Mis aplicaciones</a></li>
-                            @elseif(\Auth::user()->role_id == 3)
-                                <li><a href="{{ url('/profile/business') }}">Mi perfil</a></li>
                             @endif
                             
-
-                            @if(\Auth::user()->role_id == 3)
-                                @if(\Auth::user()->is_profile_complete == 1)
-                                    <li><a href="{{ url('/offers/create') }}">Crear oferta</a></li>
-                                @endif
-                                <li><a href="{{ url('/plans/available') }}">Planes</a></li>
-                                <li><a href="{{ url('/my-proposals') }}">Ofertas Respondidas</a></li>
-                            @endif
     
                         </ul>
                         <!-- <div class="dropdown d-none-c responsive">

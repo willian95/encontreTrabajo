@@ -39,11 +39,15 @@ Route::get("/communes/fetch/{region_id}", "CommuneController@fetchByRegion");
 Route::get("/job-categories/fetch-all", "JobCategoryController@fetchAll");
 
 Route::get('/home', "HomeController@index")->middleware('auth');
+Route::get('/my-offers', function(){
+    return view("users.businessIndex");
+})->middleware("business")->middleware('auth');
 Route::get("/user/offer", function(){
     return view("users.index");
 });
 
 Route::get("/profile/show/{email}", "ProfileController@showProfile")->middleware("auth");
+Route::get("/profile/download/{email}", "ProfileController@download")->middleware("auth");
 
 Route::post('/profiles/show/academic/fetch', "ProfileController@fetchShowAcademicBackground")->middleware('auth');
 Route::post('/profiles/show/job-background/fetch', "ProfileController@fetchShowJobBackground")->middleware('auth');
@@ -103,6 +107,16 @@ Route::get("/country/fetch", "CountriesController@fetch");
 
 Route::get("/search", "SearchController@index");
 Route::post("/search", "SearchController@search");
+
+Route::get("/business/search", "SearchController@businessIndex");
+Route::post("/business/search", "SearchController@businessSearch");
+
+Route::get("/my-references", "JobReferenceController@index");
+Route::get("/my-references/fetch", "JobReferenceController@fetch");
+Route::get("/my-references/fetch-by-id/{id}", "JobReferenceController@fetchById");
+Route::post("/my-references/store", "JobReferenceController@store");
+Route::post("/my-references/update", "JobReferenceController@update");
+Route::post("/my-references/delete", "JobReferenceController@delete");
 
 /*Route::get("/usuario", function(){
     return view("users.usersView");
