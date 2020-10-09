@@ -45,7 +45,7 @@
                     </div>
                     
                     <div class="col-12">
-                        <div class="buttom-content-add text-center" v-if="references < 3">
+                        <div class="buttom-content-add text-center" v-if="references.length < 3">
                             <button type="button" class="btn btn-primary" @click="store()">Agregar</button>
                         </div>
                     </div>
