@@ -203,10 +203,10 @@
             </div>
 
            
-                <table>
+                <table class="table">
                     <tr>
                         @foreach($jobReferences as $reference)
-                        <td style="width: 60px;">
+                        <td>
                      
                             <p>Señor (a) {{ $reference->person_name }}</p>
                             <p>{{ $reference->business_name }}</p>
