@@ -14,20 +14,20 @@
                 <h2 class="text-center text-info" style="padding-top: 20px;">Antecedentes básicos</h2>
             </div>
             <div>
-                <h5 for="name">Nombre Completo</h5>
+                <p for="name">Nombre Completo</p>
                 <h3>{{ $user->name }}</h3>
             </div>
             <div>
-                <label for="rut">RUT</label>
-                {{ $user->rut }}
+                <p for="name">RUT</p>
+                <h3>{{ $user->rut }}</h3>
             </div>
             <div>
-                <label for="birthDate">Fecha de Nacimiento</label>
-                {{ $profile->birth_date }}
+                <p for="name">Fecha de Nacimiento</p>
+                <h3>{{ $profile->birth_date }}</h3>
             </div>
             <div>
-                <label for="birthDate">Edad</label>
-                <input type="text" class="form-control" value="{{ $age }}" disabled>
+                <p for="name">Edad</p>
+                <h3>{{ $age }}</h3>
             </div>
             {{--<div class="col-md-8 offset-md-2 pb-20">
                 <label for="gender">Sexo</label><br>
