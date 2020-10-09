@@ -175,7 +175,7 @@
 
             <div>
                 <h5 for="name">Conocimientos Informáticos</h5>
-                <p>{{ $desiredAreaString }}</p>
+                <p>{{ $informaticKnowledgeString }}</p>
             </div>
                         
     </body>

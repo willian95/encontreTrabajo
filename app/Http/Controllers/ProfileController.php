@@ -717,10 +717,8 @@ class ProfileController extends Controller
                 
                 $i++;
             }
-
-            dd($informaticKnowledgeString);
            
-            $pdf = PDF::loadView('pdf.profile', ["user" => $user, "profile" => $profile, "age" => $age, "academicBackground" => $academicBackground, "desiredAreaString" => $desiredAreaString, "jobBackground" => $jobBackground]);
+            $pdf = PDF::loadView('pdf.profile', ["user" => $user, "profile" => $profile, "age" => $age, "academicBackground" => $academicBackground, "desiredAreaString" => $desiredAreaString, "jobBackground" => $jobBackground, "informaticKnowledgeString" => $informaticKnowledgeString]);
             return $pdf->stream('profile.pdf');
 
         }catch(\Exception $e){
