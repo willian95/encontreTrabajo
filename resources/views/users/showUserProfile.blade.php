@@ -179,6 +179,7 @@
                                         </div>
                                         <div class="col-md-8 offset-md-2 pb-20">
                                             <label for="desiredArea">Area de Preferencia</label>
+                                            <input type="text" class="form-control" v-model="desiredAreaString">
                                         </div>                                    
                                 </div>
                             </div>
@@ -405,7 +406,10 @@
                     selectInformaticLnowledge:"",
                     choosenInformaticKnowledge:[],
                     choosenInformaticKnowledgeNames:[],
-                    references:[]
+                    references:[],
+                    choosenDesiredArea:[],
+                    choosenDesiredAreaNames:[],
+                    desiredAreaString:"{{ $profile->desired_areas }}"
                 }
             },
             methods: {
@@ -525,6 +529,23 @@
                         if(res.data.success == true){
 
                             this.jobCategories = res.data.jobCategories
+
+                            let explodeDesiredArea = this.desiredAreaString.split(",")
+                            this.choosenDesiredArea = explodeDesiredArea
+
+                            this.jobCategories.forEach((data) => {
+                                
+                                this.choosenDesiredArea.forEach((data2) => {
+
+                                    if(data.id == data2){
+                                        this.choosenDesiredAreaNames.push(data.name)
+                                    }
+
+                                })
+                                
+                            })
+
+                            this.desiredAreaString = this.choosenDesiredAreaNames.toString()
                             
                         }
 

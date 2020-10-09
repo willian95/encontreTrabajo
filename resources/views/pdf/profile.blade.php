@@ -113,6 +113,32 @@
                 </tbody>
             </table>
 
+            <div class="col-12">
+                <h2 class="text-center text-info" style="padding-top: 20px;">Resumen Laboral</h2>
+            </div>   
+
+            <div>
+                <h5 for="name">Resumen laboral</h5>
+                <p>{{ $profile->job_description }}</p>
+            </div> 
+
+            <div>
+                <h5 for="name">Año de experiencia</h5>
+                <p>{{ $profile->experience_year }}</p>
+            </div> 
+
+            <div>
+                <h5 for="name">Pretenciones de renta</h5>
+                <p>{{ $profile->salary }}</p>
+            </div> 
+
+            <div>
+                <h5 for="name">Puesto deseado</h5>
+                <p>{{ $profile->desired_job }}</p>
+            </div> 
+
+
+
                                 
                         
     </body>
