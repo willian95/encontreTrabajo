@@ -15,19 +15,19 @@
             </div>
             <div>
                 <p for="name">Nombre Completo</p>
-                <h3>{{ $user->name }}</h3>
+                <h5>{{ $user->name }}</h5>
             </div>
             <div>
                 <p for="name">RUT</p>
-                <h3>{{ $user->rut }}</h3>
+                <h5>{{ $user->rut }}</h5>
             </div>
             <div>
                 <p for="name">Fecha de Nacimiento</p>
-                <h3>{{ $profile->birth_date }}</h3>
+                <h5>{{ $profile->birth_date }}</h5>
             </div>
             <div>
                 <p for="name">Edad</p>
-                <h3>{{ $age }}</h3>
+                <h5>{{ $age }}</h5>
             </div>
             {{--<div class="col-md-8 offset-md-2 pb-20">
                 <label for="gender">Sexo</label><br>
