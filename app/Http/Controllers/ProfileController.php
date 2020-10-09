@@ -19,7 +19,7 @@ use App\User;
 use App\Profile;
 use App\Region;
 use App\JobCategory;
-use App\JobReferece;
+use App\JobReference;
 use PDF;
 
 class ProfileController extends Controller
