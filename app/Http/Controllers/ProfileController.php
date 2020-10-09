@@ -641,7 +641,7 @@ class ProfileController extends Controller
             $age = Carbon::parse($profile->birth_date)->age;
            
             $pdf = PDF::loadView('pdf.profile', ["user" => $user, "profile" => $profile, "age" => $age]);
-            return $pdf->download('profile.pdf');
+            return $pdf->stream('profile.pdf');
 
         }catch(\Exception $e){
             return response()->json(["success" => false, "msg" => "Hubo un problema", "err" => $e->getMessage(), "ln" => $e->getLine()]);
