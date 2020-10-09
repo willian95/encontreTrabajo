@@ -19,6 +19,7 @@ use App\User;
 use App\Profile;
 use App\Region;
 use App\JobCategory;
+use App\JobReferece;
 use PDF;
 
 class ProfileController extends Controller
@@ -639,6 +640,7 @@ class ProfileController extends Controller
             $profile = Profile::where("user_id", $user->id)->first();
             $academicBackground = AcademicBackground::where("user_id", $user->id)->get();
             $jobBackground = JobBackground::where("user_id", $user->id)->get();
+            $jobReferences = JobReference::where("user_id", $user->id)->get();
             $age = Carbon::parse($profile->birth_date)->age;
             $informaticKnowledgeList = [
                 ["id" => 1, "name"=> "Hojas de cálculo"],
@@ -721,7 +723,7 @@ class ProfileController extends Controller
             $licenseString = str_replace(":true", "", $licenseString);
             
 
-            $pdf = PDF::loadView('pdf.profile', ["user" => $user, "profile" => $profile, "age" => $age, "academicBackground" => $academicBackground, "desiredAreaString" => $desiredAreaString, "jobBackground" => $jobBackground, "informaticKnowledgeString" => $informaticKnowledgeString, "licenseString" => $licenseString]);
+            $pdf = PDF::loadView('pdf.profile', ["user" => $user, "profile" => $profile, "age" => $age, "academicBackground" => $academicBackground, "desiredAreaString" => $desiredAreaString, "jobBackground" => $jobBackground, "informaticKnowledgeString" => $informaticKnowledgeString, "licenseString" => $licenseString, "jobReferences" => $jobReferences]);
             return $pdf->stream('profile.pdf');
 
         }catch(\Exception $e){
