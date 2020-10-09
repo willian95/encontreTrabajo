@@ -640,7 +640,7 @@ class ProfileController extends Controller
             $academicBackground = AcademicBackground::where("user_id", $user->id)->get();
             $age = Carbon::parse($profile->birth_date)->age;
            
-            $pdf = PDF::loadView('pdf.profile', ["user" => $user, "profile" => $profile, "age" => $age]);
+            $pdf = PDF::loadView('pdf.profile', ["user" => $user, "profile" => $profile, "age" => $age, "academicBackground" => $academicBackground]);
             return $pdf->stream('profile.pdf');
 
         }catch(\Exception $e){
