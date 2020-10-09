@@ -635,7 +635,7 @@ class ProfileController extends Controller
 
         try{
 
-            $user = User::where("email", $email)->first();
+            $user = User::where("email", $email)->with("region", "commune")->first();
             $profile = Profile::where("user_id", $user->id)->first();
             $academicBackground = AcademicBackground::where("user_id", $user->id)->get();
             $age = Carbon::parse($profile->birth_date)->age;
