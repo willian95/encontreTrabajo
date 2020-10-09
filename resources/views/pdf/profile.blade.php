@@ -134,17 +134,40 @@
 
             <div>
                 <h5 for="name">Puesto deseado</h5>
-                <p>{{ $profile->desired_job }}</p>
+                <p>{{ $user->desired_job }}</p>
             </div> 
 
             <div>
                 <h5 for="name">Areas de preferencia</h5>
                 <p>{{ $desiredAreaString }}</p>
-            </div> 
+            </div>
 
+            <div class="col-12">
+                <h2 class="text-center text-info" style="padding-top: 20px;">Antecedentes Laborales</h2>
+            </div>   
 
-
-                                
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Empresa</th>
+                        <th>Puesto</th>
+                        <th>Fecha de inicio</th>
+                        <th>Fecha Término</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($jobBackground as $job)
+                        <tr>
+                            <th>{{ $loop->index + 1 }}</th>
+                            <td>{{ $job->company }}</td>
+                            <td>{{ $job->job }}</td>
+                            <td>{{ Carbon\Carbon::parse($job->start_date)->format("d-m-Y") }}</td>
+                            <td>{{ Carbon\Carbon::parse($job->end_date)->format("d-m-Y") }}</td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>            
                         
     </body>
 </html>

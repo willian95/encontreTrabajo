@@ -638,6 +638,7 @@ class ProfileController extends Controller
             $user = User::where("email", $email)->with("region", "commune")->first();
             $profile = Profile::where("user_id", $user->id)->first();
             $academicBackground = AcademicBackground::where("user_id", $user->id)->get();
+            $jobBackground = JobBackground::where("user_id", $user->id)->get();
             $age = Carbon::parse($profile->birth_date)->age;
 
             $desireAreaExplode = explode(",", $profile->desired_areas);
@@ -648,7 +649,7 @@ class ProfileController extends Controller
             foreach($desiredAreasArray as $desiredArea){
 
                 $desiredAreaString .= $desiredArea->name;   
-                if($i < count($desiredAreasArray)){
+                if($i < count($desiredAreasArray) - 1){
                     $desiredAreaString .= ", ";
                 }
 
@@ -656,7 +657,7 @@ class ProfileController extends Controller
                 $i++;
             }
            
-            $pdf = PDF::loadView('pdf.profile', ["user" => $user, "profile" => $profile, "age" => $age, "academicBackground" => $academicBackground, "desiredAreaString" => $desiredAreaString]);
+            $pdf = PDF::loadView('pdf.profile', ["user" => $user, "profile" => $profile, "age" => $age, "academicBackground" => $academicBackground, "desiredAreaString" => $desiredAreaString, "jobBackground" => $jobBackground]);
             return $pdf->stream('profile.pdf');
 
         }catch(\Exception $e){
