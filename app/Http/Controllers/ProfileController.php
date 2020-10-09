@@ -707,7 +707,7 @@ class ProfileController extends Controller
             foreach($informaticKnowledgeArray as $informaticKnowledge){
 
                 foreach($informaticKnowledgeList as $list){
-                    if($list['id'] = $informaticKnowledge){
+                    if($list['id'] == $informaticKnowledge){
                         $informaticKnowledgeString .= $list['name'];
                         if($i < count($informaticKnowledgeArray) - 1){
                             $informaticKnowledgeString .= ", ";
