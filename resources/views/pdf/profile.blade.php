@@ -11,11 +11,11 @@
 
 
             <div class="col-12">
-                <h2 class="text-center letra-azul" style="padding-top: 20px;">Antecedentes básicos</h2>
+                <h2 class="text-center text-info" style="padding-top: 20px;">Antecedentes básicos</h2>
             </div>
             <div>
-                <label for="name">Nombre Completo</label>
-                {{ $user->name }}
+                <h5 for="name">Nombre Completo</h5>
+                <h3>{{ $user->name }}</h3>
             </div>
             <div>
                 <label for="rut">RUT</label>
