@@ -94,9 +94,23 @@
                         <th>Nivel Educacional</th>
                         <th>Campo de Estudio</th>
                         <th>Fecha de Inicio</th>
-                        <th>Fecha de Termino</th>
+                        <th>Fecha Termino</th>
+                        <th>Estado</th>
                     </tr>
                 </thead>
+                <tbody>
+                    @foreach($academicBackground as $academic)
+                        <tr>
+                            <th>{{ $loop->index + 1 }}</th>
+                            <td>{{ $academic->college }}</td>
+                            <td>{{ $academic->educational_level }}</td>
+                            <td>{{ $academic->study_field }}</td>
+                            <td>{{ Carbon\Carbon::parse($academic->start_date)->format("d-m-Y") }}</td>
+                            <td>{{ Carbon\Carbon::parse($academic->end_date)->format("d-m-Y") }}</td>
+                            <td>{{ $academic->state }}</td>
+                        </tr>
+                    @endforeach
+                </tbody>
             </table>
 
                                 
