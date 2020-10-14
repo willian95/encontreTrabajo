@@ -111,7 +111,7 @@
                                         <div class="form-group">
                                             <label for="simplePostAmounts">Publicaciones simples</label>
                                             <div class="display:flex">
-                                                <input type="text" class="form-control" id="simplePostAmounts" v-model="simplePostAmounts" @keypress="isNumber()" :readonly="simplePostInfinity">
+                                                <input type="text" class="form-control" id="simplePostAmounts" v-model="simplePostAmounts" @keypress="isNumber()" :readonly="simplePostInfinity == 1">
                                                 <button class="btn btn-secondary" @click="toggleSimplePostInfinity()">Infinitas</button>
                                             </div>
                                         </div>
@@ -268,7 +268,8 @@
                     this.downloadProfilesAmounts= plan.download_profiles
                     this.position = plan.position
                     this.simplePostInfinity= plan.simple_post_infinity
-
+                    console.log(plan)
+                    //
                     if(plan.simple_post_infinity == 1){
                         this.simplePostAmounts = "infinitas"
                     }
