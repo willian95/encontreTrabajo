@@ -7,7 +7,7 @@
 
             <div class="col-12 recor-a-cp">
                 @if(\Auth::user()->is_profile_complete == 0)
-                    <p class="rec-cperfil">Debes completar tu perfil para visualizar ofertas</p>
+                    <p class="rec-cperfil">Debes completar tu perfil para postularte a ofertas</p>
                     <img class="img-cperfil-alert" src="{{ asset('user/assets/img/alert.png') }}" alt="Alerta completa tu perfil">
                 @endif
             </div>
@@ -26,11 +26,11 @@
                         <p class="card-text text-center">@{{ offer.title }}</p>
                         
 
-                        @if(\Auth::user()->is_profile_complete == 1)
-                            <p class="text-center">
-                                <a :href="'{{ url('/offers/detail/') }}'+'/'+offer.slug" class="btn btn-primary">Ver más</a>
-                            </p>
-                        @endif
+                       
+                        <p class="text-center">
+                            <a :href="'{{ url('/offers/detail/') }}'+'/'+offer.slug" class="btn btn-primary">Ver más</a>
+                        </p>
+                    
 
                     </div>
                 </div>

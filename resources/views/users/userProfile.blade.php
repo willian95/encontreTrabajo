@@ -8,7 +8,7 @@
             <div class="loader"></div>
         </div>
             <h2>Mi Perfil</h2>
-            <button class="btn btn-info" @click="validate()">Validar mi perfil</button>
+            <!--<button class="btn btn-info" @click="validate()">Validar mi perfil</button>-->
             <!-- Nav tabs -->
             <ul class="nav nav-tabs ">
               <li class="nav-item tabs-perfil">
@@ -1295,73 +1295,61 @@
                 },
                 update(){
 
-                    swal({
-                        title: "¿Estás seguro?",
-                        text: "Al cambiar tu perfil deberás persionar el botón validar mi perfil al finalizar la edición!",
-                        icon: "warning",
-                        buttons: true,
-                        dangerMode: true,
-                    })
-                    .then((willDelete) => {
-                        if (willDelete) {
-                            this.loading = true
-                            axios.post("{{ url('/profile/update') }}",{
-                                image:this.image,
-                                video:this.video,
-                                curriculum:this.curriculum,
-                                name:this.name,
-                                lastname:this.lastname,
-                                rut:this.rut,
-                                birthDate:this.birthDate,
-                                gender:this.gender,
-                                civilState:this.civilState,
-                                address:this.address,
-                                country:this.country,
-                                region:this.region.id,
-                                commune:this.commune,
-                                handicap:this.handicap,
-                                phone:this.phone,
-                                homePhone:this.homePhone,
-                                nationality:this.nationality
-                            })
-                            .then(res => {
-
-                                this.loading = false
-                                if(res.data.success == true){
-                                    
-                                    swal({
-                                        title:"Tus datos se actualizaron de forma correcta.",
-                                        text:res.data.msg,
-                                        icon:"success"
-                                    })
-                                    .then(() => {
-                                        window.location.reload()
-                                    })
-
-                                    
-
-                                }else{
-
-                                    swal({
-                                        title:"Lo sentimos",
-                                        text:res.data.msg,
-                                        icon:"error"
-                                    })
-
-                                }
-
-                            })
-                            .catch(err => {
-                                this.loading = false
-                                $.each(err.response.data.errors, function(key, value) {
-                                    alertify.error(value[0])
                     
-                                });
+                    this.loading = true
+                    axios.post("{{ url('/profile/update') }}",{
+                        image:this.image,
+                        video:this.video,
+                        curriculum:this.curriculum,
+                        name:this.name,
+                        lastname:this.lastname,
+                        rut:this.rut,
+                        birthDate:this.birthDate,
+                        gender:this.gender,
+                        civilState:this.civilState,
+                        address:this.address,
+                        country:this.country,
+                        region:this.region.id,
+                        commune:this.commune,
+                        handicap:this.handicap,
+                        phone:this.phone,
+                        homePhone:this.homePhone,
+                        nationality:this.nationality
+                    })
+                    .then(res => {
+
+                        this.loading = false
+                        if(res.data.success == true){
+                            
+                            swal({
+                                title:"Tus datos se actualizaron de forma correcta.",
+                                text:res.data.msg,
+                                icon:"success"
+                            })
+                            .then(() => {
+                                window.location.reload()
                             })
 
+                            
+
+                        }else{
+
+                            swal({
+                                title:"Lo sentimos",
+                                text:res.data.msg,
+                                icon:"error"
+                            })
 
                         }
-                    });
+
+                    })
+                    .catch(err => {
+                        this.loading = false
+                        $.each(err.response.data.errors, function(key, value) {
+                            alertify.error(value[0])
+            
+                        });
+                    })
 
                 },
                 download(){
@@ -1727,58 +1715,47 @@
                 },
                 storeJobResume(){
 
-                    swal({
-                        title: "¿Estás seguro?",
-                        text: "Al cambiar tu perfil deberás persionar el botón validar mi perfil al finalizar la edición!",
-                        icon: "warning",
-                        buttons: true,
-                        dangerMode: true,
+                    
+                    this.loading = true
+                    axios.post("{{ url('/profiles/job-resume/store') }}", {
+                        jobDescription:this.jobDescription,
+                        expYears:this.expYears,
+                        availability:this.availability,
+                        salary:this.salary,
+                        desiredJob:this.desiredJob,
+                        desiredArea:this.choosenDesiredArea.toString(),
+                        functions:this.functions,
+                        awards:this.awards,
+                        moveRegions:this.choosenMoveRegion.toString()
                     })
-                    .then((willDelete) => {
-                        if (willDelete) {
-                            this.loading = true
-                            axios.post("{{ url('/profiles/job-resume/store') }}", {
-                                jobDescription:this.jobDescription,
-                                expYears:this.expYears,
-                                availability:this.availability,
-                                salary:this.salary,
-                                desiredJob:this.desiredJob,
-                                desiredArea:this.choosenDesiredArea.toString(),
-                                functions:this.functions,
-                                awards:this.awards,
-                                moveRegions:this.choosenMoveRegion.toString()
-                            })
-                            .then(res => {
-                                this.loading = false
-                                if(res.data.success == true){
-                                    
-                                    swal({
-                                        title:"Genial",
-                                        text:res.data.msg,
-                                        icon:"success"
-                                    })
-
-                                }else{
-
-                                    swal({
-                                        title:"Lo sentimos",
-                                        text:res.data.msg,
-                                        icon:"error"
-                                    })
-
-                                }
-
-                            })
-                            .catch(err => {
-                                this.loading = false
-                                $.each(err.response.data.errors, function(key, value) {
-                                    alertify.error(value[0])
-                                });
+                    .then(res => {
+                        this.loading = false
+                        if(res.data.success == true){
+                            
+                            swal({
+                                title:"Genial",
+                                text:res.data.msg,
+                                icon:"success"
                             })
 
+                        }else{
+
+                            swal({
+                                title:"Lo sentimos",
+                                text:res.data.msg,
+                                icon:"error"
+                            })
 
                         }
-                    });
+
+                    })
+                    .catch(err => {
+                        this.loading = false
+                        $.each(err.response.data.errors, function(key, value) {
+                            alertify.error(value[0])
+                        });
+                    })
+
                     
 
                 },
@@ -1863,67 +1840,55 @@
                 },
                 storeOthers(){
                     
-                    swal({
-                        title: "¿Estás seguro?",
-                        text: "Al cambiar tu perfil deberás persionar el botón validar mi perfil al finalizar la edición!",
-                        icon: "warning",
-                        buttons: true,
-                        dangerMode: true,
-                    })
-                    .then((willDelete) => {
-                        if (willDelete) {
-                            this.loading = true
-                            axios.post("{{ url('/profiles/others/store') }}", {
-                                informaticKnowledge:this.choosenInformaticKnowledge.toString(),
-                                knowledgeHabilities:this.knowledgeHabilities,
-                                licenseA1: this.licenseA1,
-                                licenseA2: this.licenseA2,
-                                licenseA3: this.licenseA3,
-                                licenseA4: this.licenseA4,
-                                licenseA5: this.licenseA5,
-                                licenseB: this.licenseB,
-                                licenseC: this.licenseC,
-                                licenseD: this.licenseD,
-                                licenseE: this.licenseE,
-                                licenseF: this.licenseF,
-                                handicapDescription:this.handicapDescription,
-                                necesaryCondition:this.necesaryCondition,
-                                handicapPercentage: this.handicapPercentage
-                            })
-                            .then(res => {
-
-                                this.loading = false
-
-                                if(res.data.success == true){
-
-                                    swal({
-                                        title:"Genial",
-                                        text:res.data.msg,
-                                        icon:"success"
-                                    })
-
-                                }else{
-
-                                    swal({
-                                        title:"Lo sentimos",
-                                        text:res.data.msg,
-                                        icon:"error"
-                                    })
-
-                                }
-
-                            })
-                            .catch(err => {
-                                this.loading = false
-                                $.each(err.response.data.errors, function(key, value) {
-                                    alertify.error(value[0])
                     
-                                });
+                    this.loading = true
+                    axios.post("{{ url('/profiles/others/store') }}", {
+                        informaticKnowledge:this.choosenInformaticKnowledge.toString(),
+                        knowledgeHabilities:this.knowledgeHabilities,
+                        licenseA1: this.licenseA1,
+                        licenseA2: this.licenseA2,
+                        licenseA3: this.licenseA3,
+                        licenseA4: this.licenseA4,
+                        licenseA5: this.licenseA5,
+                        licenseB: this.licenseB,
+                        licenseC: this.licenseC,
+                        licenseD: this.licenseD,
+                        licenseE: this.licenseE,
+                        licenseF: this.licenseF,
+                        handicapDescription:this.handicapDescription,
+                        necesaryCondition:this.necesaryCondition,
+                        handicapPercentage: this.handicapPercentage
+                    })
+                    .then(res => {
+
+                        this.loading = false
+
+                        if(res.data.success == true){
+
+                            swal({
+                                title:"Genial",
+                                text:res.data.msg,
+                                icon:"success"
                             })
 
+                        }else{
+
+                            swal({
+                                title:"Lo sentimos",
+                                text:res.data.msg,
+                                icon:"error"
+                            })
 
                         }
-                    });
+
+                    })
+                    .catch(err => {
+                        this.loading = false
+                        $.each(err.response.data.errors, function(key, value) {
+                            alertify.error(value[0])
+            
+                        });
+                    })
                         
                     
 
