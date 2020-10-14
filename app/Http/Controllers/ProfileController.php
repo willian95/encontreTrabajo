@@ -145,6 +145,8 @@ class ProfileController extends Controller
 
     function update(ProfileUpdateRequest $request){
 
+        ini_set('max_execution_time', 0);
+
         try{
 
             if($request->get('image') != null){

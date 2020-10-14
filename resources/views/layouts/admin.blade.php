@@ -166,19 +166,25 @@ License: You must have a valid license purchased only from themeforest(the above
 
 							<li class="nav-item mb-5" data-toggle="tooltip" data-placement="right" data-container="body" data-boundary="window" title="Empresas">
 								<a href="{{ url('/admin/landing-business') }}" class="nav-link btn btn-icon btn-text-white btn-hover-text-white btn-lg">
-									<i class="far fa-images"></i>
+									<i class="fas fa-suitcase"></i>
 								</a>
 							</li>
 
 							<li class="nav-item mb-5" data-toggle="tooltip" data-placement="right" data-container="body" data-boundary="window" title="Validar Curriculum">
 								<a href="{{ url('/admin/curriculum-validate') }}" class="nav-link btn btn-icon btn-text-white btn-hover-text-white btn-lg">
-									<i class="far fa-images"></i>
+									<i class="fas fa-clipboard-list"></i>
 								</a>
 							</li>
 
 							<li class="nav-item mb-5" data-toggle="tooltip" data-placement="right" data-container="body" data-boundary="window" title="Quienes Somos">
 								<a href="{{ url('/admin/about-us/index') }}" class="nav-link btn btn-icon btn-text-white btn-hover-text-white btn-lg">
-									<i class="fas fa-images"></i>
+									<i class="fas fa-map"></i>
+								</a>
+							</li>
+
+							<li class="nav-item mb-5" data-toggle="tooltip" data-placement="right" data-container="body" data-boundary="window" title="Video">
+								<a href="{{ url('/admin/video/index') }}" class="nav-link btn btn-icon btn-text-white btn-hover-text-white btn-lg">
+									<i class="far fa-file-video"></i>
 								</a>
 							</li>
 
