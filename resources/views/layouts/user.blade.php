@@ -118,6 +118,10 @@
             text-decoration: none;
             color: #333;
         }
+        @media (max-width: 320px) {
+    .menuppal {
+        width: 80%!important;
+    }}
     </style>
     
 
@@ -164,24 +168,49 @@
                                     </div>
                                 <!--porcentaje , nombre y correo-->
                                 <div class="content-encontre-trabajo-caja-info">
-                                    <div class="content-encontre-trabajo-caja-info-img-porc">
-                                        <span class="content-encontre-trabajo-caja-info-img-porc_span"><p>100%</p></span>
-                                        <img class="content-encontre-trabajo-caja-info_img" src="{{ asset('user/assets/img/login.jpg') }}" alt="foto usuario">
-                                    </div>
+                                <div class="content-encontre-trabajo-caja-info-img-porc mt-3">
+                                @php
+                                    $profile = App\Profile::where("user_id", Auth::user()->id)->first();
+                                    $profile_percentage = 0;
+
+                                    if(\Auth::user()->image != url('/')."/images/users/default.jpg"){
+                                        $profile_percentage += 20;
+                                    }
+                                    if($profile->video != null){
+                                        $profile_percentage += 20;
+                                    }
+                                    if($profile->curriculum != null){
+                                        $profile_percentage += 20;
+                                    }
+                                    if($profile->address != null){
+                                        $profile_percentage += 20;
+                                    }
+                                    if(App\AcademicBackground::where("user_id", \Auth::user()->id)->count() > 0){
+                                        $profile_percentage += 20;
+                                    }
+
+                                @endphp
+                                
+                                <span class="content-encontre-trabajo-caja-info-img-porc_span"><p>{{ $profile_percentage }} %</p></span>
+                                <img class="content-encontre-trabajo-caja-info_img" src="{{ Auth::user()->image }}" alt="foto usuario">
+                            </div>
+                                    
                                     <h3 class="content-encontre-trabajo-caja-info_h3">{{ Auth::user()->name }} {{ Auth::user()->lastname }}</h3>
                                     <h4 class="content-encontre-trabajo-caja-info_h4">{{ Auth::user()->email }}</h4>
                                 </div>
                                     
 
                                 <!--opciones del menu responsive-->
+                                    
                                     <ul class="menu-lateral-usuario_ul">
-                                    <li class="menu-lateral-usuario_ul_li menu-resp-li" ><a href="#"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/ico-editar.png') }}" alt=""><p>Curriculum vitae</p></a></li>
-                                    <li class="menu-lateral-usuario_ul_li menu-resp-li" ><a href="#"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/ico-usuario.png') }}" alt=""><p>Mi cuenta</p></a></li>
-                                    <li class="menu-lateral-usuario_ul_li menu-resp-li" ><a href="#"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/control.png') }}" alt=""><p>Mis postulaciones</p></a></li>
-                                    <li class="menu-lateral-usuario_ul_li menu-resp-li" ><a href="#"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/play.png') }}" alt=""><p>Subir video presentación</p></a></li>
-                                    <li class="menu-lateral-usuario_ul_li menu-resp-li" ><a href="#"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/alarm.png') }}" alt=""><p>Notificaciones</p></a></li>
-                                    <li class="menu-lateral-usuario_ul_li menu-resp-li" ><a href="#"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/alarm.png') }}" alt=""><p>Cambiar contraseña</p></a></li>
-                                    <li class="menu-lateral-usuario_ul_li menu-resp-li" ><a href="#"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/logout.png') }}" alt=""><p>Cerrar sesión</p></a></li>
+                                        <li class="menu-lateral-usuario_ul_li menu-resp-li" ><a href="{{ url('home') }}"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/ico-editar.png') }}" alt=""><p>Inicio</p></a></li>
+                                        {{--<li class="menu-lateral-usuario_ul_li" ><a href="{{ url('/user/offer') }}"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/ico-editar.png') }}" alt=""><p>Ofertas</p></a></li>--}}
+                                        
+                                        <li class="menu-lateral-usuario_ul_li menu-resp-li" ><a href="{{ url('/profile/user') }}"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/ico-editar.png') }}" alt=""><p>Mi perfil</p></a></li>
+                                        <li class="menu-lateral-usuario_ul_li menu-resp-li" ><a href="{{ url('/my-references') }}"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/ico-editar.png') }}" alt=""><p>Referencias laborales</p></a></li>
+                                        <li class="menu-lateral-usuario_ul_li menu-resp-li" ><a href="{{ url('/profile/show/'.\Auth::user()->email) }}"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/ico-editar.png') }}" alt=""><p>Mi Curriculum</p></a></li>
+                                        <li class="menu-lateral-usuario_ul_li menu-resp-li" ><a href="{{ url('/my-applies') }}"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/control.png') }}" alt=""><p>Mis postulaciones</p></a></li>
+                                        <li class="menu-lateral-usuario_ul_li menu-resp-li" ><a href="{{ url('/logout') }}"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/logout.png') }}" alt=""><p>Cerrar sesión</p></a></li>
                                     </ul>
                                     
                                 </div>

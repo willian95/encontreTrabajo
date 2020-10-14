@@ -988,6 +988,10 @@ img.content-encontre-trabajo-caja-info_img {
     justify-content: center;
     align-items: center;
     padding-top: 20px;
+ 
+    word-break: break-all!important;
+    word-wrap: break-word!important;
+
 }
 .menu-lateral-usuario {
     height: 100%;
@@ -996,15 +1000,23 @@ img.content-encontre-trabajo-caja-info_img {
     padding-top: 90px;
     padding-left: 0!important;
     display: flex;
+    word-wrap: break-word!important;
     align-items: center;
     flex-direction: column;
-    /* width: 25%; */
+    
+    width: 16.666667%;
+    word-break: break-all!important;
+    word-wrap: break-word!important;
 }
 h3.content-encontre-trabajo-caja-info_h3 {
     color: #fff;
+    padding-right: 2px;
+    padding-left: 2px;
     padding-top: 20px;
-    font-size: 20px;
-}h4.content-encontre-trabajo-caja-info_h4 {
+    font-size: 16px;
+    text-align: center;
+}
+h4.content-encontre-trabajo-caja-info_h4 {
     color: #ffff;
     font-size: 15px;
     padding: 5px;
@@ -1058,7 +1070,7 @@ li.menu-lateral-usuario_ul_li p {
     padding: 5px 10px 0px 10px;
 }
 ul.menu-lateral-usuario_ul {
-    padding: 10px!important;
+    padding: 0 5px 0 25px;
 }
 img.opciones-perfil-encontre-trabajo-usuario-publicidad_img {
     width: 150px;
@@ -1197,6 +1209,7 @@ li.opciones-perfil-encontre-trabajo-usuario_li.bb-n {
 }
 li.menu-lateral-usuario_ul_li.menu-resp-li {
     font-size: 15px;
+    height: 2em;
 }
 /* .buscador-barra-lateral-empresa.m-bottom {
     width: 200px;
