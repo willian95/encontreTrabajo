@@ -10,10 +10,11 @@
         @if($user->profile->is_curriculum_validated == 1 || $user->id == \Auth::user()->id )
 
             @if($user->profile->is_curriculum_validated == 0 && $user->id == \Auth::user()->id )
-                <h3>Curriculum aún no ha sido verificado</h3>
+                <h3 class="text-center">Curriculum aún no ha sido verificado</h3>
             @endif
-
-            <a class="btn btn-info" href="{{ url('/profile/download/'.$user->email) }}" target="_blank">Descargar PDF</a>
+            <div class="d-flex justify-content-start mb-3">
+                <a class="btn btn-info" href="{{ url('/profile/download/'.$user->email) }}" target="_blank">Descargar PDF</a>
+            </div>
 
             <div class="row">
                 <div class="col-md-4 media-perfil-c-4">

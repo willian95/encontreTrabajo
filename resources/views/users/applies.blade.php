@@ -3,7 +3,7 @@
 @section("content")
 
     
-        <div class="col-md-10" id="proposals-dev" style="margin-top: 100px;">
+        <div class="col-md-9 postulaciones-col9" id="proposals-dev" style="margin-top: 100px;">
 
             <h3 class="text-center">Mis Postulaciones</h3>
             <div class="table-mis-app">
