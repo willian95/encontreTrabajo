@@ -645,6 +645,7 @@ button.btn.btn-success {
     border: 1px;
 }
 a.btn.btn-info {
+    margin-bottom: 2px;
     font-size: 12px;
     background: #0075a9;
     border: 1px;
@@ -944,7 +945,7 @@ button.caja-input-buscador-usuario_button {
     background: #188a75;
     position: relative;
     border: 2px solid #188a75;
-    right: 6px;
+    right: 2px;
 }
 .encontre-trabajo-usuario_row-col-12-col-4 h3 {
     color: #ffff;

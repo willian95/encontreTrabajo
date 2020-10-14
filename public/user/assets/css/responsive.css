@@ -91,6 +91,12 @@
         
 }
 @media (max-width: 768px) {
+    .ofertas-respond {
+        border: 1px solid #f4f6f7;
+        padding: 0;
+        margin-left: 5px;
+        margin-right: 10px;
+    }
     .content-encontre-trabajo-usuario .col-10 {
         -ms-flex: 0 0 83.333333%;
         flex: 0 0 100%;
@@ -382,6 +388,14 @@
     }
 }
 @media (max-width: 575px) {
+    .opciones-inf-empresas table {
+        font-size: 12px;
+        display: flex;
+        justify-content: center;
+    }
+    .content-encontre-trabajo-usuario h3 {
+        font-size: 22px;
+    }
     input.caja-input-buscador-usuario_input {
         width: 150px;
     }

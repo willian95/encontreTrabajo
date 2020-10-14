@@ -2,7 +2,7 @@
 
 @section("content")
 
-    <div class="container mt-3 perfil-encontre-trabajo" id="offersCreate-dev">
+    <div class=" col-md-10 container mt-3 perfil-encontre-trabajo" id="offersCreate-dev">
         <h2 style="margin-top: 100px;">Oferta</h2>
 		<br>
 		<div class="loader-cover" v-if="loading == true">

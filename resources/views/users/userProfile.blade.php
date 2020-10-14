@@ -8,7 +8,7 @@
             <div class="loader"></div>
         </div>
             <h2>Mi Perfil</h2>
-            <div class="d-flex justify-content-start">
+            <div class="d-flex justify-content-end">
                 <button class="btn btn-info mb-2 mt-2" @click="validate()"><img style="width: 20px;" src="{{ asset('user/assets/img/validar.png') }}" alt=""> Validar mi perfil</button>
             </div>
             <!-- Nav tabs -->
