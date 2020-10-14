@@ -52,6 +52,7 @@ Route::get("/profile/download/{email}", "ProfileController@download")->middlewar
 Route::post('/profiles/show/academic/fetch', "ProfileController@fetchShowAcademicBackground")->middleware('auth');
 Route::post('/profiles/show/job-background/fetch', "ProfileController@fetchShowJobBackground")->middleware('auth');
 
+
 Route::middleware(['auth', 'user'])->group(function(){
 
     Route::get('/profile/user', "ProfileController@index");
@@ -155,6 +156,11 @@ Route::post("/admin/landing-business/delete", "LandingBusinessController@delete"
 Route::get("/admin/curriculum-validate", "CurriculumValidateController@index");
 Route::get("/admin/curriculum-validate/fetch/{page}", "CurriculumValidateController@fetch");
 Route::post("/admin/curriculum-validate/user", "CurriculumValidateController@approveCurriculum");
+
+Route::get("/admin/about-us/index", "AboutUsController@index");
+Route::post("/admin/about-us/update", "AboutUsController@update");
+
+
 /*Route::post("/admin/landing-business/store", "LandingBusinessController@store");
 Route::post("/admin/landing-business/update", "LandingBusinessController@update");
 Route::post("/admin/landing-business/delete", "LandingBusinessController@delete");*/

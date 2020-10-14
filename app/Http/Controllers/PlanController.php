@@ -36,9 +36,18 @@ class PlanController extends Controller
 
             $plan = new Plan;
             $plan->title = $request->title;
-            $plan->post_amount = $request->postAmount;
-            $plan->conference_amount = $request->conferenceAmount;
+            $plan->simple_posts = $request->simplePostAmounts;
+            $plan->hightlight_posts = $request->hightlightPostAmount;
+            $plan->offer_posting = $request->offerPosting;
+            $plan->post_days = $request->postDays;
+            $plan->plan_time = $request->planLength;
+            $plan->download_curriculum = $request->downloadCurriculum;
+            $plan->show_video = $request->showVideo;
+            $plan->download_profiles = $request->downloadProfile;
+            $plan->position = $request->position;
             $plan->price = $request->price;
+            $plan->conference_amount = $request->conferenceAmounts;
+            $plan->simple_post_infinity = $request->simplePostInfinity;
             $plan->save();
 
             return response()->json(["success" => true, "msg" => "Plan registrado"]);
@@ -55,9 +64,18 @@ class PlanController extends Controller
 
             $plan = Plan::where("id", $request->id)->first();
             $plan->title = $request->title;
-            $plan->post_amount = $request->postAmount;
-            $plan->conference_amount = $request->conferenceAmount;
+            $plan->simple_posts = $request->simplePostAmounts;
+            $plan->hightlight_posts = $request->hightlightPostAmount;
+            $plan->offer_posting = $request->offerPosting;
+            $plan->post_days = $request->postDays;
+            $plan->plan_time = $request->planLength;
+            $plan->download_curriculum = $request->downloadCurriculum;
+            $plan->show_video = $request->showVideo;
+            $plan->download_profiles = $request->downloadProfile;
+            $plan->position = $request->position;
             $plan->price = $request->price;
+            $plan->conference_amount = $request->conferenceAmounts;
+            $plan->simple_post_infinity = $request->simplePostInfinity;
             $plan->update();
 
             return response()->json(["success" => true, "msg" => "Plan actualizado"]);

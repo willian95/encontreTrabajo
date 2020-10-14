@@ -25,9 +25,16 @@ class PlanStoreRequest extends FormRequest
     {
         return [
             "title" => "required",
-            "postAmount" => "required|integer|min:1",
-            "conferenceAmount" => "integer",
-            "price" => "integer|min:1"
+            "planLength" => "required",
+            "offerPosting" => "required",
+            "simplePostAmounts" => "nullable",
+            "hightlightPostAmount" => "integer|nullable",
+            "conferenceAmounts" =>  "integer|nullable",
+            "downloadCurriculum" => "required",
+            "showVideo" => "required",
+            "downloadProfile"=> "integer|nullable",
+            "position" => "required",
+            "price"=> "required|min:1|integer"
         ];
     }
 
@@ -35,10 +42,15 @@ class PlanStoreRequest extends FormRequest
     {
         return [
             "title.required" => "Titulo es requerido",
-            "postAmount.required" => "Cantidad de publicaciones es requerida",
-            "postAmount.integer" => "Cantidad de publicaciones debe ser un número",
-            "postAmount.min" => "El mínimo de publicaciones es 1",
-            "conferenceAmount.integer" => "Cantidad de video-conferenias debe ser un número",
+            "planLength.required" => "Duración del plan es requerida",
+            "offerPosting.required" => "Publicación de ofertas es requerido",
+            "simplePostAmounts.integer" => "Cantidad de publicaciones simples debe ser un número",
+            "hightlightPostAmount.integer" => "Cantidad de publicaciones destacadas debe ser un número",
+            "conferenceAmounts.integer" => "Cantidad de conferencias debe ser un número",
+            "downloadCurriculum.required" => "La descarga de curriculum es requerida",
+            "showVideo.required" => "Video del candidato es requerido",
+            "downloadProfile.integer" => "Cantidad de descargas del motor de búsqueda debe ser un número",
+            "position.required" => "La posición del plan es requerida",
             "price.required" => "Precio es requerido",
             "price.integer" => "Precio debe ser un número",
             "price.min" => "Precio mínimo es 1",

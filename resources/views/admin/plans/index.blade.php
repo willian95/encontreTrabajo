@@ -34,8 +34,7 @@
                                     <tr>
                                         <th>#</th>
                                         <th>Titulo</th>
-                                        <th>Cantidad de posts</th>
-                                        <th>Cantidad de video-conferencias</th>
+                                        <th>Posición</th>
                                         <th>Precio</th>
                                         <th>Acciones</th>
                                     </tr>
@@ -44,9 +43,8 @@
                                     <tr v-for="(plan, index) in plans">
                                         <th>@{{ index + 1 }}</th>
                                         <td>@{{ plan.title }}</td>
-                                        <td>@{{ plan.post_amount.toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</td>
-                                        <td>@{{ plan.conference_amount.toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</td>
-                                        <td>$ @{{ plan.price.toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</td>
+                                        <td>@{{ plan.position }}</td>
+                                        <td>@{{ plan.price }}</td>
                                         <td>
                                             <button class="btn btn-info" data-toggle="modal" data-target="#planModal" @click="edit(plan)"><i class="fas fa-edit"></i></button>
                                             <button class="btn btn-danger" @click="erase(plan.id)"><i class="fas fa-trash"></i></button>
@@ -66,7 +64,7 @@
 
             <!-- Modal-->
             <div class="modal fade" id="planModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
+                <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="exampleModalLabel">@{{ modalTitle }}</h5>
@@ -75,24 +73,102 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <div class="form-group">
-                                <label for="title">Titulo</label>
-                                <input type="text" class="form-control" id="title" v-model="title">
-                            </div>
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="title">Titulo</label>
+                                            <input type="text" class="form-control" id="title" v-model="title">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="postDays">Duración oferta (días)</label>
+                                            <input type="text" class="form-control" id="postDays" v-model="postDays" @keypress="isNumber()">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="planLength">Duración de plan</label>
+                                            <select class="form-control" v-model="planLength" id="planLength">
+                                                <option value="una vez">Una vez</option>
+                                                <option value="semestrales">Semestrales</option>
+                                                <option value="anuales">Anuales</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="oferrPosting">Publicaciones de ofertas laborales</label>
+                                            <select class="form-control" v-model="offerPosting" id="oferrPosting">
+                                                <option value="1">Sí</option>
+                                                <option value="0">No</option>
+                                            </select>
+                                        </div>
 
-                            <div class="form-group">
-                                <label for="postAmount">Cantidad de publicaciones</label>
-                                <input type="text" class="form-control" id="postAmount" v-model="postAmount" @keypress="isNumber()">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="conferenceAmount">Cantidad de video conferencias</label>
-                                <input type="text" class="form-control" id="conferenceAmount" v-model="conferenceAmount" @keypress="isNumber()">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="price">Precio</label>
-                                <input type="text" class="form-control" id="price" v-model="price" @keypress="isNumber()">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="simplePostAmounts">Publicaciones simples</label>
+                                            <div class="display:flex">
+                                                <input type="text" class="form-control" id="simplePostAmounts" v-model="simplePostAmounts" @keypress="isNumber()" :readonly="simplePostInfinity">
+                                                <button class="btn btn-secondary" @click="toggleSimplePostInfinity()">Infinitas</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="highlightPostAmount">Publicaciones destacadas</label>
+                                            <input type="text" class="form-control" id="highlightPostAmount" v-model="highlightPostAmount" @keypress="isNumber()">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="conferenceAmounts">Conferencias</label>
+                                            <input type="text" class="form-control" id="conferenceAmounts" v-model="conferenceAmounts" @keypress="isNumber()">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="downloadCurriculum">Descarga de curriculum</label>
+                                            <select class="form-control" id="downloadCurriculum" v-model="downloadCurriculum">
+                                                <option value="1">Sí</option>
+                                                <option value="0">No</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="show_video">Video de presentación del candidato</label>
+                                            <select class="form-control" v-model="showVideo">
+                                                <option value="1">Sí</option>
+                                                <option value="0">No</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="downloadProfilesAmounts">Perfiles a descargar</label>
+                                            <input type="text" class="form-control" id="downloadProfilesAmounts" v-model="downloadProfilesAmounts" @keypress="isNumber()">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="position">Posición</label>
+                                            <select class="form-control" id="position" v-model="position">
+                                                <option value="1">Fila 1</option>
+                                                <option value="2">Fila 2</option>
+                                                <option value="3">Fila 3</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="price">Precio</label>
+                                            <input type="text" class="form-control" id="price" v-model="price" @keypress="isNumber()">
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                     
                             
@@ -124,8 +200,18 @@
                     id:"",
                     modalTitle:"Crear plan",
                     title:"",
-                    postAmount:0,
+                    postDays:0,
+                    planLength:0,
                     conferenceAmount:0,
+                    offerPosting:1,
+                    simplePostAmounts:"",
+                    highlightPostAmount:"",
+                    conferenceAmounts:"",
+                    downloadCurriculum:1,
+                    showVideo:1,
+                    downloadProfilesAmounts:"",
+                    position:1,
+                    simplePostInfinity:false,
                     price:0,
                     action:"create",
                     loading:false,
@@ -134,12 +220,34 @@
             },
             methods:{
 
+                toggleSimplePostInfinity(){
+             
+                    if(this.simplePostInfinity == false){
+                      
+                        this.simplePostInfinity = true
+                        this.simplePostAmounts = "infinitas";
+                    }else{
+                        this.simplePostInfinity = false
+                        this.simplePostAmounts = "";
+                    }
+
+                },
                 create(){
                     this.action = "create"
                     this.modalTitle = "Crear plan"
-                    this.postAmount = 0
                     this.title = ""
+                    this.postDays = 0
+                    this.planLength = 0
                     this.conferenceAmount = 0
+                    this.offerPosting = 1
+                    this.simplePostAmounts = ""
+                    this.highlightPostAmount = ""
+                    this.conferenceAmounts = ""
+                    this.downloadCurriculum= 1
+                    this.showVideo = 1
+                    this.downloadProfilesAmounts= ""
+                    this.position = 1
+                    this.simplePostInfinity= false
                     this.price = 0
                     this.id = ""
 
@@ -149,8 +257,22 @@
                     this.id = plan.id
                     this.modalTitle = "Editar plan"
                     this.title = plan.title
-                    this.postAmount = plan.post_amount
-                    this.conferenceAmount = plan.conference_amount
+                    this.postDays = plan.post_days
+                    this.planLength = plan.plan_time
+                    this.offerPosting = plan.offer_posting
+                    this.simplePostAmounts = plan.simple_posts
+                    this.highlightPostAmount = plan.hightlight_posts
+                    this.conferenceAmounts = plan.conference_amount
+                    this.downloadCurriculum= plan.download_curriculum
+                    this.showVideo = plan.show_video
+                    this.downloadProfilesAmounts= plan.download_profiles
+                    this.position = plan.position
+                    this.simplePostInfinity= plan.simple_post_infinity
+
+                    if(plan.simple_post_infinity == 1){
+                        this.simplePostAmounts = "infinitas"
+                    }
+
                     this.price = plan.price
                 },
                 fetch(page = 1){
@@ -167,10 +289,20 @@
                 store(){
                     this.loading = true
                     axios.post("{{ url('/admin/plans/store') }}", {
-                        title: this.title, 
-                        postAmount:this.postAmount,
-                        conferenceAmount:this.conferenceAmount,
-                        price:this.price
+                        title: this.title,
+                        postDays: this.postDays,
+                        planLength: this.planLength,
+                        conferenceAmount: this.conferenceAmount,
+                        offerPosting: this.offerPosting,
+                        simplePostAmounts: this.simplePostAmounts,
+                        hightlightPostAmount: this.highlightPostAmount,
+                        conferenceAmounts: this.conferenceAmounts,
+                        downloadCurriculum: this.downloadCurriculum,
+                        showVideo: this.showVideo,
+                        downloadProfile: this.downloadProfilesAmounts,
+                        position: this.position,
+                        simplePostInfinity: this.simplePostInfinity,
+                        price: this.price
                     }).then(res => {
                        
                         this.loading = false
@@ -182,15 +314,9 @@
                                 icon:"success"
                             })
 
-                            this.title = ""
-                            this.postAmount = ""
-                            this.conferenceAmount = ""
-                            this.price = ""
+                           
+                            this.create();
 
-                            $("#modalClose").click();
-                            $('body').removeClass('modal-open');
-                            $('body').css('padding-right', '0px');
-                            $('.modal-backdrop').remove();
 
                             this.fetch()
 
@@ -218,10 +344,20 @@
                     this.loading = true
                     axios.post("{{ url('/admin/plans/update') }}", {
                         id: this.id,
-                        title: this.title, 
-                        postAmount:this.postAmount,
-                        conferenceAmount:this.conferenceAmount,
-                        price:this.price
+                        title: this.title,
+                        postDays: this.postDays,
+                        planLength: this.planLength,
+                        conferenceAmount: this.conferenceAmount,
+                        offerPosting: this.offerPosting,
+                        simplePostAmounts: this.simplePostAmounts,
+                        hightlightPostAmount: this.highlightPostAmount,
+                        conferenceAmounts: this.conferenceAmounts,
+                        downloadCurriculum: this.downloadCurriculum,
+                        showVideo: this.showVideo,
+                        downloadProfile: this.downloadProfilesAmounts,
+                        position: this.position,
+                        simplePostInfinity: this.simplePostInfinity,
+                        price: this.price
                     }).then(res => {
                        
                         this.loading = false
@@ -233,15 +369,7 @@
                                 icon:"success"
                             })
 
-                            this.title = ""
-                            this.postAmount = ""
-                            this.conferenceAmount = ""
-                            this.price = ""
-
-                            $("#modalClose").click();
-                            $('body').removeClass('modal-open');
-                            $('body').css('padding-right', '0px');
-                            $('.modal-backdrop').remove();
+                            this.create();
 
                             this.fetch()
 
