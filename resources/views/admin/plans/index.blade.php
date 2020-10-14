@@ -268,7 +268,7 @@
                     this.downloadProfilesAmounts= plan.download_profiles
                     this.position = plan.position
                     this.simplePostInfinity= plan.simple_post_infinity
-
+                    console.log(plan)
                     if(plan.simple_post_infinity == 1){
                         this.simplePostAmounts = "infinitas"
                     }
