@@ -256,6 +256,10 @@ class ProfileController extends Controller
             $profile->home_phone = $request->homePhone;
             $profile->update();
 
+            if($request->get("video") != null || $request->get("curriculum") != null){
+                $this->validateUser();
+            }
+
             $this->isProfileComplete();
             
             return response()->json(["success" => true, "msg" => "Antecedentes básicos actualizados"]);
@@ -615,7 +619,7 @@ class ProfileController extends Controller
             $user->request_for_curriculum_validation = 1;
             $user->update();
 
-            $data = ["messageMail" => "Hola Admin, el usuario ".$user->name.", quiere validar su correo", "link" => url('/').'/profile/show/'.$user->email];
+            $data = ["messageMail" => "Hola Admin, el usuario ".$user->name.", quiere validar su perfil", "link" => url('/').'/profile/show/'.$user->email];
             $to_name = "admin";
             $to_email = env('ADMIN_EMAIL');
 
@@ -624,7 +628,7 @@ class ProfileController extends Controller
                 $message->from( env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'));
             });
 
-            return response()->json(["success" => true, "msg" => "Se ha enviado una solicitud al administrador"]);
+            //return response()->json(["success" => true, "msg" => "Se ha enviado una solicitud al administrador"]);
 
         }catch(\Exception $e){
             return response()->json(["success" => false, "msg" => "Hubo un problema", "err" => $e->getMessage(), "ln" => $e->getLine()]);

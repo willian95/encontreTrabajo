@@ -41,10 +41,14 @@
                             <div class="col-md-6 offset-md-3 col-lg-6 offset-lg-3">
 
                                 <p class="text-center">
-                                    @if(App\Proposal::where("user_id", \Auth::user()->id)->where("offer_id", $offer->id)->count() == 0)
-                                        <button class="btn btn-success" @click="sendProposal()">Postularme</button>
+                                    @if(\Auth::user()->is_profile_complete == 1)
+                                        @if(App\Proposal::where("user_id", \Auth::user()->id)->where("offer_id", $offer->id)->count() == 0)
+                                            <button class="btn btn-success" @click="sendProposal()">Postularme</button>
+                                        @else
+                                            Ya te has postulado a esta oferta
+                                        @endif
                                     @else
-                                        Ya te has postulado a esta oferta
+                                        Debes completar tu perfil para postularte a esta oferta
                                     @endif
                                 </p>
 

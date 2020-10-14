@@ -202,22 +202,32 @@
                 <p>{{ $profile->handicap_description }}</p>
             </div>
 
-           
-                <table class="table">
+            <div class="col-12">
+                <h2 class="text-center text-info" style="padding-top: 20px;">Referencias Laborales</h2>
+            </div> 
+
+            <table class="table">
+                <thead>
                     <tr>
-                        @foreach($jobReferences as $reference)
-                        <td>
-                     
-                            <p>Señor (a) {{ $reference->person_name }}</p>
-                            <p>{{ $reference->business_name }}</p>
-                            <p>{{ $reference->person_job_position }}</p>
-                            <p>Fono: {{ $reference->person_telephone }}</p>
-                            <p>{{ $reference->person_email }}</p>
-                   
-                        </td>
-                        @endforeach
+                        <th>Nombre</th>
+                        <th>Empresa</th>
+                        <th>Puesto</th>
+                        <th>Teléfono</th>
+                        <th>Correo</th>
                     </tr>
-                </table>
+                </thead>
+                <tbody>
+                    @foreach($jobReferences as $reference)
+                        <tr>
+                            <th>Señor (a) {{ $reference->person_name }}</th>
+                            <td>{{ $reference->business_name }}</td>
+                            <td>{{ $reference->person_job_position }}</td>
+                            <td>{{ $reference->person_telephone }}</td>
+                            <td>{{ $reference->person_email }}</td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table> 
            
                         
     </body>

@@ -7,20 +7,21 @@
         <div class="loader-cover" v-if="loading == true">
             <div class="loader"></div>
         </div>
-        @if($user->profile->is_curriculum_validated == 1 || $user->id == \Auth::user()->id )
+        
 
-            @if($user->profile->is_curriculum_validated == 0 && $user->id == \Auth::user()->id )
-                <h3 class="text-center">Curriculum aún no ha sido verificado</h3>
-            @endif
-            <div class="d-flex justify-content-start mb-3">
-                <a class="btn btn-info" href="{{ url('/profile/download/'.$user->email) }}" target="_blank">Descargar PDF</a>
-            </div>
+    
 
             <div class="row">
+                @if($user->profile->is_curriculum_validated == 1 || $user->id == \Auth::user()->id )
                 <div class="col-md-4 media-perfil-c-4">
+                @else
+                    <div class="col-md-4 media-perfil-c-4 offset-md-4">
+                @endif
                     <div class="a-basicos-postulante-img j-center"><img class="basicos-postulante-c-4" :src="imagePreview" alt="postulante"></div>
                     <label class="text-center-input-curriculum" for="image">Foto de Perfil</label>
                 </div>
+
+                @if($user->profile->is_curriculum_validated == 1 || $user->id == \Auth::user()->id )
                 <div class="col-md-4 media-perfil-c-4">
                     <div class="a-basicos-postulante-video j-center">
                         <img class="basicos-postulante-c-4" src="{{ asset('user/assets/img/video.png') }}" alt="postulante" v-if="videoPreview == ''">
@@ -40,6 +41,8 @@
                         <button class="btn btn-success" @click="download()">Descargar</button>
                     </p>
                 </div>
+                    
+                @endif
 
                 
         </div>
@@ -249,17 +252,46 @@
                                         </div>
                                 </div>
                             </div>
+                            <div class="container ancedenteslaborales_container" v-if="references.length > 0">
+                                <div class="row">
+                                     <div class="col-12">
+                                         <h2 class="text-center letra-azul" style="padding-top: 20px;">Referencias Laborales</h2>
+                                     </div>
+                                     <div class="col-12 container table-responsive-cv">
+                                         <table class="table table-bordered table-hover table-striped offset-md-2">
+                                             <thead>
+                                                 <tr>
+                                                 <th>Nombre</th>
+                                                 <th>Empresa</th>
+                                                 <th>Puesto</th>
+                                                 <th>Teléfono</th>
+                                                 <th>Correo</th>
+                                                 </tr>
+                                             </thead>
+                                             <tbody>
+                                                 <tr v-for="reference in references">
+                                                     <td>Señor (a) @{{ reference.person_name }}</td>
+                                                     <td>@{{ reference.business_name }}</td>
+                                                     <td>@{{ reference.person_job_position }}</td>
+                                                     <td>@{{ reference.person_telephone }}</td>
+                                                     <td>@{{ reference.person_email }}</td>
+                                                 </tr>
+                                             </tbody>
+                                         </table>
+                                     </div>
+                                </div>
+                            </div>
+
                             <div class="container">
                                 <div class="row">
-                                    <div class="col-lg-4" v-for="reference in references">
-                                        <p>Señor (a) @{{ reference.person_name }}</p>
-                                        <p>@{{ reference.business_name }}</p>
-                                        <p>@{{ reference.person_job_position }}</p>
-                                        <p>Fono: @{{ reference.person_telephone }}</p>
-                                        <p>@{{ reference.person_email }}</p>
+                                    <div class="col-12">
+                                        <p class="text-center">
+                                            <a class="btn btn-info" href="{{ url('/profile/download/'.$user->email) }}" target="_blank">Imprimir/Descargar Curriculum</a>
+                                        </p>
                                     </div>
                                 </div>
                             </div>
+                 
                     </div>
                 </div>
             </div>
@@ -269,9 +301,7 @@
                     <img class="publicidad" src="{{ asset('user/assets/img/login.jpg') }}" alt="publicidad">
                 </div>
             </div>
-        @else
-            <h2 class="text-center">Este curriculum no ha sido validado aún</h2>
-        @endif
+    
         
     </div>
 
