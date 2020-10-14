@@ -160,6 +160,9 @@ Route::post("/admin/curriculum-validate/user", "CurriculumValidateController@app
 Route::get("/admin/about-us/index", "AboutUsController@index");
 Route::post("/admin/about-us/update", "AboutUsController@update");
 
+Route::get("/admin/video/index", "VideoController@index");
+Route::post("/admin/video/update", "VideoController@update");
+
 
 /*Route::post("/admin/landing-business/store", "LandingBusinessController@store");
 Route::post("/admin/landing-business/update", "LandingBusinessController@update");
