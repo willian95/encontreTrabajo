@@ -2,7 +2,7 @@
 
 @section("content")
 
-    <div class="col-10" id="proposals-dev" style="margin-top: 100px;">
+    <div class="col-md-10 col-10" id="proposals-dev" style="margin-top: 100px;">
       
 
             <h3 class="text-center">Ofertas respondidas</h3>

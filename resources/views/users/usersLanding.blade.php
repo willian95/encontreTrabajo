@@ -2,7 +2,7 @@
 
 @section("content")
 
-<div class="col-md-10 w-100">
+<div class="col-md-9 w-100">
     <div class="container">
         <div class="opciones-perfil-encontre-trabajo-usuario">
             <div class="row">

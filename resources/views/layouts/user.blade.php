@@ -18,7 +18,12 @@
             position: fixed;
             background-color: transparent;
             right: 30px;
-            /* top: 0; */
+            top: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            height: 90px;
             /* height: 30px;
             width: 30px; */
             padding: 20px 20px;
@@ -80,13 +85,13 @@
             background-color: #0075a9;
             bottom: 0;
             height: 100%;
-            left: 0;
+            right: 0;
             overflow-y: scroll;
             position: fixed;
             top: 0;
             transform: translate3d(0px, -100%, 0px);
             transition: transform 0.35s cubic-bezier(0.05, 1.04, 0.72, 0.98) 0s;
-            width: 100%;
+            width: 65%;
             z-index: 1001;
         }
         .menuppal ul {
@@ -133,7 +138,7 @@
                     </div> 
                     <div class="col-md-8 f-a-c">
                         <div class="encontre-trabajo-usuario_row-col-12-col-4">
-                            <div class="caja-input-buscador-usuario">
+                            <div class="caja-input-buscador-usuario d-n-768">
                                 <input class="caja-input-buscador-usuario_input" type="text" placeholder="Busca tu nuevo trabajo" id="search_input">
                                 <button class="caja-input-buscador-usuario_button" onclick="storeQuery()"><img class="caja-input-buscador-usuario-lupa_img" src="{{ asset('user/assets/img/search-b.png') }}" alt="buscar"></button>                        
                             </div>
@@ -141,17 +146,23 @@
                                 <img class="caja-input-buscador-usuario-lupa_img" src="{{ asset('user/assets/img/chat.png') }}" alt="chat">
                                 <span class="caja-ico-mensaje_span">1</span>
                             </div>--}}
-                            {{--<h3>{{ Auth::user()->name }} {{ Auth::user()->lastname }}</h3>
-                            <img class="encontre-trabajo-usuario_row-img-usuario_img" src="{{ Auth::user()->image }}" alt="foto de usuario">
+                            <!-- <h3>{{ Auth::user()->name }} {{ Auth::user()->lastname }}</h3> -->
+                            <!-- <img class="encontre-trabajo-usuario_row-img-usuario_img" src="{{ Auth::user()->image }}" alt="foto de usuario"> -->
                             <div class="cont-menu-h-usuario">
 
                             <div class="hamburger">
                                 <div class="_layer -top"></div>
                                 <div class="_layer -mid"></div>
                                 <div class="_layer -bottom"></div>
-                            </div>--}}
+                            </div>
                             <nav class="menuppal">
-                                <div class="menu-lateral-usuario-resp">
+                                <div class="menu-lateral-usuario-resp ">
+                                <!-- <img class="encontre-trabajo-usuario_row-col-12-logo-img" src="{{ asset('user/assets/img/Logo-blanco.png') }}" alt="logo"> -->
+                                    <div class="caja-input-buscador-usuario ">
+                                        <input class="caja-input-buscador-usuario_input" type="text" placeholder="Busca tu nuevo trabajo" id="search_input">
+                                        <button class="caja-input-buscador-usuario_button" onclick="storeQuery()"><img class="caja-input-buscador-usuario-lupa_img" src="{{ asset('user/assets/img/search-b.png') }}" alt="buscar"></button>                        
+                                    </div>
+                                <!--porcentaje , nombre y correo-->
                                 <div class="content-encontre-trabajo-caja-info">
                                     <div class="content-encontre-trabajo-caja-info-img-porc">
                                         <span class="content-encontre-trabajo-caja-info-img-porc_span"><p>100%</p></span>
@@ -160,6 +171,9 @@
                                     <h3 class="content-encontre-trabajo-caja-info_h3">{{ Auth::user()->name }} {{ Auth::user()->lastname }}</h3>
                                     <h4 class="content-encontre-trabajo-caja-info_h4">{{ Auth::user()->email }}</h4>
                                 </div>
+                                    
+
+                                <!--opciones del menu responsive-->
                                     <ul class="menu-lateral-usuario_ul">
                                     <li class="menu-lateral-usuario_ul_li menu-resp-li" ><a href="#"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/ico-editar.png') }}" alt=""><p>Curriculum vitae</p></a></li>
                                     <li class="menu-lateral-usuario_ul_li menu-resp-li" ><a href="#"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/ico-usuario.png') }}" alt=""><p>Mi cuenta</p></a></li>
@@ -169,7 +183,7 @@
                                     <li class="menu-lateral-usuario_ul_li menu-resp-li" ><a href="#"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/alarm.png') }}" alt=""><p>Cambiar contraseña</p></a></li>
                                     <li class="menu-lateral-usuario_ul_li menu-resp-li" ><a href="#"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/logout.png') }}" alt=""><p>Cerrar sesión</p></a></li>
                                     </ul>
-
+                                    
                                 </div>
                             </nav>
                             </div>
@@ -351,7 +365,29 @@
             }
 
         </script>
-     
+        <script>
+        // selector
+var menu = document.querySelector('.hamburger');
+
+// method
+function toggleMenu (event) {
+  this.classList.toggle('is-active');
+  document.querySelector( ".menuppal" ).classList.toggle("is_active");
+  event.preventDefault();
+}
+
+// event
+menu.addEventListener('click', toggleMenu, false);
+
+//Solución con jQUery
+/*$(document).ready(function(){
+	$('.hamburger').click(function() {
+		$('.hamburger').toggleClass('is-active');
+		$('.menuresponsive').toggleClass('is-active');
+		return false;
+	});
+});*/
+        </script>
 
     </body>
 </html>

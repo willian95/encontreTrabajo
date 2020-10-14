@@ -24,9 +24,13 @@
   position: fixed;
   background-color: transparent;
   right: 30px;
-  /* top: 0; */
+  top: 0;
   /* height: 30px;
   width: 30px; */
+  height: 90px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   padding: 20px 20px;
   -webkit-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
@@ -83,7 +87,7 @@
   transform: translate3d(0px, 0px, 0px);
 }
 .menuppal {
-  background-color: #0075a9;
+  background-color: #0075a9eb;
   bottom: 0;
   height: 100%;
   left: 0;
@@ -140,7 +144,7 @@
                             <img class="caja-input-buscador-usuario-lupa_img" src="{{ asset('user/assets/img/chat.png') }}" alt="chat">
                             <span class="caja-ico-mensaje_span">1</span>
                         </div>--}}
-                        <div class="caja-input-buscador-usuario">
+                        <div class="caja-input-buscador-usuario d-n-768">
                             <!--<input class="caja-input-buscador-usuario_input" type="text" placeholder="Busca tus ofertas de trabajo" id="search_input">
                             <button class="caja-input-buscador-usuario_button" onclick="storeQuery()"><img class="caja-input-buscador-usuario-lupa_img" src="{{ asset('user/assets/img/search-b.png') }}" alt="buscar"></button>-->
                             <select class="caja-input-buscador-usuario_input" id="job_category_id">
@@ -154,11 +158,11 @@
                         
                         <div class="cont-menu-h-usuario">
 
-                        <!--<div class="hamburger">
+                        <div class="hamburger">
                             <div class="_layer -top"></div>
                             <div class="_layer -mid"></div>
                             <div class="_layer -bottom"></div>
-                        </div>-->
+                        </div>
                         <nav class="menuppal">
                         <div class="menu-lateral-empresa-resp">
                             <div class="content-encontre-trabajo-caja-info">
