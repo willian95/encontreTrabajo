@@ -996,15 +996,24 @@ img.content-encontre-trabajo-caja-info_img {
     padding-top: 90px;
     padding-left: 0!important;
     display: flex;
+    word-wrap: break-word!important;
     align-items: center;
     flex-direction: column;
-    /* width: 25%; */
+    word-break: break-all;
+    word-wrap: break-word;
+    width: 16.666667%;
+    word-break: break-all!important;
+    word-wrap: break-word!important;
 }
 h3.content-encontre-trabajo-caja-info_h3 {
     color: #fff;
+    padding-right: 2px;
+    padding-left: 2px;
     padding-top: 20px;
-    font-size: 20px;
-}h4.content-encontre-trabajo-caja-info_h4 {
+    font-size: 16px;
+    text-align: center;
+}
+h4.content-encontre-trabajo-caja-info_h4 {
     color: #ffff;
     font-size: 15px;
     padding: 5px;
