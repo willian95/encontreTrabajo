@@ -217,33 +217,17 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($jobBackground as $job)
+                    @foreach($jobReferences as $reference)
                         <tr>
-                            <th>{{ $loop->index + 1 }}</th>
-                            <td>{{ $job->company }}</td>
-                            <td>{{ $job->job }}</td>
-                            <td>{{ Carbon\Carbon::parse($job->start_date)->format("d-m-Y") }}</td>
-                            <td>{{ Carbon\Carbon::parse($job->end_date)->format("d-m-Y") }}</td>
+                            <th>Señor (a) {{ $reference->person_name }}</th>
+                            <td>{{ $reference->business_name }}</td>
+                            <td>{{ $reference->person_job_position }}</td>
+                            <td>{{ $reference->person_telephone }}</td>
+                            <td>{{ $reference->person_email }}</td>
                         </tr>
                     @endforeach
                 </tbody>
             </table> 
-           
-                <table class="table">
-                    <tr>
-                        @foreach($jobReferences as $reference)
-                        <td>
-                     
-                            <p>Señor (a) {{ $reference->person_name }}</p>
-                            <p>{{ $reference->business_name }}</p>
-                            <p>{{ $reference->person_job_position }}</p>
-                            <p>Fono: {{ $reference->person_telephone }}</p>
-                            <p>{{ $reference->person_email }}</p>
-                   
-                        </td>
-                        @endforeach
-                    </tr>
-                </table>
            
                         
     </body>
