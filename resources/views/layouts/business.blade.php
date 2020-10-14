@@ -87,16 +87,16 @@
   transform: translate3d(0px, 0px, 0px);
 }
 .menuppal {
-  background-color: #0075a9eb;
+  background-color:#0075a9;
   bottom: 0;
   height: 100%;
-  left: 0;
+  right: 0;
   overflow-y: scroll;
   position: fixed;
   top: 0;
   transform: translate3d(0px, -100%, 0px);
   transition: transform 0.35s cubic-bezier(0.05, 1.04, 0.72, 0.98) 0s;
-  width: 100%;
+  width: 65%;
   z-index: 1001;
 }
 .menuppal ul {
@@ -123,7 +123,10 @@
   text-decoration: none;
   color: #333;
 }
-
+@media (max-width: 320px) {
+    .menuppal {
+        width: 80%!important;
+    }}
 /* #188a75 */
 
 </style>
@@ -165,37 +168,61 @@
                         </div>
                         <nav class="menuppal">
                         <div class="menu-lateral-empresa-resp">
-                            <div class="content-encontre-trabajo-caja-info">
-                                <div class="content-encontre-trabajo-caja-info-img-porc">
-                                    @php
-                                        $profile = App\Profile::where("user_id", Auth::user()->id)->first();
-                                        $profile_percentage = 0;
+                        <div class="content-encontre-trabajo-caja-info">
+                            <div class="caja-input-buscador-usuario mb-3">
+                                <!--<input class="caja-input-buscador-usuario_input" type="text" placeholder="Busca tus ofertas de trabajo" id="search_input">
+                                <button class="caja-input-buscador-usuario_button" onclick="storeQuery()"><img class="caja-input-buscador-usuario-lupa_img" src="{{ asset('user/assets/img/search-b.png') }}" alt="buscar"></button>-->
+                                <select class="caja-input-buscador-usuario_input" id="job_category_id">
+                                    <option>Buscador a usuarios por sus categorías</option>
+                                    @foreach(App\JobCategory::all() as $category)
+                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                    @endforeach
+                                </select>
+                                <button class="caja-input-buscador-usuario_button" onclick="storeQuery()"><img class="caja-input-buscador-usuario-lupa_img" src="{{ asset('user/assets/img/search-b.png') }}" alt="buscar"></button>
+                            </div> 
 
-                                        if(\Auth::user()->image != url('/')."/images/users/default.jpg"){
-                                            $profile_percentage += 20;
-                                        }
-                                        if($profile->video != null){
-                                            $profile_percentage += 20;
-                                        }
-                                        if($profile->curriculum != null){
-                                            $profile_percentage += 20;
-                                        }
-                                        if($profile->address != null){
-                                            $profile_percentage += 20;
-                                        }
-                                        if(App\AcademicBackground::where("user_id", \Auth::user()->id)->count() > 0){
-                                            $profile_percentage += 20;
-                                        }
+                            <div class="content-encontre-trabajo-caja-info-img-porc">
+                                @php
+                                    $profile = App\Profile::where("user_id", Auth::user()->id)->first();
+                                    $profile_percentage = 0;
 
-                                    @endphp
-                                    <span class="content-encontre-trabajo-caja-info-img-porc_span"><p>{{ $profile_percentage }}%</p></span>
-                                    <img class="content-encontre-trabajo-caja-info_img" src="{{ Auth::user()->image }}" alt="foto usuario">
-                                </div>
-                                <h3 class="content-encontre-trabajo-caja-info_h3 empresa_h3">Empresa 1</h3>
-                                <h4 class="content-encontre-trabajo-caja-info_h4 empresa_h4">@Nombre</h4>
+                                    if(\Auth::user()->image != url('/')."images/users/default.jpg"){
+                                        $profile_percentage += 25;
+                                    }
+                                    if(\Auth::user()->commune_id != null){
+                                        $profile_percentage += 25;
+                                    }
+                                    if(\Auth::user()->region_id != null){
+                                        $profile_percentage += 25;
+                                    }
+
+                                    if($profile->address != null){
+                                        $profile_percentage += 25;
+                                    }
+
+                                @endphp
+                                <span class="content-encontre-trabajo-caja-info-img-porc_span"><p>{{ $profile_percentage }}%</p></span>
+                                <img class="content-encontre-trabajo-caja-info_img" src="{{ Auth::user()->image }}" alt="foto">
                             </div>
+                            <h3 class="content-encontre-trabajo-caja-info_h3 empresa_h3">{{ Auth::user()->business_name }}</h3>
+                            <h4 class="content-encontre-trabajo-caja-info_h4 empresa_h4">{{Auth::user()->email }}</h4>
 
-                            <div class="opciones-menu-resp-empresas">
+                            <ul class="menu-lateral-usuario_ul">
+                                <li class="menu-lateral-usuario_ul_li menu-resp-li" ><a href="{{ url('/home') }}"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/ico-usuario.png') }}" alt="">Inicio</a></li>
+                                <li class="menu-lateral-usuario_ul_li menu-resp-li" ><a href="{{ url('/profile/business') }}"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/ico-usuario.png') }}" alt="">Mi perfil</a></li>
+                                
+                                <li class="menu-lateral-usuario_ul_li menu-resp-li" ><a href="{{ url('/plans/available') }}"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/control.png') }}" alt="">Planes</a></li>
+                                @if(\Auth::user()->is_profile_complete == 1)
+                                    <li class="menu-lateral-usuario_ul_li menu-resp-li" ><a href="{{ url('/offers/create') }}"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/play.png') }}" alt="">Crear oferta</a></li>
+                                @endif
+                                <li class="menu-lateral-usuario_ul_li menu-resp-li" ><a href="{{ url('/my-offers') }}"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/alarm.png') }}" alt="">Mis ofertas</a></li>
+                                <li class="menu-lateral-usuario_ul_li menu-resp-li" ><a href="{{ url('/my-proposals') }}"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/alarm.png') }}" alt="">Ofertas respondidas</a></li>
+                                <li class="menu-lateral-usuario_ul_li menu-resp-li" ><a href="{{ url('/logout') }}"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/logout.png') }}" alt="">Cerrar sesión</a></li>
+                            </ul>
+                    
+                        </div>
+
+                            <!-- <div class="opciones-menu-resp-empresas">
                                 <div class="buscador-barra-lateral-empresa m-bottom caja-menu-resp-empresa">
                                     <div class="buscador-barra-lateral-empresa-head">
                                         <img class="buscador-barra-lateral-empresa-head_img" src="{{ asset('user/assets/img/search-b.png') }}" alt="">
@@ -231,7 +258,7 @@
                                 </div>
                                 </div>
 
-                          </div> 
+                          </div>  -->
                         </div>
                         </nav>
                         </div>

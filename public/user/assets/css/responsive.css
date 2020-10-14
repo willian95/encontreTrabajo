@@ -248,7 +248,7 @@
         display: none;
     }
     img.encontre-trabajo-usuario_row-img-usuario_img ,.encontre-trabajo-usuario_row-col-12-col-4 h3 {
-        display: none;
+        /* display: none; */
     }
     .opciones-perfil-encontre-trabajo-usuario-cajapublicitaria {
         position: relative;
@@ -516,6 +516,7 @@
     
 }
 @media (max-width: 320px) {
+    
     .opciones-inf-empresas-opciones-select-2, .opciones-inf-empresas-opciones-select-1, .opciones-inf-empresas-opciones-select-3
     {
         font-size: 12px;
