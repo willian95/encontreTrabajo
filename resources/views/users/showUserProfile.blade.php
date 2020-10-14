@@ -9,12 +9,7 @@
         </div>
         
 
-            @if($user->profile->is_curriculum_validated == 0 && $user->id == \Auth::user()->id )
-                <h3 class="text-center">Curriculum aún no ha sido verificado</h3>
-            @endif
-            <div class="d-flex justify-content-start mb-3">
-                <a class="btn btn-info" href="{{ url('/profile/download/'.$user->email) }}" target="_blank">Descargar PDF</a>
-            </div>
+    
 
             <div class="row">
                 @if($user->profile->is_curriculum_validated == 1 || $user->id == \Auth::user()->id )
@@ -284,6 +279,16 @@
                                              </tbody>
                                          </table>
                                      </div>
+                                </div>
+                            </div>
+
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <p class="text-center">
+                                            <a class="btn btn-info" href="{{ url('/profile/download/'.$user->email) }}" target="_blank">Imprimir/Descargar Curriculum</a>
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
                  
