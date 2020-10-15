@@ -988,7 +988,7 @@ img.content-encontre-trabajo-caja-info_img {
     justify-content: center;
     align-items: center;
     padding-top: 20px;
- 
+    padding: 0 10px;
     word-break: break-all!important;
     word-wrap: break-word!important;
 
