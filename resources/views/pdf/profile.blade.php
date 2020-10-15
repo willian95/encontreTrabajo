@@ -23,7 +23,7 @@
             </div>
             <div>
                 <h5 for="name">Fecha de Nacimiento</h5>
-                <p>{{ Carbon\Carbon::parse($profile->birth_date)->format("dd-mm-yyyy") }}</p>
+                <p>{{ Carbon\Carbon::parse($profile->birth_date)->format("d-m-Y") }}</p>
             </div>
             <div>
                 <h5 for="name">Edad</h5>
