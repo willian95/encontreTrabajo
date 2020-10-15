@@ -111,7 +111,7 @@
                             
                                         <div class="col ">
                                             <label for="rut">RUT</label>
-                                            <input type="text" class="form-control" id="rut" v-model="rut">
+                                            <input type="text" class="form-control" id="rut" v-model="rut" @keyup="formatMoney()">
                                         </div>
                                         
                                     </div>
@@ -208,7 +208,7 @@
                         </div>
                         <div class="button-perfil-basico">
                             <div class="buttom-content">
-                                <button type="submit" class="btn btn-primary" @click="update()">Actualizar</button>
+                                <button type="submit" class="btn btn-primary" @click="validateRut()">Actualizar</button>
                             </div>
                         </div>
 
@@ -845,12 +845,6 @@
 @endsection
 
 @push("scripts")
-<script src="{{ asset('jquery.mask.min.js') }}"></script>
-<script>
-
-    $('#rut').mask('00.000.000-K')
-
-</script>
 <script>
         const devArea = new Vue({
             el: '#profile-dev',
@@ -869,6 +863,7 @@
                     name:"{{ Auth::user()->name }}",
                     lastname:"{{ Auth::user()->lastname }}",
                     rut:"{{ $user->profile->rut }}",
+                    isRutValid:false,
                     birthDate:"{{ $user->profile->birth_date }}",
                     gender:"{{ $user->profile->gender }}",
                     civilState:"{{ $user->profile->civil_state }}",
@@ -1000,7 +995,6 @@
                     $("#"+tab).addClass("active")
                 },
                 chooseMoveRegion(id, name){
-
 
                     var exist = false
                     var index = 0
@@ -1299,6 +1293,25 @@
                 showRegionsModal(){
                     $("#moveRegionsModal").modal('show');
                 },
+
+                validateRut(){
+                    var vm = this
+                    this.loading = true
+                    $.get("https://siichile.herokuapp.com/consulta?rut="+this.rut, function(data){
+                        vm.loading = false
+                        if(data.razon_social){
+                            vm.update()
+                        }else{
+                            swal({
+                                text:"RUT no es válido",
+                                icon:"error"
+                            })
+                        }
+
+                    })
+
+                },
+
                 update(){
 
                     
@@ -1721,7 +1734,6 @@
                 },
                 storeJobResume(){
 
-                    
                     this.loading = true
                     axios.post("{{ url('/profiles/job-resume/store') }}", {
                         jobDescription:this.jobDescription,
@@ -1995,7 +2007,24 @@
                     })
 
 
-                }
+                },
+                formatMoney() {
+                    let oldRut = this.rut.replaceAll(".", "")
+                    let newRut = oldRut.toString().replace(/\B(?=(\d{3})+\b)/g, ".")
+
+
+                    if(this.rut.replace(".", "").length < 12){
+                        
+                        this.rut = newRut
+                    }else{
+
+                        this.rut = newRut.substring(0, 12)
+
+                    }
+                    
+
+                }   
+            
                     
             },
             mounted(){

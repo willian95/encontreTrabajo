@@ -175,7 +175,7 @@
 
             <div>
                 <h5 for="name">Conocimientos y Habilidades</h5>
-                <p>{{ $profile->knowledge_hablities }}</p>
+                <p>{{ $profile->knowledge_habilities }}</p>
             </div>
 
             <div>
