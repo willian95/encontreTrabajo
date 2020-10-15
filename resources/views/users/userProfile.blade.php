@@ -279,7 +279,7 @@
                           
                         <!--</form>-->
                         <div>
-                                <div class="container content-table-a-academico">
+                                <div class="container content-table-a-academico ">
               
                                   <table class="table table-bordered table-hover table-striped">
                                     <thead>
@@ -563,7 +563,7 @@
                         </div>
                         
                     </div>
-                    <div class="row">
+                    <div class="row cont-label-rl">
                         <div class="col-md-4">
                             <label for="available">Disponibilidad de viaje</label>
                             <select class="form-control" id="available" v-model="travelAvailable">

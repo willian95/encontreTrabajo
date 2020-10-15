@@ -378,6 +378,7 @@ img.img-menu-perfil {
     flex-wrap: wrap;
     margin-bottom: 30px;
     margin-top: 30px;
+    width: 100%;
 }
 .button-perfil-basico {
     margin-top: 35px;
@@ -446,6 +447,7 @@ div#basicos {
     /* justify-content: center; */
     flex-direction: column;
     margin-bottom: 50px;
+    align-items: center;
 }
 .j-center {
     display: flex;
@@ -759,6 +761,7 @@ h3.title-plan {
 
 .container.table-responsive-et {
     overflow: auto;
+    margin-bottom: 35px;
 }
 img.ico-tab {
     background: white;
@@ -1464,4 +1467,9 @@ img.caja-mis-avisos_img {
 }
 .caja-input-buscador-usuario_input {
     padding: 5px;
+}
+
+.cont-label-rl {
+    display: flex;
+    align-items: baseline;
 }
