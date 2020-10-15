@@ -195,7 +195,6 @@
                     if(confirm("¿Está seguro?")){
                         axios.post("{{ url('/admin/user/delete') }}", {id: id}).then(res => {
 
-                            alert(res.data.msg)
                             this.fetch(this.page)
 
                         })

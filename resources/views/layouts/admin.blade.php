@@ -182,11 +182,17 @@ License: You must have a valid license purchased only from themeforest(the above
 								</a>
 							</li>
 
-							<li class="nav-item mb-5" data-toggle="tooltip" data-placement="right" data-container="body" data-boundary="window" title="Video">
+							<li class="nav-item mb-5" data-toggle="tooltip" data-placement="right" data-container="body" data-boundary="window" title="Noticias">
+								<a href="{{ url('/admin/news/index') }}" class="nav-link btn btn-icon btn-text-white btn-hover-text-white btn-lg">
+									<i class="far fa-newspaper"></i>
+								</a>
+							</li>
+
+							{{--<li class="nav-item mb-5" data-toggle="tooltip" data-placement="right" data-container="body" data-boundary="window" title="Video">
 								<a href="{{ url('/admin/video/index') }}" class="nav-link btn btn-icon btn-text-white btn-hover-text-white btn-lg">
 									<i class="far fa-file-video"></i>
 								</a>
-							</li>
+							</li>--}}
 
 
 							<li class="nav-item mb-5" data-toggle="tooltip" data-placement="right" data-container="body" data-boundary="window" title="Cerrar sesión">

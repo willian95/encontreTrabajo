@@ -165,7 +165,7 @@
                         if(res.data.success == true){
 
                             swal({
-                                title:"Genial",
+                              
                                 text:res.data.msg,
                                 icon:"success"
                             })
@@ -210,7 +210,7 @@
                         if(res.data.success == true){
 
                             swal({
-                                title:"Genial",
+                         
                                 text:res.data.msg,
                                 icon:"success"
                             })

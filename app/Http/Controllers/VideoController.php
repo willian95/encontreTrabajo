@@ -16,13 +16,13 @@ class VideoController extends Controller
         return view("admin.video.index", ["image" => $video->video]);
     }
 
-    function update(Request $request){
+    function updateVideo(Request $request){
 
         //ini_set('max_execution_time', 0);
        
         
 
-                if($request->get("video") != null){
+                /*if($request->get("video") != null){
                     
                     $videoData = $request->get('video');
                    
@@ -35,15 +35,15 @@ class VideoController extends Controller
                         rename($fileVideo, 'videos/'.$fileVideo);
                     }
     
-                }
+                }*/
                 
             
-
+            return response()->json($request);
             $video = Video::first();
-            $video->video = url('/').'/videos/'.$fileName;
+            //$video->video = url('/').'/videos/'.$fileName;
             $video->update();
 
-            return response()->json(["success" => true, "msg" => "Video actualizado"]);
+            //return response()->json(["success" => true, "msg" => "Video actualizado"]);
 
         
 

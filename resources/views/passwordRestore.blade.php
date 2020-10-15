@@ -89,7 +89,7 @@
                             if(res.data.success == true){
 
                                 swal({
-                                    title: "Excelente!",
+                                   
                                     text: res.data.msg,
                                     icon: "success"
                                 }).then(() => {

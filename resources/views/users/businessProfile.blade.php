@@ -276,7 +276,7 @@
 
 
 							swal({
-								title: "Excelente!",
+							
 								text: res.data.msg,
 								icon: "success"
 							})
@@ -321,7 +321,7 @@
 
 
 							swal({
-								title: "Excelente!",
+								
 								text: res.data.msg,
 								icon: "success"
 							})

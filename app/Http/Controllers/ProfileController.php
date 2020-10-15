@@ -547,7 +547,7 @@ class ProfileController extends Controller
             $profile->update();
 
 
-            if(\Auth::user()->image != url('/')."/images/users/default.jpg" && $profile->video != null && $profile->curriculum != null && $profile->address != null && AcademicBackground::where("user_id", \Auth::user()->id)->count() > 0){
+            if(\Auth::user()->image != url('/')."/images/users/default.jpg" && $profile->curriculum != null && $profile->address != null && $profile->phone != null){
 
                 $user = User::where("id", \Auth::user()->id)->first();
                 $user->is_profile_complete = 1;

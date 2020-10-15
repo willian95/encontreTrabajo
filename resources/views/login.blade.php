@@ -85,7 +85,7 @@
     @if(session('alert'))
         <script>
             swal({
-                title:"Excelente",
+             
                 text:"{{ session('alert') }}",
                 icon:"success"
             })
@@ -112,7 +112,7 @@
 
                             if(res.data.role_id == 1){
                                 swal({
-                                    title: "Excelente!",
+                            
                                     text: res.data.msg,
                                     icon: "success"
                                 }).then(() => {
@@ -123,7 +123,7 @@
                             }else if(res.data.role_id == 2 || res.data.role_id == 3){
 
                                 swal({
-                                    title: "Excelente!",
+                                  
                                     text: res.data.msg,
                                     icon: "success"
                                 }).then(() => {

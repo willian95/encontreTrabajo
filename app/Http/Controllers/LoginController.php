@@ -29,7 +29,7 @@ class LoginController extends Controller
 
                         $url = redirect()->intended()->getTargetUrl();
 
-                        return response()->json(["success" => true, "msg" => "Usuario autenticado", "role_id" => Auth::user()->role_id, "url" => $url]);
+                        return response()->json(["success" => true, "msg" => "Usuario validado correctamente", "role_id" => Auth::user()->role_id, "url" => $url]);
                     }
                         
                     return response()->json(["success" => false, "msg" => "Contraseña inválida"]);

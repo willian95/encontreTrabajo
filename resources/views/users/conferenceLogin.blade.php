@@ -64,7 +64,7 @@
     @if(session('alert'))
         <script>
             swal({
-                title:"Excelente",
+          
                 text:"{{ session('alert') }}",
                 icon:"success"
             })

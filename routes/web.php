@@ -161,7 +161,15 @@ Route::get("/admin/about-us/index", "AboutUsController@index");
 Route::post("/admin/about-us/update", "AboutUsController@update");
 
 Route::get("/admin/video/index", "VideoController@index");
-Route::post("/admin/video/update", "VideoController@update");
+Route::post("/admin/video-update", "VideoController@updateVideo");
+
+Route::get("/admin/news/index", "NewsController@index");
+Route::get("/admin/news/create", "NewsController@create");
+Route::get("/admin/news/fetch/{page}", "NewsController@fetch");
+Route::get("/admin/news/edit/{id}", "NewsController@edit");
+Route::post("/admin/news/store", "NewsController@store");
+Route::post("/admin/news/update", "NewsController@update");
+Route::post("/admin/news/delete", "NewsController@delete");
 
 
 /*Route::post("/admin/landing-business/store", "LandingBusinessController@store");
