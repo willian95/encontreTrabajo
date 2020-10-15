@@ -845,6 +845,12 @@
 @endsection
 
 @push("scripts")
+<script src="{{ asset('jquery.mask.min.js') }}"></script>
+<script>
+
+    $('#rut').mask('00.000.000-K')
+
+</script>
 <script>
         const devArea = new Vue({
             el: '#profile-dev',
