@@ -264,7 +264,7 @@ class ProfileController extends Controller
 
             $this->isProfileComplete();
             
-            return response()->json(["success" => true, "msg" => "Antecedentes básicos actualizados"]);
+            return response()->json(["success" => true, "msg" => "Tu modificación ha sido correcta"]);
 
         }catch(\Exception $e){
 

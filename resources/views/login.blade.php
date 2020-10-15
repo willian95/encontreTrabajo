@@ -32,7 +32,7 @@
                                         <div class="col r-col-100">
                                             <div class="form-group">
                                                 <label for="email">Email</label>
-                                                <input type="email" class="form-control" id="email" v-model="email">
+                                                <input type="email" class="form-control" id="email" v-model="email" v-on:keyup.enter="login()">
                                             </div>
                                         </div>
 
@@ -42,7 +42,7 @@
                                         <div class="col">
                                             <div class="form-group">
                                                 <label for="password">Contraseña</label>
-                                                <input type="password" class="form-control" id="password"  v-model="password">
+                                                <input type="password" class="form-control" id="password"  v-model="password" v-on:keyup.enter="login()">
                                             </div>
                                         </div>
                                     </div>
