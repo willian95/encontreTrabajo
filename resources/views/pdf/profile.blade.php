@@ -15,7 +15,7 @@
             </div>
             <div>
                 <h5 for="name">Nombre Completo</h5>
-                <p>{{ $user->name }}</p>
+                <p>{{ $user->name }} {{ $user->lastname }}</p>
             </div>
             <div>
                 <h5 for="name">RUT</h5>
@@ -23,7 +23,7 @@
             </div>
             <div>
                 <h5 for="name">Fecha de Nacimiento</h5>
-                <p>{{ $profile->birth_date }}</p>
+                <p>{{ Carbon\Carbon::parse($profile->birth_date)->format("dd-mm-yyyy") }}</p>
             </div>
             <div>
                 <h5 for="name">Edad</h5>
@@ -42,7 +42,7 @@
                 <p>{{ $profile->address }}</p>
             </div>
 
-            @if($user->country_id == 4)
+            @if($profile->country_id == 4)
                 <div>
                     <h5 for="name">Región</h5>
                     <p>{{ $user->region->name }}</p>
@@ -53,11 +53,6 @@
                     <p>{{ $user->commune->name }}</p>
                 </div>
             @endif
-
-            <div>
-                <h5 for="name">Posee Discapacidad</h5>
-                <p>{{ $user->commune->name }}</p>
-            </div>
             
             <div>
                 <h5 for="name">Posee Discapacidad</h5>
