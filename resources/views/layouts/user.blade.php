@@ -194,9 +194,15 @@
                                 <span class="content-encontre-trabajo-caja-info-img-porc_span"><p>{{ $profile_percentage }} %</p></span>
                                 <img class="content-encontre-trabajo-caja-info_img" src="{{ Auth::user()->image }}" alt="foto usuario">
                             </div>
-                                    
-                                    <h3 class="content-encontre-trabajo-caja-info_h3">{{ Auth::user()->name }} {{ Auth::user()->lastname }}</h3>
-                                    <h4 class="content-encontre-trabajo-caja-info_h4">{{ Auth::user()->email }}</h4>
+                                    @php
+                                        $name = substr(Auth::user()->name." ".Auth::user()->lastname, 0, 15);
+
+                                        if(strlen(Auth::user()->name." ".Auth::user()->lastname) > 15){
+                                            $name = $name.".";
+                                        }
+                                    @endphp
+                                    <h3 class="content-encontre-trabajo-caja-info_h3">{{ $name }}</h3>
+                                    {{--<h4 class="content-encontre-trabajo-caja-info_h4">{{ Auth::user()->email }}</h4>--}}
                                 </div>
                                     
 
