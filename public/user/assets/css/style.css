@@ -441,7 +441,9 @@ div#basicos {
     background: #fff;
     border: 1px solid #ced4da;
 }
-
+.inf-media-perfil-basicos {
+    margin: 15px;
+}
 .a-basicos {
     display: flex;
     /* justify-content: center; */
@@ -474,9 +476,9 @@ div#rlabora {
 .content-abasico-basicos .col {
     width: 220px;
 }
-.row.inf-perfil {
+.inf-perfil {
     margin-bottom: 15px;
-    margin-right: 10px;
+    /* margin-right: 10px; */
 }
 .row.r-laboral-form {
     margin-bottom: 20px;

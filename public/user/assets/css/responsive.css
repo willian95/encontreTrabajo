@@ -43,6 +43,7 @@
         height: 180px;
     }
 }
+
 @media (min-width: 0px) and (max-width: 575px) {
     .row.media-perfil {
         flex-direction: column;
@@ -63,6 +64,23 @@
         }
 }
 /**/
+@media (min-width: 0px) and (max-width: 991px) {
+    .d-n-991 {
+    display: none;
+}
+.cont-menu-h-usuario {
+    display: contents;
+}
+.w-100 {
+    width: 100%!important;
+    max-width: 100%;
+    flex: 0 0 100%;
+}
+.caja-input-buscador-usuario {
+    margin-top: 80px;
+}
+}
+
 @media (min-width: 525px) and (max-width: 991px) {
    
     img.basicos-postulante-c-4 {
