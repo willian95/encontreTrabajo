@@ -29,7 +29,7 @@
                 </textarea>
 
                 <label for="">Texto 2</label>
-                <textarea name="editor2" id="editor1" rows="10" cols="80">
+                <textarea name="editor2" id="editor2" rows="10" cols="80">
                     {!! $text2 !!}
                 </textarea>
             </div>
