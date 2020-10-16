@@ -23,6 +23,14 @@
     .content-otros {
         font-size: 12px;
     }
+    video#productVideo, iframe#iframepdf {
+        width: 250px!important;
+        height: 185px;
+    }
+    .a-basicos-postulante-video, .a-basicos-postulante-curriculum.j-center {
+        width: 250px;
+        height: 185px;
+    }
 }
 /*mi perfil*/
 @media (min-width: 576px) and (max-width: 991px) {
@@ -108,11 +116,11 @@
         margin: 10px;
         flex: auto;
     }
-    img.basicos-postulante-c-4 {
+    /* img.basicos-postulante-c-4 {
         width: 180px;
         height: 180px;
         object-fit: contain;
-    }
+    } */
     .col-md-4.media-perfil-c-4 input {
         width: 150px;
     }
@@ -207,11 +215,11 @@
     .content-abasico-basicos-curriculum {
         margin-left: 15px;
     }
-    img.basicos-postulante-c-4 {
+    /* img.basicos-postulante-c-4 {
         width: 180px;
         height: 180px;
 
-    }
+    } */
     .row.media-perfil-basicos-publicidad {
         margin-left: 0px;
     }
