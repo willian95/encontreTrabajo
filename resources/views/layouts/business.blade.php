@@ -147,7 +147,7 @@
                             <img class="caja-input-buscador-usuario-lupa_img" src="{{ asset('user/assets/img/chat.png') }}" alt="chat">
                             <span class="caja-ico-mensaje_span">1</span>
                         </div>--}}
-                        <div class="caja-input-buscador-usuario d-n-768">
+                        <div class="caja-input-buscador-usuario d-n-991">
                             <!--<input class="caja-input-buscador-usuario_input" type="text" placeholder="Busca tus ofertas de trabajo" id="search_input">
                             <button class="caja-input-buscador-usuario_button" onclick="storeQuery()"><img class="caja-input-buscador-usuario-lupa_img" src="{{ asset('user/assets/img/search-b.png') }}" alt="buscar"></button>-->
                             <select class="caja-input-buscador-usuario_input" id="job_category_id">
@@ -269,7 +269,7 @@
     </div>
     <div class="content-encontre-trabajo-usuario">
         <div class="row">
-            <div class="col-md-2 d-n-768">
+            <div class="col-md-2 d-n-991">
               <div class="menu-lateral-empresa">
                   <div class="content-encontre-trabajo-caja-info">
                      <div class="content-encontre-trabajo-caja-info-img-porc">
