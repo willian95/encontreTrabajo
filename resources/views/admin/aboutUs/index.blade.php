@@ -23,7 +23,13 @@
 
         <div class="row">
             <div class="col-md-10 offset-md-1">
+                <label for="">Texto 1</label>
                 <textarea name="editor1" id="editor1" rows="10" cols="80">
+                    {!! $text !!}
+                </textarea>
+
+                <label for="">Texto 2</label>
+                <textarea name="editor2" id="editor1" rows="10" cols="80">
                     {!! $text !!}
                 </textarea>
             </div>
@@ -43,6 +49,7 @@
     <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
     <script>
         CKEDITOR.replace( 'editor1' );
+        CKEDITOR.replace( 'editor2' );
         function normalClick(){
             $("#click").click();
         }
@@ -58,6 +65,7 @@
                     image:"",
                     imagePreview:"{{ $image }}",
                     text:"",
+                    text2:"",
                     loading:false,
                  
                 }
@@ -85,7 +93,8 @@
                 update(){
                     this.loading = true
                     this.text = CKEDITOR.instances.editor1.getData()
-                    axios.post("{{ url('/admin/about-us/update') }}", {text: this.text, image: this.image}).then(res => {
+                    this.text2 = CKEDITOR.instances.editor2.getData()
+                    axios.post("{{ url('/admin/about-us/update') }}", {text: this.text, text2: this.text2, image: this.image}).then(res => {
                         this.loading = false
                         if(res.data.success == true){
                             swal({
