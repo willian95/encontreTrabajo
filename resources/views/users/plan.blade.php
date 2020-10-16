@@ -2,7 +2,7 @@
 
 @section("content")
 
-    <div class="col-md-10">
+    <div class="col-md-10 cont-ofertas-9">
         <div class="row" id="dev-plan" style="margin-top: 100px;">
 
             <div class="loader-cover" v-if="loading == true">

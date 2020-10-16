@@ -65,8 +65,17 @@
 }
 /**/
 @media (min-width: 0px) and (max-width: 991px) {
-    .d-n-991 {
-    display: none;
+    .cont-ofertas-9 {
+        max-width: 100%;
+        flex: 0 0 100%;
+    }
+.col-10 {
+    flex: 0 0 100%;
+    max-width: 100%;
+    margin: 0px;
+}
+.d-n-991 {
+display: none;
 }
 .cont-menu-h-usuario {
     display: contents;
