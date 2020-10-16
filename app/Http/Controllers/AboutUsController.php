@@ -49,7 +49,9 @@ class AboutUsController extends Controller
             }
 
             $aboutUs = AboutUs::where("id", 1)->first();
-            $aboutUs->image = url('/').'/images/about-us/'.$fileName;
+            if($request->get('image') != null){
+                $aboutUs->image = url('/').'/images/about-us/'.$fileName;
+            }
             $aboutUs->text = $request->text;
             $aboutUs->text2 = $request->text2;
             $aboutUs->update();
