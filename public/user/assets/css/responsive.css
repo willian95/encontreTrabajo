@@ -152,6 +152,9 @@
         
 }
 @media (max-width: 768px) {
+    .caja-input-buscador-usuario_input {
+        width: 220px;
+    }
     /* video#productVideo, iframe#iframepdf {
         width: 180px!important;
         height: 180px;
@@ -457,6 +460,9 @@
     }
 }
 @media (max-width: 575px) {
+    .caja-input-buscador-usuario_input {
+        width: 200px;
+    }
     .opciones-inf-empresas table {
         font-size: 12px;
         display: flex;
@@ -586,7 +592,7 @@
     
 }
 @media (max-width: 320px) {
-    
+   
     .opciones-inf-empresas-opciones-select-2, .opciones-inf-empresas-opciones-select-1, .opciones-inf-empresas-opciones-select-3
     {
         font-size: 12px;
