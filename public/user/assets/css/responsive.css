@@ -65,10 +65,14 @@
 }
 /**/
 @media (min-width: 0px) and (max-width: 991px) {
-    .cont-ofertas-9 {
-        max-width: 100%;
-        flex: 0 0 100%;
-    }
+.postulaciones-col9 {
+    flex: 0 0 100%;
+    max-width: 100%;
+}
+.cont-ofertas-9 {
+    max-width: 100%;
+    flex: 0 0 100%;
+}
 .col-10 {
     flex: 0 0 100%;
     max-width: 100%;
