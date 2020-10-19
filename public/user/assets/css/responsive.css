@@ -65,8 +65,21 @@
 }
 /**/
 @media (min-width: 0px) and (max-width: 991px) {
-    .d-n-991 {
-    display: none;
+.postulaciones-col9 {
+    flex: 0 0 100%;
+    max-width: 100%;
+}
+.cont-ofertas-9 {
+    max-width: 100%;
+    flex: 0 0 100%;
+}
+.col-10 {
+    flex: 0 0 100%;
+    max-width: 100%;
+    margin: 0px;
+}
+.d-n-991 {
+display: none;
 }
 .cont-menu-h-usuario {
     display: contents;
@@ -152,6 +165,9 @@
         
 }
 @media (max-width: 768px) {
+    .caja-input-buscador-usuario_input {
+        width: 220px;
+    }
     /* video#productVideo, iframe#iframepdf {
         width: 180px!important;
         height: 180px;
@@ -457,6 +473,9 @@
     }
 }
 @media (max-width: 575px) {
+    .caja-input-buscador-usuario_input {
+        width: 200px;
+    }
     .opciones-inf-empresas table {
         font-size: 12px;
         display: flex;
@@ -586,7 +605,7 @@
     
 }
 @media (max-width: 320px) {
-    
+   
     .opciones-inf-empresas-opciones-select-2, .opciones-inf-empresas-opciones-select-1, .opciones-inf-empresas-opciones-select-3
     {
         font-size: 12px;

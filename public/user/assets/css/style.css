@@ -656,6 +656,8 @@ a.btn.btn-info {
     border: 1px;
     border-radius: 50px;
     padding: 10px 15px;
+    width: max-content;
+
 }
 /* div#proposals-dev {
     padding: 10px 30px 0px 30px;
@@ -1214,7 +1216,7 @@ li.opciones-perfil-encontre-trabajo-usuario_li.bb-n {
     align-items: center;
 }
 li.menu-lateral-usuario_ul_li.menu-resp-li {
-    font-size: 15px;
+    font-size: 12px;
     height: 2em;
 }
 /* .buscador-barra-lateral-empresa.m-bottom {
@@ -1476,4 +1478,3 @@ img.caja-mis-avisos_img {
     display: flex;
     align-items: baseline;
 }
-

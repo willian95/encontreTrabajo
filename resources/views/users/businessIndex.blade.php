@@ -2,7 +2,7 @@
 
 @section("content")
 
-    <div class="col-md-8" id="user-offers-dev" style="margin-top: 100px; padding-left: 40px;">
+    <div class="col-md-9 cont-ofertas-9" id="user-offers-dev" style="margin-top: 100px; padding-left: 40px;">
 
         <div class="row">
             <div class="col-12 recor-a-cp">
