@@ -80,6 +80,8 @@ Route::middleware(['auth', 'business'])->group(function(){
     Route::get("/offers/create", "OfferController@create");
     Route::post("/offers/store", "OfferController@store");
 
+    Route::get("/user/service-amount", "UserController@getServiceAmount");
+
 });
 
 Route::get("/offers/fetch/{page}", "OfferController@userFetch")->middleware('auth');

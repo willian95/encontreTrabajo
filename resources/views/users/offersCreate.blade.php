@@ -81,6 +81,22 @@
                                 </div>
                             </div>
 
+                            
+                                <div class="form-group form-check" v-if="highlightedPosts > 0">
+                                    <input type="checkbox" class="form-check-input" id="highlighted" v-model="isHighlighted">
+                                    <label class="form-check-label" for="highlighted">Destacada</label>
+                                </div>
+                         
+                               <div v-else>
+                                <p>
+                                        No posees avisos destacados, puedes comprar uno haciendo click aquí
+                                </p>
+                                    <p>
+                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#planModal">Comprar plan</button>
+                                    </p>
+                               </div>
+                    
+
                         </div>
 						
                         @if(App\User::where("id", \Auth::user()->id)->first()->expire_free_trial->gt(Carbon\Carbon::now()))
@@ -89,24 +105,24 @@
                             </div>
                         @else
 
-                            @if(App\serviceAmount::where('user_id', \Auth::user()->id)->first()->post_amount > 0)
-                                <div class="buttom-content-up">
-                                    <button type="button" class="btn btn-primary" @click="store()">Publicar</button>
-                                </div>
-                            @else
+                            <div class="buttom-content-up" v-if="simplePosts > 0 || dueDate > today">
+                                <button type="button" class="btn btn-primary" @click="store()">Publicar</button>
+                            </div>
+                    
 
+                            <div v-else>
                                 <div class="buttom-content-up">
-                                    <button :disabled="title == '' || minWage == '' || jobPosition == '' || category == '' || description == ''" type="button" class="btn btn-primary" data-toggle="modal" data-target="#planModal">Comprar plan</button>
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#planModal">Comprar plan</button>
                                 </div>
 
-                                <p>
-                                    <small v-if="title == '' || minWage == '' || jobPosition == '' || category == '' || description == ''">Debes llenar los campos</small>
+                                <p v-if="title == '' || minWage == '' || jobPosition == '' || category == '' || description == ''" class="text-center">
+                                   Debes completar los campos
                                 </p>
-
-                            @endif
+                            </div>
 
                         @endif
-					
+
+                     
 					</form>
 				</div>
        		</div>
@@ -119,7 +135,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title text-center" id="exampleModalLabel">Planes disponibles</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="closePlanModal">
                         <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
@@ -136,7 +152,7 @@
                                             <div class="card-body">
                                                 <h3 class="text-center">{{ $plan->title }}</h3>
 
-                                                <p><strong>Publicaciones: </strong>{{ $plan->post_amount }}</p>
+                                                <p><strong>Publicaciones: </strong>{{ $plan->simple_post_amount }}</p>
                                                 <p><strong>Conferencias: </strong>{{ $plan->conference_amount }}</p>
 
                                                 <h4 class="text-center">$ {{ number_format($plan->price, 0, ",", ".") }}</h4>
@@ -178,12 +194,17 @@
                     description:"",
                     minWage:"",
                     maxWage:"",
+                    today:new Date(),
                     category:"",
                     categories:[],
                     jobPosition:"",
                     childWin:null,
                     intervalID:null,
-                    loading:false
+                    isHighlighted:false,
+                    loading:false,
+                    simplePosts:0,
+                    highlightedPosts:0,
+                    dueDate:""
                 }
             },
             methods: {
@@ -198,7 +219,8 @@
                         minWage: this.minWage, 
                         maxWage: this.maxWage,
                         category: this.category,
-                        jobPosition: this.jobPosition
+                        jobPosition: this.jobPosition,
+                        highlightPost: this.isHighlighted
                     }).then(res => {
 
                         this.loading = false
@@ -320,16 +342,30 @@
                         window.clearInterval(this.intervalID);
                         $("#cover").css("display", "none")
                         if (localStorage.getItem("paymentStatusTrabajo") == 'aprobado') {
-                            this.store()
+                            //this.store()
+                            this.getServicesAmount()
+                            $("#closePlanModal").click()
+                            $('body').removeClass('modal-open');
+                            $('body').css('padding-right', '0px');
+                            $('.modal-backdrop').remove();
                         } else if (localStorage.getItem("paymentStatusTrabajo") == 'rechazado') {
                             $("#cover").css("display", "none")
                         }
                     }
+                },
+                getServicesAmount(){
+                    axios.get("{{ url('/user/service-amount') }}").then(res => {
+                        console.log("services", res)
+                        this.simplePosts = res.data[0].simple_post_amount
+                        this.highlightedPosts = res.data[0].highlighted_post_amount
+                        this.dueDate = new Date(res.data[0].due_date)
+                    })
                 }
 
             },
             mounted(){
                 this.fetchCategories()
+                this.getServicesAmount()
                 this.intervalID = window.setInterval(this.checkWindow, 500);
             }
 

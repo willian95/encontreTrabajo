@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Freshwork\Transbank\WebpayNormal;
 use Freshwork\Transbank\WebpayPatPass;
 use Freshwork\Transbank\RedirectorHelper;
+use Carbon\Carbon;
 use App\serviceAmount;
 use App\Cart;
 use App\Payment;
@@ -62,8 +63,17 @@ class CheckoutController extends Controller
             $plan = Plan::where("id", $payment->plan_id)->first();
 
             $serviceAmount = serviceAmount::where("user_id", $payment->user_id)->first();
-            $serviceAmount->post_amount = $serviceAmount->post_amount + $plan->post_amount;
+            $serviceAmount->simple_post_amount = $serviceAmount->simple_post_amount + $plan->simple_posts;
+            $serviceAmount->highlighted_post_amount = $serviceAmount->highlighted_post_amount + $plan->hightlight_posts;
             $serviceAmount->conference_amount = $serviceAmount->conference_amount + $plan->conference_amount;
+            $serviceAmount->download_profiles_amount = $serviceAmount->download_profiles_amount + $plan->download_profiles;
+
+            if($plan->plan_time == "anuales"){
+                $serviceAmount->due_time = Carbon::now()->addYear();
+            }else if($plan->plan_time == "semestrales"){
+                $serviceAmount->due_time = Carbon::now()->addMonths(6);
+            }
+
             $serviceAmount->update();
 
             return view("users.successPayment");

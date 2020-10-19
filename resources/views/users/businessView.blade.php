@@ -5,10 +5,13 @@
     <div class="col-md-8 w-100" id="user-offers-dev">
         <div class="row" style="margin-top: 170px;">
             <div class="col-6">
-                <h3 class="ml-3">Ofertas: {{ App\serviceAmount::where("user_id", \Auth::user()->id)->first()->post_amount }}</h3>
+                <h3 class="ml-3">Ofertas: {{ App\serviceAmount::where("user_id", \Auth::user()->id)->first()->simple_post_amount }}</h3>
             </div>
             <div class="col-6">
                 <h3>Conferencias: {{ App\serviceAmount::where("user_id", \Auth::user()->id)->first()->conference_amount }}</h3>
+            </div>
+            <div class="col-6">
+                <h3>Avisos destacados: {{ App\serviceAmount::where("user_id", \Auth::user()->id)->first()->highlighted_post_amount }}</h3>
             </div>
         </div>
         <div class="opciones-inf-empresas">
