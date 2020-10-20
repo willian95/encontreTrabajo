@@ -42,6 +42,7 @@
         /* width: 250px; */
         height: 180px;
     }
+
 }
 
 @media (min-width: 0px) and (max-width: 575px) {
@@ -104,7 +105,14 @@ display: none;
 }
 }
 @media (min-width: 525px) and (max-width: 991px) {
- 
+    .modal-lg .col-lg-4.card-plan-col-4 {
+        max-width: 50%;
+        flex: 0 0 50%;
+    }
+    .cont-ofertas-9 .col-md-4 {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
     img.basicos-postulante-c-4 {
         width: 180px;
         height: 180px;
@@ -169,6 +177,14 @@ display: none;
         
 }
 @media (max-width: 768px) {
+    .modal-dialog.modal-lg {
+        max-width: 90%;
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+    .contenedor-aviso-comprar-plan {
+        align-items: center;
+    }
     .caja-input-buscador-usuario_input {
         width: 220px;
     }
@@ -451,6 +467,14 @@ display: none;
     }
 }
 @media (max-width: 575px) {
+    .modal-lg .col-lg-4.card-plan-col-4 {
+        max-width: 100%;
+        flex: 0 0 100%;
+    }
+    .cont-ofertas-9 .col-md-4 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
     .caja-input-buscador-usuario_input {
         width: 200px;
     }

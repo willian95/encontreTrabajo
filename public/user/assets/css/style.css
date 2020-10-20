@@ -772,6 +772,19 @@ img.ico-tab {
     background: white;
     border-radius: 50px;
 }
+.modal-dialog.modal-lg {
+    max-width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+.contenedor-aviso-comprar-plan {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 0px 20px;
+}
 /**/
 ul {
     list-style: none;
@@ -1531,11 +1544,14 @@ img.wave_img {
     border-radius: 0 0 8px 8px;
 }
 .box-waves-text {
-    top: 120px;
+    /* top: 120px; */
     color: #fff;
     width: 100%;
     padding: 5px;
+    position: relative;
+    top: -2px;
 }
+
 .card-planes h6 {
     font-size: 12px;
 }
