@@ -1427,6 +1427,10 @@ img.caja-mis-avisos_img {
     padding-right: 5px;
     padding-left: 5px;
 }
+.content-encontre-trabajo-usuario h3 {
+    font-size: 25px;
+    padding: 5px 10px;
+}
 /*cambios en curriculum*/
 .container-perfil-usuario {
     margin-top: 30px;
