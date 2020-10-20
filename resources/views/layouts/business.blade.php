@@ -204,7 +204,7 @@
                                 <img class="content-encontre-trabajo-caja-info_img" src="{{ Auth::user()->image }}" alt="foto">
                             </div>
                             <h3 class="content-encontre-trabajo-caja-info_h3 empresa_h3">{{ Auth::user()->business_name }}</h3>
-                            <h4 class="content-encontre-trabajo-caja-info_h4 empresa_h4">{{Auth::user()->email }}</h4>
+                            {{--<h4 class="content-encontre-trabajo-caja-info_h4 empresa_h4">{{Auth::user()->email }}</h4>--}}
 
                             <ul class="menu-lateral-usuario_ul">
                                 <li class="menu-lateral-usuario_ul_li menu-resp-li" ><a href="{{ url('/home') }}"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/ico-usuario.png') }}" alt="">Inicio</a></li>
@@ -295,7 +295,7 @@
                         <img class="content-encontre-trabajo-caja-info_img" src="{{ Auth::user()->image }}" alt="foto usuario">
                      </div>
                       <h3 class="content-encontre-trabajo-caja-info_h3 empresa_h3">{{ Auth::user()->business_name }}</h3>
-                      <h4 class="content-encontre-trabajo-caja-info_h4 empresa_h4">{{Auth::user()->email }}</h4>
+                      {{--<h4 class="content-encontre-trabajo-caja-info_h4 empresa_h4">{{Auth::user()->email }}</h4>--}}
                   </div>
                     <ul class="menu-lateral-usuario_ul">
                         <li class="menu-lateral-usuario_ul_li menu-resp-li" ><a href="{{ url('/home') }}"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/ico-usuario.png') }}" alt="">Inicio</a></li>
