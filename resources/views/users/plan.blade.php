@@ -74,7 +74,7 @@
                                     <img src="{{ asset('user/assets/img/logop.png') }}" alt="logo encontre trabajo">
                                 </div>
                                 <h2 class="text-center text-uppercase">@{{ plan.title }}</h2>
-                                <h3 class="text-center"><small class="">$</small>@{{ parseInt(plan.price).toString() }}</h3>
+                                <h3 class="text-center"><small class="">$</small>@{{ parseInt(plan.price).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</h3>
                                 <h6 class="text-center text-uppercase">iva incluido</h6>
                                 <img class="wave_img" src="{{ asset('user/assets/img/wamarillo.svg') }}" alt="waves">
 
@@ -133,7 +133,7 @@
                                     <img src="{{ asset('user/assets/img/logop.png') }}" alt="logo encontre trabajo">
                                 </div>
                                 <h2 class="text-center text-uppercase">@{{ plan.title }}</h2>
-                                <h3 class="text-center"><small class="">$</small>@{{ parseInt(plan.price).toString() }}</h3>
+                                <h3 class="text-center"><small class="">$</small>@{{ parseInt(plan.price).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</h3>
                                 <h6 class="text-center text-uppercase">iva incluido</h6>
                                 <img class="wave_img" src="{{ asset('user/assets/img/wazul.svg') }}" alt="waves">
 
@@ -191,7 +191,7 @@
                                     <img src="{{ asset('user/assets/img/logop.png') }}" alt="logo encontre trabajo">
                                 </div>
                                 <h2 class="text-center text-uppercase">@{{ plan.title }}</h2>
-                                <h3 class="text-center"><small class="">$</small>@{{ parseInt(plan.price).toString() }}</h3>
+                                <h3 class="text-center"><small class="">$</small>@{{ parseInt(plan.price).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</h3>
                                 <h6 class="text-center text-uppercase">iva incluido</h6>
                                 <img class="wave_img" src="{{ asset('user/assets/img/wverde.svg') }}" alt="waves">
 
