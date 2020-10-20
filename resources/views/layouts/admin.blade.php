@@ -39,6 +39,8 @@ License: You must have a valid license purchased only from themeforest(the above
 
 		<link rel="stylesheet" href="{{ asset('/alertify/css/alertify.css') }}" >
     	<link rel="stylesheet" href="{{ asset('/alertify/css/themes/bootstrap.css') }}" >
+ 		<!-- <link href="{{ asset('user/assets/css/bootstrap.min.css') }}" rel="stylesheet" /> -->
+
 
 	</head>
 	<!--end::Head-->
@@ -4830,6 +4832,8 @@ License: You must have a valid license purchased only from themeforest(the above
 		<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 		<script src="{{ asset('js/app.js') }}"></script>
 
+  		<!-- <script src="{{ asset('user/assets/js/jquery.min.js') }}"></script>
+        <script src="{{ asset('user/assets/js/bootstrap.min.js') }}"></script> -->
 		@stack("scripts")
 
 

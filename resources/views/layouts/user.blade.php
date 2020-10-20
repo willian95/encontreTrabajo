@@ -364,7 +364,6 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
         <!-- <script src="{{ asset('user/assets/js/jquery.min.js') }}"></script>
         <script src="{{ asset('user/assets/js/bootstrap.min.js') }}"></script> -->
-
         <script src="{{ asset('/alertify/alertify.min.js') }}"></script>
         <script src="{{ asset('js/app.js') }}"></script>
 

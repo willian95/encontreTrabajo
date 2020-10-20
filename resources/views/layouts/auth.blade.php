@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="{{ asset('/alertify/css/alertify.css') }}" >
     <link rel="stylesheet" href="{{ asset('/alertify/css/themes/bootstrap.css') }}" >
     <link rel="icon" href="{{ asset('user/assets/img/Logo-azul.png') }}" type="image/x-icon">
+    <!-- <link href="{{ asset('user/assets/css/bootstrap.min.css') }}" rel="stylesheet" /> -->
 
     <title>Encontré Trabajo</title>
 </head>
@@ -27,7 +28,8 @@
 
         <script src="{{ asset('/alertify/alertify.min.js') }}"></script>
         <script src="{{ asset('js/app.js') }}"></script>
-
+        <!-- <script src="{{ asset('user/assets/js/jquery.min.js') }}"></script>
+        <script src="{{ asset('user/assets/js/bootstrap.min.js') }}"></script> -->
         <script>
             alertify.set('notifier','position', 'top-right');
         </script>

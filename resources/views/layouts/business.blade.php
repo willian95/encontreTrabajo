@@ -7,7 +7,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <!-- <link rel="stylesheet" href="{{ asset('user/assets/css/bootstrap.min.css') }}"> -->
-
     <link rel="stylesheet" href="{{ asset('user/assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('user/assets/css/responsive.css') }}">
     <link rel="stylesheet" href="{{ asset('/alertify/css/alertify.css') }}" >
@@ -353,51 +352,40 @@
           </div>
     </div>
   </section>
-
-        <!-- <link rel="stylesheet" href="{{ asset('user/assets/js/bootstrap.min.js') }}">
-        <link rel="stylesheet" href="{{ asset('user/assets/js/jquery.min.js') }}"> -->
-
-
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-        <!-- jQuery library -->
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <!-- Popper JS -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-        <!-- Latest compiled JavaScript -->
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-
-        <script src="{{ asset('/alertify/alertify.min.js') }}"></script>
-        <script src="{{ asset('js/app.js') }}"></script>
-
-        <script>
-            alertify.set('notifier','position', 'top-right');
-        </script>
-
-        @stack('scripts')
-
-        <script>
-
-            function toggleUserDropdown(){
-                
-                if($(".user-dropdown").hasClass("show")){
-                    $(".user-dropdown").removeClass("show")
-                }else{
-                    $(".user-dropdown").addClass("show")
-                }
+<!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<script src="{{ asset('/alertify/alertify.min.js') }}"></script>
+<script src="{{ asset('js/app.js') }}"></script>
+<!-- <script src="{{ asset('user/assets/js/jquery.min.js') }}"></script>
+<script src="{{ asset('user/assets/js/bootstrap.min.js') }}"></script> -->
+<script>
+    alertify.set('notifier','position', 'top-right');
+</script>
+@stack('scripts')
+    <script>
+        function toggleUserDropdown(){
+            
+            if($(".user-dropdown").hasClass("show")){
+                $(".user-dropdown").removeClass("show")
+            }else{
+                $(".user-dropdown").addClass("show")
             }
+        }
+    function storeQuery(){
+        let query = $("#job_category_id").val()
+        if(query != null){
+            localStorage.setItem("encontre_trabajo_categories_query", query)
+            window.location.href="{{ url('/business/search') }}"
+        }  
+    }
 
-            function storeQuery(){
-           
-                let query = $("#job_category_id").val()
-                if(query != null){
-                    localStorage.setItem("encontre_trabajo_categories_query", query)
-                    window.location.href="{{ url('/business/search') }}"
-                }
-                
-            }
-
-        </script>
-        <script>
+    </script>
+    <script>
         // selector
             var menu = document.querySelector(".hamburger");
 
@@ -420,7 +408,7 @@
                 });
             });*/
 
-        </script>
+    </script>
 
     </body>
 </html>

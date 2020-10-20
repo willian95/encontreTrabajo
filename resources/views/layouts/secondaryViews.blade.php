@@ -5,6 +5,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+        <link href="{{ asset('user/assets/css/bootstrap.min.css') }}" rel="stylesheet" />
+
         <link rel="stylesheet" href="{{ asset('user/assets/css/style.css') }}">
         <link rel="stylesheet" href="{{ asset('user/assets/css/responsive.css') }}">
         <link rel="stylesheet" href="{{ asset('/alertify/css/alertify.css') }}" >
@@ -48,38 +50,36 @@
             </div>
         </section>
 
-        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-        <!-- jQuery library -->
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <!-- Popper JS -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-        <!-- Latest compiled JavaScript -->
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 
-        <script src="{{ asset('/alertify/alertify.min.js') }}"></script>
-        <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('/alertify/alertify.min.js') }}"></script>
+    <script src="{{ asset('js/app.js') }}"></script>
+    <!-- <script src="{{ asset('user/assets/js/jquery.min.js') }}"></script>
+    <script src="{{ asset('user/assets/js/bootstrap.min.js') }}"></script> -->
+    <script>
+        $(document).ready(function(){
+            alertify.set('notifier','position', 'top-right');
+        })
+        // Access instance of plugin
+        //$('.date-picker').data('datepicker')
+    </script>
+    <script>
 
-        <script>
-            $(document).ready(function(){
-                alertify.set('notifier','position', 'top-right');
-        
-            })
-            // Access instance of plugin
-            //$('.date-picker').data('datepicker')
-       
-
-        </script>
-           <script>
-
-function toggleUserDropdown(){
-    
-    if($(".user-dropdown").hasClass("show")){
-        $(".user-dropdown").removeClass("show")
-    }else{
-        $(".user-dropdown").addClass("show")
-    }
-}
-</script>
+        function toggleUserDropdown(){
+            
+            if($(".user-dropdown").hasClass("show")){
+                $(".user-dropdown").removeClass("show")
+            }else{
+                $(".user-dropdown").addClass("show")
+            }
+        }
+    </script>
 
         @stack('scripts')
 

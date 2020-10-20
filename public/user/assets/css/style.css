@@ -100,10 +100,10 @@ img.content-logo-img-img {
     text-transform: uppercase;
 }
 .nav-tabs .nav-link.active {
-    color: #ffffff!important;
-    background-color: #0075a9!important;
+    color: #0075a9!important;
+    /* background-color: #0075a9!important; */
     border-color: #0075a9 #0075a9 #fff!important;
-    border-bottom: 1px solid #0075a9!important;
+    border-bottom: 2px solid #0075a9!important;
 }
 .tab-content>.active {
     height: max-content;
@@ -1477,4 +1477,66 @@ img.caja-mis-avisos_img {
 .cont-label-rl {
     display: flex;
     align-items: baseline;
+}
+.col-10 {
+    padding-left: 25px;
+    padding-right: 25px;
+}
+/*planes*/
+ul.box-waves-text_ul li:before {
+    content: "• ";
+    font-weight: bold;
+}
+.img-planes img {
+    width: 120px;
+    padding-top: 25px;
+    padding-bottom: 15px;
+}
+.card-planes h2 {
+    font-weight: bold;
+    font-size: 20px;
+}
+.card-planes h3 {
+    font-size: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+.card.card-planes small {
+    font-size: 18px;
+}
+.card-planes .card-body {
+    padding: 0;
+    margin: 0;
+}
+.box-waves.fondo-am {
+    position: relative;
+    top: -1px;
+}
+/* .box-waves {
+    height: 180px;
+} */
+img.wave_img {
+    height: 50px;
+}
+.box-waves_img img {
+    width: 100%;
+    object-fit: cover;
+    border-radius: 0 0 8px 8px;
+}
+.box-waves-text {
+    top: 120px;
+    color: #fff;
+    width: 100%;
+    padding: 5px;
+}
+.card-planes h6 {
+    font-size: 12px;
+}
+.fondo-am {
+    background-color: #ee9f2c;
+}
+.cont-ofertas-9 {
+    padding-left: 30px;
 }
