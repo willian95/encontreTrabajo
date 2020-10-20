@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\serviceAmount;
 use App\User;
 
 class UserController extends Controller
@@ -27,6 +28,12 @@ class UserController extends Controller
             return response()->json(["success" => false, "msg" => "Error en el servidor"]);
 
         }
+
+    }
+
+    function getServiceAmount(){
+
+        return response()->json(serviceAmount::where("user_id", \Auth::user()->id)->get());
 
     }
 

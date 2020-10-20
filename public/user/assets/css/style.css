@@ -1488,7 +1488,7 @@ ul.box-waves-text_ul li:before {
     font-weight: bold;
 }
 .img-planes img {
-    width: 120px;
+    width: 60px;
     padding-top: 25px;
     padding-bottom: 15px;
 }
@@ -1519,6 +1519,7 @@ ul.box-waves-text_ul li:before {
 } */
 img.wave_img {
     height: 50px;
+    width: 100%;
 }
 .box-waves_img img {
     width: 100%;
@@ -1537,6 +1538,18 @@ img.wave_img {
 .fondo-am {
     background-color: #ee9f2c;
 }
+.fondo-az {
+    background-color: #00649a;
+  }
+  .fondo-ve {
+    background-color: #26988a;
+  }
 .cont-ofertas-9 {
     padding-left: 30px;
+}
+ul.text-center.box-waves-text_ul {
+    padding-left: 0;
+}
+ul.box-waves-text_ul {
+    padding-left: 0;
 }
