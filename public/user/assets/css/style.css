@@ -130,6 +130,9 @@ img.content-logo-img-img {
     padding: 10px 25px;    
     justify-content: center;
 }
+.btn-danger {
+    border-radius: 20px!important;
+}
 .btn-primary:hover {
     color: #fff;
     background-color: #0075a969;
@@ -645,12 +648,17 @@ button.btn.btn-info {
     background: #0075a9;
     border: 1px solid;
     border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 10px 12px;
+
 }
 button.btn.btn-success {
     background: #0075a9;
     border: 1px;
 }
 a.btn.btn-info {
+    font-weight: bold;
     margin-bottom: 2px;
     font-size: 12px;
     background: #0075a9;
@@ -674,6 +682,7 @@ tbody {
     padding: .75rem;
     vertical-align: top;
     border-top: 1px solid #dee2e652;
+    text-align: center;
 }
 .row.perfil-empresa-form {
     margin-top: 20px;
