@@ -6,7 +6,7 @@
 
 @section("content")
 
-    <div class="container mt-3 perfil-encontre-trabajo" id="offersDetails-dev">
+    <div class="col-md-10 container mt-3 perfil-encontre-trabajo " id="offersDetails-dev">
 		<br>
 		<div class="loader-cover" v-if="loading == true">
 			<div class="loader"></div>
@@ -65,7 +65,7 @@
 
                     @if(\Auth::user()->role_id == 3)
                     
-                        <div class="row perfil-empresa-form">
+                        <div class="row perfil-empresa-form table-responsive-et">
 
                             <div class="col-12">
                                 <h4 class="text-center">Respuestas de usuarios</h4>

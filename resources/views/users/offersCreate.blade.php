@@ -15,7 +15,7 @@
         <!-- Tab panes -->
         <div class="tab-content">
           	<div id="iusuario" class="container tab-pane active "><br>
-				<div class="content-perfil-empresa">
+				<div class="content-perfil-empresa ">
 					<form action="/action_page.php">
 						<!--<div class="row media-perfil">
 							<div class="col-md-4 media-perfil-c-4">
@@ -192,7 +192,7 @@
                                                         </ul>
 
                                                         <p class="text-center">
-                                                            <button class="btn btn-primary" @click="cartStore({{ $plan->id }}, {{ $plan->price }})">pagar</button>
+                                                            <button class="btn btn-primary" @click="cartStore({{ $plan->id }}, {{ $plan->price }})">Pagar</button>
                                                         </p>
                                                     </div>
                                                 </div>

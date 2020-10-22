@@ -644,6 +644,7 @@ input#curriculum {
 button.btn.btn-info {
     background: #0075a9;
     border: 1px solid;
+    border-radius: 20px;
 }
 button.btn.btn-success {
     background: #0075a9;
@@ -735,6 +736,7 @@ a.btn.btn-info {
 .content-perfil-empresa {
     margin-left: 15px;
     margin-right: 15px;
+    margin-top: 50px;
 }
 h4.text-center.price-plan {
     font-weight: bold;
@@ -1441,7 +1443,7 @@ img.caja-mis-avisos_img {
     padding-left: 5px;
 }
 .content-encontre-trabajo-usuario h3 {
-    font-size: 25px;
+    font-size: 18px;
     padding: 5px 10px;
 }
 /*cambios en curriculum*/
@@ -1569,7 +1571,21 @@ img.wave_img {
 }
 ul.text-center.box-waves-text_ul {
     padding-left: 0;
+    height: 220px;
 }
 ul.box-waves-text_ul {
     padding-left: 0;
+}
+.perfil-encontre-trabajo .col-md-12.col-sm-12 .form-group {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.referencias-laborales-table {
+    padding-left: 25px;
+}
+.table-responsive-et {
+    overflow: auto;
+    margin: 10px;
+    border: 1px solid #d1dce2eb;
+    padding: 5px;
 }

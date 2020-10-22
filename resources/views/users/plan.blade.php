@@ -112,7 +112,7 @@
                                         </ul>
 
                                         <p class="text-center">
-                                            <button class="btn btn-primary" @click="cartStore(plan.id, plan.price)">pagar</button>
+                                            <button class="btn btn-primary" @click="cartStore(plan.id, plan.price)">Pagar</button>
                                         </p>
 
                                     </div>

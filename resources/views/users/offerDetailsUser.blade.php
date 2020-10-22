@@ -59,7 +59,7 @@
 
                     @if(\Auth::user()->role_id == 3)
                     
-                        <div class="row perfil-empresa-form">
+                        <div class="row perfil-empresa-form table-responsive-et">
 
                             <div class="col-12">
                                 <h4 class="text-center">Respuestas de usuarios</h4>
