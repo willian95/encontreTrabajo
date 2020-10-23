@@ -25,13 +25,13 @@ class StatisticController extends Controller
         }
 
         //$academic = 
-        dd($academic);
+        //dd($academic);
         $count = $academic->groupBy('educational_level')->map(function ($people) {
             return $people->count();
         });
 
         //dd($academic, $count);
-
+        dd();
 
         return view("admin.statistics.index", ["academicCount" => $count]);
 
