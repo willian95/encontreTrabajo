@@ -16,7 +16,7 @@ class StatisticController extends Controller
     
     function index(){
 
-        $users = User::where("role_id", 2)->get();
+        $users = User::where("role_id", 2)->has("academicBackground")->get();
 
         foreach($users as $user){
 
