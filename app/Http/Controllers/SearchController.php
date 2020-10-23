@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Offer;
 use App\Profile;
+use App\Search;
 
 class SearchController extends Controller
 {
@@ -22,13 +23,15 @@ class SearchController extends Controller
 
             if(\Auth::user()->role_id == 2){
 
-                $words = explode(' ',strtolower($request->search)); // coloco cada palabra en un espacio del array
+                $dataAmount = 18;
+                $skip = ($request->page - 1) * $dataAmount;
+
+                /*$words = explode(' ',strtolower($request->search)); // coloco cada palabra en un espacio del array
                 $wordsToDelete = array('de');
 
                 $words = array_values(array_diff($words,$wordsToDelete));
 
-                $dataAmount = 18;
-                $skip = ($request->page - 1) * $dataAmount;
+                
 
                 $offers = Offer::with("user")->has("user")
                 ->where(function ($query) use($words) {
@@ -62,7 +65,27 @@ class SearchController extends Controller
                 })
                 ->whereDate('expiration_date', '>', Carbon::today()->toDateString())
                 ->orderBy("id", "desc")
+                ->count();*/
+
+                $offers = Offer::with("user")->has("user")
+                ->where("category_id", $request->search)
+                ->where("status", "abierto")
+                ->whereDate('expiration_date', '>', Carbon::today()->toDateString())
+                ->take($dataAmount)
+                ->orderBy("id", "desc")
+                ->get();
+
+                $offersCount = Offer::with("user")->has("user")
+                ->where("category_id", $request->search)
+                ->where("status", "abierto")
+                ->whereDate('expiration_date', '>', Carbon::today()->toDateString())
+                ->take($dataAmount)
+                ->orderBy("id", "desc")
                 ->count();
+
+                $search = new Search;
+                $search->job_category_id = $request->search;
+                $search->save();
 
             }else if(\Auth::user()->role_id == 3){
 

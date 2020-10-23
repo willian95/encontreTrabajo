@@ -7,6 +7,7 @@ use Carbon\Carbon;
 use App\User;
 use App\Http\Requests\OfferStoreRequest;
 use App\Offer;
+use App\OfferViewer;
 use App\serviceAmount;
 
 class OfferController extends Controller
@@ -113,6 +114,11 @@ class OfferController extends Controller
             $offer = Offer::where("slug", $slug)->with("user", "user.region", "user.commune", "user.profile")->has("user")->has("user.profile")->firstOrFail();
             
             if(\Auth::user()->role_id == 2){
+
+                $viewer = new OfferViewer;
+                $viewer->offer_id = $offer->id;
+                $viewer->save();
+
                 return view("users.offerDetailsUser", ["offer" => $offer]);
             }else if(\Auth::user()->role_id == 3){
                 return view("users.offerDetails", ["offer" => $offer]);

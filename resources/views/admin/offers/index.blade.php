@@ -37,6 +37,7 @@
                                         <th>Puesto</th>
                                         <th>Categoría</th>
                                         <th>Status</th>
+                                        <th>Estadísticas</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -47,6 +48,9 @@
                                         <td>@{{ offer.job_position }}</td>
                                         <td>@{{ offer.category.name }}</td>
                                         <td>@{{ offer.status }}</td>
+                                        <td>
+                                            <button class="btn btn-info" data-toggle="modal" data-target="#stadisticModal" @click="showStatiscitcs(offer.id)"><i class="fas fa-chart-area"></i></button>
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -107,6 +111,39 @@
                 </div>
 
             </div>
+
+            <!-- Modal-->
+            <div class="modal fade" id="stadisticModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Estadística</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <i aria-hidden="true" class="ki ki-close"></i>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label for="">Visualizaciones</label>
+                                        <p>@{{ viewers }}</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="">Propuestas</label>
+                                        <p>@{{ proposals }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                    
+                            
+                        </div>
+                        <div class="modal-footer">
+                            <button id="modalClose" type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal">Cerrar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
        
 
 
@@ -127,6 +164,8 @@
                     offers:[],
                     searching:false,
                     query:"",
+                    proposals:0,
+                    viewers:0,
                     pages:0,
                     page:1,
                 }
@@ -159,8 +198,6 @@
                 },
                 search(page = 1){
 
-                    
-                    
                     if(this.query.length > 0){
                         this.page = page
                         this.searching = true
@@ -200,6 +237,14 @@
                         })
                     }
 
+                },
+                showStatiscitcs(id){
+                    axios.post("{{ url('/admin/offers/statistics') }}", {"offer_id": id}).then(res => {
+
+                        this.proposals = res.data.proposals
+                        this.viewers = res.data.viewers
+
+                    })
                 }
 
 

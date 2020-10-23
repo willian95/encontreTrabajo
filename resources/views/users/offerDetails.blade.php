@@ -41,6 +41,9 @@
                             <p>
                                 <strong>Rango Salarial: </strong><span class="price-rango"> $ @{{ parseInt(minWage).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }} <span v-if="maxWage != ''">- $ @{{ parseInt(maxWage).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</span></span>
                             </p>
+                            <p>
+                                <strong>Visualizaciones: </strong>{{ App\OfferViewer::where("offer_id", $offer->id)->count() }}</span></span>
+                            </p>
                             
                         </div>
 

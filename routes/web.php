@@ -147,6 +147,7 @@ Route::post("/admin/plans/update", "PlanController@update");
 Route::get('/admin/offers', "AdminOfferController@index")->middleware('auth');
 Route::get('/admin/offers/fetch/{page}', "AdminOfferController@fetch");
 Route::post('/admin/offers/search', "AdminOfferController@search");
+Route::post('/admin/offers/statistics', "AdminOfferController@statistics");
 
 Route::get("/admin/landing-business", "LandingBusinessController@index");
 Route::get("/admin/landing-business/fetch", "LandingBusinessController@fetch");
@@ -172,6 +173,13 @@ Route::get("/admin/news/edit/{id}", "NewsController@edit");
 Route::post("/admin/news/store", "NewsController@store");
 Route::post("/admin/news/update", "NewsController@update");
 Route::post("/admin/news/delete", "NewsController@delete");
+
+Route::get("/admin/statistics/index", "StatisticController@index");
+Route::post("/admin/statistics/users/count", "StatisticController@usersByDate");
+Route::post("/admin/statistics/users/location/count", "StatisticController@usersByLocation");
+Route::post("/admin/statistics/users/age/count", "StatisticController@usersByAge");
+Route::post("/admin/statistics/users/desired-area/count", "StatisticController@usersDesiredArea");
+Route::post("/admin/statistics/categories/count", "StatisticController@searchedCategories");
 
 
 /*Route::post("/admin/landing-business/store", "LandingBusinessController@store");

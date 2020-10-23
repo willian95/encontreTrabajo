@@ -57,4 +57,8 @@ class User extends Authenticatable
         return $this->belongsTo(Commune::class);
     }
 
+    public function academicBackground(){
+        return $this->hasMany(AcademicBackground::class);
+    }
+
 }

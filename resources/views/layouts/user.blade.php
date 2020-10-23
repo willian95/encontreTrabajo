@@ -142,8 +142,13 @@
                     </div> 
                     <div class="col-md-8 f-a-c">
                         <div class="encontre-trabajo-usuario_row-col-12-col-4">
-                            <div class="caja-input-buscador-usuario d-n-991">
-                                <input class="caja-input-buscador-usuario_input" type="text" placeholder="Busca tu nuevo trabajo" id="search_input">
+                            <div class="d-flex">
+                                <select class="form-control" id="search_input">
+                                    <option value="0">Seleccione</option>
+                                    @foreach(App\JobCategory::all() as $category)
+                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                    @endforeach
+                                </select>
                                 <button class="caja-input-buscador-usuario_button" onclick="storeQuery()"><img class="caja-input-buscador-usuario-lupa_img" src="{{ asset('user/assets/img/search-b.png') }}" alt="buscar"></button>                        
                             </div>
                             {{--<div class="caja-ico-mensaje">

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\OfferViewer;
+use App\Proposal;
 use App\Offer;
 
 class AdminOfferController extends Controller
@@ -52,6 +54,14 @@ class AdminOfferController extends Controller
         }catch(\Exception $e){
             return response()->json(["success" => false, "err" => $e->getMessage(), "ln" => $e->getLine(), "msg" => "Ocurrió un problema"]);
         }
+
+    }
+
+    function statistics(Request $request){
+
+        $viewers = OfferViewer::where("offer_id", $request->offer_id)->count(); 
+        $proposals = Proposal::where("offer_id", $request->offer_id)->count(); 
+        return response()->json(["viewers" => $viewers, "proposals" => $proposals]);
 
     }
 
