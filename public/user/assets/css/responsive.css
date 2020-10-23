@@ -42,6 +42,7 @@
         /* width: 250px; */
         height: 180px;
     }
+
 }
 
 @media (min-width: 0px) and (max-width: 575px) {
@@ -73,38 +74,55 @@
 }
 /**/
 @media (min-width: 0px) and (max-width: 991px) {
-.postulaciones-col9 {
-    flex: 0 0 100%;
-    max-width: 100%;
-}
-.cont-ofertas-9 {
-    max-width: 100%;
-    flex: 0 0 100%;
-    padding-right: 5px;
-    padding-left: 25px;
-}
-.col-10 {
-    flex: 0 0 100%;
-    max-width: 100%;
-    margin: 0px;
-}
-.d-n-991 {
-display: none;
-}
-.cont-menu-h-usuario {
-    display: contents;
-}
-.w-100 {
-    width: 100%!important;
-    max-width: 100%;
-    flex: 0 0 100%;
-}
-.caja-input-buscador-usuario {
-    margin-top: 80px;
-}
+    .antecedentes_container-info {
+        margin-left: 0;
+    }
+    img.encontre-trabajo-usuario_row-col-12-logo-img {
+        width: 90px;
+    }
+    .contenido-publicitario-empresas {
+        display: flex;
+        flex-direction: row;
+    }    
+    .postulaciones-col9 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    .cont-ofertas-9 {
+        max-width: 100%;
+        flex: 0 0 100%;
+        padding-right: 5px;
+        padding-left: 25px;
+    }
+    .col-10 {
+        flex: 0 0 100%;
+        max-width: 100%;
+        margin: 0px;
+    }
+    .d-n-991 {
+    display: none;
+    }
+    .cont-menu-h-usuario {
+        display: contents;
+    }
+    .w-100 {
+        width: 100%!important;
+        max-width: 100%;
+        flex: 0 0 100%;
+    }
+    .caja-input-buscador-usuario {
+        margin-top: 80px;
+    }
 }
 @media (min-width: 525px) and (max-width: 991px) {
- 
+    .modal-lg .col-lg-4.card-plan-col-4 {
+        max-width: 50%;
+        flex: 0 0 50%;
+    }
+    .cont-ofertas-9 .col-md-4 {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
     img.basicos-postulante-c-4 {
         width: 180px;
         height: 180px;
@@ -169,6 +187,17 @@ display: none;
         
 }
 @media (max-width: 768px) {
+    /* .perfil-encontre-trabajo label {
+        margin-top: 10px;
+    } */
+    .modal-dialog.modal-lg {
+        max-width: 90%;
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+    .contenedor-aviso-comprar-plan {
+        align-items: center;
+    }
     .caja-input-buscador-usuario_input {
         width: 220px;
     }
@@ -233,7 +262,7 @@ display: none;
 
     } */
     .row.media-perfil-basicos-publicidad {
-        margin-left: 0px;
+        margin-left: 8px;
     }
     
     .content-encontre-trabajo-usuario {
@@ -256,10 +285,7 @@ display: none;
     .caja-verde-usuario {
         width: 29%;
     }
-    .contenido-publicitario-empresas {
-        display: flex;
-        flex-direction: row;
-    }
+  
     .col-md-12.opciones-perfil-encontre-trabajo-usuario-info {
         margin-left: 20px;
         margin-right: 20px;
@@ -340,7 +366,7 @@ display: none;
     }
     a.btn.btn-info {
         font-size: 12px;
-        padding: 0px 16px;
+        padding: 6px 16px;
     }
     div#labora table {
         font-size: 10px;
@@ -451,6 +477,17 @@ display: none;
     }
 }
 @media (max-width: 575px) {
+    h3.content-encontre-trabajo-caja-info_h3 {
+        font-size: 15px;
+    }
+    .modal-lg .col-lg-4.card-plan-col-4 {
+        max-width: 100%;
+        flex: 0 0 100%;
+    }
+    .cont-ofertas-9 .col-md-4 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
     .caja-input-buscador-usuario_input {
         width: 200px;
     }
@@ -466,7 +503,10 @@ display: none;
         width: 150px;
     }
     .a-academicos-form {
-        padding: 20px;
+        padding: 10px 0px 0px 15px;
+    }
+    .perfil-encontre-trabajo {
+        /* padding: 0px 0px 0px 15px; */
     }
     .sub-localidad {
         font-size: 12px;
@@ -580,6 +620,7 @@ display: none;
     } 
 }
 @media (max-width: 320px) {  
+   
     .opciones-inf-empresas-opciones-select-2, .opciones-inf-empresas-opciones-select-1, .opciones-inf-empresas-opciones-select-3{
         font-size: 12px;
     }

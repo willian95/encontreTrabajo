@@ -130,6 +130,9 @@ img.content-logo-img-img {
     padding: 10px 25px;    
     justify-content: center;
 }
+.btn-danger {
+    border-radius: 20px!important;
+}
 .btn-primary:hover {
     color: #fff;
     background-color: #0075a969;
@@ -644,12 +647,18 @@ input#curriculum {
 button.btn.btn-info {
     background: #0075a9;
     border: 1px solid;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 10px 12px;
+
 }
 button.btn.btn-success {
     background: #0075a9;
     border: 1px;
 }
 a.btn.btn-info {
+    font-weight: bold;
     margin-bottom: 2px;
     font-size: 12px;
     background: #0075a9;
@@ -673,6 +682,7 @@ tbody {
     padding: .75rem;
     vertical-align: top;
     border-top: 1px solid #dee2e652;
+    text-align: center;
 }
 .row.perfil-empresa-form {
     margin-top: 20px;
@@ -735,6 +745,7 @@ a.btn.btn-info {
 .content-perfil-empresa {
     margin-left: 15px;
     margin-right: 15px;
+    margin-top: 50px;
 }
 h4.text-center.price-plan {
     font-weight: bold;
@@ -771,6 +782,19 @@ h3.title-plan {
 img.ico-tab {
     background: white;
     border-radius: 50px;
+}
+.modal-dialog.modal-lg {
+    max-width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+.contenedor-aviso-comprar-plan {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 0px 20px;
 }
 /**/
 ul {
@@ -1427,6 +1451,10 @@ img.caja-mis-avisos_img {
     padding-right: 5px;
     padding-left: 5px;
 }
+.content-encontre-trabajo-usuario h3 {
+    font-size: 18px;
+    padding: 5px 10px;
+}
 /*cambios en curriculum*/
 .container-perfil-usuario {
     margin-top: 30px;
@@ -1527,11 +1555,14 @@ img.wave_img {
     border-radius: 0 0 8px 8px;
 }
 .box-waves-text {
-    top: 120px;
+    /* top: 120px; */
     color: #fff;
     width: 100%;
     padding: 5px;
+    position: relative;
+    top: -2px;
 }
+
 .card-planes h6 {
     font-size: 12px;
 }
@@ -1549,7 +1580,21 @@ img.wave_img {
 }
 ul.text-center.box-waves-text_ul {
     padding-left: 0;
+    height: 220px;
 }
 ul.box-waves-text_ul {
     padding-left: 0;
+}
+.perfil-encontre-trabajo .col-md-12.col-sm-12 .form-group {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.referencias-laborales-table {
+    padding-left: 25px;
+}
+.table-responsive-et {
+    overflow: auto;
+    margin: 10px;
+    border: 1px solid #d1dce2eb;
+    padding: 5px;
 }

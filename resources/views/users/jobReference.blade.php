@@ -51,7 +51,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-12">
+                    <div class="col-12 referencias-laborales-table table-responsive-cv ">
                         <table class="table table-bordered table-hover table-striped">
                             <thead>
                                 <tr>
