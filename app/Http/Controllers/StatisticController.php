@@ -26,9 +26,9 @@ class StatisticController extends Controller
 
         //$academic = 
         //dd($academic);
-        $count = $academic->groupBy('educational_level')->map(function ($people) {
+        /*$count = $academic->groupBy('educational_level')->map(function ($people) {
             return $people->count();
-        });
+        });*/
 
         //dd($academic, $count);
         dd();
