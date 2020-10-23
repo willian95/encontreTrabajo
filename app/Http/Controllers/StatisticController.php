@@ -17,23 +17,41 @@ class StatisticController extends Controller
     function index(){
 
         $users = User::where("role_id", 2)->has("academicBackground")->get();
+        $basico = 0;
+        $medio = 0;
+        $universitario = 0;
+        $tecnico = 0;
+        $magister = 0;
+        $doctorado = 0;
 
         foreach($users as $user){
 
             $aB= AcademicBackground::orderBy("end_date", "desc")->where("user_id", $user->id)->whereNotNull("end_date")->first();
-            dump($aB);
+            if($aB){
+                if($aB->educational_level == "Básico"){
+                    $basico++;
+                }
+                else if($aB->educational_level == "Medio"){
+                    $medio++;
+                }
+                else if($aB->educational_level == "Técnico Profesional"){
+                    $tecnico++;
+                }
+                else if($aB->educational_level == "Universitario"){
+                    $universitario++;
+                }
+                else if($aB->educational_level == "Magister"){
+                    $magister++;
+                }
+                else if($aB->educational_level == "Doctorado"){
+                    $doctorado++;
+                }
+                
+            }
         }
 
-        //$academic = 
-        //dd($academic);
-        /*$count = $academic->groupBy('educational_level')->map(function ($people) {
-            return $people->count();
-        });*/
 
-        //dd($academic, $count);
-        dd();
-
-        return view("admin.statistics.index", ["academicCount" => $count]);
+        return view("admin.statistics.index", ["basico" => $basico, "medio" => $medio, "tecnico" => $tecnico, "universitario" => $universitario, "magister" => $magister, "doctorado" => $doctorado]);
 
     }
 

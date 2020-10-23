@@ -222,10 +222,12 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <p><strong>Básico: </strong> @if(isset($academicCount["Básico"])) {{ $academicCount["Básico"] }} @else 0 @endif</p>
-                                                <p><strong>Medio: </strong> @if(isset($academicCount["Medio"])) {{ $academicCount["Medio"] }} @else 0 @endif</p>
-                                                <p><strong>Técnico: </strong> @if(isset($academicCount["Técnico Profesional"])) {{ $academicCount["Técnico Profesional"] }} @else 0 @endif</p>
-                                                <p><strong>Universitario: </strong>@if(isset($academicCount["Universitario"])) {{ $academicCount["Universitario"] }} @else 0 @endif</p>
+                                                <p><strong>Básico: </strong> {{ $basico }}</p>
+                                                <p><strong>Medio: </strong> {{ $medio }}</p>
+                                                <p><strong>Técnico: </strong> {{ $tecnico }}</p>
+                                                <p><strong>Universitario: </strong>{{ $universitario }}</p>
+                                                <p><strong>Magister: </strong>{{ $magister }}</p>
+                                                <p><strong>Doctorado: </strong>{{ $doctorado }}</p>
                                             </div>
                                         </div>
                                         
