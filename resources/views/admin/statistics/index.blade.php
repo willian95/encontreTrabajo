@@ -394,7 +394,7 @@
                 },
                 fetchCommunes(){
                     
-                    axios.get("{{ url('//communes/fetch/') }}"+"/"+this.selectRegion).then(res => {
+                    axios.get("{{ url('/communes/fetch/') }}"+"/"+this.selectRegion).then(res => {
                         this.communes = res.data.communes
                     })
 
