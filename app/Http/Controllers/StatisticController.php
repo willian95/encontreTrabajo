@@ -22,6 +22,8 @@ class StatisticController extends Controller
             return $people->count();
         });
 
+        dd($academic, $count);
+
 
         return view("admin.statistics.index", ["academicCount" => $count]);
 
