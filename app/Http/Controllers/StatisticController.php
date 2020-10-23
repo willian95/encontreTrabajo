@@ -16,7 +16,7 @@ class StatisticController extends Controller
     
     function index(){
 
-        $academic = AcademicBackground::with("user")->orderBy("end_date", "desc")->whereNotNull("end_date")->get();
+        $academic = AcademicBackground::with("user")->orderBy("end_date", "desc")->groupBy("user_id")->whereNotNull("end_date")->get();
         dd($academic);
         $count = $academic->groupBy('educational_level')->map(function ($people) {
             return $people->count();
