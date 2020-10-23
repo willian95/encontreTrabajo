@@ -21,10 +21,10 @@ class StatisticController extends Controller
         foreach($users as $user){
 
             $aB= AcademicBackground::orderBy("end_date", "desc")->where("user_id", $user->id)->whereNotNull("end_date")->first();
-            dump($ab);
+            dump($aB);
         }
 
-        $academic = 
+        //$academic = 
         dd($academic);
         $count = $academic->groupBy('educational_level')->map(function ($people) {
             return $people->count();
