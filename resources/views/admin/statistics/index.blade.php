@@ -179,7 +179,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <div class="form-group">
-                                                    <p><strong>Casado: </strong>{{ App\Profile::with("user")->whereHas("user", function($q){ $q->where("role_id", 2); })->where("gender", "casado")->count() }}</p>
+                                                    <p><strong>Casado: </strong>{{ App\Profile::with("user")->whereHas("user", function($q){ $q->where("role_id", 2); })->where("civil_state", "casado")->count() }}</p>
                                                 </div>
                                             </div>
                                         </div>
