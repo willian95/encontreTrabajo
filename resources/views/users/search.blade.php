@@ -48,6 +48,12 @@
             <div class="col-md-9 resultados-busqueda" id="user-search-dev">
                 <div class="row" v-cloak>   
 
+                    <div class="col-md-12" v-if="loading == false && offers.length == 0">
+                        <p class="text-center">
+                            No se encontraron resultados
+                        </p>
+                    </div>
+
                     <div class="col-md-4" v-for="offer in offers">
                         <div class="card">
                             <div class="card-body">
@@ -117,6 +123,7 @@
                     offers:"",
                     category:"",
                     business:"",
+                    loading:false,
                     page:1,
                     pages:0
                 }
@@ -125,9 +132,11 @@
 //
                 async query(page = 1){
                     this.page = page
+                    this.loading = true
                     let offersRes = await axios.post("{{ url('/search') }}", {search: this.jobSearch, region: this.regionSeach, category: this.category, business: this.business, page: this.page})
+                    this.loading = false
                     if(offersRes.data.success == true){
-
+                        
                         this.offers = offersRes.data.offers
                         this.pages = Math.ceil(offersRes.data.offersCount / offersRes.data.dataAmount)
                         
