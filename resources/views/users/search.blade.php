@@ -124,6 +124,7 @@
                     category:"",
                     business:"",
                     categories:"",
+                    regions:"",
                     loading:false,
                     page:1,
                     pages:0
