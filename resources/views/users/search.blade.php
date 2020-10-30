@@ -123,6 +123,7 @@
                     offers:"",
                     category:"",
                     business:"",
+                    categories:"",
                     loading:false,
                     page:1,
                     pages:0
