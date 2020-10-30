@@ -46,6 +46,7 @@ class OfferController extends Controller
             $offer->expiration_date = Carbon::now()->addDays(30);
             $offer->slug = $slug;
             $offer->wage_type = $request->wageType;
+            $offer->is_highlighted = $request->highlightPost;
             $offer->user_id = \Auth::user()->id;
             $offer->save();
 
