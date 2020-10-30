@@ -48,6 +48,12 @@
             <div class="col-md-9 resultados-busqueda" id="user-search-dev">
                 <div class="row" v-cloak>   
 
+                    <div class="col-md-12" v-if="loading == true">
+                        <p class="text-center">
+                            Buscando resultados
+                        </p>
+                    </div>
+
                     <div class="col-md-12" v-if="loading == false && offers.length == 0">
                         <p class="text-center">
                             No se encontraron resultados
