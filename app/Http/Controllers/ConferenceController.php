@@ -28,7 +28,7 @@ class ConferenceController extends Controller
             $appointment->password = $password;
             $appointment->date_time = Carbon::createFromFormat('d/m/Y H:i', $request->date_time);
             $appointment->save();
-
+            //
             $connection = ssh2_connect(env('JITSI_SERVER_IP'), 22);
             ssh2_auth_password($connection, env('JITSI_SERVER_USER'), env('JITSI_SERVER_PASSWORD'));
             ssh2_exec($connection, 'prosodyctl register '.$username.' '.env('JITSI_DOMAIN').' '.$password);
