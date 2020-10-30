@@ -107,7 +107,7 @@
                                             
                                             <li v-if="plan.download_profiles > 0">Podrás entrar al motor de búsqueda y descargar @{{ plan.download_profiles }} <span v-if="plan.download_profiles == 1"> perfil.</span> <span v-else>perfiles.</span></li>
                                             
-                                            <li v-if="plan.conference_amount > 0">@{{ plan.conference_amount }} <span v-if="plan.conference_amount == 1">video conferencia.</span>  <span v-else> video conferencias.</span></li>
+                                            <li v-if="plan.conference_amount > 0">@{{ plan.conference_amount }} <span v-if="plan.conference_amount == 1">video entrevista.</span>  <span v-else> video entrevistas.</span></li>
                                             
                                         </ul>
 
@@ -166,7 +166,7 @@
                                             
                                             <li v-if="plan.download_profiles > 0">Podrás entrar al motor de búsqueda y descargar @{{ plan.download_profiles }} <span v-if="plan.download_profiles == 1"> perfil.</span> <span v-else>perfiles.</span></li>
                                             
-                                            <li v-if="plan.conference_amount > 0">@{{ plan.conference_amount }} <span v-if="plan.conference_amount == 1">video conferencia.</span>  <span v-else> video conferencias.</span></li>
+                                            <li v-if="plan.conference_amount > 0">@{{ plan.conference_amount }} <span v-if="plan.conference_amount == 1">video entrevista.</span>  <span v-else> video entrevistas.</span></li>
                                             
                                         </ul>
 
@@ -224,7 +224,7 @@
                                             
                                             <li v-if="plan.download_profiles > 0">Podrás entrar al motor de búsqueda y descargar @{{ plan.download_profiles }} <span v-if="plan.download_profiles == 1"> perfil.</span> <span v-else>perfiles.</span></li>
                                             
-                                            <li v-if="plan.conference_amount > 0">@{{ plan.conference_amount }} <span v-if="plan.conference_amount == 1">video conferencia.</span>  <span v-else> video conferencias.</span></li>
+                                            <li v-if="plan.conference_amount > 0">@{{ plan.conference_amount }} <span v-if="plan.conference_amount == 1">video entrevista.</span>  <span v-else> video entrevistas.</span></li>
                                             
                                         </ul>
 
@@ -285,7 +285,7 @@
                                                     <li>Podrás entrar al motor de búsqueda y descargar {{ $plan->download_profiles }} @if($plan->download_profiles == 1) perfil. @else perfiles. @endif</li>
                                                     @endif
                                                     @if($plan->conference_amount > 0)
-                                                    <li>{{ $plan->conference_amount }} @if($plan->conference_amount == 1)video conferencia. @else video conferencias. @endif</li>
+                                                    <li>{{ $plan->conference_amount }} @if($plan->conference_amount == 1)video entrevista. @else video entrevistas. @endif</li>
                                                     @endif
                                                 </ul>
                                             </div>

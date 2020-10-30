@@ -124,7 +124,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="conferenceAmounts">Conferencias</label>
+                                            <label for="conferenceAmounts">Entrevistas</label>
                                             <input type="text" class="form-control" id="conferenceAmounts" v-model="conferenceAmounts" @keypress="isNumber()">
                                         </div>
                                     </div>

@@ -33,21 +33,21 @@ class ConferenceController extends Controller
             ssh2_auth_password($connection, env('JITSI_SERVER_USER'), env('JITSI_SERVER_PASSWORD'));
             ssh2_exec($connection, 'prosodyctl register '.$username.' '.env('JITSI_DOMAIN').' '.$password);
 
-            $data = ["businessName" => \Auth::user()->business_name, "date_time" => $request->date_time, "password" => $password, "link" => url('/conference/'.$room_name)];
+            $data = ["businessName" => \Auth::user()->business_name, "date_time" => $request->date_time, "password" => $password, "link" => env('JITSI_URL').'/'.$room_name];
             $to_name = User::where("id", $request->guest_id)->first()->name;
             $to_email = User::where("id", $request->guest_id)->first()->email;
 
             \Mail::send("emails.conferenceNotification", $data, function($message) use ($to_name, $to_email) {
-                $message->to($to_email, $to_name)->subject("¡Tienes una conferencia!");
+                $message->to($to_email, $to_name)->subject("¡Tienes una entrevista!");
                 $message->from( env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'));
             });
 
-            $data = ["username" => $username, "password" => $password, "date_time" => $request->date_time, "link" => url('/conference/'.$room_name)];
+            $data = ["username" => $username, "password" => $password, "date_time" => $request->date_time, "link" => env('JITSI_URL').'/'.$room_name];
             $to_name = User::where("id", \Auth::user()->id)->first()->name;
             $to_email = User::where("id", \Auth::user()->id)->first()->email;
 
             \Mail::send("emails.conferenceBusinessNotification", $data, function($message) use ($to_name, $to_email) {
-                $message->to($to_email, $to_name)->subject("¡Tienes una conferencia!");
+                $message->to($to_email, $to_name)->subject("¡Tienes una entrevista!");
                 $message->from( env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'));
             });
 
@@ -107,7 +107,7 @@ class ConferenceController extends Controller
 
                     if($appointment->date_time->addDay()->lt(Carbon::now())){
 
-                        return response()->json(["success" => false, "msg" => "La conferencia ha expirado"]);
+                        return response()->json(["success" => false, "msg" => "La entrevista ha expirado"]);
 
                     }else{
 
@@ -137,7 +137,7 @@ class ConferenceController extends Controller
 
                 }else{
 
-                    return response()->json(["success" => false, "msg" => "Usted no ha sido invitado a esta conferencia"]);
+                    return response()->json(["success" => false, "msg" => "Usted no ha sido invitado a esta entrevista"]);
 
                 }
 

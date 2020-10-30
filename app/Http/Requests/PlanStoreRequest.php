@@ -46,7 +46,7 @@ class PlanStoreRequest extends FormRequest
             "offerPosting.required" => "Publicación de ofertas es requerido",
             "simplePostAmounts.integer" => "Cantidad de publicaciones simples debe ser un número",
             "hightlightPostAmount.integer" => "Cantidad de publicaciones destacadas debe ser un número",
-            "conferenceAmounts.integer" => "Cantidad de conferencias debe ser un número",
+            "conferenceAmounts.integer" => "Cantidad de entrevistas debe ser un número",
             "downloadCurriculum.required" => "La descarga de curriculum es requerida",
             "showVideo.required" => "Video del candidato es requerido",
             "downloadProfile.integer" => "Cantidad de descargas del motor de búsqueda debe ser un número",

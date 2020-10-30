@@ -18,8 +18,11 @@
             <div class="col-md-4" v-for="offer in offers">
                 <div class="card">
                     <div class="card-body">
-                    <p class="text-center price-ofertas">
-                            $ @{{ parseInt(offer.min_wage).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }} <span v-if="offer.max_wage != null">- $ @{{ parseInt(offer.max_wage).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</span>
+                        <p class="text-center price-ofertas" v-if="offer.wage_type == 1">
+                            $ @{{ parseInt(offer.min_wage).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}
+                        </p>
+                        <p class="text-center price-ofertas" v-else>
+                            A convenir
                         </p>
                         <h5 class="card-title text-center t-upper">@{{ offer.job_position }}</h5>
                         <p class="card-text text-center">@{{ offer.title }}</p>

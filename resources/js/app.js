@@ -7,6 +7,11 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
+/*import CKEditor from '@ckeditor/ckeditor5-vue';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+
+Vue.use( CKEditor );
+Vue.use( ClassicEditor );*/
 
 /**
  * The following block of code may be used to automatically register your

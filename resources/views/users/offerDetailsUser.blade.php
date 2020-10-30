@@ -1,5 +1,14 @@
 @extends("layouts.user")
 
+@push("css")
+
+    <style>
+        #description > p{
+            text-align: left !important;
+        }
+    </style>
+
+@endpush
 
 @section("content")
 
@@ -24,13 +33,27 @@
                                 <img class="round-img" :src="businessImage" alt="Card image">
                             </p>
                             <h4 class="text-center">@{{ title }}</h4>
-                            <p>@{{ description }}</p>
+                            
                             <p><strong>Nombre de la empresa: </strong> <a href="{{ url('/profile/show/'.$offer->user->email) }}">@{{ businessName }}</a></p>
                             <p><strong>Dirección: </strong><span v-if="region">@{{ region }}, </span> <span v-if="commune">@{{ commune }} , </span> @{{ address }}</p>
                             <p><strong>Puesto:</strong> @{{ jobPosition }}</p>
+                            @if($offer->wage_type == 1)
                             <p>
-                                <strong>Rango Salarial: </strong><span class="price-rango"> $ @{{ parseInt(minWage).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }} <span v-if="maxWage != ''">- $ @{{ parseInt(maxWage).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</span></span>
+                                <strong>Salario: </strong><span class="price-rango"> $ @{{ parseInt(minWage).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</span>
                             </p>
+                            @else
+                                <p>
+                                    <strong>Renta a convenir</strong>
+                                </p>
+                            @endif
+
+                            <div class="row">
+                                <div class="col-lg-12" id="description">
+                                    {!! $offer->description !!}
+                                </div>
+                            </div>
+
+
                             
                         </div>
 
@@ -118,7 +141,6 @@
                     description:"{{ $offer->description }}",
                     jobPosition:"{{ $offer->job_position ? $offer->job_position : '' }}",
                     minWage:"{{ $offer->min_wage }}",
-                    maxWage:"{{ $offer->max_wage }}",
                     address: "{{ $offer->user->address }}",
                     businessName:"{{ $offer->user->business_name }}",
                     businessImage:"{{ $offer->user->image }}",

@@ -1,64 +1,105 @@
-@extends("layouts.user")
+@extends("layouts.secondaryViews")
 
 @section("content")
 
-    <div class="col-md-8 resultados-busqueda" id="user-search-dev">
-        <div class="row" v-cloak>   
-            <h3><strong>Resultados de: </strong>@{{ search }}</h3>
-            <div class="col-12 recor-a-cp">
-                @if(\Auth::user()->is_profile_complete == 0)
-                    <p class="rec-cperfil">Debes completar tu perfil para postular ofertas</p>
-                    <img class="img-cperfil-alert" src="{{ asset('user/assets/img/alert.png') }}" alt="Alerta completa tu perfil">
-                @endif
-            </div>
-
-            <div class="col-md-4" v-for="offer in offers">
+    <div class="container" id="user-search-dev">
+        
+        <div class="col-12 recor-a-cp">
+            @if(\Auth::user()->is_profile_complete == 0)
+                <p class="rec-cperfil">Debes completar tu perfil para postular ofertas</p>
+                <img class="img-cperfil-alert" src="{{ asset('user/assets/img/alert.png') }}" alt="Alerta completa tu perfil">
+            @endif
+        </div>
+        <div class="row">
+            <div class="col-md-3">
                 <div class="card">
                     <div class="card-body">
-                        <p class="text-center price-op">
-                            $ @{{ parseInt(offer.min_wage).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }} <span v-if="offer.max_wage != null">- $ @{{ parseInt(offer.max_wage).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</span>
-                        </p>
+                        <h4>Búsqueda</h4>
+                        <div class="form-group">
+                            <label for="search">Búsqueda</label>  
+                            <input type="text" class="form-control" id="search" v-model="jobSearch">
+                        </div>
+                        <div class="form-group">
+                            <label for="region">Región</label>  
+                            <select class="form-control" id="region" v-model="regionSearch">
+                                <option value="">Seleccione</option>
+                                <option :value="region.id" v-for="region in regions">@{{ region.name }}</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="category">Categoría</label>  
+                            <select class="form-control" id="category">
+                                <option value="">Seleccione</option>
+                                <option :value="jobCategory.id" v-for="jobCategory in categories">@{{ jobCategory.name }}</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="business">Empresa</label>  
+                            <input type="text" class="form-control" id="business">
+                        </div>
+
                         <p class="text-center">
-                            <img class="round-img" :src="offer.user.image" alt="Card image">
+                            <button class="btn btn-success" @click="query()">buscar</button>
                         </p>
-                        <p class="text-center text-b">@{{ offer.user.business_name }}</p>
-                        <h5 class="card-title text-center">@{{ offer.job_position }}</h5>
-                        <p class="card-text text-center">@{{ offer.title }}</p>
-                        
-
-                       
-                            <p class="text-center">
-                                <a :href="'{{ url('/offers/detail/') }}'+'/'+offer.slug" class="btn btn-primary">Ver más</a>
-                            </p>
-                   
-
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="row" v-cloak>
-            <div class="col-12">
-                <nav aria-label="Page navigation example">
-                    <ul class="pagination">
-                        <li class="page-item" v-if="page > 1">
-                            <a class="page-link" href="#" aria-label="Previous" @click="fetch(page -1)">
-                                <span aria-hidden="true">&laquo;</span>
-                            </a>
-                        </li>
-                        <li v-for="index in pages" class="page-item" v-if="page == index && index >= page - 3 &&  index < page + 3"><a class="page-link" href="#" @click="fetch(index)">@{{ index }}</a></li>
-                        <li class="page-item" v-if="page < pages">
-                            <a class="page-link" href="#" aria-label="Next" @click="fetch(page + 3)">
-                                <span aria-hidden="true">&raquo;</span>
-                            </a>    
-                        </li>
-                    </ul>
-                </nav>
+            <div class="col-md-9 resultados-busqueda" id="user-search-dev">
+                <div class="row" v-cloak>   
+
+                    <div class="col-md-4" v-for="offer in offers">
+                        <div class="card">
+                            <div class="card-body">
+                                <p class="text-center price-op" v-if="offer.wage_type == 1">
+                                    $ @{{ parseInt(offer.min_wage).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}
+                                </p>
+                                <p v-else>
+                                    Sueldo a convenir
+                                </p>
+                                <p class="text-center">
+                                    <img class="round-img" :src="offer.user.image" alt="Card image">
+                                </p>
+                                <p class="text-center text-b">@{{ offer.user.business_name }}</p>
+                                <h5 class="card-title text-center">@{{ offer.job_position }}</h5>
+                                <p class="card-text text-center">@{{ offer.title }}</p>
+                                
+
+                            
+                                    <p class="text-center">
+                                        <a :href="'{{ url('/offers/detail/') }}'+'/'+offer.slug" class="btn btn-primary">Ver más</a>
+                                    </p>
+                        
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" v-cloak>
+                    <div class="col-12">
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination">
+                                <li class="page-item" v-if="page > 1">
+                                    <a class="page-link" href="#" aria-label="Previous" @click="fetch(page -1)">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                </li>
+                                <li v-for="index in pages" class="page-item" v-if="page == index && index >= page - 3 &&  index < page + 3"><a class="page-link" href="#" @click="fetch(index)">@{{ index }}</a></li>
+                                <li class="page-item" v-if="page < pages">
+                                    <a class="page-link" href="#" aria-label="Next" @click="fetch(page + 3)">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>    
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+
             </div>
         </div>
 
     </div>
-
 
 @endsection
 
@@ -70,8 +111,11 @@
             el: '#user-search-dev',
             data() {
                 return {
-                    search:"",
+                    jobSearch:"",
+                    regionSearch:"",
                     offers:"",
+                    category:"",
+                    business:"",
                     page:1,
                     pages:0
                 }
@@ -80,7 +124,7 @@
 //
                 async query(){
 
-                    let offersRes = await axios.post("{{ url('/search') }}", {search: this.search, page: this.page})
+                    let offersRes = await axios.post("{{ url('/search') }}", {search: this.jobSearch, region: this.regionSeach, category: this.category, business: this.business, page: this.page})
                     if(offersRes.data.success == true){
 
                         this.offers = offersRes.data.offers
@@ -89,13 +133,31 @@
                     }
 
                 },
+                fetchRegions(){
 
+                    axios.get("{{ url('/regions/fetch-all') }}").then(res => {
+
+                        this.regions = res.data.regions
+
+                    })
+
+                },
+                fetchCategories(){
+
+                    axios.get("{{ url('/job-categories/fetch-all') }}").then(res => {
+
+                        this.categories = res.data.categories
+
+                    })
+
+                }
 
             },
-            mounted(){
-                
-                this.search = window.localStorage.getItem("encontre_trabajo_query")
+            created(){
+
                 this.query()
+                this.fetchCategories()
+                this.fetchRegions()
             }
         })
 

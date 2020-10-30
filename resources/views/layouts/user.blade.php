@@ -142,7 +142,7 @@
                     </div> 
                     <div class="col-md-8 f-a-c">
                         <div class="encontre-trabajo-usuario_row-col-12-col-4">
-                            <div class="d-flex">
+                           {{--<div class="d-flex">
                                 <select class="form-control" id="search_input">
                                     <option value="0">Seleccione</option>
                                     @foreach(App\JobCategory::all() as $category)
@@ -150,7 +150,7 @@
                                     @endforeach
                                 </select>
                                 <button class="caja-input-buscador-usuario_button" onclick="storeQuery()"><img class="caja-input-buscador-usuario-lupa_img" src="{{ asset('user/assets/img/search-b.png') }}" alt="buscar"></button>                        
-                            </div>
+                            </div>--}}
                             {{--<div class="caja-ico-mensaje">
                                 <img class="caja-input-buscador-usuario-lupa_img" src="{{ asset('user/assets/img/chat.png') }}" alt="chat">
                                 <span class="caja-ico-mensaje_span">1</span>
@@ -167,10 +167,10 @@
                             <nav class="menuppal">
                                 <div class="menu-lateral-usuario-resp ">
                                 <!-- <img class="encontre-trabajo-usuario_row-col-12-logo-img" src="{{ asset('user/assets/img/Logo-blanco.png') }}" alt="logo"> -->
-                                    <div class="caja-input-buscador-usuario ">
+                                    <!--<div class="caja-input-buscador-usuario ">
                                         <input class="caja-input-buscador-usuario_input" type="text" placeholder="Busca tu nuevo trabajo" id="search_input">
                                         <button class="caja-input-buscador-usuario_button" onclick="storeQuery()"><img class="caja-input-buscador-usuario-lupa_img" src="{{ asset('user/assets/img/search-b.png') }}" alt="buscar"></button>                        
-                                    </div>
+                                    </div>-->
                                 <!--porcentaje , nombre y correo-->
                                 <div class="content-encontre-trabajo-caja-info">
                                 <div class="content-encontre-trabajo-caja-info-img-porc mt-3">
@@ -268,6 +268,9 @@
                                 
                                 <li class="menu-lateral-usuario_ul_li" ><a href="{{ url('/profile/user') }}"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/ico-editar.png') }}" alt=""><p>Mi perfil</p></a></li>
                                 <li class="menu-lateral-usuario_ul_li" ><a href="{{ url('/my-references') }}"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/ico-editar.png') }}" alt=""><p>Referencias laborales</p></a></li>
+
+                                <li class="menu-lateral-usuario_ul_li" ><a href="{{ url('/search') }}"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/ico-editar.png') }}" alt=""><p>Buscar empleo</p></a></li>
+
                                 <li class="menu-lateral-usuario_ul_li" ><a href="{{ url('/profile/show/'.\Auth::user()->email) }}"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/ico-editar.png') }}" alt=""><p>Mi Curriculum</p></a></li>
                                 <li class="menu-lateral-usuario_ul_li" ><a href="{{ url('/my-applies') }}"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/control.png') }}" alt=""><p>Mis postulaciones</p></a></li>
                                 <li class="menu-lateral-usuario_ul_li" ><a href="{{ url('/logout') }}"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/logout.png') }}" alt=""><p>Cerrar sesión</p></a></li>

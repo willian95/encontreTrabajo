@@ -112,7 +112,7 @@
                             <div class="col r-col-100">
                             <div class="form-group">
                                 <label for="businessRut">RUT</label>
-                                <input type="text" class="form-control" id="businessRut"  v-model="businessRut">
+                                <input type="text" class="form-control" id="businessRut"  v-model="businessRut" @keyup="formatMoney()">
                             </div>
                             </div>
                             </div>
@@ -248,6 +248,21 @@
                     }
 
                 },
+                formatMoney() {
+                    let oldRut = this.businessRut.replaceAll(".", "")
+                    let newRut = oldRut.toString().replace(/\B(?=(\d{3})+\b)/g, ".")
+
+
+                    if(this.businessRut.replace(".", "").length < 12){
+                        
+                        this.businessRut = newRut
+                    }else{
+
+                        this.businessRut = newRut.substring(0, 12)
+
+                    }
+
+                },   
                 register(){
                     this.loading = true
                     axios.post("{{ url('/register') }}", {

@@ -28,7 +28,7 @@
                             <p><strong>Dirección: </strong><span v-if="region">@{{ region }}, </span> <span v-if="commune">@{{ commune }} , </span> @{{ address }}</p>
                             <p><strong>Puesto:</strong> @{{ jobPosition }}</p>
                             <p>
-                                <strong>Rango Salarial: </strong>$ @{{ parseInt(minWage).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }} <span v-if="maxWage != ''">- $ @{{ parseInt(maxWage).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</span>
+                                <strong>Rango Salarial: </strong>$ @{{ parseInt(minWage).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }} 
                             </p>
                             <p class="price-rango">
                                 <strong>Rango Salarial: </strong> $ @{{ parseInt(minWage).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }} <span v-if="maxWage != ''">- $ @{{ parseInt(maxWage).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</span>
@@ -145,7 +145,6 @@
                     description:"{{ $offer->description }}",
                     jobPosition:"{{ $offer->job_position ? $offer->job_position : '' }}",
                     minWage:"{{ $offer->min_wage }}",
-                    maxWage:"{{ $offer->max_wage }}",
                     address: "{{ $offer->user->address }}",
                     businessName:"{{ $offer->user->business_name }}",
                     businessImage:"{{ $offer->user->image }}",

@@ -28,7 +28,8 @@ class OfferStoreRequest extends FormRequest
             "minWage" => "required|numeric",
             "description" => "required",
             "category" => "required|exists:job_categories,id",
-            "jobPosition" => "required"
+            "jobPosition" => "required",
+            "wageType" => "required"
         ];
     }
 
@@ -41,7 +42,8 @@ class OfferStoreRequest extends FormRequest
             "description.required" => "Descripción es requerida",
             "category.required" => "Categoría es requerida",
             "category.exists" => "Categoría es inválida",
-            "jobPosition.required" => "Puesto de Trabajo es requerido"
+            "jobPosition.required" => "Puesto de Trabajo es requerido",
+            "wageType.required" => "Tipo de renta es requerido"
         ];
     }
 }

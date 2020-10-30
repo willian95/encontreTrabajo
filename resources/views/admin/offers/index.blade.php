@@ -44,7 +44,8 @@
                                     <tr v-for="(offer, index) in offers">
                                         <td>@{{ offer.user.business_name }}</td>
                                         <td>@{{ offer.title }}</td>
-                                        <td>$ @{{ parseInt(offer.min_wage).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }} <span v-if="offer.max_wage"> - $ @{{ parseInt(offer.max_wage).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</span></td>
+                                        <td v-if="offer.wage_type == 1">$ @{{ parseInt(offer.min_wage).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</td>
+                                        <td v-else>A convenir</td>
                                         <td>@{{ offer.job_position }}</td>
                                         <td>@{{ offer.category.name }}</td>
                                         <td>@{{ offer.status }}</td>

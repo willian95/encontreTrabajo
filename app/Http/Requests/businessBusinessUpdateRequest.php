@@ -24,7 +24,7 @@ class businessBusinessUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            "ivaCondition" => "required",
+            "businessType" => "required",
             "industry" => "required",
             "amountEmployees" => "required|integer",
             "address" => "required"
@@ -34,7 +34,7 @@ class businessBusinessUpdateRequest extends FormRequest
     public function messages(){
 
         return [
-            "ivaCondition.required" => "Condición de IVA es requerida",
+            "businessType.required" => "Tipo de empresa es requerido",
             "industry.required" => "Industria es requerida",
             "amountEmployees.required" => "Cantidad de empleados es requerida",
             "amountEmployees.integer" => "Cantidad de empleados debe ser un número",

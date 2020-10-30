@@ -116,7 +116,7 @@ class ProfileController extends Controller
             $user->update();
 
             $profile = Profile::where("user_id", \Auth::user()->id)->first();
-            $profile->iva_condition = $request->ivaCondition;
+            $profile->business_type = $request->businessType;
             $profile->industry = $request->industry;
             $profile->amount_employees = $request->amountEmployees;
             $profile->country_id = $request->countryId;
@@ -126,7 +126,7 @@ class ProfileController extends Controller
             //$this->isProfileComplete();
 
             if(\Auth::user()->role_id == 3){
-                if(\Auth::user()->commune_id != null && \Auth::user()->image != url('/')."images/users/default.jpg" && \Auth::user()->region_id != null && $profile->address != null){
+                if(\Auth::user()->image != url('/')."images/users/default.jpg" && \Auth::user()->region_id != null && $profile->address != null){
 
                     $user = User::where("id", \Auth::user()->id)->first();
                     $user->is_profile_complete = 1;

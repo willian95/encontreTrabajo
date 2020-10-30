@@ -86,14 +86,18 @@
 						<div class="row perfil-empresa-form">
 							<div class="col-md-4 col-sm-12">
 								<div class="form-group">
-									<label for="ivaCondition">Condición de IVA</label>
-									<input type="text" class="form-control" id="ivaCondition" v-model="ivaCondition">
+									<label for="ivaCondition">Tipo de empresa</label>
+									<select class="form-control" v-model="businessType">
+										<option value="Microempresa">Microempresa</option>
+										<option value="Mediana empresa">Mediana empresa</option>
+										<option value="Grande">Grande</option>
+									</select>
 								</div>
 							</div>
 							<div class="col-md-4 col-sm-12 ">
 								<div class="form-group">
 									<label for="rut">RUT</label>
-									<input type="text" class="form-control" id="rut"  v-model="businessRut">
+									<input type="text" class="form-control" id="rut"  v-model="businessRut" @keyup="formatMoney()">
 								</div>
 							</div>
 							<div class="col-md-4 col-sm-12 ">
@@ -189,10 +193,10 @@
 					businessRut:"{{ Auth::user()->business_rut }}",
 					businessName:"{{ Auth::user()->business_name }}",
 					businessPhone:"{{ Auth::user()->business_phone }}",
-					ivaCondition:"{{ $user->profile->iva_condition }}",
 					industry:"{{ $user->profile->industry }}",
 					amountEmployees:"{{ $user->profile->amount_employees }}",
                     loading:false,
+					businessType:"{{ $user->profile->business_type }}",
 					region:"{{ Auth::user()->region_id }}",
                     commune:"{{ Auth::user()->commune_id }}",
 					country:"",
@@ -302,13 +306,28 @@
                     })
 
                 },
+				formatMoney() {
+                    let oldRut = this.businessRut.replaceAll(".", "")
+                    let newRut = oldRut.toString().replace(/\B(?=(\d{3})+\b)/g, ".")
+
+
+                    if(this.businessRut.replace(".", "").length < 12){
+                        
+                        this.businessRut = newRut
+                    }else{
+
+                        this.businessRut = newRut.substring(0, 12)
+
+                    }
+
+                },  
 				updateBusinessProfile(){
                     this.loading = true
                     axios.post("{{ url('/profile/business/business/update') }}", {
 						businessRut:this.businessRut,
 						businessName:this.businessName,
 						businessPhone:this.businessPhone,
-						ivaCondition:this.ivaCondition,
+						businessType:this.businessType,
 						industry:this.industry,
 						amountEmployees:this.amountEmployees,	
 						countryId:this.country,

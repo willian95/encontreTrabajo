@@ -40,12 +40,12 @@ class OfferController extends Controller
             $offer = new Offer;
             $offer->title = $request->title;
             $offer->min_wage = $request->minWage;
-            $offer->max_wage = $request->maxWage;
             $offer->description = str_replace("\n", ". ", $request->description);
             $offer->job_position = $request->jobPosition;
             $offer->category_id = $request->category;
             $offer->expiration_date = Carbon::now()->addDays(30);
             $offer->slug = $slug;
+            $offer->wage_type = $request->wageType;
             $offer->user_id = \Auth::user()->id;
             $offer->save();
 
