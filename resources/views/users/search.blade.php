@@ -61,6 +61,7 @@
                                     <img class="round-img" :src="offer.user.image" alt="Card image">
                                 </p>
                                 <p class="text-center text-b">@{{ offer.user.business_name }}</p>
+                                <small class="text-b">@{{ offer.user.region.name }}, @{{ offer.user.commune.name }}</small>
                                 <h5 class="card-title text-center">@{{ offer.job_position }}</h5>
                                 <p class="card-text text-center">@{{ offer.title }}</p>
                                 
@@ -81,13 +82,13 @@
                         <nav aria-label="Page navigation example">
                             <ul class="pagination">
                                 <li class="page-item" v-if="page > 1">
-                                    <a class="page-link" href="#" aria-label="Previous" @click="fetch(page -1)">
+                                    <a class="page-link" href="#" aria-label="Previous" @click="query(page -1)">
                                         <span aria-hidden="true">&laquo;</span>
                                     </a>
                                 </li>
-                                <li v-for="index in pages" class="page-item" v-if="page == index && index >= page - 3 &&  index < page + 3"><a class="page-link" href="#" @click="fetch(index)">@{{ index }}</a></li>
+                                <li v-for="index in pages" class="page-item" v-if="page == index && index >= page - 3 &&  index < page + 3"><a class="page-link" href="#" @click="query(index)">@{{ index }}</a></li>
                                 <li class="page-item" v-if="page < pages">
-                                    <a class="page-link" href="#" aria-label="Next" @click="fetch(page + 3)">
+                                    <a class="page-link" href="#" aria-label="Next" @click="query(page + 3)">
                                         <span aria-hidden="true">&raquo;</span>
                                     </a>    
                                 </li>
@@ -122,8 +123,8 @@
             },
             methods: {
 //
-                async query(){
-
+                async query(page = 1){
+                    this.page = page
                     let offersRes = await axios.post("{{ url('/search') }}", {search: this.jobSearch, region: this.regionSeach, category: this.category, business: this.business, page: this.page})
                     if(offersRes.data.success == true){
 
