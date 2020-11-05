@@ -24,6 +24,7 @@
                         <p class="text-center price-ofertas" v-else>
                             A convenir
                         </p>
+                        <h4 class="text-center" v-if="offer.is_highlighted == 1">Aviso Destacado</h4>
                         <h5 class="card-title text-center t-upper">@{{ offer.job_position }}</h5>
                         <p class="card-text text-center">@{{ offer.title }}</p>
                         <p class="text-center">@{{ offer.status }}</p>

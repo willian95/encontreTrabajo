@@ -72,6 +72,9 @@
                                 <p class="text-center">
                                     <img class="round-img" :src="offer.user.image" alt="Card image">
                                 </p>
+
+                                <h4 class="text-center" v-if="offer.is_highlighted == 1">Aviso Destacado</h4>
+
                                 <p class="text-center text-b">@{{ offer.user.business_name }}</p>
                                 <small class="text-b">@{{ offer.user.region.name }}, @{{ offer.user.commune.name }}</small>
                                 <h5 class="card-title text-center">@{{ offer.job_position }}</h5>
