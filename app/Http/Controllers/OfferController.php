@@ -40,7 +40,7 @@ class OfferController extends Controller
             $offer = new Offer;
             $offer->title = $request->title;
             $offer->min_wage = $request->minWage;
-            $offer->description = str_replace("\n", ". ", $request->description);
+            $offer->description = $request->description;
             $offer->job_position = $request->jobPosition;
             $offer->category_id = $request->category;
             $offer->expiration_date = Carbon::now()->addDays(30);
@@ -74,6 +74,29 @@ class OfferController extends Controller
 
     }
 
+    function update(OfferStoreRequest $request){
+
+        try{
+
+
+            $offer = Offer::find($request->id);
+            $offer->title = $request->title;
+            $offer->min_wage = $request->minWage;
+            $offer->description = $request->description;
+            $offer->job_position = $request->jobPosition;
+            $offer->category_id = $request->category;
+            $offer->wage_type = $request->wageType;
+            $offer->is_highlighted = $request->highlightPost;
+            $offer->update();
+
+            return response()->json(["success" => true, "msg" => "Oferta actualizada"]);
+
+        }catch(\Exception $e){
+            return response()->json(["success" => false, "err" => $e->getMessage(), "ln" => $e->getLine(), "msg" => "Error en el servidor"]);
+        }
+
+    }
+
     function userFetch($page = 1){
 
         try{
@@ -87,6 +110,20 @@ class OfferController extends Controller
 
         }catch(\Exception $e){
             return response()->json(["success" => false, "err" => $e->getMessage(), "ln" => $e->getLine(), "msg" => "Error en el servidor"]);
+        }
+
+    }
+
+    function edit($id){
+
+        $offer = Offer::where("user_id", \Auth::user()->id)->where("id", $id)->first();
+
+        if($offer){
+
+
+
+        }else{
+            abort(503);
         }
 
     }
