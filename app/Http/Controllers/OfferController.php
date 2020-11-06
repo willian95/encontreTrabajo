@@ -120,7 +120,7 @@ class OfferController extends Controller
 
         if($offer){
 
-
+            return view("users.offersEdit", ["offer" => $offer]);
 
         }else{
             abort(503);
