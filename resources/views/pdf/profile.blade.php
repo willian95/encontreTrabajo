@@ -69,10 +69,12 @@
                 <p>{{ $profile->home_phone }}</p>
             </div> 
 
+            @if($profile->phone != "")
             <div>
                 <h5 for="name">Teléfono Móvil</h5>
                 <p>{{ $profile->phone }}</p>
             </div> 
+            @endif
 
             <div class="col-12">
                 <h2 class="text-center text-info" style="padding-top: 20px;">Información Académica</h2>
