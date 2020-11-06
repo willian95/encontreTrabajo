@@ -327,8 +327,6 @@
                             </div>
                     
 
-                        @endif
-
                      
 					</form>
 				</div>
