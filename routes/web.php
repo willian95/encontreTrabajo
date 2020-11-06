@@ -81,6 +81,7 @@ Route::middleware(['auth', 'business'])->group(function(){
     Route::get("/offers/edit/{id}", "OfferController@edit");
     Route::post("/offers/store", "OfferController@store");
     Route::post("/offers/update", "OfferController@update");
+    Route::post("/offers/delete", "OfferController@delete");
 
     Route::get("/user/service-amount", "UserController@getServiceAmount");
 

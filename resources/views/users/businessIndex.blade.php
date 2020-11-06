@@ -40,7 +40,7 @@
                             </td>
                             <td>
                                 <a :href="'{{ url('/offers/edit/') }}'+'/'+offer.id" class="btn btn-primary" style="border-radius: .25rem; padding:.375rem .75rem !important;"><i class="fa fa-edit"></i></a>
-                                <button class="btn btn-secondary"><i class="fa fa-trash"></i></button>
+                                <button class="btn btn-secondary" @click="erase(offer.id)"><i class="fa fa-trash"></i></button>
                             </td>
                         </tr>
                     </tbody>
@@ -162,6 +162,46 @@
 
                     })
 
+
+                },
+                erase(id){
+
+                    swal({
+                        title: "¿Estás seguro?",
+                        text: "Eliminarás esta oferta!",
+                        icon: "warning",
+                        buttons: true,
+                        dangerMode: true,
+                    })
+                    .then((willDelete) => {
+                        if (willDelete) {
+
+                            axios.post("{{ url('offers/delete') }}", {id: id})
+                            .then(res => {
+
+                                if(res.data.success == true){
+
+                                    swal({
+                                        title: "Perfecto!",
+                                        text: res.data.msg,
+                                        icon: "success"
+                                    });
+                                    
+                                    this.fetch()
+                                }else{
+
+                                    swal({
+                                        title: "Lo sentimos!",
+                                        text: res.data.msg,
+                                        icon: "error"
+                                    });
+
+                                }
+
+                            })
+
+                        }
+                    })
 
                 }
 
