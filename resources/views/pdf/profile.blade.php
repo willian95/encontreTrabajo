@@ -54,10 +54,7 @@
                 </div>
             @endif
             
-            <div>
-                <h5 for="name">Posee Discapacidad</h5>
-                <p>{{ $profile->handicap }}</p>
-            </div>  
+            
             <div class="col-12">
                 <h2 class="text-center text-info" style="padding-top: 20px;">Información de Contacto</h2>
             </div>                           
@@ -191,18 +188,25 @@
                     <p>Sí</p>
                 @endif
             </div>
+
+            <div>
+                <h5 for="name">¿Posee discapacidad?</h5>
+                <p>{{ $profile->handicap }}</p>
+            </div>  
             
             @if($profile->handicap == "si")
                 <div>
-                    <h5 for="name">Tiene alguna discapacidad</h5>
-                    <p>{{ $profile->handicap_description }}</p>
-                </div>
-                <div>
-                    <h5 for="name">Porcentage de discapacidad</h5>
+                    <h5 for="name">¿Porcentaje de discapacidad?</h5>
                     <p>{{ $profile->handicap_percentage }}</p>
                 </div>
+                
                 <div>
-                    <h5 for="name">Condiciones necesarias para poder desarrollar su trabajo de forma óptima</h5>
+                    <h5 for="name">¿Describa que tipo de discapacidad usted posee?</h5>
+                    <p>{{ $profile->handicap_description }}</p>
+                </div>
+                
+                <div>
+                    <h5 for="name">¿Cuáles son las condiciones necesarias para poder desarrollar su trabajo de forma óptima?</h5>
                     <p>{{ $profile->necesary_condition }}</p>
                 </div>
             @endif
