@@ -32,14 +32,14 @@
                             <td>@{{ offer.category.name }}</td>
                             <td>@{{ offer.job_position }}</td>
                             <td>
-                                <span v-if="offer.wage_type == 1">@{{ offer.min_wage }}</span>
+                                <span v-if="offer.wage_type == 1">$ @{{ parseInt(offer.min_wage).toString().replace() }}</span>
                                 <span v-if="offer.wage_type == 2">A convenir</span>
                             </td>
                             <td>
                                 @{{ offer.views.length }}
                             </td>
                             <td>
-                                <button class="btn btn-primary" style="border-radius: .25rem"><i class="fa fa-edit"></i></button>
+                                <button class="btn btn-primary" style="border-radius: .25rem; padding:unset !important;"><i class="fa fa-edit"></i></button>
                                 <button class="btn btn-secondary"><i class="fa fa-trash"></i></button>
                             </td>
                         </tr>
