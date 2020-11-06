@@ -6,6 +6,10 @@
         #description > p{
             text-align: left !important;
         }
+
+        #description ul{
+            list-style: unset !important;
+        }
     </style>
 @endpush
 
