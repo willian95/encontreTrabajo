@@ -1008,9 +1008,9 @@ span.caja-ico-mensaje_span {
 }
 img.content-encontre-trabajo-caja-info_img {
     width: 100px;
-    height: 100px;
+    /*height: 100px;*/
     object-fit: cover;
-    border-radius: 50px;
+    /*border-radius: 50px;*/
     border: 4px solid #188a75;
 
 }

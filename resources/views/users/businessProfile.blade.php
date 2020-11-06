@@ -90,7 +90,7 @@
 									<select class="form-control" v-model="businessType">
 										<option value="Microempresa">Microempresa</option>
 										<option value="Mediana empresa">Mediana empresa</option>
-										<option value="Grande">Grande</option>
+										<option value="Gran Empresa">Gran Empresa</option>
 									</select>
 								</div>
 							</div>
