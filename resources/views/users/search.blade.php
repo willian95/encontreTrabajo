@@ -45,7 +45,7 @@
                 </div>
             </div>
 
-            <div class="col-md-9 resultados-busqueda" id="user-search-dev">
+            <div class="col-md-7 resultados-busqueda" id="user-search-dev">
                 <div class="row" v-cloak>   
 
                     <div class="col-md-12" v-if="loading == true">
@@ -60,7 +60,7 @@
                         </p>
                     </div>
 
-                    <div class="col-md-4" v-for="offer in offers">
+                    <div class="col-md-12" v-for="offer in offers">
                         <div class="card">
                             <div class="card-body">
                                 <p class="text-center price-op" v-if="offer.wage_type == 1">
