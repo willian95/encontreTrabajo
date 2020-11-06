@@ -20,6 +20,7 @@ use App\Profile;
 use App\Region;
 use App\JobCategory;
 use App\JobReference;
+use App\BusinessCurriculumView;
 use PDF;
 
 class ProfileController extends Controller
@@ -578,6 +579,16 @@ class ProfileController extends Controller
 
             $user = User::where("email", $email)->first();
             $profile = Profile::where("user_id", $user->id)->first();
+
+            if(\Auth::user()->role_id == 3){
+                $businessCurriculum = BusinessCurriculumView::where("business_id", \Auth::user()->id)->where("user_curriculum_id", $user->id)->count();
+                if($businessCurriculum == 0){
+                    $businessCurriculum = new BusinessCurriculumView;
+                    $businessCurriculum->business_id = \Auth::user()->id;
+                    $businessCurriculum->user_curriculum_id = $user->id;
+                    $businessCurriculum->save();
+                }
+            }
 
             if(\Auth::user()->role_id == 1){
 

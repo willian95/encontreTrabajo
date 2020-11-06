@@ -132,9 +132,7 @@
                     <h5 class="cajas-contenedoras-estadisticas_h5">Postulaciones de empresas que visitaron o vieron su curriculum.:</h5>
                     <p class="cajas-contenedoras-estadisticas_p">{{ App\Proposal::where("user_id", \Auth::user()->id)->with("offer")->count() }}</p>
                     <h5 class="cajas-contenedoras-estadisticas_h5">Empresas que han visto su perfil.:</h5>
-                    <p class="cajas-contenedoras-estadisticas_p">{{ App\Proposal::where("user_id", \Auth::user()->id)->whereHas("offer",function($q){
-                        $q->groupBy("user_id");
-                    })->count() }}</p>
+                    <p class="cajas-contenedoras-estadisticas_p">{{ App\BusinessCurriculumView::where("user_curriculum_id", \Auth::user()->id)->count() }}</p>
                     </div>
                 </div>
                 </div>
