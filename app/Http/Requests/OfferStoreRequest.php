@@ -25,7 +25,7 @@ class OfferStoreRequest extends FormRequest
     {
         return [
             "title" => "required",
-            "minWage" => "required_if:wageType,'2'|numeric",
+            "minWage" => "required_if:wageType,'2'|numeric|nullable",
             "description" => "required",
             "category" => "required|exists:job_categories,id",
             "jobPosition" => "required",
