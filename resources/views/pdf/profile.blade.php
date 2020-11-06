@@ -69,7 +69,7 @@
                 <p>{{ $profile->home_phone }}</p>
             </div> 
 
-            @if($profile->phone != "")
+            @if(strlen($profile->phone) > 0)
             <div>
                 <h5 for="name">Teléfono Móvil</h5>
                 <p>{{ $profile->phone }}</p>
