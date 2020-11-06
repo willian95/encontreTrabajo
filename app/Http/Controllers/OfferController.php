@@ -116,6 +116,12 @@ class OfferController extends Controller
 
     }
 
+    function delete(){
+
+        
+
+    }
+
     function userFetch($page = 1){
 
         try{
