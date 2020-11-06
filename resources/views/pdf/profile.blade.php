@@ -64,10 +64,12 @@
                 <p>{{ $user->email }}</p>
             </div> 
 
+            @if(strlen($profile->home_phone) > 0)
             <div>
                 <h5 for="name">Teléfono Fijo</h5>
                 <p>{{ $profile->home_phone }}</p>
             </div> 
+            @endif
 
             @if(strlen($profile->phone) > 0)
             <div>
