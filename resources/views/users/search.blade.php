@@ -60,7 +60,47 @@
                         </p>
                     </div>
 
-                    <div class="col-md-12" v-for="offer in offers">
+                    <div class="col-12" v-for="offer in offers" style="margin-bottom: 1rem; padding-right: 2rem; padding-left: 2rem;">
+                        <div class="card" data-toggle="modal" data-target="#jobModal" style="cursor: pointer;" @click="show(offer)">
+                            <div class="card-body" style="padding: 0.6rem !important">
+                                <div class="row">
+                                    <div class="col-3">
+                                        <p class="text-center">
+                                            <img class="round-img" :src="offer.user.image" alt="Card image" style="width: 75px;">
+                                        </p>
+                                    </div>
+                                    <div class="col-9">
+                                        <h5 class="card-title">@{{ offer.job_position }}</h5>
+                                        <small class="text-b">@{{ offer.user.region.name }}, @{{ offer.user.commune.name }}</small>
+                                        <p class="price-op" v-if="offer.wage_type == 1">
+                                            $ @{{ parseInt(offer.min_wage).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}
+                                        </p>
+                                        <p class="price-op" v-else>
+                                            A convenir
+                                        </p>
+                                        <p v-if="offer.is_highlighted == 1">
+                                            <strong>Aviso destacado</strong>
+                                        </p>
+                                        {{--<p>
+                                            @{{ offer.description.substring(0, 60) }}
+                                            <span v-if="offer.description.length > 60">
+                                                ...
+                                            </span>
+                                        </p>--}}
+                                    </div>
+                                    {{--<div class="col-12">
+                                        <p class="text-right">
+                                            <a :href="'{{ env('PLATFORM_URL') }}'+'/offers/detail/'+offer.slug" class="btn btn-primary">Ver más</a>
+                                        </p>
+                                    </div>--}}
+                                
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    {{--<div class="col-md-12" v-for="offer in offers">
                         <div class="card">
                             <div class="card-body">
                                 <p class="text-center price-op" v-if="offer.wage_type == 1">
@@ -89,7 +129,7 @@
 
                             </div>
                         </div>
-                    </div>
+                    </div>--}}
                 </div>
 
                 <div class="row" v-cloak>
