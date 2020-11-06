@@ -129,7 +129,7 @@ class OfferController extends Controller
 
     function delete(Request $request){
 
-        $offer = Offer::where("user_id", \Auth::user()->id)->where("id", $id)->first();
+        $offer = Offer::where("user_id", \Auth::user()->id)->where("id", $request->id)->first();
         if($offer){
             $offer->delete();
             return response()->json(["success" => true, "msg" => "Oferta eliminada"]);
