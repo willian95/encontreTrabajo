@@ -98,7 +98,7 @@
                     <h5 class="cajas-contenedoras-perfil_h5">Genero:</h5>
                     <p class="cajas-contenedoras-perfil_p">{{ App\User::where('id', \Auth::user()->id)->with('profile')->first()->profile->gender }}</p>
                     <h5 class="cajas-contenedoras-perfil_h5">Nacionalidad:</h5>
-                    <p class="cajas-contenedoras-perfil_p">{{ App\User::where('id', \Auth::user()->id)->with('profile')->first()->nationality }}</p>
+                    <p class="cajas-contenedoras-perfil_p">{{ App\UserProfile::where('user_id', \Auth::user()->id)->first()->nationality }}</p>
                     </div>
                     
                 </div>
