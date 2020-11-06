@@ -39,7 +39,7 @@
                                 @{{ offer.views.length }}
                             </td>
                             <td>
-                                <button class="btn btn-info"><i class="fa fa-edit"></i></button>
+                                <button class="btn btn-success" style="border-radius: .25rem"><i class="fa fa-edit"></i></button>
                                 <button class="btn btn-secondary"><i class="fa fa-trash"></i></button>
                             </td>
                         </tr>
