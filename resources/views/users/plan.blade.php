@@ -85,7 +85,7 @@
                                     <div class="box-waves-text fondo-am">
                                         <ul class="text-center box-waves-text_ul ">
                                             
-                                            <li v-if="plan.offer_posting == 1">Publicaciones de ofertas laborales en el portal.</li>
+                                            <li v-if="plan.offer_posting == 1">Publicación en la plataforma laboral y en nuestras redes sociales.</li>
                                         
 
                                             
@@ -107,7 +107,7 @@
                                             
                                             <li v-if="plan.download_profiles > 0">Podrás entrar al motor de búsqueda y descargar @{{ plan.download_profiles }} <span v-if="plan.download_profiles == 1"> perfil.</span> <span v-else>perfiles.</span></li>
                                             
-                                            <li v-if="plan.conference_amount > 0">@{{ plan.conference_amount }} <span v-if="plan.conference_amount == 1">video entrevista.</span>  <span v-else> video entrevistas.</span></li>
+                                            <li v-if="plan.conference_amount > 0">@{{ plan.conference_amount }} <span v-if="plan.conference_amount == 1">video entrevista con postulante.</span>  <span v-else> video entrevistas con postulante.</span></li>
                                             
                                         </ul>
 
@@ -144,7 +144,7 @@
                                     <div class="box-waves-text fondo-az">
                                         <ul class="text-center box-waves-text_ul ">
                                             
-                                            <li v-if="plan.offer_posting == 1">Publicaciones de ofertas laborales en el portal.</li>
+                                            <li v-if="plan.offer_posting == 1">Publicación en la plataforma laboral y en nuestras redes sociales.</li>
                                         
 
                                             
@@ -166,7 +166,7 @@
                                             
                                             <li v-if="plan.download_profiles > 0">Podrás entrar al motor de búsqueda y descargar @{{ plan.download_profiles }} <span v-if="plan.download_profiles == 1"> perfil.</span> <span v-else>perfiles.</span></li>
                                             
-                                            <li v-if="plan.conference_amount > 0">@{{ plan.conference_amount }} <span v-if="plan.conference_amount == 1">video entrevista.</span>  <span v-else> video entrevistas.</span></li>
+                                            <li v-if="plan.conference_amount > 0">@{{ plan.conference_amount }} <span v-if="plan.conference_amount == 1">video entrevista con postulante.</span>  <span v-else> video entrevistas con postulante.</span></li>
                                             
                                         </ul>
 
@@ -202,7 +202,7 @@
                                     <div class="box-waves-text fondo-ve">
                                         <ul class="text-center box-waves-text_ul ">
                                             
-                                            <li v-if="plan.offer_posting == 1">Publicaciones de ofertas laborales en el portal.</li>
+                                            <li v-if="plan.offer_posting == 1">Publicación en la plataforma laboral y en nuestras redes sociales.</li>
                                         
 
                                             
@@ -224,7 +224,7 @@
                                             
                                             <li v-if="plan.download_profiles > 0">Podrás entrar al motor de búsqueda y descargar @{{ plan.download_profiles }} <span v-if="plan.download_profiles == 1"> perfil.</span> <span v-else>perfiles.</span></li>
                                             
-                                            <li v-if="plan.conference_amount > 0">@{{ plan.conference_amount }} <span v-if="plan.conference_amount == 1">video entrevista.</span>  <span v-else> video entrevistas.</span></li>
+                                            <li v-if="plan.conference_amount > 0">@{{ plan.conference_amount }} <span v-if="plan.conference_amount == 1">video entrevista con postulante.</span>  <span v-else> video entrevistas con postulante.</span></li>
                                             
                                         </ul>
 
@@ -261,7 +261,7 @@
                                             <div class="box-waves-text fondo-ve">
                                                 <ul class="text-center box-waves-text_ul ">
                                                     @if($plan->offer_posting == 1)
-                                                    <li >Publicaciones de ofertas laborales en el portal.</li>
+                                                    <li >Publicación en la plataforma laboral y en nuestras redes sociales.</li>
                                                     @endif
                                                     @if($plan->post_days > 0)
                                                     <li>Duración de {{ $plan->post_days }} días.</li>
@@ -285,7 +285,7 @@
                                                     <li>Podrás entrar al motor de búsqueda y descargar {{ $plan->download_profiles }} @if($plan->download_profiles == 1) perfil. @else perfiles. @endif</li>
                                                     @endif
                                                     @if($plan->conference_amount > 0)
-                                                    <li>{{ $plan->conference_amount }} @if($plan->conference_amount == 1)video entrevista. @else video entrevistas. @endif</li>
+                                                    <li>{{ $plan->conference_amount }} @if($plan->conference_amount == 1)video entrevista con postulante. @else video entrevistas con postulante. @endif</li>
                                                     @endif
                                                 </ul>
                                             </div>

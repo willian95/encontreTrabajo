@@ -6,6 +6,10 @@
         #description > p{
             text-align: left !important;
         }
+
+        #description ul{
+            list-style: unset;
+        }
     </style>
 
 @endpush
@@ -47,7 +51,7 @@
                                 </p>
                             @endif
 
-                            <div class="row">
+                            <div class="row" >
                                 <div class="col-lg-12" id="description">
                                     {!! $offer->description !!}
                                 </div>

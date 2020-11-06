@@ -99,7 +99,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="oferrPosting">Publicaciones de ofertas laborales</label>
+                                            <label for="oferrPosting">Publicación en la plataforma laboral y en nuestras redes sociales.</label>
                                             <select class="form-control" v-model="offerPosting" id="oferrPosting">
                                                 <option value="1">Sí</option>
                                                 <option value="0">No</option>
