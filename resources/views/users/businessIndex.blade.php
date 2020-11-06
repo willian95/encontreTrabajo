@@ -15,7 +15,25 @@
         </div>
 
         <div class="row" v-cloak>
-            <div class="col-md-4" v-for="offer in offers">
+
+            <div class="col-md-12">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Categoría</th>
+                            <th>Cargo</th>
+                            <th>Renta</th>
+                            <th>Visualizaciones</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                    </tbody>
+                </table>
+            </div>
+
+            {{--<div class="col-md-4" v-for="offer in offers">
                 <div class="card">
                     <div class="card-body">
                         <p class="text-center price-ofertas" v-if="offer.wage_type == 1">
@@ -34,7 +52,7 @@
 
                     </div>
                 </div>
-            </div>
+            </div>--}}
         </div>
 
         <div class="row" v-cloak>
