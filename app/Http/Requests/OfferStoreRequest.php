@@ -25,7 +25,7 @@ class OfferStoreRequest extends FormRequest
     {
         return [
             "title" => "required",
-            "minWage" => "required_if:wageType,2|numeric",
+            "minWage" => "required_if:wageType,'2'|numeric",
             "description" => "required",
             "category" => "required|exists:job_categories,id",
             "jobPosition" => "required",
@@ -37,8 +37,8 @@ class OfferStoreRequest extends FormRequest
     {
         return [
             "title.required" => "Titulo es requerido",
-            "minWage.required" => "Sueldo mínimo es requerido",
-            "minWage.numeric" => "Sueldo mínimo debe ser un número",
+            "minWage.required_if" => "Renta es requerida si tipo de renta es a convenir",
+            "minWage.numeric" => "Renta debe ser un número",
             "description.required" => "Descripción es requerida",
             "category.required" => "Categoría es requerida",
             "category.exists" => "Categoría es inválida",
