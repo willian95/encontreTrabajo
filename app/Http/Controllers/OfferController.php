@@ -78,8 +78,9 @@ class OfferController extends Controller
 
         try{
 
-
+            $previousHighlighted = 0;
             $offer = Offer::find($request->id);
+            $previousHighlighted = $offer->is_highlighted;
             $offer->title = $request->title;
             $offer->min_wage = $request->minWage;
             $offer->description = $request->description;
@@ -88,6 +89,24 @@ class OfferController extends Controller
             $offer->wage_type = $request->wageType;
             $offer->is_highlighted = $request->highlightPost;
             $offer->update();
+
+            if($previousHighlighted == 0 && $offer->is_highlighted == 1){
+                if(User::where('id', \Auth::user()->id)->first()->expire_free_trial->lt(Carbon::now())){
+                    //dd("entre");
+                    $serviceAmount = serviceAmount::where("user_id", \Auth::user()->id)->first();
+                    if($request->highlightPost == true){
+                        $serviceAmount->highlighted_post_amount = $serviceAmount->highlighted_post_amount - 1;
+                    }else{
+    
+                        if($serviceAmount->due_date->lt(Carbon\Carbon::now()) || $serviceAmount->due_date == null){
+                            $serviceAmount->simple_post_amount = $serviceAmount->simple_post_amount - 1;
+                        }
+    
+                    }
+                    
+                    $serviceAmount->update();
+                }
+            }
 
             return response()->json(["success" => true, "msg" => "Oferta actualizada"]);
 
