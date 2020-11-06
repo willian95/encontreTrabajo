@@ -14,5 +14,9 @@ class Offer extends Model
     public function category(){
         return $this->belongsTo(JobCategory::class);
     }
+
+    public function views(){
+        return $this->hasMany(OfferViewer::class);
+    }
     
 }

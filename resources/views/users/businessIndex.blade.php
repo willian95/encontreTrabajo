@@ -28,7 +28,19 @@
                         </tr>
                     </thead>
                     <tbody>
-                        
+                        <tr v-for="offer in offers">
+                            <td>@{{ offer.category.name }}</td>
+                            <td>@{{ offer.job_position }}</td>
+                            <td>
+                                <span v-if="offer.wage_type == 1">@{{ offer.min_wage }}</span>
+                                <span v-if="offer.wage_type == 2">A convenir</span>
+                            </td>
+                            <td>
+                                @{{ offer.views.length }}
+                            </td>
+                            <td>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
