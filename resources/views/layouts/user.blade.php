@@ -123,6 +123,8 @@
         width: 80%!important;
     }}
     </style>
+
+    @stack("css")
     
 
     <title>Encontré Trabajo</title>
