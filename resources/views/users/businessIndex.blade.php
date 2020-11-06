@@ -39,7 +39,7 @@
                                 @{{ offer.views.length }}
                             </td>
                             <td>
-                                <button class="btn btn-primary" style="border-radius: .25rem; padding:.375rem .75rem !important;"><i class="fa fa-edit"></i></button>
+                                <a :href="'{{ url('/offers/edit/') }}'+'/'+offer.id" class="btn btn-primary" style="border-radius: .25rem; padding:.375rem .75rem !important;"><i class="fa fa-edit"></i></a>
                                 <button class="btn btn-secondary"><i class="fa fa-trash"></i></button>
                             </td>
                         </tr>
