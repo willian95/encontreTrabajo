@@ -3,7 +3,7 @@
 @push("css")
 
     <style>
-        #description > p{
+        #description p{
             text-align: left !important;
         }
 
