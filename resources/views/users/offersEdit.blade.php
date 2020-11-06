@@ -304,7 +304,7 @@
                             </div>
 
                             
-                                <div class="form-group form-check" v-if="highlightedPosts > 0">
+                                <div class="form-group form-check" v-if="highlightedPosts > 0 || isHighlighted == 1">
                                     <input type="checkbox" class="form-check-input" id="highlighted" v-model="isHighlighted">
                                     <label class="form-check-label" for="highlighted">Destacada</label>
                                 </div>
@@ -321,26 +321,11 @@
 
                         </div>
 						
-                        @if(App\User::where("id", \Auth::user()->id)->first()->expire_free_trial->gt(Carbon\Carbon::now()))
+                       
                             <div class="buttom-content-up">
-                                <button type="button" class="btn btn-primary" @click="store()">Publicar</button>
-                            </div>
-                        @else
-
-                            <div class="buttom-content-up" v-if="simplePosts > 0 || dueDate > today">
-                                <button type="button" class="btn btn-primary" @click="store()">Publicar</button>
+                                <button type="button" class="btn btn-primary" @click="update()">Actualizar</button>
                             </div>
                     
-
-                            <div v-else>
-                                <div class="buttom-content-up">
-                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#planModal">Comprar plan</button>
-                                </div>
-
-                                <p v-if="title == '' || minWage == '' || jobPosition == '' || category == '' || description == ''" class="text-center">
-                                   Debes completar los campos
-                                </p>
-                            </div>
 
                         @endif
 
