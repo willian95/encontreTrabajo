@@ -39,7 +39,12 @@ class OfferController extends Controller
 
             $offer = new Offer;
             $offer->title = $request->title;
-            $offer->min_wage = $request->minWage;
+            if($request->wageType == "2"){
+                $offer->min_wage = 0;
+            }else{
+                $offer->min_wage = $request->minWage;
+            }
+           
             $offer->description = $request->description;
             $offer->job_position = $request->jobPosition;
             $offer->category_id = $request->category;
