@@ -61,7 +61,7 @@
                     </div>
 
                     <div class="col-12" v-for="offer in offers" style="margin-bottom: 1rem; padding-right: 2rem; padding-left: 2rem;">
-                        <div class="card" data-toggle="modal" data-target="#jobModal" style="cursor: pointer;" @click="show(offer)">
+                        <div class="card" @click="goToOffer('{{ url('/offers/detail/') }}'+'/'+offer.slug)" style="cursor:pointer;">
                             <div class="card-body" style="padding: 0.6rem !important">
                                 <div class="row">
                                     <div class="col-3">
@@ -153,6 +153,11 @@
                 </div>
 
             </div>
+
+            <div class="col-md-2">
+                <img style="width: 100%;" class="publicidad" src="{{ asset('assets/img/Banner-Epson-Movil.jpg') }}" alt="publicidad">
+                <img style="width: 100%;" class="publicidad" src="{{ asset('assets/img/Banner-Epson-Movil.jpg') }}" alt="publicidad">
+            </div>
         </div>
 
     </div>
@@ -211,6 +216,9 @@
 
                     })
 
+                },
+                goToOffer(link){
+                    window.location.href=link
                 }
 
             },
