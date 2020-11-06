@@ -8,7 +8,7 @@
         }
 
         #description ul{
-            list-style: unset;
+            list-style: unset !important;
         }
     </style>
 
