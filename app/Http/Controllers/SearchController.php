@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use DB;
 use App\Offer;
 use App\Profile;
 use App\Search;
@@ -56,6 +57,7 @@ class SearchController extends Controller
                     ->where("status", "abierto")
                     ->whereDate('expiration_date', '>', Carbon::today()->toDateString())
                     ->take($dataAmount)
+                    ->skip($skip)
                     ->orderBy("is_highlighted", "desc")
                     ->orderBy("id", "desc");
                     
@@ -126,6 +128,7 @@ class SearchController extends Controller
                 ->where("user_id", \Auth::user()->id)
                 ->whereDate('expiration_date', '>', Carbon::today()->toDateString())
                 ->take($dataAmount)
+                ->skip($skip)
                 ->orderBy("id", "desc")
                 ->get();
 
@@ -167,13 +170,43 @@ class SearchController extends Controller
     function businessSearch(Request $request){
         try{
             
-            $usersArray = [];
+            if(!isset($request->minAge)){
+                return response()->json(["success" => false, "msg" => "Debe incluir una fecha mínima"]);
+
+                if($request->minAge > $request->maxAge){
+                    return response()->json(["success" => false, "msg" => "Fecha mínima no puede ser mayor a fecha máxima"]);
+                }
+
+            }
+
+            $minAge = Carbon::now()->subYears($request->minAge);
+            $maxAge = null;
+
+            if(isset($request->maxAge)){
+                $maxAge = Carbon::now()->subYears($request->maxAge);
+            }
+            
             $dataAmount = 18;
             $skip = ($request->page - 1) * $dataAmount;
             
-            $profiles = Profile::where("age" >= $request->minAge)->with("user")->get();
+            $query = Profile::whereDate("birth_date", "<=", $minAge)->with("user", "user.region", "user.commune");
+            if($maxAge){
+                $query = $query->whereDate("birth_date", ">=", $maxAge);
+            }
 
-            return response()->json("profiles");
+            if(isset($request->category)){
+                $query->whereRaw('FIND_IN_SET("'.$request->category.'", desired_areas)');
+            }
+
+            if(isset($request->regionSearch)){
+                $query->whereHas("user", function($q) use($request){
+                    $q->where("region_id", $request->regionSearch);
+                });
+            }
+            $profiles = $query->take($dataAmount)->skip($skip)->get();
+            $profilesCount = $query->count();
+
+            return response()->json(["profiles" => $profiles, "profilesCount" => $profilesCount, "dataAmount" => $dataAmount]);
 
             
 
