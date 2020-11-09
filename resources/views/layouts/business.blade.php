@@ -146,7 +146,7 @@
                             <img class="caja-input-buscador-usuario-lupa_img" src="{{ asset('user/assets/img/chat.png') }}" alt="chat">
                             <span class="caja-ico-mensaje_span">1</span>
                         </div>--}}
-                        <div class="caja-input-buscador-usuario d-n-991">
+                        {{--<div class="caja-input-buscador-usuario d-n-991">
                             <!--<input class="caja-input-buscador-usuario_input" type="text" placeholder="Busca tus ofertas de trabajo" id="search_input">
                             <button class="caja-input-buscador-usuario_button" onclick="storeQuery()"><img class="caja-input-buscador-usuario-lupa_img" src="{{ asset('user/assets/img/search-b.png') }}" alt="buscar"></button>-->
                             <select class="caja-input-buscador-usuario_input" id="job_category_id">
@@ -156,7 +156,7 @@
                                 @endforeach
                             </select>
                             <button class="caja-input-buscador-usuario_button" onclick="storeQuery()"><img class="caja-input-buscador-usuario-lupa_img" src="{{ asset('user/assets/img/search-b.png') }}" alt="buscar"></button>
-                        </div>
+                        </div>--}}
                         
                         <div class="cont-menu-h-usuario">
 
@@ -168,7 +168,7 @@
                         <nav class="menuppal">
                         <div class="menu-lateral-empresa-resp">
                         <div class="content-encontre-trabajo-caja-info">
-                            <div class="caja-input-buscador-usuario mb-3">
+                            {{--<div class="caja-input-buscador-usuario mb-3">
                                 <!--<input class="caja-input-buscador-usuario_input" type="text" placeholder="Busca tus ofertas de trabajo" id="search_input">
                                 <button class="caja-input-buscador-usuario_button" onclick="storeQuery()"><img class="caja-input-buscador-usuario-lupa_img" src="{{ asset('user/assets/img/search-b.png') }}" alt="buscar"></button>-->
                                 <select class="caja-input-buscador-usuario_input" id="job_category_id">
@@ -178,7 +178,7 @@
                                     @endforeach
                                 </select>
                                 <button class="caja-input-buscador-usuario_button" onclick="storeQuery()"><img class="caja-input-buscador-usuario-lupa_img" src="{{ asset('user/assets/img/search-b.png') }}" alt="buscar"></button>
-                            </div> 
+                            </div>--}} 
 
                             <div class="content-encontre-trabajo-caja-info-img-porc">
                                 @php
@@ -215,6 +215,7 @@
                                     <li class="menu-lateral-usuario_ul_li menu-resp-li" ><a href="{{ url('/offers/create') }}"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/play.png') }}" alt="">Crear oferta</a></li>
                                 @endif
                                 <li class="menu-lateral-usuario_ul_li menu-resp-li" ><a href="{{ url('/my-offers') }}"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/alarm.png') }}" alt="">Mis ofertas</a></li>
+                                <li class="menu-lateral-usuario_ul_li menu-resp-li" ><a href="{{ url('/curriculum-search') }}"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/alarm.png') }}" alt="">Motor Curricular</a></li>
                                 <li class="menu-lateral-usuario_ul_li menu-resp-li" ><a href="{{ url('/my-proposals') }}"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/alarm.png') }}" alt="">Ofertas respondidas</a></li>
                                 <li class="menu-lateral-usuario_ul_li menu-resp-li" ><a href="{{ url('/logout') }}"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/logout.png') }}" alt="">Cerrar sesión</a></li>
                             </ul>
@@ -306,6 +307,7 @@
                             <li class="menu-lateral-usuario_ul_li menu-resp-li" ><a href="{{ url('/offers/create') }}"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/play.png') }}" alt="">Crear oferta</a></li>
                         @endif
                         <li class="menu-lateral-usuario_ul_li menu-resp-li" ><a href="{{ url('/my-offers') }}"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/alarm.png') }}" alt="">Mis ofertas</a></li>
+                        <li class="menu-lateral-usuario_ul_li menu-resp-li" ><a href="{{ url('/curriculum-search') }}"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/alarm.png') }}" alt="">Motor Curricular</a></li>
                         <li class="menu-lateral-usuario_ul_li menu-resp-li" ><a href="{{ url('/my-proposals') }}"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/alarm.png') }}" alt="">Ofertas respondidas</a></li>
                         <li class="menu-lateral-usuario_ul_li menu-resp-li" ><a href="{{ url('/logout') }}"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/logout.png') }}" alt="">Cerrar sesión</a></li>
                     </ul>

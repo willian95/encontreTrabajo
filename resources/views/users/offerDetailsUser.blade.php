@@ -39,7 +39,7 @@
                             <h4 class="text-center">@{{ title }}</h4>
                             
                             <p><strong>Nombre de la empresa: </strong> <a href="{{ url('/profile/show/'.$offer->user->email) }}">@{{ businessName }}</a></p>
-                            <p><strong>Dirección: </strong><span v-if="region">@{{ region }}, </span> <span v-if="commune">@{{ commune }} , </span> @{{ address }}</p>
+                            <p><strong>Dirección: </strong><span v-if="region">@{{ region }}, </span> <span v-if="commune">@{{ commune }}
                             <p><strong>Puesto:</strong> @{{ jobPosition }}</p>
                             @if($offer->wage_type == 1)
                             <p>

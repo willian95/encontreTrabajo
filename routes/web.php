@@ -85,6 +85,8 @@ Route::middleware(['auth', 'business'])->group(function(){
 
     Route::get("/user/service-amount", "UserController@getServiceAmount");
 
+    Route::get("curriculum-search", "CurriculumSearchController@index");
+
 });
 
 Route::get("/offers/fetch/{page}", "OfferController@userFetch")->middleware('auth');
