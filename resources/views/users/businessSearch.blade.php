@@ -220,7 +220,7 @@
                     this.page = page
 
                     let userRes = await axios.post("{{ url('/business/search') }}", {minAge: this.minAge, maxAge: this.maxAge, regionSearch: this.regionSearch, category: this.category, page: this.page})
-                   
+                    console.log(userRes)
                     
 
                 },

@@ -170,44 +170,12 @@ class SearchController extends Controller
             $usersArray = [];
             $dataAmount = 18;
             $skip = ($request->page - 1) * $dataAmount;
-            $usersCount = 0;
-            $count = 0;
-            $offsetCount = 0;
+            
+            $profiles = Profile::where("age" >= $request->minAge)->with("user")->get();
 
-            foreach(Profile::has("user")->with("user")->get() as $profile){
-                
-                
-                    if($count >= $dataAmount){
-                        break;
-                    }
+            return response()->json("profiles");
 
-                    if(strlen($profile->desired_areas) > 0){
-                        $areasArray = explode(",", $profile->desired_areas);
-                        if($offsetCount >= $skip){
-                            if(in_array($request->search."", $areasArray)){
-                                $usersArray[] = [
-                                    "users" => $profile
-                                ];
-                                $count++;
-                            }
-                        }
-                
-                        $offsetCount++;
-
-
-                    }
-                
-                
-            }
-
-            foreach(Profile::has("user")->with("user")->get() as $profile){
-                $areasArray = explode(",", $profile->desired_areas);
-                if(in_array($request->search."", $areasArray)){
-                    $usersCount++;
-                }
-            }
-
-            return response()->json(["success" => true, "users" => $usersArray, "dataAmount" => $dataAmount, "usersCount" => $usersCount]);
+            
 
         }catch(\Exception $e){
             return response()->json(["success" => false, "msg" => "Error en el servidor", "ln" => $e->getLine(), "err" => $e->getMessage()]);
