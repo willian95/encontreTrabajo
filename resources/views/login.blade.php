@@ -59,9 +59,15 @@
                                     <p class="text-center" style="margin-top:3rem;">
                                         <small>¿Aún no tienes una cuenta?</small>
                                     </p>
-                                    <p class="text-center">
+                                    <p class="text-center mb-5">
                                         <a href="{{ url('/register') }}" class="btn btn-primary">Registrate</a>
                                     </p>
+
+                                    
+                                    <p class="text-center mt-5">
+                                        <a href="{{ env('LANDING_URL') }}" class="btn btn-outline-primary">Volver al inicio</a>
+                                    </p>
+                                
 
                                     
                                     

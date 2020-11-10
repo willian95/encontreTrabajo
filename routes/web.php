@@ -115,13 +115,13 @@ Route::post('/checkout/webpay/finish', 'CheckoutController@finish')->name('check
 
 Route::get("/country/fetch", "CountriesController@fetch");
 
-Route::get("/search", "SearchController@index");
-Route::post("/search", "SearchController@search");
+Route::get("/search", "SearchController@index")->middleware("auth");
+Route::post("/search", "SearchController@search")->middleware("auth");
 
-Route::get("/business/search", "SearchController@businessIndex");
-Route::post("/business/search", "SearchController@businessSearch");
+Route::get("/business/search", "SearchController@businessIndex")->middleware("auth");
+Route::post("/business/search", "SearchController@businessSearch")->middleware("auth");
 
-Route::get("/my-references", "JobReferenceController@index");
+Route::get("/my-references", "JobReferenceController@index")->middleware("auth");
 Route::get("/my-references/fetch", "JobReferenceController@fetch");
 Route::get("/my-references/fetch-by-id/{id}", "JobReferenceController@fetchById");
 Route::post("/my-references/store", "JobReferenceController@store");

@@ -23,12 +23,10 @@
                 </div>
                 <div class="opciones-inf-empresas-opciones-select-2">
                     <p>Ordenar por</p>
-                    <select name="" id="">
+                    <select name="" id="" v-model="orderBy" @change="fetch()">
                         <option value="">Selecciona una opción</option>
-                        <option value="">Nuevo - Antiguo</option>
-                        <option value="">Antiguo - Nuevo</option>
-                        <option value="">Abierto - Cerrado</option>
-                        <option value="">Cerrado - Abierto</option>
+                        <option value="1">Nuevo - Antiguo</option>
+                        <option value="2">Antiguo - Nuevo</option>
                     </select>
                 </div>
                 
@@ -103,6 +101,7 @@
                 return {
                     offers:[],
                     page:1,
+                    orderBy:"",
                     pages:0
                 }
             },
@@ -111,7 +110,7 @@
                 fetch(page = 1){
 
                     this.page = page
-                    axios.get("{{ url('/offers/business/fetch') }}"+"/"+this.page)
+                    axios.get("{{ url('/offers/business/fetch') }}"+"/"+this.page+"?order="+this.orderBy)
                     .then(res => {
 
                         if(res.data.success == true){
