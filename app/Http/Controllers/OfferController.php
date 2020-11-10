@@ -175,13 +175,29 @@ class OfferController extends Controller
 
     }
 
-    function BusinessFetch($page = 1){
+    function BusinessFetch($page = 1, Request $request){
 
         try{
             $dataAmount = 18;
             $skip = ($page - 1) * $dataAmount;
 
-            $offers = Offer::skip($skip)->take($dataAmount)->where('user_id', \Auth::user()->id)->whereDate('expiration_date', '>', Carbon::today()->toDateString())->orderBy("proposal_updated_at", "desc")->with("user", "category", "views")->has("user")->with("user.region")->has("user.region")->get();
+            $query = Offer::skip($skip)->take($dataAmount)->where('user_id', \Auth::user()->id)->whereDate('expiration_date', '>', Carbon::today()->toDateString())->with("user", "category", "views")->has("user")->with("user.region")->has("user.region");
+            
+            if(isset($request->order)){
+                
+                if($request->order == 1){
+                    $query->orderBy("id", "desc");
+                }else if($request->order == 2){
+                    $query->orderBy("id", "asc");
+                }
+                
+            }else{
+
+                $query->orderBy("proposal_updated_at", "desc");
+
+            }
+
+            $offers = $query->get();
             $offersCount = Offer::with("user")->has("user", "category", "views")->where('user_id', \Auth::user()->id)->whereDate('expiration_date', '>', Carbon::today()->toDateString())->with("user.region")->has("user.region")->count();
 
             return response()->json(["success" => true, "offers" => $offers, "offersCount" => $offersCount, "dataAmount" => $dataAmount]);

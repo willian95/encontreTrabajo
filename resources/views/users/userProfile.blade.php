@@ -1295,6 +1295,7 @@
                 },
 
                 validateRut(){
+                    //this.update()
                     var vm = this
                     this.loading = true
                     $.get("https://siichile.herokuapp.com/consulta?rut="+this.rut, function(data){
