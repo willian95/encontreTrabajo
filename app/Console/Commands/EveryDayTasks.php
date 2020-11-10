@@ -45,6 +45,8 @@ class EveryDayTasks extends Command
         
         foreach($users as $user){
 
+            Log::info($user->user->email);
+
             $message = $user->user->name.", de parte de todo el equipo de Encontré Trabajo queremos desearte un feliz cumpleaños";
             $data = ["messageMail" => $message];
             $to_name = $user->user->name;
