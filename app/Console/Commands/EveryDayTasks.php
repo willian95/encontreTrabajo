@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Log;
+use Carbon\Carbon;
 use App\Profile;
 
 class EveryDayTasks extends Command
@@ -39,8 +40,8 @@ class EveryDayTasks extends Command
      */
     public function handle()
     {
-        
-        $users = Profile::whereRaw("to_char(birth_date, 'MM-DD')::text = '" . date("m-d") . "'")->with("user")->get();
+        $date = Carbon::today();   
+        $users = Profile::whereMonth('dob', '=', $date->month)->whereDay('dob', '=', $date->day)->with("user")->get();
         
         foreach($users as $user){
 
