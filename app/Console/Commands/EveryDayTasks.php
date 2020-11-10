@@ -41,7 +41,7 @@ class EveryDayTasks extends Command
     public function handle()
     {
         $date = Carbon::today();   
-        $users = Profile::whereMonth('dob', '=', $date->month)->whereDay('dob', '=', $date->day)->with("user")->get();
+        $users = Profile::whereMonth('birth_date', '=', $date->month)->whereDay('birth_date', '=', $date->day)->with("user")->get();
         
         foreach($users as $user){
 
