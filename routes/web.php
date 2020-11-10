@@ -87,6 +87,8 @@ Route::middleware(['auth', 'business'])->group(function(){
 
     Route::get("curriculum-search", "CurriculumSearchController@index");
 
+    Route::get("/download/curriculum/", "CurriculumSearchController@index");
+
 });
 
 Route::get("/offers/fetch/{page}", "OfferController@userFetch")->middleware('auth');
