@@ -87,7 +87,7 @@ img.content-logo-img-img {
     align-content: center;
     position: relative;
     padding: 65px;
-    z-index: 9999;
+    z-index: 999;
     height: 100%;
 }
 .content-tab-tabs {
