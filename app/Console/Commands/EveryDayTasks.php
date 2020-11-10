@@ -3,7 +3,8 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-use App\User;
+use Illuminate\Support\Facades\Log;
+use App\Profile;
 
 class EveryDayTasks extends Command
 {
@@ -39,14 +40,16 @@ class EveryDayTasks extends Command
     public function handle()
     {
         
-        $users = User::whereRaw("to_char(birth_date, 'MM-DD')::text = '" . date("m-d") . "'")->get();
+        $users = Profile::whereRaw("to_char(birth_date, 'MM-DD')::text = '" . date("m-d") . "'")->with("user")->get();
         
         foreach($users as $user){
 
-            $message = $user->name.", de parte de todo el equipo de Encontré Trabajo queremos desearte un feliz cumpleaños";
+            Log::info($user->user->email);
+
+            $message = $user->user->name.", de parte de todo el equipo de Encontré Trabajo queremos desearte un feliz cumpleaños";
             $data = ["messageMail" => $message];
-            $to_name = $user->name;
-            $to_email = $user->email;
+            $to_name = $user->user->name;
+            $to_email = $user->user->email;
 
             \Mail::send("emails.birthday", $data, function($message) use ($to_name, $to_email) {
                 $message->to($to_email, $to_name)->subject("¡Feliz Cumpleaños!");
