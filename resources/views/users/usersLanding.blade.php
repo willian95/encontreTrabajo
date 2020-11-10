@@ -116,7 +116,9 @@
                         @endif
 
                         @foreach(App\Proposal::where("user_id", \Auth::user()->id)->with("offer")->take(3)->get() as $proposal)
-                            <h5 class="cajas-contenedoras-postulaciones_h5">{{ $proposal->offer->title }}</h5> 
+                            @if($proposal->offer)
+                                <h5 class="cajas-contenedoras-postulaciones_h5">{{ $proposal->offer->title }}</h5> 
+                            @endif
                         @endforeach
                     </div>  
                     
