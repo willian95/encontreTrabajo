@@ -77,13 +77,13 @@ class ProposalController extends Controller
 
                 $q->where("user_id", \Auth::user()->id);
 
-            })->orderBy("id", "desc")->with("user", "offer")->groupBy("offer_id", "user_id")->has("user")->get();
+            })->orderBy("id", "desc")->with("user", "offer")->groupBy("offer_id", "user_id")->has("user")->has("offer")->get();
 
             $proposalsCount = Proposal::with("user", "offer")->whereHas('offer', function($q){
 
                 $q->where("user_id", \Auth::user()->id);
 
-            })->has("user")->groupBy("offer_id", "user_id")->count();
+            })->has("user")->has("offer")->groupBy("offer_id", "user_id")->count();
 
             return response()->json(["success" => true, "proposals" => $proposals, "proposalsCount" => $proposalsCount, "dataAmount" => $dataAmount]);
 

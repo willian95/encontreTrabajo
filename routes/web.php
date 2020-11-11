@@ -87,7 +87,7 @@ Route::middleware(['auth', 'business'])->group(function(){
 
     Route::get("curriculum-search", "CurriculumSearchController@index");
 
-    Route::get("/download/curriculum/", "CurriculumSearchController@index");
+    Route::get("/download/curriculum/{id}", "CurriculumSearchController@download");
 
 });
 

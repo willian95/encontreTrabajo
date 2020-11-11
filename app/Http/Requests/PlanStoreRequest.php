@@ -29,7 +29,7 @@ class PlanStoreRequest extends FormRequest
             "offerPosting" => "required",
             "simplePostAmounts" => "nullable",
             "hightlightPostAmount" => "integer|nullable",
-            "conferenceAmounts" =>  "integer|nullable",
+            "conferenceAmounts" =>  "nullable",
             "downloadCurriculum" => "required",
             "showVideo" => "required",
             "downloadProfile"=> "integer|nullable",

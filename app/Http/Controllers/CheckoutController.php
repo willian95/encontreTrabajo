@@ -67,11 +67,17 @@ class CheckoutController extends Controller
             $serviceAmount->highlighted_post_amount = $serviceAmount->highlighted_post_amount + $plan->hightlight_posts;
             $serviceAmount->conference_amount = $serviceAmount->conference_amount + $plan->conference_amount;
             $serviceAmount->download_profiles_amount = $serviceAmount->download_profiles_amount + $plan->download_profiles;
-
-            if($plan->plan_time == "anuales"){
+            
+            if($plan->plan_time == "anuales" && $plan->simple_post_infinity == 1){
                 $serviceAmount->due_time = Carbon::now()->addYear();
-            }else if($plan->plan_time == "semestrales"){
+            }else if($plan->plan_time == "semestrales" && $plan->simple_post_infinity == 1){
                 $serviceAmount->due_time = Carbon::now()->addMonths(6);
+            }
+
+            if($plan->plan_time == "anuales" && $plan->conference_infinity == 1){
+                $serviceAmount->conference_infinity_due_time = Carbon::now()->addYear();
+            }else if($plan->plan_time == "semestrales" && $plan->conference_infinity == 1){
+                $serviceAmount->conference_infinity_due_time = Carbon::now()->addMonths(6);
             }
 
             $serviceAmount->update();

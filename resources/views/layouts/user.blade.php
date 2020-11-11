@@ -217,6 +217,7 @@
                                         <li class="menu-lateral-usuario_ul_li menu-resp-li" ><a href="{{ url('/profile/user') }}"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/ico-editar.png') }}" alt=""><p>Mi perfil</p></a></li>
                                         <li class="menu-lateral-usuario_ul_li menu-resp-li" ><a href="{{ url('/my-references') }}"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/ico-editar.png') }}" alt=""><p>Referencias laborales</p></a></li>
                                         <li class="menu-lateral-usuario_ul_li menu-resp-li" ><a href="{{ url('/profile/show/'.\Auth::user()->email) }}"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/ico-editar.png') }}" alt=""><p>Mi Curriculum</p></a></li>
+                                        <li class="menu-lateral-usuario_ul_li" ><a href="{{ url('/search') }}"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/ico-editar.png') }}" alt=""><p>Buscar empleo</p></a></li>
                                         <li class="menu-lateral-usuario_ul_li menu-resp-li" ><a href="{{ url('/my-applies') }}"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/control.png') }}" alt=""><p>Mis postulaciones</p></a></li>
                                         <li class="menu-lateral-usuario_ul_li menu-resp-li" ><a href="{{ url('/logout') }}"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/logout.png') }}" alt=""><p>Cerrar sesión</p></a></li>
                                     </ul>
@@ -271,9 +272,10 @@
                                 <li class="menu-lateral-usuario_ul_li" ><a href="{{ url('/profile/user') }}"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/ico-editar.png') }}" alt=""><p>Mi perfil</p></a></li>
                                 <li class="menu-lateral-usuario_ul_li" ><a href="{{ url('/my-references') }}"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/ico-editar.png') }}" alt=""><p>Referencias laborales</p></a></li>
 
-                                <li class="menu-lateral-usuario_ul_li" ><a href="{{ url('/search') }}"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/ico-editar.png') }}" alt=""><p>Buscar empleo</p></a></li>
+                                
 
                                 <li class="menu-lateral-usuario_ul_li" ><a href="{{ url('/profile/show/'.\Auth::user()->email) }}"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/ico-editar.png') }}" alt=""><p>Mi Curriculum</p></a></li>
+                                <li class="menu-lateral-usuario_ul_li" ><a href="{{ url('/search') }}"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/ico-editar.png') }}" alt=""><p>Buscar empleo</p></a></li>
                                 <li class="menu-lateral-usuario_ul_li" ><a href="{{ url('/my-applies') }}"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/control.png') }}" alt=""><p>Mis postulaciones</p></a></li>
                                 <li class="menu-lateral-usuario_ul_li" ><a href="{{ url('/logout') }}"> <img class="menu-lateral-usuario_ul_li_img" src="{{ asset('user/assets/img/logout.png') }}" alt=""><p>Cerrar sesión</p></a></li>
                             </ul>

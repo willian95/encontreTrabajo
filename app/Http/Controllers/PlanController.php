@@ -46,6 +46,7 @@ class PlanController extends Controller
             $plan->download_profiles = $request->downloadProfile;
             $plan->position = $request->position;
             $plan->price = $request->price;
+            $plan->conference_infinity = $request->conferenceInfinity;
             $plan->conference_amount = $request->conferenceAmounts;
             $plan->simple_post_infinity = $request->simplePostInfinity;
             $plan->save();
@@ -73,6 +74,7 @@ class PlanController extends Controller
             $plan->show_video = $request->showVideo;
             $plan->download_profiles = $request->downloadProfile;
             $plan->position = $request->position;
+            $plan->conference_infinity = $request->conferenceInfinity;
             $plan->price = $request->price;
             $plan->conference_amount = $request->conferenceAmounts;
             $plan->simple_post_infinity = $request->simplePostInfinity;

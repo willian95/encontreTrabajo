@@ -181,7 +181,7 @@ class OfferController extends Controller
             $dataAmount = 18;
             $skip = ($page - 1) * $dataAmount;
 
-            $query = Offer::skip($skip)->take($dataAmount)->where('user_id', \Auth::user()->id)->whereDate('expiration_date', '>', Carbon::today()->toDateString())->with("user", "category", "views")->has("user")->with("user.region")->has("user.region");
+            $query = Offer::skip($skip)->take($dataAmount)->where('user_id', \Auth::user()->id)->whereDate('expiration_date', '>', Carbon::today()->toDateString())->with("user", "category", "views")->with("user.region")->has("user.region")->has("user")->has("category")->has("views");
             
             if(isset($request->order)){
                 
@@ -198,7 +198,7 @@ class OfferController extends Controller
             }
 
             $offers = $query->get();
-            $offersCount = Offer::with("user")->has("user", "category", "views")->where('user_id', \Auth::user()->id)->whereDate('expiration_date', '>', Carbon::today()->toDateString())->with("user.region")->has("user.region")->count();
+            $offersCount = Offer::with("user")->has("user", "category", "views")->where('user_id', \Auth::user()->id)->whereDate('expiration_date', '>', Carbon::today()->toDateString())->with("user.region")->has("user.region")->has("user")->has("category")->has("views")->count();
 
             return response()->json(["success" => true, "offers" => $offers, "offersCount" => $offersCount, "dataAmount" => $dataAmount]);
 
@@ -212,7 +212,7 @@ class OfferController extends Controller
 
         try{
 
-            $offer = Offer::where("slug", $slug)->with("user", "user.region", "user.commune", "user.profile")->has("user")->has("user.profile")->firstOrFail();
+            $offer = Offer::where("slug", $slug)->with("user", "user.region", "user.commune", "user.profile")->has("user")->has("user.profile")->has("user.region")->has("user.commune")->firstOrFail();
             
             if(\Auth::user()->role_id == 2){
 

@@ -125,7 +125,8 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="conferenceAmounts">Entrevistas</label>
-                                            <input type="text" class="form-control" id="conferenceAmounts" v-model="conferenceAmounts" @keypress="isNumber()">
+                                            <input type="text" class="form-control" id="conferenceAmounts" v-model="conferenceAmounts" @keypress="isNumber()" :readonly="conferenceInfinity == 1">
+                                            <button class="btn btn-secondary" @click="toggleConferenceInfinity()">Infinitas</button>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -212,6 +213,7 @@
                     downloadProfilesAmounts:"",
                     position:1,
                     simplePostInfinity:false,
+                    conferenceInfinity:false,
                     price:0,
                     action:"create",
                     loading:false,
@@ -232,6 +234,16 @@
                     }
 
                 },
+                toggleConferenceInfinity(){
+                    if(this.conferenceInfinity == false){
+                      
+                        this.conferenceInfinity = true
+                        this.conferenceAmounts = "infinitas";
+                    }else{
+                        this.conferenceInfinity = false
+                        this.conferenceAmounts = "";
+                    }
+                },
                 create(){
                     this.action = "create"
                     this.modalTitle = "Crear plan"
@@ -246,6 +258,7 @@
                     this.downloadCurriculum= 1
                     this.showVideo = 1
                     this.downloadProfilesAmounts= ""
+                    this.conferenceInfinity = 0
                     this.position = 1
                     this.simplePostInfinity= false
                     this.price = 0
@@ -268,10 +281,15 @@
                     this.downloadProfilesAmounts= plan.download_profiles
                     this.position = plan.position
                     this.simplePostInfinity= plan.simple_post_infinity
-                    console.log(plan)
+                    this.conferenceInfinity = plan.conference_infinity
+                
                     //
                     if(plan.simple_post_infinity == 1){
                         this.simplePostAmounts = "infinitas"
+                    }
+
+                    if(plan.conference_infinity == 1){
+                        this.conferenceAmounts = "infinitas"
                     }
 
                     this.price = plan.price
@@ -303,6 +321,7 @@
                         downloadProfile: this.downloadProfilesAmounts,
                         position: this.position,
                         simplePostInfinity: this.simplePostInfinity,
+                        conferenceInfinity: this.conferenceInfinity,
                         price: this.price
                     }).then(res => {
                        
@@ -358,6 +377,7 @@
                         downloadProfile: this.downloadProfilesAmounts,
                         position: this.position,
                         simplePostInfinity: this.simplePostInfinity,
+                        conferenceInfinity: this.conferenceInfinity,
                         price: this.price
                     }).then(res => {
                        

@@ -65,12 +65,10 @@
                                     <div class="col-9">
                                         <h5 class="card-title">@{{ user.user.name }} @{{ user.user.lastname }}</h5>
                                         <small class="text-b">@{{ user.user.region.name }}, @{{ user.user.commune.name }}</small>
-                                        
-                        
                                     </div>
                                     <div class="col-12">
                                         <p class="text-right">
-                                            <a :href="'{{ env('PLATFORM_URL') }}'+'/offers/detail/'" class="btn btn-primary">Descargar Curriculum</a>
+                                            <button @click="checkCurriculumDownload(user.user.id)" class="btn btn-primary">Descargar Curriculum</button>
                                         </p>
                                     </div>
                                 
@@ -129,6 +127,7 @@
                     category:"",
                     regions:[],
                     categories:[],
+                    curriculumDownload:"{{ App\ServiceAmount::where('user_id', \Auth::user()->id)->first()->download_profiles_amount }}",
                     users:[],
                     page:1,
                     pages:0
@@ -152,6 +151,21 @@
                         this.regions = res.data.regions
 
                     })
+
+                },
+                checkCurriculumDownload(id){
+
+                    if(this.curriculumDownload > 0){
+
+                        window.open("{{ url('/download/curriculum/') }}"+"/"+id, '_blank')
+                        window.location.reload()
+
+                    }else{
+                        swal({
+                            text:"No posee más curriculum para descargar",
+                            icon:"error"
+                        })
+                    }
 
                 },
                 fetchCategories(){

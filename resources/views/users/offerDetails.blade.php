@@ -123,12 +123,26 @@
                                                 @if(App\User::where("id", \Auth::user()->id)->first()->expire_free_trial->gt(Carbon\Carbon::now()))
                                                     <button type="button" class="btn btn-info" data-toggle="modal" data-target="#conferenceModal" @click="setGuest(proposal.user.id)">Solicitar</button>
                                                 @else
-                                                    @if(App\ServiceAmount::where("user_id", \Auth::user()->id)->first()->conference_amount > 0)
+                                                    {{-- App\ServiceAmount::where("user_id", \Auth::user()->id)->first()->conference_infinity_due_date->gt(Carbon\Carbon::now()) --}}
+                                                    
+
+                                                    @if(App\ServiceAmount::where("user_id", \Auth::user()->id)->first()->conference_amount > 0 )
                                                         <button type="button" class="btn btn-info" data-toggle="modal" data-target="#conferenceModal" @click="setGuest(proposal.user.id)">Solicitar</button>
                                                     @else
 
-                                                        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#planModal">Comprar plan</button>
+                                                        @if(App\ServiceAmount::where("user_id", \Auth::user()->id)->first()->conference_infinity_due_date)
+                                                            @if(App\ServiceAmount::where("user_id", \Auth::user()->id)->first()->conference_infinity_due_date->gt(Carbon\Carbon::now()))
+                                                                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#conferenceModal" @click="setGuest(proposal.user.id)">Solicitar</button>
+                                                            @else
+                                                                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#planModal">Comprar plan</button>
+                                                            @endif
+                                                            
+                                                        @else
 
+                                                            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#planModal">Comprar plan</button>
+                                                        @endif
+
+                                                        
                                                     @endif
 
                                                 @endif
@@ -178,7 +192,7 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title text-center" id="exampleModalLabel">Planes disponibles</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="closePlanModal">
                                 <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
@@ -186,26 +200,184 @@
                                 
                                 <div class="container-fluid">
 
-                                    <div class="row">
-                                        @foreach(App\Plan::all() as $plan)
+                                    <div class="row d-flex justify-content-center">
+                                        
+                                        @foreach(App\Plan::where("position", 1)->orderBy("price", "asc")->get() as $plan)
 
-                                            <div class="col-md-4 col-lg-4">
+                                            <div class="col-md-4 col-lg-4 card-plan-col-4">
+                                                <div class="card-planes">
+                                                    <div class="card">
+                                                        <div class="">
 
-                                                <div class="card">
-                                                    <div class="card-body">
-                                                        <h3 class="text-center">{{ $plan->title }}</h3>
+                                                            <div class="img-planes d-flex justify-content-center">
+                                                                <img src="{{ asset('user/assets/img/logop.png') }}" alt="logo encontre trabajo">
+                                                            </div>
 
-                                                        <p><strong>Publicaciones: </strong>{{ $plan->post_amount }}</p>
-                                                        <p><strong>Entrevistas: </strong>{{ $plan->conference_amount }}</p>
+                                                            <h3 class="text-center">{{ $plan->title }}</h3>
+                                                            <h3 class="text-center"><small class="">$</small>{{ number_format($plan->price, 0, "", ".") }}</h3>
+                                                            <h6 class="text-center text-uppercase">iva incluido</h6>
 
-                                                        <h4 class="text-center">$ {{ number_format($plan->price, 0, ",", ".") }}</h4>
+                                                            <img class="wave_img" src="{{ asset('user/assets/img/wamarillo.svg') }}" alt="waves">
+                                                            <div class="box-waves-text fondo-am">
+                                                                <ul class="text-center box-waves-text_ul ">
+                                                                    @if($plan->offer_posting == 1)
+                                                                    <li >Publicación en la plataforma laboral y en nuestras redes sociales.</li>
+                                                                    @endif
+                                                                    @if($plan->post_days > 0)
+                                                                    <li>Duración de {{ $plan->post_days }} días.</li>
+                                                                    @endif
+                                                                    @if($plan->simple_post_infinity == 1)
+                                                                        Publicaciones simples ilimitadas por @if($plan->plan_time == "semestrales") 6 meses @elseif($plan->plan_time == "anuales") 12 meses @endif
+                                                                    @elseif($plan->simple_posts > 0)
+                                                                    <li>{{ $plan->simple_posts }} @if($plan->simple_posts == 1)publicación simple. @else publicaciones simples. @endif</li>
+                                                                    @endif
+                                                                    @if($plan->hightlight_posts > 0)
+                                                                    <li>{{ $plan->hightlight_posts }} @if($plan->hightlight_posts == 1) publicación destacada. @else publicaciones destacadas. @endif</li>
+                                                                    @endif
+                                                                    @if($plan->download_curriculum == 1)
+                                                                    <li>Descarga de Curriculum Vitae.</li>
+                                                                    @endif
+                                                                    @if($plan->show_video == 1)
+                                                                    <li>Video de Presentación del Candidato.</li>
+                                                                    @endif
+                                                                    @if($plan->download_profiles > 0)
+                                                                    <li>Podrás entrar al motor de búsqueda y descargar {{ $plan->download_profiles }} @if($plan->download_profiles == 1) perfil. @else perfiles. @endif</li>
+                                                                    @endif
+                                                                    @if($plan->conference_amount > 0)
+                                                                    <li>{{ $plan->conference_amount }} @if($plan->conference_amount == 1)video entrevista con postulante. @else video entrevistas con postulante. @endif</li>
+                                                                    @endif
+                                                                </ul>
 
-
-                                                        <p class="text-center">
-                                                            <button class="btn btn-success" @click="cartStore('{{ $plan->id }}', '{{ $plan->price }}')">Comprar</button>
-                                                        </p>
+                                                                <p class="text-center">
+                                                                    <button class="btn btn-primary" @click="cartStore({{ $plan->id }}, {{ $plan->price }})">Pagar</button>
+                                                                </p>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
+                                                
+
+                                            </div>
+
+                                        @endforeach
+                                    </div>
+
+                                    <div class="row d-flex justify-content-center">
+                                        
+                                        @foreach(App\Plan::where("position", 2)->orderBy("price", "asc")->get() as $plan)
+
+                                            <div class="col-md-4 col-lg-4 card-plan-col-4">
+                                                <div class="card-planes">
+                                                    <div class="card">
+                                                        <div class="">
+
+                                                            <div class="img-planes d-flex justify-content-center">
+                                                                <img src="{{ asset('user/assets/img/logop.png') }}" alt="logo encontre trabajo">
+                                                            </div>
+
+                                                            <h3 class="text-center">{{ $plan->title }}</h3>
+                                                            <h3 class="text-center"><small class="">$</small>{{ number_format($plan->price, 0, "", ".") }}</h3>
+                                                            <h6 class="text-center text-uppercase">iva incluido</h6>
+
+                                                            <img class="wave_img" src="{{ asset('user/assets/img/wazul.svg') }}" alt="waves">
+                                                            <div class="box-waves-text fondo-az">
+                                                                <ul class="text-center box-waves-text_ul ">
+                                                                    @if($plan->offer_posting == 1)
+                                                                    <li >Publicación en la plataforma laboral y en nuestras redes sociales.</li>
+                                                                    @endif
+                                                                    @if($plan->post_days > 0)
+                                                                    <li>Duración de {{ $plan->post_days }} días.</li>
+                                                                    @endif
+                                                                    @if($plan->simple_post_infinity == 1)
+                                                                        Publicaciones simples ilimitadas por @if($plan->plan_time == "semestrales") 6 meses @elseif($plan->plan_time == "anuales") 12 meses @endif
+                                                                    @elseif($plan->simple_posts > 0)
+                                                                    <li>{{ $plan->simple_posts }} @if($plan->simple_posts == 1)publicación simple. @else publicaciones simples. @endif</li>
+                                                                    @endif
+                                                                    @if($plan->hightlight_posts > 0)
+                                                                    <li>{{ $plan->hightlight_posts }} @if($plan->hightlight_posts == 1) publicación destacada. @else publicaciones destacadas. @endif</li>
+                                                                    @endif
+                                                                    @if($plan->download_curriculum == 1)
+                                                                    <li>Descarga de Curriculum Vitae.</li>
+                                                                    @endif
+                                                                    @if($plan->show_video == 1)
+                                                                    <li>Video de Presentación del Candidato.</li>
+                                                                    @endif
+                                                                    @if($plan->download_profiles > 0)
+                                                                    <li>Podrás entrar al motor de búsqueda y descargar {{ $plan->download_profiles }} @if($plan->download_profiles == 1) perfil. @else perfiles. @endif</li>
+                                                                    @endif
+                                                                    @if($plan->conference_amount > 0)
+                                                                    <li>{{ $plan->conference_amount }} @if($plan->conference_amount == 1)video entrevista con postulante. @else video entrevistas con postulante. @endif</li>
+                                                                    @endif
+                                                                </ul>
+                                                                <p class="text-center">
+                                                                    <button class="btn btn-primary" @click="cartStore({{ $plan->id }}, {{ $plan->price }})">pagar</button>
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+
+                                            </div>
+
+                                        @endforeach
+                                    </div>
+
+                                    <div class="row d-flex justify-content-center">
+                                        
+                                        @foreach(App\Plan::where("position", 3)->orderBy("price", "asc")->get() as $plan)
+
+                                            <div class="col-md-4 col-lg-4 card-plan-col-4">
+                                                <div class="card-planes">
+                                                    <div class="card">
+                                                        <div class="">
+
+                                                            <div class="img-planes d-flex justify-content-center">
+                                                                <img src="{{ asset('user/assets/img/logop.png') }}" alt="logo encontre trabajo">
+                                                            </div>
+
+                                                            <h3 class="text-center">{{ $plan->title }}</h3>
+                                                            <h3 class="text-center"><small class="">$</small>{{ number_format($plan->price, 0, "", ".") }}</h3>
+                                                            <h6 class="text-center text-uppercase">iva incluido</h6>
+
+                                                            <img class="wave_img" src="{{ asset('user/assets/img/wverde.svg') }}" alt="waves">
+                                                            <div class="box-waves-text fondo-ve">
+                                                                <ul class="text-center box-waves-text_ul ">
+                                                                    @if($plan->offer_posting == 1)
+                                                                    <li >Publicación en la plataforma laboral y en nuestras redes sociales.</li>
+                                                                    @endif
+                                                                    @if($plan->post_days > 0)
+                                                                    <li>Duración de {{ $plan->post_days }} días.</li>
+                                                                    @endif
+                                                                    @if($plan->simple_post_infinity == 1)
+                                                                        Publicaciones simples ilimitadas por @if($plan->plan_time == "semestrales") 6 meses @elseif($plan->plan_time == "anuales") 12 meses @endif
+                                                                    @elseif($plan->simple_posts > 0)
+                                                                    <li>{{ $plan->simple_posts }} @if($plan->simple_posts == 1)publicación simple. @else publicaciones simples. @endif</li>
+                                                                    @endif
+                                                                    @if($plan->hightlight_posts > 0)
+                                                                    <li>{{ $plan->hightlight_posts }} @if($plan->hightlight_posts == 1) publicación destacada. @else publicaciones destacadas. @endif</li>
+                                                                    @endif
+                                                                    @if($plan->download_curriculum == 1)
+                                                                    <li>Descarga de Curriculum Vitae.</li>
+                                                                    @endif
+                                                                    @if($plan->show_video == 1)
+                                                                    <li>Video de Presentación del Candidato.</li>
+                                                                    @endif
+                                                                    @if($plan->download_profiles > 0)
+                                                                    <li>Podrás entrar al motor de búsqueda y descargar {{ $plan->download_profiles }} @if($plan->download_profiles == 1) perfil. @else perfiles. @endif</li>
+                                                                    @endif
+                                                                    @if($plan->conference_amount > 0)
+                                                                    <li>{{ $plan->conference_amount }} @if($plan->conference_amount == 1)video entrevista con postulante. @else video entrevistas con postulante. @endif</li>
+                                                                    @endif
+                                                                </ul>
+                                                                <p class="text-center">
+                                                                    <button class="btn btn-primary" @click="cartStore({{ $plan->id }}, {{ $plan->price }})">pagar</button>
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
 
                                             </div>
 
@@ -216,7 +388,7 @@
 
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal" id="modalClose">Cerrar</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                             </div>
                         </div>
                     </div>
