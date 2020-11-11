@@ -48,7 +48,7 @@ class EveryDayTasks extends Command
 
             $connection = ssh2_connect(env("JITSI_SERVER_IP"));
             ssh2_auth_password($connection, env('JITSI_SERVER_USER'), env('JITSI_SERVER_PASSWORD'));
-            ssh2_exec($connection, 'prosodyctl deluser '.$appointment->name.' '.env('JITSI_DOMAIN'));
+            ssh2_exec($connection, 'prosodyctl unregister '.$appointment->name.' '.env('JITSI_DOMAIN'));
         }
 
         $date = Carbon::today();   
