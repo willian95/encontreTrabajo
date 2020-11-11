@@ -5,7 +5,9 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Log;
 use Carbon\Carbon;
+use App\Appointment;
 use App\Profile;
+use ssh2_connect;
 
 class EveryDayTasks extends Command
 {
@@ -40,12 +42,19 @@ class EveryDayTasks extends Command
      */
     public function handle()
     {
+
+        $appointments = Appointment::whereDate("date_time", "<", Carbon::now()->subDay())->get();
+        foreach($appointments as $appointment){
+
+            $connection = ssh2_connect(env("JITSI_SERVER_IP"));
+            ssh2_auth_password($connection, env('JITSI_SERVER_USER'), env('JITSI_SERVER_PASSWORD'));
+            ssh2_exec($connection, 'prosodyctl deluser '.$appointment->name.' '.env('JITSI_DOMAIN'));
+        }
+
         $date = Carbon::today();   
         $users = Profile::whereMonth('birth_date', '=', $date->month)->whereDay('birth_date', '=', $date->day)->with("user")->get();
         
         foreach($users as $user){
-
-            Log::info($user->user->email);
 
             $message = $user->user->name.", de parte de todo el equipo de Encontré Trabajo queremos desearte un feliz cumpleaños";
             $data = ["messageMail" => $message];
