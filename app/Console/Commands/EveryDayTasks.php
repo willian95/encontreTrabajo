@@ -51,6 +51,8 @@ class EveryDayTasks extends Command
             ssh2_exec($connection, 'prosodyctl unregister '.$appointment->name.' '.env('JITSI_DOMAIN'));
         }
 
+        Appointment::whereDate("date_time", "<", Carbon::now()->subDay())->delete();
+
         $date = Carbon::today();   
         $users = Profile::whereMonth('birth_date', '=', $date->month)->whereDay('birth_date', '=', $date->day)->with("user")->get();
         
