@@ -243,8 +243,10 @@
                                                                     @if($plan->download_profiles > 0)
                                                                     <li>Podrás entrar al motor de búsqueda y descargar {{ $plan->download_profiles }} @if($plan->download_profiles == 1) perfil. @else perfiles. @endif</li>
                                                                     @endif
-                                                                    @if($plan->conference_amount > 0)
-                                                                    <li>{{ $plan->conference_amount }} @if($plan->conference_amount == 1)video entrevista con postulante. @else video entrevistas con postulante. @endif</li>
+                                                                    @if($plan->conference_infinity == 1)
+                                                                        <li>Video entrevistas Ilimitadas por @if($plan->plan_time == "semestrales") 6 meses @elseif($plan->plan_time == "anuales") 12 meses @endif</li>
+                                                                    @elseif($plan->conference_amount > 0)
+                                                                        <li>{{ $plan->conference_amount }} @if($plan->conference_amount == 1)video entrevista con postulantes. @else video entrevista con postulantes. @endif</li>
                                                                     @endif
                                                                 </ul>
 
@@ -305,8 +307,10 @@
                                                                     @if($plan->download_profiles > 0)
                                                                     <li>Podrás entrar al motor de búsqueda y descargar {{ $plan->download_profiles }} @if($plan->download_profiles == 1) perfil. @else perfiles. @endif</li>
                                                                     @endif
-                                                                    @if($plan->conference_amount > 0)
-                                                                    <li>{{ $plan->conference_amount }} @if($plan->conference_amount == 1)video entrevista con postulante. @else video entrevistas con postulante. @endif</li>
+                                                                    @if($plan->conference_infinity == 1)
+                                                                        <li>Video entrevistas Ilimitadas por @if($plan->plan_time == "semestrales") 6 meses @elseif($plan->plan_time == "anuales") 12 meses @endif</li>
+                                                                    @elseif($plan->conference_amount > 0)
+                                                                        <li>{{ $plan->conference_amount }} @if($plan->conference_amount == 1)video entrevista con postulantes. @else video entrevista con postulantes. @endif</li>
                                                                     @endif
                                                                 </ul>
                                                                 <p class="text-center">
@@ -366,8 +370,10 @@
                                                                     @if($plan->download_profiles > 0)
                                                                     <li>Podrás entrar al motor de búsqueda y descargar {{ $plan->download_profiles }} @if($plan->download_profiles == 1) perfil. @else perfiles. @endif</li>
                                                                     @endif
-                                                                    @if($plan->conference_amount > 0)
-                                                                    <li>{{ $plan->conference_amount }} @if($plan->conference_amount == 1)video entrevista con postulante. @else video entrevistas con postulante. @endif</li>
+                                                                    @if($plan->conference_infinity == 1)
+                                                                        <li>Video entrevistas Ilimitadas por @if($plan->plan_time == "semestrales") 6 meses @elseif($plan->plan_time == "anuales") 12 meses @endif</li>
+                                                                    @elseif($plan->conference_amount > 0)
+                                                                        <li>{{ $plan->conference_amount }} @if($plan->conference_amount == 1)video entrevista con postulantes. @else video entrevista con postulantes. @endif</li>
                                                                     @endif
                                                                 </ul>
                                                                 <p class="text-center">

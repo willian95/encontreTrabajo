@@ -156,7 +156,7 @@ Route::get('/admin/offers/fetch/{page}', "AdminOfferController@fetch");
 Route::post('/admin/offers/search', "AdminOfferController@search");
 Route::post('/admin/offers/statistics', "AdminOfferController@statistics");
 
-Route::get("/admin/landfing-business", "LandingBusinessController@index");
+Route::get("/admin/landing-business", "LandingBusinessController@index");
 Route::get("/admin/landing-business/fetch", "LandingBusinessController@fetch");
 Route::post("/admin/landing-business/store", "LandingBusinessController@store");
 Route::post("/admin/landing-business/update", "LandingBusinessController@update");

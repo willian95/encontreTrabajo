@@ -107,10 +107,10 @@
                                             
                                             <li v-if="plan.download_profiles > 0">Podrás entrar al motor de búsqueda y descargar @{{ plan.download_profiles }} <span v-if="plan.download_profiles == 1"> perfil.</span> <span v-else>perfiles.</span></li>
                                             
-                                            <li v-if="plan.conference_amount > 0">@{{ plan.conference_amount }} <span v-if="plan.conference_amount == 1">video entrevista con postulante.</span>  <span v-else> video entrevistas con postulante.</span></li>
+                                            <li v-if="plan.conference_amount > 0 && plan.conference_infinity == 0">@{{ plan.conference_amount }} <span v-if="plan.conference_amount == 1">video entrevista con postulante.</span>  <span v-else> video entrevistas con postulante.</span></li>
 
-                                            <li v-if="plan.simple_post_infinity == 1">
-                                                <span>Publicaciones simples ilimitadas por </span><span v-if="plan.plan_time == 'semestrales'"> 6 meses </span><span v-if="plan.plan_time == 'anuales'">12 meses </span>
+                                            <li v-if="plan.conference_infinity == 1">
+                                                <span>Video entrevistas ilimitadas por </span><span v-if="plan.plan_time == 'semestrales'"> 6 meses </span><span v-if="plan.plan_time == 'anuales'">12 meses </span>
                                             </li>
                                             
                                         </ul>
@@ -170,10 +170,12 @@
                                             
                                             <li v-if="plan.download_profiles > 0">Podrás entrar al motor de búsqueda y descargar @{{ plan.download_profiles }} <span v-if="plan.download_profiles == 1"> perfil.</span> <span v-else>perfiles.</span></li>
                                             
-                                            <li v-if="plan.conference_amount > 0">@{{ plan.conference_amount }} <span v-if="plan.conference_amount == 1">video entrevista con postulante.</span>  <span v-else> video entrevistas con postulante.</span></li>
+                                            <li v-if="plan.conference_amount > 0 && plan.">@{{ plan.conference_amount }} <span v-if="plan.conference_amount == 1">video entrevista con postulante.</span>  <span v-else> video entrevistas con postulante.</span></li>
 
-                                            <li v-if="plan.simple_post_infinity == 1">
-                                                <span>Publicaciones simples ilimitadas por </span><span v-if="plan.plan_time == 'semestrales'"> 6 meses </span><span v-if="plan.plan_time == 'anuales'">12 meses </span>
+                                            <li v-if="plan.conference_amount > 0 && plan.conference_infinity == 0">@{{ plan.conference_amount }} <span v-if="plan.conference_amount == 1">video entrevista con postulante.</span>  <span v-else> video entrevistas con postulante.</span></li>
+
+                                            <li v-if="plan.conference_infinity == 1">
+                                                <span>Video entrevistas ilimitadas por </span><span v-if="plan.plan_time == 'semestrales'"> 6 meses </span><span v-if="plan.plan_time == 'anuales'">12 meses </span>
                                             </li>
                                             
                                         </ul>
@@ -232,10 +234,10 @@
                                             
                                             <li v-if="plan.download_profiles > 0">Podrás entrar al motor de búsqueda y descargar @{{ plan.download_profiles }} <span v-if="plan.download_profiles == 1"> perfil.</span> <span v-else>perfiles.</span></li>
                                             
-                                            <li v-if="plan.conference_amount > 0">@{{ plan.conference_amount }} <span v-if="plan.conference_amount == 1">video entrevista con postulante.</span>  <span v-else> video entrevistas con postulante.</span></li>
+                                            <li v-if="plan.conference_amount > 0 && plan.conference_infinity == 0">@{{ plan.conference_amount }} <span v-if="plan.conference_amount == 1">video entrevista con postulante.</span>  <span v-else> video entrevistas con postulante.</span></li>
 
-                                            <li v-if="plan.simple_post_infinity == 1">
-                                                <span>Publicaciones simples ilimitadas por </span><span v-if="plan.plan_time == 'semestrales'"> 6 meses </span><span v-if="plan.plan_time == 'anuales'">12 meses </span>
+                                            <li v-if="plan.conference_infinity == 1">
+                                                <span>Video entrevistas ilimitadas por </span><span v-if="plan.plan_time == 'semestrales'"> 6 meses </span><span v-if="plan.plan_time == 'anuales'">12 meses </span>
                                             </li>
                                             
                                         </ul>
@@ -296,8 +298,10 @@
                                                     @if($plan->download_profiles > 0)
                                                     <li>Podrás entrar al motor de búsqueda y descargar {{ $plan->download_profiles }} @if($plan->download_profiles == 1) perfil. @else perfiles. @endif</li>
                                                     @endif
-                                                    @if($plan->conference_amount > 0)
-                                                    <li>{{ $plan->conference_amount }} @if($plan->conference_amount == 1)video entrevista con postulante. @else video entrevistas con postulante. @endif</li>
+                                                    @if($plan->conference_infinity == 1)
+                                                        <li>Video entrevistas Ilimitadas por @if($plan->plan_time == "semestrales") 6 meses @elseif($plan->plan_time == "anuales") 12 meses @endif</li>
+                                                    @elseif($plan->conference_amount > 0)
+                                                        <li>{{ $plan->conference_amount }} @if($plan->conference_amount == 1)video entrevista con postulantes. @else video entrevista con postulantes. @endif</li>
                                                     @endif
                                                 </ul>
                                             </div>
