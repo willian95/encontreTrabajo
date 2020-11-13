@@ -165,7 +165,7 @@ Route::post("/admin/landing-business/delete", "LandingBusinessController@delete"
 Route::get("test-email", function(){
     dump(env("MAIL_FROM_ADDRESS"));
     $to_name = "Willian";
-    $to_email = "rodriguezwillian95@gmail.com";
+    $to_email = "williandev95@gmail.com";
     $message = "prueba";
     $data = ["messageMail" => $message];
     \Mail::send("emails.birthday", $data, function($message) use ($to_name, $to_email) {
