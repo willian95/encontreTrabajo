@@ -163,7 +163,7 @@ Route::post("/admin/landing-business/update", "LandingBusinessController@update"
 Route::post("/admin/landing-business/delete", "LandingBusinessController@delete");
 
 Route::get("test-email", function(){
-    dump(env("MAIL_FROM_ADRRESS"));
+    dump(env("MAIL_FROM_ADDRESS"));
     $to_name = "Willian";
     $to_email = "rodriguezwillian95@gmail.com";
     $message = "prueba";
