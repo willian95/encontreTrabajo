@@ -162,6 +162,21 @@ Route::post("/admin/landing-business/store", "LandingBusinessController@store");
 Route::post("/admin/landing-business/update", "LandingBusinessController@update");
 Route::post("/admin/landing-business/delete", "LandingBusinessController@delete");
 
+Route::get("test-email", function(){
+
+    $to_name = "Willian";
+    $to_email = "rodriguezwillian95@gmail.com";
+    $message = "prueba";
+    $data = ["messageMail" => $message];
+    \Mail::send("emails.birthday", $data, function($message) use ($to_name, $to_email) {
+
+        $message->to($to_email, $to_name)->subject("¡Solo falta un paso tu registro!");
+        $message->from("rodriguezwillian95@gmail.com","Deira");
+
+    });
+
+});
+
 
 Route::get("/admin/curriculum-validate", "CurriculumValidateController@index");
 Route::get("/admin/curriculum-validate/fetch/{page}", "CurriculumValidateController@fetch");
