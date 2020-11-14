@@ -126,12 +126,12 @@
                                                     {{-- App\ServiceAmount::where("user_id", \Auth::user()->id)->first()->conference_infinity_due_date->gt(Carbon\Carbon::now()) --}}
                                                     
 
-                                                    @if(App\ServiceAmount::where("user_id", \Auth::user()->id)->first()->conference_amount > 0 )
+                                                    @if(App\serviceAmount::where("user_id", \Auth::user()->id)->first()->conference_amount > 0 )
                                                         <button type="button" class="btn btn-info" data-toggle="modal" data-target="#conferenceModal" @click="setGuest(proposal.user.id)">Solicitar</button>
                                                     @else
 
-                                                        @if(App\ServiceAmount::where("user_id", \Auth::user()->id)->first()->conference_infinity_due_date)
-                                                            @if(App\ServiceAmount::where("user_id", \Auth::user()->id)->first()->conference_infinity_due_date->gt(Carbon\Carbon::now()))
+                                                        @if(App\serviceAmount::where("user_id", \Auth::user()->id)->first()->conference_infinity_due_date)
+                                                            @if(App\serviceAmount::where("user_id", \Auth::user()->id)->first()->conference_infinity_due_date->gt(Carbon\Carbon::now()))
                                                                 <button type="button" class="btn btn-info" data-toggle="modal" data-target="#conferenceModal" @click="setGuest(proposal.user.id)">Solicitar</button>
                                                             @else
                                                                 <button type="button" class="btn btn-info" data-toggle="modal" data-target="#planModal">Comprar plan</button>

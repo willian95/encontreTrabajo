@@ -70,6 +70,7 @@ class CheckoutController extends Controller
             
             if($plan->plan_time == "anuales" && $plan->simple_post_infinity == 1){
                 $serviceAmount->due_time = Carbon::now()->addYear();
+                
             }else if($plan->plan_time == "semestrales" && $plan->simple_post_infinity == 1){
                 $serviceAmount->due_time = Carbon::now()->addMonths(6);
             }

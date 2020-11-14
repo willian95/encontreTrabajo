@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\ServiceAmount;
+use App\serviceAmount;
 use App\BusinessCurriculumView;
 use App\User;
 use App\Profile;
@@ -123,7 +123,7 @@ class CurriculumSearchController extends Controller
         $licenseString = str_replace("license", "", $profile->driver_license);
         $licenseString = str_replace(":true", "", $licenseString);
 
-        $serviceAmount = ServiceAmount::where("user_id", \Auth::user()->id)->first();
+        $serviceAmount = serviceAmount::where("user_id", \Auth::user()->id)->first();
         $serviceAmount->download_profiles_amount = $serviceAmount->download_profiles_amount - 1;
         $serviceAmount->update();
 
