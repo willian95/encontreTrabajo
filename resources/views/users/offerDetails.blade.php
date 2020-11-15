@@ -622,6 +622,7 @@
                     if (this.childWin && this.childWin.closed) {
                         window.clearInterval(this.intervalID);
                         $("#cover").css("display", "none")
+                        //
                         window.location.reload()
                     
                     }
