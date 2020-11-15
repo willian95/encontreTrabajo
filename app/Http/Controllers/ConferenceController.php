@@ -7,7 +7,9 @@ use App\Appointment;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
 use App\User;
-use ssh2_connect;
+use App\serviceAmount;
+use Symfony\Component\Process\Process;
+//use ssh2_connect;
 
 class ConferenceController extends Controller
 {
@@ -29,9 +31,14 @@ class ConferenceController extends Controller
             $appointment->date_time = Carbon::createFromFormat('d/m/Y H:i', $request->date_time);
             $appointment->save();
             //
-            $connection = ssh2_connect(env('JITSI_SERVER_IP'), 22);
-            ssh2_auth_password($connection, env('JITSI_SERVER_USER'), env('JITSI_SERVER_PASSWORD'));
-            ssh2_exec($connection, 'prosodyctl register '.$username.' '.env('JITSI_DOMAIN').' '.$password);
+            //$connection = ssh2_connect(env('JITSI_SERVER_IP'), 22);
+            //ssh2_auth_password($connection, env('JITSI_SERVER_USER'), env('JITSI_SERVER_PASSWORD'));
+            //ssh2_exec($connection, 'prosodyctl register '.$username.' '.env('JITSI_DOMAIN').' '.$password);
+            $sshSetting = sprintf(env('JITSI_SERVER_IP'), env('JITSI_SERVER_USER'), env('JITSI_SERVER_PASSWORD'));
+            $process = new Process([
+                'prosodyctl register '.$username.' '.env('JITSI_DOMAIN').' '.$password, $sshSetting, 'start'
+            ]);
+            $process->run();
 
             $data = ["businessName" => \Auth::user()->business_name, "date_time" => $request->date_time, "password" => $password, "link" => env('JITSI_URL').'/'.$room_name];
             $to_name = User::where("id", $request->guest_id)->first()->name;
