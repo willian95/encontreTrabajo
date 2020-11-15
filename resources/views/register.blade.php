@@ -2,10 +2,8 @@
 
 @section("content")
 
-    <section class="content-register" id="register-dev">
-
-        <!-- Modal -->
-        <div class="modal fade" id="termsModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <!-- Modal -->
+    <div class="modal fade" id="termsModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -15,7 +13,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                    <div class="modal-body">
+                  
                         <h4 class="text-center">
                             POLITICA DE PRIVACIDAD, PROTECCIÓN DE DATOS E INFORMACION Y TERMINOS DE CONDICIONES DE 
                         </h4>
@@ -161,8 +159,7 @@
                         </p>
 
                         <p class="text-justify">
-                        b) La base jurídica para el tratamiento de los Datos Personales confiados por nuestros Clientes es la celebración del presente contrato de adhesión entre ese Cliente y ENCONTRE-TRABAJO. 
-Con arreglo al Derecho nacional de Chile es posible el celebrar esta clase de contratos con plena libertad a virtud del principio jurídico denominado Autonomía de la Voluntad, el cual descansa y se funda en la Autodeterminación individual, de una persona natural o jurídica, radicándose por tanto en el libre consentimiento del usuario, sea cual fuere su forma de vinculación e interacción con ENCONTRE-TRABAJO.
+                        b) La base jurídica para el tratamiento de los Datos Personales confiados por nuestros Clientes es la celebración del presente contrato de adhesión entre ese Cliente y ENCONTRE-TRABAJO. Con arreglo al Derecho nacional de Chile es posible el celebrar esta clase de contratos con plena libertad a virtud del principio jurídico denominado Autonomía de la Voluntad, el cual descansa y se funda en la Autodeterminación individual, de una persona natural o jurídica, radicándose por tanto en el libre consentimiento del usuario, sea cual fuere su forma de vinculación e interacción con ENCONTRE-TRABAJO.
 
                         </p>
 
@@ -632,7 +629,7 @@ Con arreglo al Derecho nacional de Chile es posible el celebrar esta clase de co
                         </p>
 
                         
-                    </div>
+                  
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -640,6 +637,11 @@ Con arreglo al Derecho nacional de Chile es posible el celebrar esta clase de co
                 </div>
             </div>
         </div>
+
+
+    <section class="content-register" id="register-dev">
+
+        
 
 
         <div class="loader-cover" v-if="loading == true">
