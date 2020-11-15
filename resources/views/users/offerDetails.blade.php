@@ -622,12 +622,8 @@
                     if (this.childWin && this.childWin.closed) {
                         window.clearInterval(this.intervalID);
                         $("#cover").css("display", "none")
-                        if (localStorage.getItem("paymentStatusTrabajo") == 'aprobado') {
-                            window.reload()
-
-                        } else if (localStorage.getItem("paymentStatusTrabajo") == 'rechazado') {
-                            $("#cover").css("display", "none")
-                        }
+                        window.reload()
+                    
                     }
                 }
                 
