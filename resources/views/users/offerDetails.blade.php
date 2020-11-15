@@ -623,6 +623,7 @@
                         window.clearInterval(this.intervalID);
                         $("#cover").css("display", "none")
                         //
+                        //
                         window.location.reload()
                     
                     }
