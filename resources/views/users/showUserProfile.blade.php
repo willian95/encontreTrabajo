@@ -3,7 +3,7 @@
 @section("content")
 
 
-    <div class="container container-perfil-usuario" id="profile-dev">
+    {{--<div class="container container-perfil-usuario" id="profile-dev">
         <div class="loader-cover" v-if="loading == true">
             <div class="loader"></div>
         </div>
@@ -18,7 +18,7 @@
                     </div>
 
                     @if($user->profile->is_curriculum_validated == 1 || $user->id == \Auth::user()->id )
-                    {{--<div class="col-md-4 media-perfil-c-4">
+                    <div class="col-md-4 media-perfil-c-4">
                         <div class="a-basicos-postulante-video j-center">
                             <img class="basicos-postulante-c-4" src="{{ asset('user/assets/img/video.png') }}" alt="postulante" v-if="videoPreview == ''">
                             <video style="width: 100%;" controls id="productVideo" v-if="videoPreview != null && videoPreview != ''">
@@ -36,7 +36,7 @@
                         <p v-if="curriculumPreview">
                             <button class="btn btn-success" @click="download()">Descargar</button>
                         </p>
-                    </div>--}}
+                    </div>
                     @endif
                 </div>
                 <div class="row">
@@ -293,6 +293,7 @@
                     </div>
                 </div>
             </div>
+    </div>--}}
 
        {{--<div class="row media-perfil-basicos-publicidad">
             <img class="publicidad" src="{{ asset('user/assets/img/login.jpg') }}" alt="publicidad">
