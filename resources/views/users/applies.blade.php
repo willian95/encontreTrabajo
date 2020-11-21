@@ -25,7 +25,7 @@
                             <td>@{{ proposal.offer.title }}</td>
                             <td>@{{ proposal.offer.job_position }}</td>
                             <td>
-                                <a :href="'{{ url('/profile/show/') }}'+'/'+proposal.offer.user.email" class="btn btn-info">Ver perfil</a>
+                                <a :href="'{{ url('/profile/show/') }}'+'/'+proposal.offer.user.id" class="btn btn-info">Ver perfil</a>
                             </td>
                         </tr>
                     </tbody>

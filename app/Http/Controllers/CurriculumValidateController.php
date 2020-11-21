@@ -44,7 +44,7 @@ class CurriculumValidateController extends Controller
 
             $user = User::find($request->user_id);
 
-            $data = ["messageMail" => "Hola ".$user->name.", el administrador ya validó tu correo", "link" => url('/').'/profile/show/'.$user->email];
+            $data = ["messageMail" => "Hola ".$user->name.", el administrador ya validó tu correo", "link" => url('/').'/profile/show/'.$user->id];
             $to_name = $user->name;
             $to_email = $user->email;
 

@@ -44,7 +44,7 @@
                             @endif
                             <h4 class="text-center">@{{ title }}</h4>
                             
-                            <p><strong>Nombre de la empresa: </strong> <a href="{{ url('/profile/show/'.$offer->user->email) }}">@{{ businessName }}</a></p>
+                            <p><strong>Nombre de la empresa: </strong> <a href="{{ url('/profile/show/'.$offer->user->id) }}">@{{ businessName }}</a></p>
                             <p><strong>Dirección: </strong><span v-if="region">@{{ region }}, </span> <span v-if="commune">@{{ commune }}
                             <p><strong>Puesto:</strong> @{{ jobPosition }}</p>
                             @if($offer->wage_type == 1)
@@ -148,7 +148,7 @@
                                                 @endif
                                             </td>
                                             <td>
-                                                <a :href="'{{ url('/profile/show/') }}'+'/'+proposal.user.email" class="btn btn-info">Ver perfil</a>
+                                                <a :href="'{{ url('/profile/show/') }}'+'/'+proposal.user.id" class="btn btn-info">Ver perfil</a>
                                             </td>
                                         </tr>
                                     </tbody>

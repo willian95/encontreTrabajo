@@ -369,7 +369,7 @@
 
                 },
                 openChildWindow(index) {
-                    this.childWin = window.open("{{ url('/checkout/') }}"+"/"+index, 'print_popup', 'width=600,height=600')
+                    this.childWin = window.open("{{ url('/comission/checkout') }}", 'print_popup', 'width=600,height=600')
                     
                     $("#cover").css("display", "block")
                 },

@@ -24,7 +24,7 @@
                             </p>
                             <h4 class="text-center">@{{ title }}</h4>
                             <p>@{{ description }}</p>
-                            <p><strong>Nombre de la empresa: </strong> <a href="{{ url('/profile/show/'.$offer->user->email) }}">@{{ businessName }}</a></p>
+                            <p><strong>Nombre de la empresa: </strong> <a href="{{ url('/profile/show/'.$offer->user->id) }}">@{{ businessName }}</a></p>
                             <p><strong>Dirección: </strong><span v-if="region">@{{ region }}, </span> <span v-if="commune">@{{ commune }} , </span> @{{ address }}</p>
                             <p><strong>Puesto:</strong> @{{ jobPosition }}</p>
                             <p>
@@ -43,7 +43,7 @@
                             @if(\Auth::user()->role_id == 2)
                                 <h4 class="text-center">@{{ businessName }}</h4>
                             @elseif(\Auth::user()->role_id == 3)
-                                <h4 class="text-center"> <a href="{{ url('/profile/show/'.$user->email) }}">@{{ userName }}</a></h4>
+                                <h4 class="text-center"> <a href="{{ url('/profile/show/'.$user->id) }}">@{{ userName }}</a></h4>
                                 @if($offer->status == 'abierto')
                                 <p class="text-center">
                                     <button class="btn btn-success" @click="contract(user)">Contratar</button>

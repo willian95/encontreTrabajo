@@ -573,11 +573,11 @@ class ProfileController extends Controller
 
     }
 
-    function showProfile($email){
-        /*dd("auí");
+    function showProfile($id){
+        
         try{
-           
-            $user = User::where("email", $email)->first();
+        
+            $user = User::where("id", $id)->first();
             $profile = Profile::where("user_id", $user->id)->first();
 
             if(\Auth::user()->role_id == 3){
@@ -618,7 +618,7 @@ class ProfileController extends Controller
 
         }catch(\Exception $e){
             return response()->json(["success" => false, "msg" => "Error en el servidor", "err" => $e->getMessage(), "ln" => $e->getLine()]);
-        }*/
+        }
 
     }
 
@@ -632,7 +632,7 @@ class ProfileController extends Controller
             $user->request_for_curriculum_validation = 1;
             $user->update();
 
-            $data = ["messageMail" => "Hola Admin, el usuario ".$user->name.", quiere validar su perfil", "link" => url('/').'/profile/show/'.$user->email];
+            $data = ["messageMail" => "Hola Admin, el usuario ".$user->name.", quiere validar su perfil", "link" => url('/').'/profile/show/'.$user->id];
             $to_name = "admin";
             $to_email = env('ADMIN_EMAIL');
 
