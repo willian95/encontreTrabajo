@@ -3,7 +3,7 @@
 @section("content")
 
 
-    {{--<div class="container container-perfil-usuario" id="profile-dev">
+    <div class="container container-perfil-usuario" id="profile-dev">
         <div class="loader-cover" v-if="loading == true">
             <div class="loader"></div>
         </div>
@@ -293,7 +293,7 @@
                     </div>
                 </div>
             </div>
-    </div>--}}
+    </div>
 
        {{--<div class="row media-perfil-basicos-publicidad">
             <img class="publicidad" src="{{ asset('user/assets/img/login.jpg') }}" alt="publicidad">

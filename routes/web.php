@@ -46,7 +46,7 @@ Route::get("/user/offer", function(){
     return view("users.index");
 });
 
-Route::get("/profile/show/{email}", "ProfileController@showProfile")->middleware("auth");
+Route::get("/profile/show/{id}", "ProfileController@showProfile")->middleware("auth");
 Route::get("/profile/download/{email}", "ProfileController@download")->middleware("auth");
 
 Route::post('/profiles/show/academic/fetch', "ProfileController@fetchShowAcademicBackground")->middleware('auth');
