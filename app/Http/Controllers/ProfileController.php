@@ -574,7 +574,7 @@ class ProfileController extends Controller
     }
 
     function showProfile($email){
-        dd("auí");
+        /*dd("auí");
         try{
            
             $user = User::where("email", $email)->first();
@@ -618,7 +618,7 @@ class ProfileController extends Controller
 
         }catch(\Exception $e){
             return response()->json(["success" => false, "msg" => "Error en el servidor", "err" => $e->getMessage(), "ln" => $e->getLine()]);
-        }
+        }*/
 
     }
 
