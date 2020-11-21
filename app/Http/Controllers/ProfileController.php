@@ -576,7 +576,7 @@ class ProfileController extends Controller
     function showProfile($email){
 
         try{
-
+            dd("auí");
             $user = User::where("email", $email)->first();
             $profile = Profile::where("user_id", $user->id)->first();
 
