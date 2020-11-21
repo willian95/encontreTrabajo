@@ -169,8 +169,6 @@
                                             <li v-if="plan.show_video == 1">Video de Presentación del Candidato.</li>
                                             
                                             <li v-if="plan.download_profiles > 0">Podrás entrar al motor de búsqueda y descargar @{{ plan.download_profiles }} <span v-if="plan.download_profiles == 1"> perfil.</span> <span v-else>perfiles.</span></li>
-                                            
-                                            <li v-if="plan.conference_amount > 0 && plan.">@{{ plan.conference_amount }} <span v-if="plan.conference_amount == 1">video entrevista con postulante.</span>  <span v-else> video entrevistas con postulante.</span></li>
 
                                             <li v-if="plan.conference_amount > 0 && plan.conference_infinity == 0">@{{ plan.conference_amount }} <span v-if="plan.conference_amount == 1">video entrevista con postulante.</span>  <span v-else> video entrevistas con postulante.</span></li>
 
