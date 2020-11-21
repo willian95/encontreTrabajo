@@ -10,15 +10,15 @@
             <div class="row">
                 @if($user->profile->is_curriculum_validated == 1 || $user->id == \Auth::user()->id )
                 <div class="col-md-4 media-perfil-c-4">
-                    @else
+                @else
                     <div class="col-md-4 media-perfil-c-4 offset-md-4">
-                    @endif
+                @endif
                         <div class="a-basicos-postulante-img j-center"><img class="basicos-postulante-c-4" :src="imagePreview" alt="postulante"></div>
                         <label class="text-center-input-curriculum" for="image">Foto de Perfil</label>
                     </div>
 
                     @if($user->profile->is_curriculum_validated == 1 || $user->id == \Auth::user()->id )
-                    <div class="col-md-4 media-perfil-c-4">
+                    {{--<div class="col-md-4 media-perfil-c-4">
                         <div class="a-basicos-postulante-video j-center">
                             <img class="basicos-postulante-c-4" src="{{ asset('user/assets/img/video.png') }}" alt="postulante" v-if="videoPreview == ''">
                             <video style="width: 100%;" controls id="productVideo" v-if="videoPreview != null && videoPreview != ''">
@@ -36,7 +36,7 @@
                         <p v-if="curriculumPreview">
                             <button class="btn btn-success" @click="download()">Descargar</button>
                         </p>
-                    </div>   
+                    </div>--}}
                     @endif
                 </div>
                 <div class="row">
