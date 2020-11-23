@@ -632,7 +632,7 @@ class ProfileController extends Controller
             $user->request_for_curriculum_validation = 1;
             $user->update();
 
-            $data = ["messageMail" => "Hola Admin, el usuario ".$user->name.", quiere validar su perfil", "link" => url('/').'/profile/show/'.$user->id];
+            $data = ["messageMail" => "Hola Admin, el usuario ".$user->name.", quiere validar su perfil", "link" => url('/').'/profile/show/'.$user->user_id];
             $to_name = "admin";
             $to_email = env('ADMIN_EMAIL');
 
