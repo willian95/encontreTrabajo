@@ -155,8 +155,8 @@
             </div>
 
             <div class="col-md-2">
-                <img style="width: 100%;" class="publicidad" src="{{ url('assets/img/Banner-Epson-Movil.jpg') }}" alt="publicidad">
-                <img style="width: 100%;" class="publicidad" src="{{ url('assets/img/Banner-Epson-Movil.jpg') }}" alt="publicidad">
+                <img style="width: 100%;" class="publicidad" src="{{ url('user/assets/img/login.jpg') }}" alt="publicidad">
+                <img style="width: 100%;" class="publicidad" src="{{ url('user/assets/img/login.jpg') }}" alt="publicidad">
             </div>
         </div>
 
