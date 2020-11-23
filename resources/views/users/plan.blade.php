@@ -386,6 +386,7 @@
             },
             mounted(){
                 
+                document.cookie = "et_plan=;expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"
                 this.intervalID = window.setInterval(this.checkWindow, 500);
             }
         })

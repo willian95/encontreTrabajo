@@ -136,6 +136,16 @@
             },
             mounted(){
                 this.fetch()
+
+                let selectedPlan = document.cookie.substring(0, document.cookie.indexOf(";"))
+                selectedPlanId = document.cookie.substring(selectedPlan.indexOf("="), selectedPlan.length)
+                //console.log("selectePlan", selectedPlanId)
+                if(selectedPlanId){
+                    //console.log("entre Plan")
+                    window.location.href="{{ url('/plans/available') }}"
+
+                }
+
             }
         })
 
