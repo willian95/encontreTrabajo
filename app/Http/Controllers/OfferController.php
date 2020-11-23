@@ -63,11 +63,12 @@ class OfferController extends Controller
                 }else{
                     
                     if($serviceAmount->due_date == null){
+                        $serviceAmount->simple_post_amount = $serviceAmount->simple_post_amount - 1;
+                    }else{
+                        
                         if($serviceAmount->due_date->lt(Carbon\Carbon::now())){
                             $serviceAmount->simple_post_amount = $serviceAmount->simple_post_amount - 1;
                         }
-                    }else{
-                        $serviceAmount->simple_post_amount = $serviceAmount->simple_post_amount - 1;
                     }
 
                     
