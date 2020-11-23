@@ -61,10 +61,16 @@ class OfferController extends Controller
                 if($request->highlightPost == true){
                     $serviceAmount->highlighted_post_amount = $serviceAmount->highlighted_post_amount - 1;
                 }else{
-
-                    if($serviceAmount->due_date->lt(Carbon\Carbon::now()) || $serviceAmount->due_date == null){
+                    
+                    if($serviceAmount->due_date == null){
+                        if($serviceAmount->due_date->lt(Carbon\Carbon::now())){
+                            $serviceAmount->simple_post_amount = $serviceAmount->simple_post_amount - 1;
+                        }
+                    }else{
                         $serviceAmount->simple_post_amount = $serviceAmount->simple_post_amount - 1;
                     }
+
+                    
 
                 }
                 
