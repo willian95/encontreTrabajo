@@ -185,7 +185,7 @@
                                     $profile = App\Profile::where("user_id", Auth::user()->id)->first();
                                     $profile_percentage = 0;
 
-                                    if(\Auth::user()->image != url('/')."images/users/default.jpg"){
+                                    if(\Auth::user()->image != url('/')."/images/users/default.jpg"){
                                         $profile_percentage += 25;
                                     }
                                     if(\Auth::user()->commune_id != null){
