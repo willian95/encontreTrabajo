@@ -59,7 +59,7 @@
                                 <div class="row">
                                     <div class="col-3">
                                         <p class="text-center">
-                                            <img class="round-img" :src="user.image" alt="Card image" style="width: 75px;">
+                                            <img class="round-img" :src="user.user.image" alt="Card image" style="width: 75px;">
                                         </p>
                                     </div>
                                     <div class="col-9">
