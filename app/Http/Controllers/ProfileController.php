@@ -564,7 +564,7 @@ class ProfileController extends Controller
             if(\Auth::user()->commune_id != null && \Auth::user()->image != url('/')."images/users/default.jpg" && \Auth::user()->region_id != null && $profile->address != null){
 
                 $user = User::where("id", \Auth::user()->id)->first();
-                
+                $user->is_profile_complete = 1;
                 $user->update();
 
             }
