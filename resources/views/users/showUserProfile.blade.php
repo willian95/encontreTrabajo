@@ -277,7 +277,7 @@
                                     <div class="row">
                                         <div class="col-12">
                                             <p class="text-center">
-                                                <a class="btn btn-info" href="{{ url('/profile/download/'.$user->email) }}" target="_blank">Imprimir/Descargar Curriculum</a>
+                                                <a class="btn btn-info" href="{{ url('/profile/download/'.$user->id) }}" target="_blank">Imprimir/Descargar Curriculum</a>
                                             </p>
                                         </div>
                                     </div>
