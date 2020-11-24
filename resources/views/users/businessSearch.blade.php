@@ -127,7 +127,7 @@
                     category:"",
                     regions:[],
                     categories:[],
-                    curriculumDownload:"{{ App\ServiceAmount::where('user_id', \Auth::user()->id)->first()->download_profiles_amount }}",
+                    curriculumDownload:"{{ App\serviceAmount::where('user_id', \Auth::user()->id)->first()->download_profiles_amount }}",
                     users:[],
                     page:1,
                     pages:0
