@@ -102,10 +102,10 @@
 
             </div>
 
-            <div class="col-md-2">
+            {{--<div class="col-md-2">
                 <img style="width: 100%;" class="publicidad" src="https://servertest.sytes.net/encontre-trabajo/public/assets/img/Banner-Epson-Movil.jpg" alt="publicidad">
                 <img style="width: 100%;" class="publicidad" src="https://servertest.sytes.net/encontre-trabajo/public/assets/img/Banner-Epson-Movil.jpg" alt="publicidad">
-            </div>
+            </div>--}}
         </div>
     </div>
 
