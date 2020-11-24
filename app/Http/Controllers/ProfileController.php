@@ -548,7 +548,7 @@ class ProfileController extends Controller
             $profile->update();
 
 
-            if(\Auth::user()->image != url('/')."/images/users/default.jpg" && $profile->curriculum != null && $profile->address != null && $profile->phone != null){
+            if(\Auth::user()->image != "https://app.encontretrabajo.cl/images/users/default.jpg" && $profile->curriculum != null && $profile->address != null && $profile->phone != null){
 
                 $user = User::where("id", \Auth::user()->id)->first();
                 $user->is_profile_complete = 1;
@@ -561,7 +561,7 @@ class ProfileController extends Controller
 
             $profile = Profile::where("user_id", \Auth::user()->id)->first();
 
-            if(\Auth::user()->commune_id != null && \Auth::user()->image != url('/')."images/users/default.jpg" && \Auth::user()->region_id != null && $profile->address != null){
+            if(\Auth::user()->commune_id != null && \Auth::user()->image != "https://app.encontretrabajo.cl/images/users/default.jpg" && \Auth::user()->region_id != null && $profile->address != null){
 
                 $user = User::where("id", \Auth::user()->id)->first();
                 $user->is_profile_complete = 1;
