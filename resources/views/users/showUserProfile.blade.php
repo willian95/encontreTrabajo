@@ -32,7 +32,7 @@
                                 <img class="basicos-postulante-c-4" src="{{ asset('user/assets/img/icons8-contrato-de-trabajo-100.png') }}" alt="postulante" v-if="curriculumPreview == ''">
                             <iframe id="iframepdf" :src="curriculumPreview" v-if="curriculumPreview != ''"></iframe>                               
                         </div>
-                        <label class="text-center-input-curriculum" for="curriculum">Curriculum</label>
+                        <label class="text-center-input-curriculum" for="curriculum">Currículum</label>
                         <p v-if="curriculumPreview">
                             <button class="btn btn-success" @click="download()">Descargar</button>
                         </p>
@@ -104,11 +104,11 @@
                                             <input type="mail" class="form-control" id="mail" v-model="email" disabled>
                                         </div>
                                         <div class="col-md-8 offset-md-2 pb-20 antecedentes_container-info">
-                                            <label for=homePhone>Telefono Fijo</label>
+                                            <label for=homePhone>Teléfono Fijo</label>
                                             <input type="text" class="form-control" id="homePhone" v-model="homePhone" disabled>
                                         </div>
                                         <div class="col-md-8 offset-md-2 pb-20 antecedentes_container-info">
-                                            <label for="phone">Telefono Movil</label>
+                                            <label for="phone">Teléfono Celular</label>
                                             <input type="text" class="form-control" id="phone"  v-model="phone" disabled>
                                         </div>
                                     </div>
@@ -174,7 +174,7 @@
                                             <input type="text" class="form-control"  id="desiredJob"  v-model="desiredJob" disabled>
                                         </div>
                                         <div class="col-md-8 offset-md-2 pb-20 antecedentes_container-info">
-                                            <label for="desiredArea">Area de Preferencia</label>
+                                            <label for="desiredArea">Área de Preferencia</label>
                                             <input type="text" class="form-control" v-model="desiredAreaString" disabled>
                                         </div>                                    
                                     </div>

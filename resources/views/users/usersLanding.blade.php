@@ -95,7 +95,7 @@
                     <div class="opciones-perfil-encontre-trabajo-usuario-cajas-contenedoras-perfil-inf">
                     <h5 class="cajas-contenedoras-perfil_h5">Nombre:</h5>
                     <p class="cajas-contenedoras-perfil_p">{{ \Auth::user()->name }}</p>
-                    <h5 class="cajas-contenedoras-perfil_h5">Genero:</h5>
+                    <h5 class="cajas-contenedoras-perfil_h5">Género:</h5>
                     <p class="cajas-contenedoras-perfil_p">{{ App\User::where('id', \Auth::user()->id)->with('profile')->first()->profile->gender }}</p>
                     <h5 class="cajas-contenedoras-perfil_h5">Nacionalidad:</h5>
                     <p class="cajas-contenedoras-perfil_p">{{ App\Profile::where('user_id', \Auth::user()->id)->first()->nationality }}</p>
@@ -127,11 +127,11 @@
                 <div class="col-md-4">
                 <div class="opciones-perfil-encontre-trabajo-usuario-cajas-contenedoras-perfil">
                     <div class="opciones-perfil-encontre-trabajo-usuario-cajas-contenedoras-head">
-                    <h4>Estadisticas</h4>
+                    <h4>Estadísticas</h4>
                         <img src="{{ asset('user/assets/img/control.png') }}" alt="">
                     </div>
                     <div class="opciones-perfil-encontre-trabajo-usuario-cajas-contenedoras-perfil-inf">
-                    <h5 class="cajas-contenedoras-estadisticas_h5">Postulaciones de empresas que visitaron o vieron su curriculum.:</h5>
+                    <h5 class="cajas-contenedoras-estadisticas_h5">Postulaciones de empresas que visitaron o vieron su currículum:</h5>
                     <p class="cajas-contenedoras-estadisticas_p">{{ App\Proposal::where("user_id", \Auth::user()->id)->with("offer")->count() }}</p>
                     <h5 class="cajas-contenedoras-estadisticas_h5">Empresas que han visto su perfil.:</h5>
                     <p class="cajas-contenedoras-estadisticas_p">{{ App\BusinessCurriculumView::where("user_curriculum_id", \Auth::user()->id)->count() }}</p>

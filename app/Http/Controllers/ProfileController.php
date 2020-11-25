@@ -653,8 +653,9 @@ class ProfileController extends Controller
 
         try{
 
-            $profile = Profile::where("id", $id)->first();
-            $user = User::where("id", $profile->user_id)->with("region", "commune")->has("region")->has("commune")->first();
+            $user = User::where("id", $id)->with("region", "commune")->has("region")->has("commune")->first();
+            $profile = Profile::where("id", $user->id)->first();
+            
             $academicBackground = AcademicBackground::where("user_id", $user->id)->get();
             $jobBackground = JobBackground::where("user_id", $user->id)->get();
             $jobReferences = JobReference::where("user_id", $user->id)->get();

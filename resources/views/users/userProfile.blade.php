@@ -64,7 +64,7 @@
                             <div class="a-basicos-postulante-img j-center">
                             <img class="basicos-postulante-c-4" :src="imagePreview" alt="postulante"></div>
                             <label for="image">Foto de Perfil</label>
-                            <input type="file" class="form-control" id="image" ref="file" @change="onImageChange" accept="image/*">
+                            <input type="file" class="form-control" id="image" ref="file" @change="onImageChange" accept="image/*" style="overflow: hidden; width: 127px;">
 
                         </div>
                         <div class="col-md-4 media-perfil-c-4">
@@ -75,7 +75,7 @@
                                 </video>
                             </div>
                                 <label for="video">Video de Presentación</label>
-                                <input type="file" class="form-control" id="video" @change="onVideoChange" accept="video/*">
+                                <input type="file" class="form-control" id="video" @change="onVideoChange" accept="video/*" style="overflow: hidden; width: 127px;">
 
                             </div>
                             <div class="col-md-4 media-perfil-c-4">
@@ -85,8 +85,8 @@
                                     <iframe id="iframepdf" :src="curriculumPreview" v-if="curriculumPreview != ''"></iframe>
                                                                
                                 </div>
-                                <label for="curriculum">Curriculum</label>
-                                <input type="file" class="form-control" id="curriculum" @change="onCurriculumChange" accpet="file/pdf">
+                                <label for="curriculum">Currículum</label>
+                                <input type="file" class="form-control" id="curriculum" @change="onCurriculumChange" accpet="file/pdf" style="overflow: hidden; width: 127px;">
                                 <small>Solo está permitido el formato Word o PDF</small>
                                 <p v-if="curriculumPreview">
                                     <button class="btn btn-success" @click="download()">Descargar</button>
@@ -191,11 +191,11 @@
                                             <input type="mail" class="form-control" id="mail" v-model="email" readonly>
                                         </div>
                                         <div class="col">
-                                            <label for="phone">Telefono Movil</label>
+                                            <label for="phone">Teléfono Celular</label>
                                             <input type="text" class="form-control" id="phone"  v-model="phone">
                                         </div>
                                         <div class="col">
-                                            <label for=homePhone>Telefono Fijo</label>
+                                            <label for=homePhone>Teléfono Fijo</label>
                                             <input type="text" class="form-control" id="homePhone" v-model="homePhone">
                                         </div>
                                     </div>
@@ -558,7 +558,7 @@
                             <input type="text" class="form-control"  id="desiredJob"  v-model="desiredJob">
                         </div>
                         <div class="col-md-8">
-                            <label for="desiredArea">Area de Preferencia</label>
+                            <label for="desiredArea">Área de Preferencia</label>
                             <input type="text" class="form-control" v-model="desiredAreaString" @click="showDesiredAreaModal()">
                         </div>
                         
