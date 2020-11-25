@@ -145,6 +145,7 @@
                     description:"{{ $offer->description }}",
                     jobPosition:"{{ $offer->job_position ? $offer->job_position : '' }}",
                     minWage:"{{ $offer->min_wage }}",
+                    extraWage:"{{ $offer->extra_wage }}",
                     address: "{{ $offer->user->address }}",
                     businessName:"{{ $offer->user->business_name }}",
                     businessImage:"{{ $offer->user->image }}",

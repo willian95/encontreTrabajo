@@ -16,7 +16,7 @@
                 <div class="card">
                     <div class="card-body">
                         <p class="text-center price-op" v-if="offer.wage_type == 1">
-                            $ @{{ parseInt(offer.min_wage).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}
+                            $ @{{ parseInt(offer.min_wage).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }} @{{ offer.extra_wage }}
                         </p>
                         <p class="text-center price-op" v-else>
                             A convenir

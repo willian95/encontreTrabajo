@@ -32,7 +32,7 @@
                             <td>@{{ offer.category.name }}</td>
                             <td>@{{ offer.job_position }}</td>
                             <td>
-                                <span v-if="offer.wage_type == 1">$ @{{ parseInt(offer.min_wage).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</span>
+                                <span v-if="offer.wage_type == 1">$ @{{ parseInt(offer.min_wage).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }} @{{ offer.extra_wage }}</span>
                                 <span v-if="offer.wage_type == 2">A convenir</span>
                             </td>
                             <td>

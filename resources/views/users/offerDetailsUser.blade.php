@@ -43,7 +43,7 @@
                             <p><strong>Puesto:</strong> @{{ jobPosition }}</p>
                             @if($offer->wage_type == 1)
                             <p>
-                                <strong>Salario: </strong><span class="price-rango"> $ @{{ parseInt(minWage).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</span>
+                                <strong>Salario: </strong><span class="price-rango"> $ @{{ parseInt(minWage).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }} @{{ extraWage }}</span>
                             </p>
                             @else
                                 <p>
@@ -145,6 +145,7 @@
                     description:"{{ $offer->description }}",
                     jobPosition:"{{ $offer->job_position ? $offer->job_position : '' }}",
                     minWage:"{{ $offer->min_wage }}",
+                    extraWage:"{{ $offer->extra_wage }}",
                     address: "{{ $offer->user->address }}",
                     businessName:"{{ $offer->user->business_name }}",
                     businessImage:"{{ $offer->user->image }}",

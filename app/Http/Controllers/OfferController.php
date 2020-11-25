@@ -52,6 +52,7 @@ class OfferController extends Controller
             $offer->slug = $slug;
             $offer->wage_type = $request->wageType;
             $offer->is_highlighted = $request->highlightPost;
+            $offer->extra_wage = $request->extraWage;
             $offer->user_id = \Auth::user()->id;
             $offer->save();
 
@@ -103,6 +104,7 @@ class OfferController extends Controller
                 $offer->category_id = $request->category;
                 $offer->wage_type = $request->wageType;
                 $offer->is_highlighted = $request->highlightPost;
+                $offer->extra_wage= $request->extraWage;
                 $offer->update();
 
                 if($previousHighlighted == 0 && $offer->is_highlighted == 1){

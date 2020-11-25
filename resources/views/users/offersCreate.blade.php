@@ -280,6 +280,13 @@
 
                             <div class="col-md-4 ">
 								<div class="form-group">
+									<label for="extraWage">Bonos</label>
+									<input type="text" class="form-control" id="extraWage"  v-model="extraWage">
+								</div>
+							</div>
+
+                            <div class="col-md-4">
+								<div class="form-group">
 									<label for="minWage">Tipo de renta</label>
 									<select class="form-control" v-model="wageType">
                                         <option value="1">Renta ofrecida</option>
@@ -288,18 +295,14 @@
 								</div>
 							</div>
 
-						</div>
-
-                        <div class="row perfil-empresa-form">
-
-                            <div class="col-md-6 ">
+                            <div class="col-md-4 ">
 								<div class="form-group">
 									<label for="jobPosition">Puesto de Trabajo</label>
 									<input type="text" class="form-control" id="jobPosition" v-model="jobPosition">
 								</div>
 							</div>
 
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="text">Categoría</label>
                                     <select class="form-control" v-model="category">
@@ -308,6 +311,12 @@
                                     </select>
                                 </div>
                             </div>
+
+						</div>
+
+                        <div class="row perfil-empresa-form">
+
+                            
 
                             
                                 <div class="form-group form-check" v-if="highlightedPosts > 0">
@@ -381,6 +390,7 @@
                     description:"",
                     minWage:"",
                     maxWage:"",
+                    extraWage:"",
                     today:new Date(),
                     category:"",
                     categories:[],
@@ -410,6 +420,7 @@
                         category: this.category,
                         jobPosition: this.jobPosition,
                         highlightPost: this.isHighlighted,
+                        extraWage:this.extraWage,
                         wageType: this.wageType
                     }).then(res => {
 
