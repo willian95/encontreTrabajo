@@ -39,7 +39,7 @@
                             <h4 class="text-center">@{{ title }}</h4>
                             
                             <p><strong>Nombre de la empresa: </strong> <a href="{{ url('/profile/show/'.$offer->user->id) }}">@{{ businessName }}</a></p>
-                            <p><strong>Dirección: </strong><span v-if="region">@{{ region }}, </span> <span v-if="commune">@{{ commune }}
+                            <p><strong>Dirección: </strong><span v-if="region">@{{ region }}, </span> <span v-if="commune">@{{ commune }}</span><span v-if="address">, @{{ address }}</span>
                             <p><strong>Puesto:</strong> @{{ jobPosition }}</p>
                             @if($offer->wage_type == 1)
                             <p>
@@ -149,9 +149,9 @@
                     address: "{{ $offer->user->address }}",
                     businessName:"{{ $offer->user->business_name }}",
                     businessImage:"{{ $offer->user->image }}",
-                    region:"{{ $offer->user->region ? $offer->user->region->name : '' }}",
-                    commune:"{{ $offer->user->commune ? $offer->user->commune->name : '' }}",
-                    address:"{{ $offer->user->profile->address }}",
+                    region:"{{ $offer->region ? $offer->region->name : '' }}",
+                    commune:"{{ $offer->commune ? $offer->commune->name : '' }}",
+                    address:"{{ $offer->address }}",
                     proposal:"",
                     role_id:"{{ \Auth::user()->role_id }}",
                     proposals:[],

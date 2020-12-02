@@ -332,6 +332,13 @@
                                 </div>
                             </div>
 
+                            <div class="col-md-4 ">
+								<div class="form-group">
+									<label for="address">Dirección</label>
+									<input type="text" class="form-control" id="address" v-model="address">
+								</div>
+							</div>
+
 						</div>
 
                         <div class="row perfil-empresa-form">
@@ -406,6 +413,7 @@
                     wageType:"1",
                     regions:[],
                     communes:[],
+                    address:"{{ $offer->address }}",
                     selectedRegion:"{{ $offer->region_id }}",
                     selectedCommune:"{{ $offer->commune_id }}"
                 }
@@ -429,7 +437,8 @@
                         extraWage: this.extraWage,
                         wageType: this.wageType,
                         region:this.selectedRegion,
-                        commune:this.selectedCommune
+                        commune:this.selectedCommune,
+                        address:this.address
                     }).then(res => {
 
                         this.loading = false
@@ -553,7 +562,19 @@
                         if(res.data.success == true){
                             this.regions = res.data.regions
                             
-                            this.fetchCommunes()
+                            this.firstFetchCommunes()
+
+                        }
+
+                    })
+
+                },
+                firstFetchCommunes(){
+                    
+                    axios.get("{{ url('/communes/fetch/') }}"+"/"+this.selectedRegion).then(res => {
+
+                        if(res.data.success == true){
+                            this.communes = res.data.communes
 
                         }
 
@@ -561,7 +582,7 @@
 
                 },
                 fetchCommunes(){
-                    this.selectedCommune = ""
+                    this.selectedCommune = ""  
                     axios.get("{{ url('/communes/fetch/') }}"+"/"+this.selectedRegion).then(res => {
 
                         if(res.data.success == true){

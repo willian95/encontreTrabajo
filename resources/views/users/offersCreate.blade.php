@@ -332,6 +332,13 @@
                                 </div>
                             </div>
 
+                            <div class="col-md-4 ">
+								<div class="form-group">
+									<label for="address">Dirección</label>
+									<input type="text" class="form-control" id="address" v-model="address">
+								</div>
+							</div>
+
 						</div>
 
                         <div class="row perfil-empresa-form">
@@ -425,6 +432,7 @@
                     wageType:"1",
                     regions:[],
                     communes:[],
+                    address:"",
                     selectedRegion:"",
                     selectedCommune:""
                 }
@@ -447,7 +455,8 @@
                         extraWage:this.extraWage,
                         wageType: this.wageType,
                         region:this.selectedRegion,
-                        commune:this.selectedCommune
+                        commune:this.selectedCommune,
+                        address:this.address
                     }).then(res => {
 
                         this.loading = false

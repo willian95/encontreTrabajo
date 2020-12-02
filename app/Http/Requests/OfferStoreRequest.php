@@ -31,7 +31,8 @@ class OfferStoreRequest extends FormRequest
             "jobPosition" => "required",
             "wageType" => "required",
             "commune" => "required",
-            "region" => "required"
+            "region" => "required",
+            "address" => "required"
         ];
     }
 
@@ -47,7 +48,8 @@ class OfferStoreRequest extends FormRequest
             "jobPosition.required" => "Puesto de Trabajo es requerido",
             "wageType.required" => "Tipo de renta es requerido",
             "commune.required" => "Comuna es requerida",
-            "region.required" => "Región es requerida"
+            "region.required" => "Región es requerida",
+            "address.required" => "Dirección es requerida"
         ];
     }
 }

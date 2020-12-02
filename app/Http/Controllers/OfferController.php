@@ -56,6 +56,7 @@ class OfferController extends Controller
             $offer->user_id = \Auth::user()->id;
             $offer->region_id = $request->region;
             $offer->commune_id = $request->commune;
+            $offer->address = $request->address;
             $offer->save();
 
             if(User::where('id', \Auth::user()->id)->first()->expire_free_trial->lt(Carbon::now())){
@@ -109,6 +110,7 @@ class OfferController extends Controller
                 $offer->extra_wage= $request->extraWage;
                 $offer->region_id = $request->region;
                 $offer->commune_id = $request->commune;
+                $offer->address = $request->address;
                 $offer->update();
 
                 if($previousHighlighted == 0 && $offer->is_highlighted == 1){
