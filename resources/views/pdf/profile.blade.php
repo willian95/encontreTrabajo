@@ -13,18 +13,24 @@
             <div class="col-12">
                 <h2 class="text-center text-info" style="padding-top: 20px;">Antecedentes básicos</h2>
             </div>
-            <div>
-                <h5 for="name">Nombre Completo</h5>
-                <p>{{ $user->name }} {{ $user->lastname }}</p>
-            </div>
-            <div>
-                <h5 for="name">RUT</h5>
-                <p>{{ $profile->rut }}</p>
-            </div>
-            <div>
-                <h5 for="name">Fecha de Nacimiento</h5>
-                <p>{{ Carbon\Carbon::parse($profile->birth_date)->format("d-m-Y") }}</p>
-            </div>
+
+            <table>
+                <tr>
+                    <td>
+                        <h5 for="name">Nombre Completo</h5>
+                        <p>{{ $user->name }} {{ $user->lastname }}</p>
+                    </td>
+                    <td>
+                        <h5 for="name">RUT</h5>
+                        <p>{{ $profile->rut }}</p>
+                    </td>
+                    <td>
+                        <h5 for="name">Fecha de Nacimiento</h5>
+                        <p>{{ Carbon\Carbon::parse($profile->birth_date)->format("d-m-Y") }}</p>
+                    </td>
+                </tr>
+            </table>
+
             <div>
                 <h5 for="name">Edad</h5>
                 <p>{{ $age }}</p>
