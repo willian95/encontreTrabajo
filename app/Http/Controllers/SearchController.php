@@ -42,14 +42,6 @@ class SearchController extends Controller
                                 $query->orWhere('title', "like", "%".$words[$i]."%");
                                 $query->orWhere('job_position', "like", "%".$words[$i]."%");
                                 $query->orWhere('description', "like", "%".$words[$i]."%");
-
-                                if(isset($request->region)){
-                                    $query->orWhere("region_id", $request->region);
-                                }
-
-                                if(isset($request->business)){
-                                    $query->orWhere("business_name", 'like', '%'.$request->business.'%');
-                                }
                                 
                             }
                         }      
@@ -61,6 +53,12 @@ class SearchController extends Controller
                     ->orderBy("is_highlighted", "desc")
                     ->orderBy("id", "desc");
                     
+                    if(isset($request->business)){
+                        $offers->whereHas("user", function($q) use($request){
+                            $q->where('business_name', "like", "%".$request->business."%");
+                        });
+                    }
+        
                     if(isset($request->category)){
                         $offers->where("category_id", $request->category);
                     }
@@ -75,14 +73,6 @@ class SearchController extends Controller
                                 $query->orWhere('title', "like", "%".$words[$i]."%");
                                 $query->orWhere('job_position', "like", "%".$words[$i]."%");
                                 $query->orWhere('description', "like", "%".$words[$i]."%");
-
-                                if(isset($request->region)){
-                                    $query->orWhere("region_id", $request->region);
-                                }
-
-                                if(isset($request->business)){
-                                    $query->orWhere("business_name", 'like', '%'.$request->business.'%');
-                                }
                                 
                             }
                         }      
@@ -90,6 +80,12 @@ class SearchController extends Controller
                     ->whereDate('expiration_date', '>', Carbon::today()->toDateString())
                     ->orderBy("id", "desc");
                     
+                    if(isset($request->business)){
+                        $offers->whereHas("user", function($q) use($request){
+                            $q->where('business_name', "like", "%".$request->business."%");
+                        });
+                    }
+        
                     if(isset($request->category)){
                         $offers->where("category_id", $request->category);
                     }

@@ -28,7 +28,7 @@
                         </div>
                         <div class="form-group">
                             <label for="category">Categoría</label>  
-                            <select class="form-control" id="category">
+                            <select class="form-control" id="category" v-model="category">
                                 <option value="">Seleccione</option>
                                 <option :value="jobCategory.id" v-for="jobCategory in categories">@{{ jobCategory.name }}</option>
                             </select>
@@ -177,7 +177,7 @@
 
                     axios.get("{{ url('/job-categories/fetch-all') }}").then(res => {
 
-                        this.categories = res.data.categories
+                        this.categories = res.data.jobCategories
 
                     })
 
