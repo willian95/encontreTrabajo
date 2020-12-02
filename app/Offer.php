@@ -21,5 +21,13 @@ class Offer extends Model
     public function views(){
         return $this->hasMany(OfferViewer::class);
     }
+
+    public function region(){
+        return $this->belongsTo(Region::class);
+    }
+
+    public function commune(){
+        return $this->belongsTo(Commune::class);
+    }
     
 }

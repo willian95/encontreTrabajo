@@ -29,7 +29,9 @@ class OfferStoreRequest extends FormRequest
             "description" => "required",
             "category" => "required|exists:job_categories,id",
             "jobPosition" => "required",
-            "wageType" => "required"
+            "wageType" => "required",
+            "commune" => "required",
+            "region" => "required"
         ];
     }
 
@@ -43,7 +45,9 @@ class OfferStoreRequest extends FormRequest
             "category.required" => "Categoría es requerida",
             "category.exists" => "Categoría es inválida",
             "jobPosition.required" => "Puesto de Trabajo es requerido",
-            "wageType.required" => "Tipo de renta es requerido"
+            "wageType.required" => "Tipo de renta es requerido",
+            "commune.required" => "Comuna es requerida",
+            "region.required" => "Región es requerida"
         ];
     }
 }

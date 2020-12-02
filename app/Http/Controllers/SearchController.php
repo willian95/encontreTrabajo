@@ -34,7 +34,7 @@ class SearchController extends Controller
 
                     $words = array_values(array_diff($words,$wordsToDelete));
 
-                    $offers = Offer::with("user")->with("user.region", "user.commune", "category")->has("user")->has("user.region")->has("user.commune")->has("category")
+                    $offers = Offer::with("user")->with("region", "commune", "category")->has("user")->has("user.region")->has("user.commune")->has("category")
                     ->where(function ($query) use($words, $request) {
                         for ($i = 0; $i < count($words); $i++){
                             if($words[$i] != ""){
@@ -67,7 +67,7 @@ class SearchController extends Controller
                 
                     $offers = $offers->get();
 
-                    $offersCount = Offer::with("user")->with("user.region", "user.commune", "category")->has("user")->has("user.region")->has("user.commune")->has("category")
+                    $offersCount = Offer::with("user")->with("region", "commune", "category")->has("user")->has("user.region")->has("user.commune")->has("category")
                     ->where(function ($query) use($words, $request) {
                         for ($i = 0; $i < count($words); $i++){
                             if($words[$i] != ""){
@@ -132,7 +132,7 @@ class SearchController extends Controller
                 ->orderBy("id", "desc")
                 ->get();
 
-                $offersCount = Offer::with("user")->has("user")->has("user.region")->has("user.commune")->has("category")
+                $offersCount = Offer::with("user", "region", "commune")->has("user")->has("category")
                 ->where(function ($query) use($words) {
                     for ($i = 0; $i < count($words); $i++){
                         if($words[$i] != ""){
@@ -201,9 +201,7 @@ class SearchController extends Controller
             }
 
             if(isset($request->regionSearch)){
-                $query->whereHas("user", function($q) use($request){
-                    $q->where("region_id", $request->regionSearch);
-                });
+                $query->where("region_id", $request->regionSearch);
             }
             $profiles = $query->take($dataAmount)->skip($skip)->get();
             $profilesCount = $query->count();

@@ -312,6 +312,26 @@
                                 </div>
                             </div>
 
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="text">Regiones</label>
+                                    <select class="form-control" v-model="selectedRegion" @change="fetchCommunes()">
+                                        <option value="">Seleccione</option>
+                                        <option :value="region.id" v-for="region in regions">@{{ region.name }}</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="text">Comunas</label>
+                                    <select class="form-control" v-model="selectedCommune">
+                                        <option value="">Seleccione</option>
+                                        <option :value="commune.id" v-for="commune in communes">@{{ commune.name }}</option>
+                                    </select>
+                                </div>
+                            </div>
+
 						</div>
 
                         <div class="row perfil-empresa-form">
@@ -402,7 +422,11 @@
                     simplePosts:0,
                     highlightedPosts:0,
                     dueDate:"",
-                    wageType:"1"
+                    wageType:"1",
+                    regions:[],
+                    communes:[],
+                    selectedRegion:"",
+                    selectedCommune:""
                 }
             },
             methods: {
@@ -421,7 +445,9 @@
                         jobPosition: this.jobPosition,
                         highlightPost: this.isHighlighted,
                         extraWage:this.extraWage,
-                        wageType: this.wageType
+                        wageType: this.wageType,
+                        region:this.selectedRegion,
+                        commune:this.selectedCommune
                     }).then(res => {
 
                         this.loading = false
@@ -561,12 +587,37 @@
                         this.highlightedPosts = res.data[0].highlighted_post_amount
                         this.dueDate = new Date(res.data[0].due_date)
                     })
+                },
+                fetchRegions(){
+
+                    axios.get("{{ url('/regions/fetch-all') }}").then(res => {
+
+                        if(res.data.success == true){
+                            this.regions = res.data.regions
+
+                        }
+
+                    })
+
+                },
+                fetchCommunes(){
+
+                    axios.get("{{ url('/communes/fetch/') }}"+"/"+this.selectedRegion).then(res => {
+
+                        if(res.data.success == true){
+                            this.communes = res.data.communes
+
+                        }
+
+                    })
+
                 }
 
             },
             mounted(){
                 this.fetchCategories()
                 this.getServicesAmount()
+                this.fetchRegions()
                 this.intervalID = window.setInterval(this.checkWindow, 500);
             }
 
