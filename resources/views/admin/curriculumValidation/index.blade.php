@@ -43,7 +43,7 @@
                                         <td>@{{ profile.user.email }}</td>
                                         <td>@{{ profile.rut }}</span></td>
                                         <td>
-                                            <a :href="'{{ url('/profile/show/') }}'+'/'+profile.user.email" class="btn btn-info">ver</a>
+                                            <a :href="'{{ url('/profile/show/') }}'+'/'+profile.user.id" class="btn btn-info">ver</a>
                                         </td>
                                     </tr>
                                 </tbody>
