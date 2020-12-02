@@ -70,9 +70,10 @@
                                         </p>
                                     </div>
                                     <div class="col-9">
-                                        <h5 class="card-title">@{{ offer.title }}</h5>
+                                        <h5 class="card-title" style="text-transform: capitalize;">@{{ offer.title }}</h5>
+                                        <small class="text-b" style="text-transform: capitalize;">@{{ offer.job_position }}</small><br>
                                         <small class="text-b">@{{ offer.user.region.name }}, @{{ offer.user.commune.name }}</small>
-                                        <small class="text-b">@{{ offer.job_position }}</small><br>
+                                        
                                         <small class="text-b">@{{ offer.user.region.name }}, @{{ offer.user.commune.name }}</small>
                                         <p class="price-op" v-if="offer.wage_type == 1">
                                             $ @{{ parseInt(offer.min_wage).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }} @{{ offer.extra_wage }}
