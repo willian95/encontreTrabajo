@@ -267,7 +267,7 @@
                             
 							<div class="col-md-4 ">
 								<div class="form-group">
-									<label for="title">Titulo</label>
+									<label for="title">Puesto de trabajo</label>
 									<input type="text" class="form-control" id="minWage" v-model="title">
 								</div>
 							</div>
@@ -297,7 +297,7 @@
 
                             <div class="col-md-4 ">
 								<div class="form-group">
-									<label for="jobPosition">Puesto de Trabajo</label>
+									<label for="jobPosition">Cargo</label>
 									<input type="text" class="form-control" id="jobPosition" v-model="jobPosition">
 								</div>
 							</div>
