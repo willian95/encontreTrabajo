@@ -14,52 +14,61 @@
                 <h2 class="text-center text-info" style="padding-top: 20px;">Antecedentes básicos</h2>
             </div>
 
-            <table>
-                <tr>
-                    <td>
-                        <h5 for="name">Nombre Completo</h5>
-                        <p>{{ $user->name }} {{ $user->lastname }}</p>
-                    </td>
-                    <td>
-                        <h5 for="name">RUT</h5>
-                        <p>{{ $profile->rut }}</p>
-                    </td>
-                    <td>
-                        <h5 for="name">Fecha de Nacimiento</h5>
-                        <p>{{ Carbon\Carbon::parse($profile->birth_date)->format("d-m-Y") }}</p>
-                    </td>
-                </tr>
+            <table style="width: 100%;">
+                <tbody>
+                    <tr>
+                        <td>
+                            <h5 for="name">Nombre Completo</h5>
+                            <p>{{ $user->name }} {{ $user->lastname }}</p>
+                        </td>
+                        <td>
+                            <h5 for="name">RUT</h5>
+                            <p>{{ $profile->rut ? $profile->rut : "No posee" }}</p>
+                        </td>
+                        <td>
+                            <h5 for="name">Fecha de Nacimiento</h5>
+                            <p>{{ Carbon\Carbon::parse($profile->birth_date)->format("d-m-Y") }}</p>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <h5 for="name">Edad</h5>
+                            <p>{{ $age }}</p>
+                        </td>
+                        <td>
+                            <h5 for="name">Sexo</h5>
+                            <p>{{ $profile->gender ? $profile->gender : "N/A" }}</p>
+                        </td>
+                        <td>
+                            <h5 for="name">Estado Civil</h5>
+                            <p>{{ $profile->civil_state ? $profile->civil_state : "N/A" }}</p>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <h5 for="name">Dirección</h5>
+                            <p>{{ $profile->address ? "":"N/A" }}</p>
+                        </td>
+                        
+                        @if($profile->country_id == 4)
+                            <td>
+                                <h5 for="name">Región</h5>
+                                <p>{{ $user->region->name }}</p>
+                            </td>
+                            
+                            <td>
+                                <h5 for="name">Comuna</h5>
+                                <p>{{ $user->commune->name }}</p>
+                            </td>
+                        
+                        @endif
+                        
+                    </tr>
+                </tbody>
             </table>
 
-            <div>
-                <h5 for="name">Edad</h5>
-                <p>{{ $age }}</p>
-            </div>
-            <div>
-                <h5 for="name">Sexo</h5>
-                <p>{{ $profile->gender }}</p>
-            </div>
-            <div>
-                <h5 for="name">Estado Civil</h5>
-                <p>{{ $profile->civil_state }}</p>
-            </div>
-            <div>
-                <h5 for="name">Dirección</h5>
-                <p>{{ $profile->address }}</p>
-            </div>
-
-            @if($profile->country_id == 4)
-                <div>
-                    <h5 for="name">Región</h5>
-                    <p>{{ $user->region->name }}</p>
-                </div>
-                
-                <div>
-                    <h5 for="name">Comuna</h5>
-                    <p>{{ $user->commune->name }}</p>
-                </div>
-            @endif
-            
             
             <div class="col-12">
                 <h2 class="text-center text-info" style="padding-top: 20px;">Información de Contacto</h2>
@@ -115,34 +124,48 @@
                 </tbody>
             </table>
 
+            <div style="page-break-after: avoid;">
+            </div>
+
             <div class="col-12">
                 <h2 class="text-center text-info" style="padding-top: 20px;">Resumen Laboral</h2>
             </div>   
 
-            <div>
-                <h5 for="name">Resumen laboral</h5>
-                <p>{{ $profile->job_description }}</p>
-            </div> 
+            <h5 for="name">Resumen laboral</h5>
+                            <p>{{ $profile->job_description ? $profile->job_description : "N/A" }}</p>
 
-            <div>
-                <h5 for="name">Año de experiencia</h5>
-                <p>{{ $profile->experience_year }}</p>
-            </div> 
+           <table style="width:100%;">
+                <tbody>
+                    <tr>
+                       
+                        <td>
+                            <h5 for="name">Año de experiencia</h5>
+                            <p>{{ $profile->experience_year ? $profile->experience_year : "N/A" }}</p>
+                        </td>
 
-            <div>
-                <h5 for="name">Pretenciones de renta</h5>
-                <p>{{ $profile->salary }}</p>
-            </div> 
+                        <td>
+                            <h5 for="name">Pretenciones de renta</h5>
+                            <p>{{ $profile->salary ? $profile->salary : "N/A" }}</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h5 for="name">Puesto deseado</h5>
+                            <p>{{ $user->desired_job ? $user->desired_job : "N/A" }}</p>
+                        </td>
+                        <td>
+                            <h5 for="name">Areas de preferencia</h5>
+                            <p>{{ $desiredAreaString ? $desiredAreaString : "N/A" }}</p>
+                        </td>
+                        
 
-            <div>
-                <h5 for="name">Puesto deseado</h5>
-                <p>{{ $user->desired_job }}</p>
-            </div> 
+                    </tr>
+                </tbody>
+           </table>
 
-            <div>
-                <h5 for="name">Areas de preferencia</h5>
-                <p>{{ $desiredAreaString }}</p>
+           <div style="page-break-after: avoid;">
             </div>
+
 
             <div class="col-12">
                 <h2 class="text-center text-info" style="padding-top: 20px;">Antecedentes Laborales</h2>
@@ -171,38 +194,47 @@
                 </tbody>
             </table> 
 
+            <div style="page-break-after: avoid;">
+            </div>
+
             <div class="col-12">
                 <h2 class="text-center text-info" style="padding-top: 20px;">Otros Antecedentes</h2>
             </div>         
 
             <div>
                 <h5 for="name">Conocimientos Informáticos</h5>
-                <p>{{ $informaticKnowledgeString }}</p>
+                <p>{{ $informaticKnowledgeString ? $informaticKnowledgeString : 'N/A' }}</p>
             </div>
 
             <div>
                 <h5 for="name">Conocimientos y Habilidades</h5>
-                <p>{{ $profile->knowledge_habilities }}</p>
+                <p>{{ $profile->knowledge_habilities ? $profile->knowledge_habilities : 'N/A' }}</p>
             </div>
 
-            <div>
-                <h5 for="name">Licencias de Conducir</h5>
-                <p>{{ $licenseString }}</p>
-            </div>
+            <table style="width: 100%">
+                <tr>
+                    <td>
 
-            <div>
-                <h5 for="name">Disponibilidad de viaje</h5>
-                @if($profile->change_residence == 0)
-                    <p>No</p>
-                @else
-                    <p>Sí</p>
-                @endif
-            </div>
-
-            <div>
-                <h5 for="name">¿Posee discapacidad?</h5>
-                <p>{{ $profile->handicap }}</p>
-            </div>  
+                        <h5 for="name">Licencias de Conducir</h5>
+                        <p>{{ $licenseString ? $licenseString : 'N/A' }}</p>
+ 
+                    </td>
+                    <td>
+                        <h5 for="name">Disponibilidad de viaje</h5>
+                        @if($profile->change_residence == 0)
+                            <p>No</p>
+                        @else
+                            <p>Sí</p>
+                        @endif
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <h5 for="name">¿Posee discapacidad?</h5>
+                        <p>{{ $profile->handicap ? $profile->handicap : 'N/A'  }}</p>
+                    </td>
+                </tr>
+            </table>  
             
             @if($profile->handicap == "si")
                 <div>
@@ -220,6 +252,9 @@
                     <p>{{ $profile->necesary_condition }}</p>
                 </div>
             @endif
+
+            <div style="page-break-after: avoid;">
+            </div>
 
             <div class="col-12">
                 <h2 class="text-center text-info" style="padding-top: 20px;">Referencias Laborales</h2>
@@ -249,5 +284,4 @@
             </table> 
            
                         
-    </body>
-</html>
+    </body></html>

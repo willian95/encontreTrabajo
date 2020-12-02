@@ -13,4 +13,8 @@ class Profile extends Model
     public function getAgeAttribute() {
         return $this->birth_date->diffInYears(\Carbon\Carbon::now());
     }
+
+    public function country(){
+        return $this->belongsTo(Country::class);
+    }
 }
