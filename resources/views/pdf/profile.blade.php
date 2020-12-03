@@ -5,13 +5,13 @@
     </head>
     <body>
         
-        <p class="text-center">
+        <p>
             <img src="{{ $user->image }}" alt="" style="width: 120px;">
         </p>
 
 
             <div class="col-12">
-                <h2 class="text-center text-info" style="padding-top: 20px;">Antecedentes básicos</h2>
+                <h2 class="text-center text-info" style="padding-top: 20px; margin-bottom: 15px;">Antecedentes básicos</h2>
             </div>
 
             <table style="width: 100%;">
@@ -71,7 +71,7 @@
 
             
             <div class="col-12">
-                <h2 class="text-center text-info" style="padding-top: 20px;">Información de Contacto</h2>
+                <h2 class="text-center text-info" style="padding-top: 20px; margin-bottom: 15px;">Información de Contacto</h2>
             </div>                           
 
             <div>
@@ -94,7 +94,7 @@
             @endif
 
             <div class="col-12">
-                <h2 class="text-center text-info" style="padding-top: 20px;">Información Académica</h2>
+                <h2 class="text-center text-info" style="padding-top: 20px; margin-bottom: 15px;">Información Académica</h2>
             </div>   
 
             <table class="table">
@@ -128,7 +128,7 @@
             </div>
 
             <div class="col-12">
-                <h2 class="text-center text-info" style="padding-top: 20px;">Resumen Laboral</h2>
+                <h2 class="text-center text-info" style="padding-top: 20px; margin-top: 15px;">Resumen Laboral</h2>
             </div>   
 
             <h5 for="name">Resumen laboral</h5>
@@ -168,7 +168,7 @@
 
 
             <div class="col-12">
-                <h2 class="text-center text-info" style="padding-top: 20px;">Antecedentes Laborales</h2>
+                <h2 class="text-center text-info" style="padding-top: 20px; margin-top: 15px;">Antecedentes Laborales</h2>
             </div>   
 
             <table class="table">
@@ -198,7 +198,7 @@
             </div>
 
             <div class="col-12">
-                <h2 class="text-center text-info" style="padding-top: 20px;">Otros Antecedentes</h2>
+                <h2 class="text-center text-info" style="padding-top: 20px; margin-top: 15px;">Otros Antecedentes</h2>
             </div>         
 
             <div>
@@ -257,7 +257,7 @@
             </div>
 
             <div class="col-12">
-                <h2 class="text-center text-info" style="padding-top: 20px;">Referencias Laborales</h2>
+                <h2 class="text-center text-info" style="padding-top: 20px; margin-top: 15px;">Referencias Laborales</h2>
             </div> 
 
             <table class="table">
