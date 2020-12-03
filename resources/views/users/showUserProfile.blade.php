@@ -33,7 +33,7 @@
                             <iframe id="iframepdf" :src="curriculumPreview" v-if="curriculumPreview != ''"></iframe>                               
                         </div>
                         <label class="text-center-input-curriculum" for="curriculum">Currículum</label>
-                        <p v-if="curriculumPreview">
+                        <p v-if="curriculumPreview" class="text-center">
                             <button class="btn btn-success" @click="download()">Descargar</button>
                         </p>
                     </div>
@@ -286,7 +286,7 @@
                         </div>
                     </div>
                     <div class="col-md-3 ">
-                        <div class="row media-perfil-basicos-publicidad d-flex">
+                        <div class="row media-perfil-basicos-publicidad d-flex" style="margin-top: 1rem;">
                             <img class="publicidad" src="{{ asset('user/assets/img/login.jpg') }}" alt="publicidad">
                             <img class="publicidad" src="{{ asset('user/assets/img/login.jpg') }}" alt="publicidad">
                         </div>
