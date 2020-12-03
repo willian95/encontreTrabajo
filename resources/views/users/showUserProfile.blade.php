@@ -286,7 +286,7 @@
                         </div>
                     </div>
                     <div class="col-md-3 ">
-                        <div class="row media-perfil-basicos-publicidad d-flex" style="margin-top: 1rem;">
+                        <div class="row media-perfil-basicos-publicidad d-flex" style="margin-top: 5rem;">
                             <img class="publicidad" src="{{ asset('user/assets/img/login.jpg') }}" alt="publicidad">
                             <img class="publicidad" src="{{ asset('user/assets/img/login.jpg') }}" alt="publicidad">
                         </div>
