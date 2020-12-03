@@ -261,7 +261,7 @@
                 </div>
             @endif
 
-            <div style="page-break-after: avoid;">
+            <div style="page-break-after: always;">
             </div>
 
             <div class="col-12">
