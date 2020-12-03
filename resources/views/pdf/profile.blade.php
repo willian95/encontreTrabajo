@@ -49,7 +49,7 @@
                     <tr>
                         <td>
                             <h5 for="name">Dirección</h5>
-                            <p>{{ $profile->address ? "":"N/A" }}</p>
+                            <p>{{ $profile->address ? $profile->address:"N/A" }}</p>
                         </td>
                         
                         @if($profile->country_id == 4)
@@ -72,26 +72,34 @@
             
             <div class="col-12">
                 <h2 class="text-center text-info" style="padding-top: 20px; margin-bottom: 15px;">Información de Contacto</h2>
-            </div>                           
+            </div>    
 
-            <div>
-                <h5 for="name">Mail</h5>
-                <p>{{ $user->email }}</p>
-            </div> 
-
-            @if(strlen($profile->home_phone) > 0)
-            <div>
-                <h5 for="name">Teléfono Fijo</h5>
-                <p>{{ $profile->home_phone }}</p>
-            </div> 
-            @endif
-
-            @if(strlen($profile->phone) > 0)
-            <div>
-                <h5 for="name">Teléfono Móvil</h5>
-                <p>{{ $profile->phone }}</p>
-            </div> 
-            @endif
+            <table style="width: 100%;">
+                <tbody>
+                    <tr>
+                        <td>
+                            <h5 for="name">Mail</h5>
+                            <p>{{ $user->email }}</p>
+                        </td>
+                        <td>    
+                            @if(strlen($profile->home_phone) > 0)
+                                <div>
+                                    <h5 for="name">Teléfono Fijo</h5>
+                                    <p>{{ $profile->home_phone }}</p>
+                                </div> 
+                            @endif
+                        </td>
+                        <td>
+                            @if(strlen($profile->phone) > 0)
+                            <div>
+                                <h5 for="name">Teléfono Móvil</h5>
+                                <p>{{ $profile->phone }}</p>
+                            </div> 
+                            @endif
+                        </td>
+                    </tr>
+                </tbody>
+            </table>                       
 
             <div class="col-12">
                 <h2 class="text-center text-info" style="padding-top: 20px; margin-bottom: 15px;">Información Académica</h2>
