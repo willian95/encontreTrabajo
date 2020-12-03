@@ -88,7 +88,7 @@
                                 <label for="curriculum">Currículum</label>
                                 <input type="file" class="form-control" id="curriculum" @change="onCurriculumChange" accpet="file/pdf" style="overflow: hidden; width: 127px;">
                                 <small>Solo está permitido el formato Word o PDF</small>
-                                <p v-if="curriculumPreview">
+                                <p v-if="curriculumPreview" class="text-center">
                                     <button class="btn btn-success" @click="download()">Descargar</button>
                                 </p>
 
@@ -201,7 +201,7 @@
                                     </div>
                                 </form>
                             </div>
-                            <div class="row media-perfil-basicos-publicidad">
+                            <div class="row media-perfil-basicos-publicidad" style="padding-top: 1rem;">
                                 <img class="publicidad" src="{{ asset('user/assets/img/login.jpg') }}" alt="publicidad">
                                 <img class="publicidad" src="{{ asset('user/assets/img/login.jpg') }}" alt="publicidad">
                             </div>
