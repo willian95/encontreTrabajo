@@ -1213,7 +1213,17 @@
                     if (!files.length)
                         return;
 
-                    this.validateFile(this.video, files[0])
+                    if(files[0].size < 15000000){
+                        this.validateFile(this.video, files[0])
+                    }else{
+                        swal({
+                            title:"Lo sentimos",
+                            text:"El video pesa más de 15mb",
+                            icon:"error"
+                        })
+                    }
+
+                    
           
                     //this.createVideo(files[0]);
                 },
@@ -1226,7 +1236,7 @@
                     video.onloadedmetadata = function() {
                         
                         window.URL.revokeObjectURL(video.src);
-
+                        
                         if (video.duration < 1) {
 
                             swal({
