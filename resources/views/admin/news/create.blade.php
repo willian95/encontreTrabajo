@@ -20,6 +20,15 @@
                 <div class="col-md-6 offset-md-3 mt-3">
                     
                     <div class="form-group">
+                        <label for="">Video</label>
+                        <input type="file" class="form-control" @change="onVideoChange">
+                    </div>
+
+                   
+                </div>
+                <div class="col-md-6 offset-md-3 mt-3">
+                    
+                    <div class="form-group">
                         <label for="">Titulo</label>
                         <input type="text" class="form-control" v-model="title">
                     </div>
@@ -65,6 +74,7 @@
                     id:"",
                     image:"",
                     imagePreview:"",
+                    video:"",
                     text:"",
                     title:"",
                     loading:false,
@@ -91,10 +101,26 @@
                     };
                     reader.readAsDataURL(file);
                 },
+                onVideoChange(e){
+                    this.video = e.target.files[0];
+                    let files = e.target.files || e.dataTransfer.files;
+                    if (!files.length)
+                        return;
+                
+                    this.createVideo(files[0]);
+                },
+                createVideo(file) {
+                    let reader = new FileReader();
+                    let vm = this;
+                    reader.onload = (e) => {
+                        vm.video = e.target.result;
+                    };
+                    reader.readAsDataURL(file);
+                },
                 store(){
                     this.loading = true
                     this.text = CKEDITOR.instances.editor1.getData()
-                    axios.post("{{ url('/admin/news/store') }}", {text: this.text, title: this.title, image: this.image}).then(res => {
+                    axios.post("{{ url('/admin/news/store') }}", {text: this.text, title: this.title, image: this.image, video: this.video}).then(res => {
                         this.loading = false
                         if(res.data.success == true){
                             swal({

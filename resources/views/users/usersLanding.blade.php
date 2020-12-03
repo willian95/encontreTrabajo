@@ -13,20 +13,34 @@
                         $profile_percentage = 0;
 
                         if(\Auth::user()->image != url('/')."/images/users/default.jpg"){
-                            $profile_percentage += 20;
+                            $profile_percentage += 12.5;
                         }
                         if($profile->video != null){
-                            $profile_percentage += 20;
+                            $profile_percentage += 12.5;
                         }
                         if($profile->curriculum != null){
-                            $profile_percentage += 20;
+                            $profile_percentage += 12.5;
                         }
                         if($profile->address != null){
-                            $profile_percentage += 20;
+                            $profile_percentage += 12.5;
                         }
                         if(App\AcademicBackground::where("user_id", \Auth::user()->id)->count() > 0){
-                            $profile_percentage += 20;
+                            $profile_percentage += 12.5;
                         }
+
+                        if($profile->phone != null){
+                            $profile_percentage += 12.5;
+                        }
+
+                        if($profile->knowledge_habilities != null){
+                            $profile_percentage += 12.5;
+                        }
+
+                        if($profile->job_description != null){
+                            $profile_percentage += 12.5;
+                        }
+
+
 
                     @endphp
                     {{ $profile_percentage }} %
@@ -69,7 +83,34 @@
                         @else
                             <h6>X</h6>
                         @endif
-                        <p class="opciones-perfil-encontre-trabajo-usuario_li_p">Dirección</p></li>
+                        <p class="opciones-perfil-encontre-trabajo-usuario_li_p">Dirección</p>
+                        </li>
+
+                        <li class="opciones-perfil-encontre-trabajo-usuario_li bb-n">
+                        @if($profile->phone != null)
+                            <h6>✔</h6>
+                        @else
+                            <h6>X</h6>
+                        @endif
+                        <p class="opciones-perfil-encontre-trabajo-usuario_li_p">Teléfono móvil</p>
+                        </li>
+
+                        <li class="opciones-perfil-encontre-trabajo-usuario_li bb-n">
+                        @if($profile->knowledge_habilities != null)
+                            <h6>✔</h6>
+                        @else
+                            <h6>X</h6>
+                        @endif
+                        <p class="opciones-perfil-encontre-trabajo-usuario_li_p">Habilidades y conocimientos</p>
+
+                        <li class="opciones-perfil-encontre-trabajo-usuario_li bb-n">
+                        @if($profile->job_description != null)
+                            <h6>✔</h6>
+                        @else
+                            <h6>X</h6>
+                        @endif
+                        <p class="opciones-perfil-encontre-trabajo-usuario_li_p">Resumen laboral</p>
+                        </li>
                     </ul>
                     </div>                 
                 </div>

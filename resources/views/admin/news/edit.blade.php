@@ -17,6 +17,18 @@
                         <input type="file" class="form-control" @change="onImageChange">
                     </div>
                 </div>
+
+                <div class="col-md-6 offset-md-3 mt-3">
+
+                    <video style="width: 100%;" controls>
+                        <source :src="video" type="video/mp4">
+                    </video>
+                    
+                    <div class="form-group">
+                        <label for="">Video</label>
+                        <input type="file" class="form-control" @change="onVideoChange">
+                    </div>
+                </div>
                 <div class="col-md-6 offset-md-3 mt-3">
                     
                     <div class="form-group">
@@ -68,6 +80,7 @@
                     text:"",
                     title:"{{ $title }}",
                     loading:false,
+                    video:"{{ $video }}"
                  
                 }
             },
@@ -91,10 +104,26 @@
                     };
                     reader.readAsDataURL(file);
                 },
+                onVideoChange(e){
+                    this.image = e.target.files[0];
+                    let files = e.target.files || e.dataTransfer.files;
+                    if (!files.length)
+                        return;
+                
+                    this.createVideo(files[0]);
+                },
+                createVideo(file) {
+                    let reader = new FileReader();
+                    let vm = this;
+                    reader.onload = (e) => {
+                        vm.video = e.target.result;
+                    };
+                    reader.readAsDataURL(file);
+                },
                 store(){
                     this.loading = true
                     this.text = CKEDITOR.instances.editor1.getData()
-                    axios.post("{{ url('/admin/news/update') }}", {text: this.text, title: this.title, image: this.image, id: "{{ $id }}"}).then(res => {
+                    axios.post("{{ url('/admin/news/update') }}", {text: this.text, title: this.title, image: this.image, id: "{{ $id }}", video: this.video}).then(res => {
                         this.loading = false
                         if(res.data.success == true){
                             swal({

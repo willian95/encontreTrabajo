@@ -40,7 +40,7 @@ class NewsController extends Controller
     function edit($id){
 
         $notice = Notice::find($id);
-        return view("admin.news.edit", ["image" => $notice->image, "text" => $notice->text, "title" => $notice->title, "id" => $notice->id]);
+        return view("admin.news.edit", ["image" => $notice->image, "text" => $notice->text, "title" => $notice->title, "id" => $notice->id, "video" => $notice->video]);
 
     }
 
@@ -72,6 +72,28 @@ class NewsController extends Controller
     
             }
 
+            if($request->get('video') != null){
+                try{
+    
+                    $videoData = $request->get('video');
+               
+                    if(explode('/', explode(':', substr($videoData, 0, strpos($videoData, ';')))[1])[0] == "video"){
+                        
+                        $data = explode( ',', $videoData);
+                        $fileVideo = Carbon::now()->timestamp . '_' . uniqid() . '.'.explode('/', explode(':', substr($videoData, 0, strpos($videoData, ';')))[1])[1];
+                        $ifp = fopen($fileVideo, 'wb' );
+                        fwrite($ifp, base64_decode( $data[1] ) );
+                        rename($fileVideo, 'images/news/'.$fileVideo);
+                    }
+                    
+        
+                }catch(\Exception $e){
+        
+                    return response()->json(["success" => false, "msg" => "Hubo un problema con el video", "err" => $e->getMessage(), "ln" => $e->getLine()]);
+        
+                }
+            }
+
             $slug = str_replace(" ", "-", $request->title);
             $slug = str_replace("/", "-", $slug);
 
@@ -81,6 +103,9 @@ class NewsController extends Controller
 
             $news = new Notice;
             $news->image = url('/').'/images/news/'.$fileName;
+            if($request->get('video') != null){
+                $news->video = url('/').'/images/news/'.$fileVideo;
+            }
             $news->title = $request->title;
             $news->text = $request->text;
             $news->slug = $slug;
@@ -98,7 +123,7 @@ class NewsController extends Controller
 
         try{
 
-            if($request->get("image")){
+            if($request->get("image") !=null){
                 try{
     
                     $imageData = $request->get('image');
@@ -124,9 +149,35 @@ class NewsController extends Controller
                 }
             }
 
+            if($request->get('video') != null){
+                try{
+    
+                    $videoData = $request->get('video');
+               
+                    if(explode('/', explode(':', substr($videoData, 0, strpos($videoData, ';')))[1])[0] == "video"){
+                        
+                        $data = explode( ',', $videoData);
+                        $fileVideo = Carbon::now()->timestamp . '_' . uniqid() . '.'.explode('/', explode(':', substr($videoData, 0, strpos($videoData, ';')))[1])[1];
+                        $ifp = fopen($fileVideo, 'wb' );
+                        fwrite($ifp, base64_decode( $data[1] ) );
+                        rename($fileVideo, 'images/news/'.$fileVideo);
+                    }
+                    
+        
+                }catch(\Exception $e){
+        
+                    return response()->json(["success" => false, "msg" => "Hubo un problema con el video", "err" => $e->getMessage(), "ln" => $e->getLine()]);
+        
+                }
+            }
+
             $news = Notice::find($request->id);
-            if($request->get("image")){
+            if($request->get("image") != null){
                 $news->image = url('/').'/images/news/'.$fileName;
+            }
+
+            if($request->get('video') != null){
+                $news->video = url('/').'/images/news/'.$fileVideo;
             }
             
             $news->title = $request->title;

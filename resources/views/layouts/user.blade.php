@@ -181,19 +181,31 @@
                                     $profile_percentage = 0;
 
                                     if(\Auth::user()->image != url('/')."/images/users/default.jpg"){
-                                        $profile_percentage += 20;
+                                        $profile_percentage += 12.5;
                                     }
                                     if($profile->video != null){
-                                        $profile_percentage += 20;
+                                        $profile_percentage += 12.5;
                                     }
                                     if($profile->curriculum != null){
-                                        $profile_percentage += 20;
+                                        $profile_percentage += 12.5;
                                     }
                                     if($profile->address != null){
-                                        $profile_percentage += 20;
+                                        $profile_percentage += 12.5;
                                     }
                                     if(App\AcademicBackground::where("user_id", \Auth::user()->id)->count() > 0){
-                                        $profile_percentage += 20;
+                                        $profile_percentage += 12.5;
+                                    }
+
+                                    if($profile->phone != null){
+                                        $profile_percentage += 12.5;
+                                    }
+
+                                    if($profile->knowledge_habilities != null){
+                                        $profile_percentage += 12.5;
+                                    }
+
+                                    if($profile->job_description != null){
+                                        $profile_percentage += 12.5;
                                     }
 
                                 @endphp
