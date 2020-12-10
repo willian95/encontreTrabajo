@@ -14,14 +14,37 @@ class UserController extends Controller
         return view('admin.user.index');
     }
 
+    function business(){
+        return view('admin.business.index');
+    }
+
     function fetch($page = 1){
 
         try{
 
             $skip = ($page - 1) * 20;
 
-            $users = User::with("role")->skip($skip)->where("role_id", ">", 1)->take(20)->get();
-            $usersCount = User::with("role")->where("role_id", ">", 1)->count();
+            $users = User::with("role")->skip($skip)->where("role_id", 2)->take(20)->get();
+            $usersCount = User::with("role")->where("role_id", 2)->count();
+
+            return response()->json(["success" => true, "users" => $users, "usersCount" => $usersCount]);
+
+        }catch(\Exception $e){
+
+            return response()->json(["success" => false, "msg" => "Error en el servidor"]);
+
+        }
+
+    }
+
+    function fetchBusiness($page = 1){
+
+        try{
+
+            $skip = ($page - 1) * 20;
+
+            $users = User::with("role")->skip($skip)->where("role_id", 3)->take(20)->get();
+            $usersCount = User::with("role")->where("role_id", 3)->count();
 
             return response()->json(["success" => true, "users" => $users, "usersCount" => $usersCount]);
 

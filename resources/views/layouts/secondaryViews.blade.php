@@ -36,8 +36,12 @@
                             <img class="img-user-icon" src="{{ asset('user/assets/img/user-b.png') }}" alt="">
                         </button>
                         <div class="dropdown-menu user-dropdown">
-                            <ul>
+                            <ul>    
+                                    @if(\Auth::user()->role_id > 1)
                                     <li><a class="dropdown-item" href="{{ url('/home') }}">Inicio</a></li>
+                                    @else
+                                    <li><a class="dropdown-item" href="{{ url('/admin/dashboard') }}">Inicio</a></li>
+                                    @endif
                             </ul>
                         </div>
                                 </div>

@@ -203,6 +203,11 @@ Route::post("/admin/statistics/users/age/count", "StatisticController@usersByAge
 Route::post("/admin/statistics/users/desired-area/count", "StatisticController@usersDesiredArea");
 Route::post("/admin/statistics/categories/count", "StatisticController@searchedCategories");
 
+Route::get("/admin/ads", "AdsController@index");
+Route::post("/admin/ads/update", "AdsController@update");
+
+Route::get("/admin/business/index", "UserController@business");
+Route::get('/admin/business/fetch/{page}', "UserController@fetchBusiness");
 
 /*Route::post("/admin/landing-business/store", "LandingBusinessController@store");
 Route::post("/admin/landing-business/update", "LandingBusinessController@update");

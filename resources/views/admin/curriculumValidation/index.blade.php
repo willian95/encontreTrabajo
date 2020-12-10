@@ -39,7 +39,7 @@
                                 </thead>
                                 <tbody>
                                     <tr v-for="(profile, index) in profiles">
-                                        <td>@{{ profile.user.name }}</td>
+                                        <td>@{{ profile.user.name }} @{{ profile.user.lastname }}</td>
                                         <td>@{{ profile.user.email }}</td>
                                         <td>@{{ profile.rut }}</span></td>
                                         <td>

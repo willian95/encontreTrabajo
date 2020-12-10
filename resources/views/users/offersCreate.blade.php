@@ -339,6 +339,23 @@
 								</div>
 							</div>
 
+                            <div class="col-md-4 ">
+								<div class="form-group">
+									<label for="inclusividad">Publico objetivo</label>
+									<select class="form-control" v-model="inclusive" id="inclusividad">
+                                        <option value="todos">Todos</option>
+                                        <option value="personas con discapacidad">Personas con discapacidad</option>
+                                    </select>
+								</div>
+							</div>
+
+                            <div class="col-md-4 ">
+								<div class="form-group">
+									<label for="job_numbers">Cantidad de puestos de trabajo</label>
+									<input type="text" class="form-control" id="job_numbers" v-model="jobNumbers" @keypress="isNumber($event)">
+								</div>
+							</div>
+
 						</div>
 
                         <div class="row perfil-empresa-form">
@@ -433,6 +450,8 @@
                     regions:[],
                     communes:[],
                     address:"",
+                    inclusive:"todos",
+                    jobNumbers:"",
                     selectedRegion:"",
                     selectedCommune:""
                 }
@@ -456,7 +475,9 @@
                         wageType: this.wageType,
                         region:this.selectedRegion,
                         commune:this.selectedCommune,
-                        address:this.address
+                        address:this.address,
+                        inclusive: this.inclusive,
+                        jobNumbers: this.jobNumbers
                     }).then(res => {
 
                         this.loading = false

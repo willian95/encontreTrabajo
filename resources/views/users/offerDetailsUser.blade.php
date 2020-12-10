@@ -41,6 +41,8 @@
                             <p><strong>Nombre de la empresa: </strong> <a href="{{ url('/profile/show/'.$offer->user->id) }}">@{{ businessName }}</a></p>
                             <p><strong>Dirección: </strong><span v-if="region">@{{ region }}, </span> <span v-if="commune">@{{ commune }}</span><span v-if="address">, @{{ address }}</span>
                             <p><strong>Puesto:</strong> @{{ jobPosition }}</p>
+                            <p><strong>Público objetivo:</strong> @{{ inclusive }}</p>
+                            <p><strong>Puestos de trabajo:</strong> @{{ jobNumbers }}</p>
                             @if($offer->wage_type == 1)
                             <p>
                                 <strong>Salario: </strong><span class="price-rango"> $ @{{ parseInt(minWage).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }} @{{ extraWage }}</span>
@@ -152,6 +154,8 @@
                     region:"{{ $offer->region ? $offer->region->name : '' }}",
                     commune:"{{ $offer->commune ? $offer->commune->name : '' }}",
                     address:"{{ $offer->address }}",
+                    inclusive:"{{ $offer->inclusive }}",
+                    jobNumbers:"{{ $offer->job_number }}",
                     proposal:"",
                     role_id:"{{ \Auth::user()->role_id }}",
                     proposals:[],

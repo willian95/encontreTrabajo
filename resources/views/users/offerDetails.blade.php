@@ -39,6 +39,7 @@
                             <p class="text-center">
                                 <img class="round-img" :src="businessImage" alt="Card image">
                             </p>
+                            
                             @if(App\User::where('id', \Auth::user()->id)->first()->expire_free_trial->gt(Carbon\Carbon::now()))
                                 <small>Tus entrevistas gratis terminan el {{ App\User::where('id', \Auth::user()->id)->first()->expire_free_trial->format('d/m/Y') }}</small>
                             @endif
@@ -47,6 +48,8 @@
                             <p><strong>Nombre de la empresa: </strong> <a href="{{ url('/profile/show/'.$offer->user->id) }}">@{{ businessName }}</a></p>
                             <p><strong>Dirección: </strong><span v-if="region">@{{ region }}, </span> <span v-if="commune">@{{ commune }}
                             <p><strong>Puesto:</strong> @{{ jobPosition }}</p>
+                            <p><strong>Público objetivo:</strong> @{{ inclusive }}</p>
+                            <p><strong>Puestos de trabajo:</strong> @{{ jobNumbers }}</p>
                             @if($offer->wage_type == 1)
                             <p>
                                 <strong>Salario: </strong><span class="price-rango"> $ @{{ parseInt(minWage).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }} @{{ extraWage }}</span>
@@ -451,6 +454,8 @@
                     region:"{{ $offer->user->region ? $offer->user->region->name : '' }}",
                     commune:"{{ $offer->user->commune ? $offer->user->commune->name : '' }}",
                     address:"{{ $offer->user->profile->address }}",
+                    inclusive:"{{ $offer->inclusive }}",
+                    jobNumbers:"{{ $offer->job_number }}",
                     proposal:"",
                     date:"",
                     time:"",

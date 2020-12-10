@@ -149,8 +149,20 @@ License: You must have a valid license purchased only from themeforest(the above
 								</a>
 							</li>
 
+							<li class="nav-item mb-5" data-toggle="tooltip" data-placement="right" data-container="body" data-boundary="window" title="Empresas">
+								<a href="{{ url('/admin/business/index') }}" class="nav-link btn btn-icon btn-text-white btn-hover-text-white btn-lg">
+									<i class="flaticon-users-1"></i>
+								</a>
+							</li>
+
 							<li class="nav-item mb-5" data-toggle="tooltip" data-placement="right" data-container="body" data-boundary="window" title="Planes">
 								<a href="{{ url('/admin/plans') }}" class="nav-link btn btn-icon btn-text-white btn-hover-text-white btn-lg">
+									<i class="far fa-bookmark"></i>
+								</a>
+							</li>
+
+							<li class="nav-item mb-5" data-toggle="tooltip" data-placement="right" data-container="body" data-boundary="window" title="Publicidad">
+								<a href="{{ url('/admin/ads') }}" class="nav-link btn btn-icon btn-text-white btn-hover-text-white btn-lg">
 									<i class="far fa-bookmark"></i>
 								</a>
 							</li>
