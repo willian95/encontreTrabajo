@@ -209,6 +209,7 @@ Route::post("/admin/ads/update", "AdsController@update");
 Route::get("/admin/business/index", "UserController@business");
 Route::get('/admin/business/fetch/{page}', "UserController@fetchBusiness");
 Route::post('/admin/send/email', "UserController@sendEmail");
+Route::post("/admin/user/delete-field", "UserController@deleteField");
 
 /*Route::post("/admin/landing-business/store", "LandingBusinessController@store");
 Route::post("/admin/landing-business/update", "LandingBusinessController@update");
