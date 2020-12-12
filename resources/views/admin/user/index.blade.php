@@ -148,7 +148,7 @@
                 sendEmail(){
 
                     this.loading = true
-                    axios.post("{{ url('/admin/send/email') }}", {email: email, text: this.text}).then(res => {
+                    axios.post("{{ url('/admin/send/email') }}", {email: this.email, text: this.text}).then(res => {
 
                         this.loading= false
                         if(res.data.success == true){
