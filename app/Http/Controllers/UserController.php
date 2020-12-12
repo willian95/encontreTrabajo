@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\SendEmailRequest;
 use App\serviceAmount;
 use App\Proposal;
 use App\Offer;
@@ -85,6 +86,22 @@ class UserController extends Controller
             return response()->json(["success" => false, "msg" => "Error en el servidor", "err" => $e->getMessage(), "ln" => $e->getLine()]);
 
         }
+
+    }
+
+    function sendEmail(SendEmailRequest $request){
+
+        $user = App\User::where("email", $request->email)->first();
+        $to_name = $user->name;
+        $to_email = $user->email;
+        $data = ["messageMail" => $request->text];
+
+        \Mail::send("emails.emailUser", $data, function($message) use ($to_name, $to_email) {
+
+            $message->to($to_email, $to_name)->subject("¡Valida tu correo!");
+            $message->from( env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'));
+
+        });
 
     }
 

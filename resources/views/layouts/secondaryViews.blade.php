@@ -27,8 +27,11 @@
                         <div class="content-barra-menu-perfil-menu">
                             <div class="content-barra-menu-perfil-menu-monitor">
                                 <ul>
-                                    <li><a href="{{ url('/home') }}">Inicio</a></li>
-
+                                    @if(\Auth::user()->role_id > 1)
+                                        <li><a href="{{ url('/home') }}">Inicio</a></li>
+                                    @else
+                                        <li><a class="dropdown-item" href="{{ url('/admin/dashboard') }}">Inicio</a></li>
+                                    @endif
                                 </ul>
                             </div>
                             <div class="dropdown d-none-c responsive">
@@ -37,6 +40,7 @@
                         </button>
                         <div class="dropdown-menu user-dropdown">
                             <ul>    
+                               
                                     @if(\Auth::user()->role_id > 1)
                                     <li><a class="dropdown-item" href="{{ url('/home') }}">Inicio</a></li>
                                     @else

@@ -3,6 +3,27 @@
 @section("content")
     
     <div id="dev-users">
+
+        <div class="modal fade" id="sendEmail" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Enviar mensaje</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <textarea class="form-control" rows="5"></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary">Enviar</button>
+                </div>
+                </div>
+            </div>
+        </div>
+
         <div class="content d-flex flex-column flex-column-fluid" id="kt_content" v-cloak>
             <div class="d-flex flex-column-fluid">
 
@@ -30,8 +51,8 @@
                                 <tbody>
                                     <tr v-for="(user, index) in users">
                                         <th>@{{ index + 1 }}</th>
-                                        <td>@{{ user.name }}</td>
-                                        <td>@{{ user.email }}</td>
+                                        <td><a :href="'{{ url('/profile/show/') }}'+'/'+user.id">@{{ user.name }} @{{ user.lastname }}</a></td>
+                                        <td data-toggle="modal" data-target="#sendEmail" @click="">@{{ user.email }}</td>
                                         <td>@{{ user.role.name }}</td>
                                         <td>
                                             <button class="btn btn-danger" @click="erase(user.id)">eliminar</button>
@@ -91,6 +112,8 @@
                     users:[],
                     pages:0,
                     page:1,
+                    text:"",
+                    email:"",
                 }
             },
             methods:{
@@ -110,6 +133,16 @@
                         $.each(err.response.data.errors, function(key, value){
                             alert(value)
                         });
+                    })
+
+                },
+                setEmail(email){
+
+                    this.text = ""
+                    axios.post("{{ url('/admin/send/email') }}", {email: email, text: this.text}).then(res => {
+
+                        
+
                     })
 
                 },
