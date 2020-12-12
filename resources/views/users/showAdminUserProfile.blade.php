@@ -36,12 +36,14 @@
                         </p>
                 </div>
                 <div class="col-md-4 media-perfil-c-4">
-                    <div class="a-basicos-postulante-curriculum j-center">
-                            <img class="basicos-postulante-c-4" src="{{ asset('user/assets/img/icons8-contrato-de-trabajo-100.png') }}" alt="postulante" v-if="curriculumPreview == ''">
-                        <iframe id="iframepdf" :src="curriculumPreview" v-if="curriculumPreview != ''"></iframe>
-                        {{--<img class="basicos-postulante-c-4" style="width: 100%; cursor: pointer;" src="{{ asset('user/assets/img/document-download-outline.png') }}" alt="postulante" v-if="curriculumPreview != ''" @click="download()">--}}                               
+                    <div class="a-basicos-postulante-curriculum j-center" v-if="curriculumPreview.substring(curriculumPreview.length - 3, curriculumPreview.length) == 'pdf' || curriculumPreview.substring(curriculumPreview.length - 3, curriculumPreview.length) == 'PDF'">
+                        <img class="basicos-postulante-c-4" src="{{ asset('user/assets/img/icons8-contrato-de-trabajo-100.png') }}" alt="postulante" v-if="curriculumPreview == ''">
+                        <iframe id="iframepdf" :src="curriculumPreview" v-if="curriculumPreview != ''"></iframe>                               
                     </div>
                     <label class="text-center-input-curriculum" for="curriculum">Curriculum</label>
+                    <p v-if="curriculumPreview" class="text-center">
+                        <button class="btn btn-success" @click="download()">Descargar</button>
+                    </p>
                     <p class="text-center">
                         <button class="btn btn-danger" @click="deleteField('curriculum')">Eliminar</button>
                     </p>
@@ -532,6 +534,9 @@
                     })
                     
 
+                },
+                download(){
+                    window.open(this.curriculumPreview, '_blank')
                 },
                 deleteField(type){
 
