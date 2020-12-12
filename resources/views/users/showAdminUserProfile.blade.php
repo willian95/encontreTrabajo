@@ -18,6 +18,9 @@
                 <div class="col-md-4 media-perfil-c-4">
                     <div class="a-basicos-postulante-img j-center"><img class="basicos-postulante-c-4" :src="imagePreview" alt="postulante"></div>
                     <label class="text-center-input-curriculum" for="image">Foto de Perfil</label>
+                    <p class="text-center">
+                        <button class="btn btn-danger">Eliminar</button>
+                    </p>
                 </div>
                 <div class="col-md-4 media-perfil-c-4">
                     <div class="a-basicos-postulante-video j-center">
@@ -25,8 +28,12 @@
                         <video style="width: 100%;" controls id="productVideo" v-if="videoPreview != null && videoPreview != ''">
                             <source :src="videoPreview" type="video/mp4">
                         </video>
+                        
                     </div>
                         <label class="text-center-input-curriculum" for="video">Video de Presentación</label>
+                        <p class="text-center">
+                            <button class="btn btn-danger">Eliminar</button>
+                        </p>
                 </div>
                 <div class="col-md-4 media-perfil-c-4">
                     <div class="a-basicos-postulante-curriculum j-center">
@@ -35,6 +42,9 @@
                         {{--<img class="basicos-postulante-c-4" style="width: 100%; cursor: pointer;" src="{{ asset('user/assets/img/document-download-outline.png') }}" alt="postulante" v-if="curriculumPreview != ''" @click="download()">--}}                               
                     </div>
                     <label class="text-center-input-curriculum" for="curriculum">Curriculum</label>
+                    <p class="text-center">
+                        <button class="btn btn-danger">Eliminar</button>
+                    </p>
                 </div>
             </div>
             <div class="row">
@@ -521,6 +531,31 @@
 
                     })
                     
+
+                },
+                deleteField(type){
+
+                    axios.post("{{ url('/admin/user/delete-field') }}", {type: type, user_id: this.userId})
+                    .then(res => {
+
+                        if(res.data.success == true){
+
+                            swal({
+                                text:res.data.msg,
+                                icon:"success"
+                            }).then(res => {
+                                window.location.reload()
+                            })
+                            
+
+                        }else{
+                            swal({
+                                text:res.data.msg,
+                                icon:"error"
+                            })
+                        }
+
+                    })
 
                 }
                     

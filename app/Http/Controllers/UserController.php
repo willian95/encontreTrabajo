@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\SendEmailRequest;
+use App\Profile;
 use App\serviceAmount;
 use App\Proposal;
 use App\Offer;
@@ -100,7 +101,7 @@ class UserController extends Controller
 
             \Mail::send("emails.emailUser", $data, function($message) use ($to_name, $to_email) {
 
-                $message->to($to_email, $to_name)->subject("¡Valida tu correo!");
+                $message->to($to_email, $to_name)->subject("Mensaje privado");
                 $message->from( env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'));
 
             });
@@ -112,6 +113,31 @@ class UserController extends Controller
             return response()->json(["success" => false, "msg" => "Hubo un problema", "err" => $e->getMessage(), "ln" => $e->getLine()]);
 
         }
+
+    }
+
+    function deleteField(Request $request){
+
+        $user = User::where("id", $request->user_id)->first();
+
+        if($request->type == "image"){
+            $user->image = "https://app.encontretrabajo.cl/images/users/default.jpg";
+            $user->update();
+        }else if($request->type == "video"){
+            
+            $profile = Profile::where("user_id", $user->id)->first();
+            $profile->video = null;
+            $profile->update();
+
+        }else if($request->type == "curriculum"){
+
+            $profile = Profile::where("user_id", $user->id)->first();
+            $profile->curriculum = null;
+            $profile->update();
+
+        }
+
+        return response()->json(["success" => true, "msg" => "Campo eliminado"]);
 
     }
 

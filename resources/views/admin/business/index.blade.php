@@ -3,6 +3,31 @@
 @section("content")
     
     <div id="dev-users">
+
+        <div class="loader-cover-custom" v-if="loading == true">
+            <div class="loader-custom"></div>
+        </div>
+
+        <div class="modal fade" id="sendEmail" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Enviar mensaje</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <textarea class="form-control" rows="5" v-model="text"></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary" @click="sendEmail()">Enviar</button>
+                </div>
+                </div>
+            </div>
+        </div>
+
         <div class="content d-flex flex-column flex-column-fluid" id="kt_content" v-cloak>
             <div class="d-flex flex-column-fluid">
 
@@ -31,7 +56,7 @@
                                     <tr v-for="(user, index) in users">
                                         <th>@{{ index + 1 }}</th>
                                         <td><a :href="'{{ url('/profile/show/') }}'+'/'+user.id">@{{ user.name }}</a></td>
-                                        <td>@{{ user.email }}</td>
+                                        <td data-toggle="modal" data-target="#sendEmail" @click="setEmail(user.email)">@{{ user.email }}</td>
                                         <td>@{{ user.role.name }}</td>
                                         <td>
                                             <button class="btn btn-danger" @click="erase(user.id)">eliminar</button>
@@ -91,6 +116,9 @@
                     users:[],
                     pages:0,
                     page:1,
+                    text:"",
+                    email:"",
+                    loading:false
                 }
             },
             methods:{
@@ -124,7 +152,40 @@
                         })
                     }
 
-                }
+                },
+                setEmail(email){
+                    this.text = ""
+                    this.email = email
+                },
+                sendEmail(){
+
+                    this.loading = true
+                    axios.post("{{ url('/admin/send/email') }}", {email: this.email, text: this.text}).then(res => {
+
+                        this.loading= false
+                        if(res.data.success == true){
+
+                            this.text = ""
+
+                            swal({
+                                text:res.data.msg,
+                                icon:"success"
+                            })
+                        }else{
+                            swal({
+                                text:res.data.msg,
+                                icon:"error"
+                            })
+                        }
+
+                    }).catch(err => {
+                        this.loading = false
+                        $.each(err.response.data.errors, function(key, value){
+                            alertify.error(value[0])
+                        });
+                    })
+
+                },
 
 
             },
