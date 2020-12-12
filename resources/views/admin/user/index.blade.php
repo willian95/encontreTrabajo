@@ -56,7 +56,7 @@
                                     <tr v-for="(user, index) in users">
                                         <th>@{{ index + 1 }}</th>
                                         <td><a :href="'{{ url('/profile/show/') }}'+'/'+user.id">@{{ user.name }} @{{ user.lastname }}</a></td>
-                                        <td data-toggle="modal" data-target="#sendEmail" @click="">@{{ user.email }}</td>
+                                        <td data-toggle="modal" data-target="#sendEmail" @click="setEmail(user.emails)">@{{ user.email }}</td>
                                         <td>@{{ user.role.name }}</td>
                                         <td>
                                             <button class="btn btn-danger" @click="erase(user.id)">eliminar</button>
