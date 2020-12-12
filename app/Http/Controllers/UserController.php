@@ -91,17 +91,27 @@ class UserController extends Controller
 
     function sendEmail(SendEmailRequest $request){
 
-        $user = App\User::where("email", $request->email)->first();
-        $to_name = $user->name;
-        $to_email = $user->email;
-        $data = ["messageMail" => $request->text];
+        try{
 
-        \Mail::send("emails.emailUser", $data, function($message) use ($to_name, $to_email) {
+            $user = App\User::where("email", $request->email)->first();
+            $to_name = $user->name;
+            $to_email = $user->email;
+            $data = ["messageMail" => $request->text];
 
-            $message->to($to_email, $to_name)->subject("¡Valida tu correo!");
-            $message->from( env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'));
+            \Mail::send("emails.emailUser", $data, function($message) use ($to_name, $to_email) {
 
-        });
+                $message->to($to_email, $to_name)->subject("¡Valida tu correo!");
+                $message->from( env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'));
+
+            });
+
+            return response()->json(["success" => true, "msg" => "Mensaje enviado"]);
+
+        }catch(\Exception $e){
+
+            return response()->json(["success" => false, "msg" => "Hubo un problema", "err" => $e->getMessage(), "ln" => $e->getLine()]);
+
+        }
 
     }
 

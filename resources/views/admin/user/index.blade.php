@@ -4,6 +4,10 @@
     
     <div id="dev-users">
 
+        <div class="loader-cover-custom" v-if="loading == true">
+            <div class="loader-custom"></div>
+        </div>
+
         <div class="modal fade" id="sendEmail" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -14,11 +18,11 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <textarea class="form-control" rows="5"></textarea>
+                    <textarea class="form-control" rows="5" v-model="text"></textarea>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                    <button type="button" class="btn btn-primary">Enviar</button>
+                    <button type="button" class="btn btn-primary" @click="sendEmail()">Enviar</button>
                 </div>
                 </div>
             </div>
@@ -114,6 +118,7 @@
                     page:1,
                     text:"",
                     email:"",
+                    loading:false
                 }
             },
             methods:{
@@ -137,11 +142,29 @@
 
                 },
                 setEmail(email){
-
                     this.text = ""
+                    this.email = email
+                },
+                sendEmail(){
+
+                    this.loading = true
                     axios.post("{{ url('/admin/send/email') }}", {email: email, text: this.text}).then(res => {
 
-                        
+                        this.loading= false
+                        if(res.data.success == true){
+
+                            this.text = ""
+
+                            swal({
+                                text:res.data.msg,
+                                icon:"success"
+                            })
+                        }else{
+                            swal({
+                                text:res.data.msg,
+                                icon:"error"
+                            })
+                        }
 
                     })
 
