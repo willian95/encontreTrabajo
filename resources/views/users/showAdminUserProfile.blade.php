@@ -535,27 +535,29 @@
                 },
                 deleteField(type){
 
-                    axios.post("{{ url('/admin/user/delete-field') }}", {type: type, user_id: this.userId})
-                    .then(res => {
+                    if(confirm("¿Estás seguro?")){
+                        axios.post("{{ url('/admin/user/delete-field') }}", {type: type, user_id: this.userId})
+                        .then(res => {
 
-                        if(res.data.success == true){
+                            if(res.data.success == true){
 
-                            swal({
-                                text:res.data.msg,
-                                icon:"success"
-                            }).then(res => {
-                                window.location.reload()
-                            })
-                            
+                                swal({
+                                    text:res.data.msg,
+                                    icon:"success"
+                                }).then(res => {
+                                    window.location.reload()
+                                })
+                                
 
-                        }else{
-                            swal({
-                                text:res.data.msg,
-                                icon:"error"
-                            })
-                        }
+                            }else{
+                                swal({
+                                    text:res.data.msg,
+                                    icon:"error"
+                                })
+                            }
 
-                    })
+                        })
+                    }
 
                 }
                     
