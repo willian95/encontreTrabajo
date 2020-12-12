@@ -19,7 +19,7 @@
                     <div class="a-basicos-postulante-img j-center"><img class="basicos-postulante-c-4" :src="imagePreview" alt="postulante"></div>
                     <label class="text-center-input-curriculum" for="image">Foto de Perfil</label>
                     <p class="text-center">
-                        <button class="btn btn-danger">Eliminar</button>
+                        <button class="btn btn-danger" @click="deleteField('image')">Eliminar</button>
                     </p>
                 </div>
                 <div class="col-md-4 media-perfil-c-4">
@@ -32,7 +32,7 @@
                     </div>
                         <label class="text-center-input-curriculum" for="video">Video de Presentación</label>
                         <p class="text-center">
-                            <button class="btn btn-danger">Eliminar</button>
+                            <button class="btn btn-danger" @click="deleteField('video')">Eliminar</button>
                         </p>
                 </div>
                 <div class="col-md-4 media-perfil-c-4">
@@ -43,7 +43,7 @@
                     </div>
                     <label class="text-center-input-curriculum" for="curriculum">Curriculum</label>
                     <p class="text-center">
-                        <button class="btn btn-danger">Eliminar</button>
+                        <button class="btn btn-danger" @click="deleteField('curriculum')">Eliminar</button>
                     </p>
                 </div>
             </div>
