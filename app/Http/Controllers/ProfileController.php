@@ -595,8 +595,8 @@ class ProfileController extends Controller
                 $age = Carbon::parse($profile->birth_date)->age;
                 $moveRegionArray = explode(",", $profile->move_regions);
                 $moveRegions = Region::whereIn("id", $moveRegionArray)->get();
-
-                return view("users.showAdminUserProfile", ["user" => $user, "profile" => $profile,"age" =>$age, "moveRegions" => json_encode($moveRegions)]);
+                
+                return view("users.showAdminUserProfile", ["user" => $user, "profile" => $profile,"age" =>$age, "moveRegions" => json_encode(addslashes($moveRegions))]);
             }
 
             else{
