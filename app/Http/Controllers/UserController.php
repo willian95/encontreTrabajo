@@ -93,7 +93,7 @@ class UserController extends Controller
 
         try{
 
-            $user = App\User::where("email", $request->email)->first();
+            $user = User::where("email", $request->email)->first();
             $to_name = $user->name;
             $to_email = $user->email;
             $data = ["messageMail" => $request->text];
