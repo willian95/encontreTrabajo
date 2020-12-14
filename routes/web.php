@@ -205,6 +205,7 @@ Route::post("/admin/statistics/categories/count", "StatisticController@searchedC
 
 Route::get("/admin/ads", "AdsController@index");
 Route::post("/admin/ads/update", "AdsController@update");
+Route::post("/admin/ads/delete", "AdsController@delete");
 
 Route::get("/admin/business/index", "UserController@business");
 Route::get('/admin/business/fetch/{page}', "UserController@fetchBusiness");

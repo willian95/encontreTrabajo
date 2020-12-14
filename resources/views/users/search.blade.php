@@ -120,8 +120,32 @@
             </div>
 
             <div class="col-md-2">
-                <img style="width: 100%;" class="publicidad" src="{{ url('user/assets/img/login.jpg') }}" alt="publicidad">
-                <img style="width: 100%;" class="publicidad" src="{{ url('user/assets/img/login.jpg') }}" alt="publicidad">
+                @if(App\Ad::where("id", 8)->first())
+                    <a href="{{ App\Ad::where('id', 8)->first()->link }}" target="_blank">
+                    
+                        @if(App\Ad::where('id', 8)->first()->type == 'video')
+                        <video style="height: 180px !important" controls>
+                            <source src="{{ App\Ad::where('id', 8)->first()->image }}" type="video/mp4">
+                        </video>
+                        @else
+                        <img style="height: 180px !important" src="{{ App\Ad::where('id', 8)->first()->image }}" alt="">
+                        @endif
+                        
+                    </a>
+                @endif
+                @if(App\Ad::where("id", 9)->first())
+                    <a href="{{ App\Ad::where('id', 9)->first()->link }}" target="_blank">
+                    
+                        @if(App\Ad::where('id', 9)->first()->type == 'video')
+                        <video style="height: 180px !important" controls>
+                            <source src="{{ App\Ad::where('id', 9)->first()->image }}" type="video/mp4">
+                        </video>
+                        @else
+                        <img style="height: 180px !important" src="{{ App\Ad::where('id', 9)->first()->image }}" alt="">
+                        @endif
+                        
+                    </a>
+                @endif
             </div>
         </div>
 

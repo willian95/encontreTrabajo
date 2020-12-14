@@ -78,14 +78,32 @@
     </div>
     <div class="col-md-2 w-100">
         <div class="contenido-publicitario-empresas">
-        <div class="alert  alert-dismissible">
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
-            <img class="contenido-publicitario-empresas_img" src="{{ asset('user/assets/img/login.jpg') }}" alt="">
-        </div>
-        <div class="alert  alert-dismissible">
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
-            <img class="contenido-publicitario-empresas_img" src="{{ asset('user/assets/img/login.jpg') }}" alt="">
-        </div>
+        @if(App\Ad::where("id", 1)->first())
+            <a href="{{ App\Ad::where('id', 1)->first()->link }}" target="_blank">
+            
+                @if(App\Ad::where('id', 1)->first()->type == 'video')
+                <video style="width: 100%;" controls>
+                    <source src="{{ App\Ad::where('id', 1)->first()->image }}" type="video/mp4">
+                </video>
+                @else
+                <img style="width: 100% !important" src="{{ App\Ad::where('id', 1)->first()->image }}" alt="">
+                @endif
+                
+            </a>
+        @endif
+        @if(App\Ad::where("id", 2)->first())
+            <a href="{{ App\Ad::where('id', 2)->first()->link }}" target="_blank">
+                
+                @if(App\Ad::where('id', 2)->first()->type == 'video')
+                <video style="width: 100%;" controls>
+                    <source src="{{ App\Ad::where('id', 2)->first()->image }}" type="video/mp4">
+                </video>
+                @else
+                <img style="width: 100% !important" src="{{ App\Ad::where('id', 2)->first()->image }}" alt="">
+                @endif
+                
+            </a>
+        @endif
 
         </div>
     </div>

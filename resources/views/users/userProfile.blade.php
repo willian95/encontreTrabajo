@@ -202,8 +202,32 @@
                                 </form>
                             </div>
                             <div class="row media-perfil-basicos-publicidad" style="padding-top: 1rem;">
-                                <img class="publicidad" src="{{ asset('user/assets/img/login.jpg') }}" alt="publicidad">
-                                <img class="publicidad" src="{{ asset('user/assets/img/login.jpg') }}" alt="publicidad">
+                                @if(App\Ad::where("id", 4)->first())
+                                    <a href="{{ App\Ad::where('id', 3)->first()->link }}" target="_blank">
+                                    
+                                        @if(App\Ad::where('id', 4)->first()->type == 'video')
+                                        <video style="height: 180px !important" controls>
+                                            <source src="{{ App\Ad::where('id', 4)->first()->image }}" type="video/mp4">
+                                        </video>
+                                        @else
+                                        <img style="height: 180px !important" src="{{ App\Ad::where('id', 4)->first()->image }}" alt="">
+                                        @endif
+                                        
+                                    </a>
+                                @endif
+                                @if(App\Ad::where("id", 5)->first())
+                                    <a href="{{ App\Ad::where('id', 5)->first()->link }}" target="_blank">
+                                    
+                                        @if(App\Ad::where('id', 5)->first()->type == 'video')
+                                        <video style="height: 180px !important" controls>
+                                            <source src="{{ App\Ad::where('id', 5)->first()->image }}" type="video/mp4">
+                                        </video>
+                                        @else
+                                        <img style="height: 180px !important" src="{{ App\Ad::where('id', 5)->first()->image }}" alt="">
+                                        @endif
+                                        
+                                    </a>
+                                @endif
                             </div>
                         </div>
                         <div class="button-perfil-basico">

@@ -116,10 +116,19 @@
                 </div>
                 <div class="col-md-12 opciones-perfil-encontre-trabajo-usuario-cajapublicitaria">
                     <div class="opciones-perfil-encontre-trabajo-usuario-publicidad">
-                        <div class="alert  alert-dismissible">
-                            <button type="button" class="close" data-dismiss="alert">&times;</button>
-                            <img class="opciones-perfil-encontre-trabajo-usuario-publicidad_img" src="{{ asset('user/assets/img/login.jpg') }}" alt="">
-                        </div>
+                        @if(App\Ad::where("id", 3)->first())
+                            <a href="{{ App\Ad::where('id', 3)->first()->link }}" target="_blank">
+                            
+                                @if(App\Ad::where('id', 3)->first()->type == 'video')
+                                <video style="width: 100%;" controls>
+                                    <source src="{{ App\Ad::where('id', 3)->first()->image }}" type="video/mp4">
+                                </video>
+                                @else
+                                <img style="width: 100% !important" src="{{ App\Ad::where('id', 3)->first()->image }}" alt="">
+                                @endif
+                                
+                            </a>
+                        @endif
                     </div>
                 </div>
             </div>

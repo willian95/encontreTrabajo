@@ -287,8 +287,32 @@
                     </div>
                     <div class="col-md-3 ">
                         <div class="row media-perfil-basicos-publicidad d-flex" style="margin-top: 5rem;">
-                            <img class="publicidad" src="{{ asset('user/assets/img/login.jpg') }}" alt="publicidad">
-                            <img class="publicidad" src="{{ asset('user/assets/img/login.jpg') }}" alt="publicidad">
+                            @if(App\Ad::where("id", 6)->first())
+                                    <a href="{{ App\Ad::where('id', 6)->first()->link }}" target="_blank">
+                                    
+                                        @if(App\Ad::where('id', 6)->first()->type == 'video')
+                                        <video style="height: 180px !important" controls>
+                                            <source src="{{ App\Ad::where('id', 6)->first()->image }}" type="video/mp4">
+                                        </video>
+                                        @else
+                                        <img style="height: 180px !important" src="{{ App\Ad::where('id', 6)->first()->image }}" alt="">
+                                        @endif
+                                        
+                                    </a>
+                                @endif
+                                @if(App\Ad::where("id", 7)->first())
+                                    <a href="{{ App\Ad::where('id', 7)->first()->link }}" target="_blank">
+                                    
+                                        @if(App\Ad::where('id', 7)->first()->type == 'video')
+                                        <video style="height: 180px !important" controls>
+                                            <source src="{{ App\Ad::where('id', 7)->first()->image }}" type="video/mp4">
+                                        </video>
+                                        @else
+                                        <img style="height: 180px !important" src="{{ App\Ad::where('id', 7)->first()->image }}" alt="">
+                                        @endif
+                                        
+                                    </a>
+                                @endif
                         </div>
                     </div>
                 </div>
