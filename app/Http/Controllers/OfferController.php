@@ -96,7 +96,12 @@ class OfferController extends Controller
 
         try{
 
-            $offer = Offer::where("user_id", \Auth::user()->id)->where("id", $request->id)->first();
+            if(\Auth::user()->role_id == 1){
+                $offer = Offer::where("id", $request->id)->first();
+            }else{
+                $offer = Offer::where("user_id", \Auth::user()->id)->where("id", $request->id)->first();
+            }
+            
             if($offer){
 
                 $previousHighlighted = 0;

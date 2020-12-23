@@ -3,8 +3,8 @@
 @section("content")
 
     <section class="content-register" id="login-dev">
-        <div class="loader-cover" v-if="loading == true">
-            <div class="loader"></div>
+        <div class="loader-cover-custom" v-if="loading == true">
+            <div class="loader-custom"></div>
         </div>
         <div class=" content-register">
             <div class="row">
@@ -12,7 +12,6 @@
                     <div class="section-logo">
                         <img class="content-logo-fondo" src="{{ asset('user/assets/img/login2.jpg') }}" alt="">
                         <div class="mask">
-
                         </div>
                     </div>
                     <div class="content-logo-img">
@@ -68,9 +67,6 @@
                                         <a href="{{ env('LANDING_URL') }}" class="btn btn-outline-primary">Volver al inicio</a>
                                     </p>
                                 
-
-                                    
-                                    
                                 </form>
                             </div>
                         </div>

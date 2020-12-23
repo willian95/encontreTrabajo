@@ -42,22 +42,43 @@
                         </div>
                         <div class="card-body">
                             <!--begin: Datatable-->
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="">Buscar</label>
+                                        <input type="text" class="form-control" placeholder="Nombre o email" @keyup="search()" v-model="query"> 
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="">Ordenar por:</label>
+                                        <select class="form-control" @change="fetch()" v-model="order">
+                                            <option value="1">Nombre - ascendente</option>
+                                            <option value="2">Nombre - descendente</option>
+                                            <option value="3">Email - ascendente</option>
+                                            <option value="4">Email - descendente</option>
+                                            <option value="5">Creación - ascendente</option>
+                                            <option value="6">Creación - descendente</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
                             <table class="table table-bordered table-checkable" id="kt_datatable">
                                 <thead>
                                     <tr>
-                                        <th>#</th>
+                           
                                         <th>Nombre</th>
                                         <th>Email</th>
-                                        <th>Rol</th>
+                                        <th>Fecha de Registro</th>
                                         <th>Acciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr v-for="(user, index) in users">
-                                        <th>@{{ index + 1 }}</th>
+                              
                                         <td><a :href="'{{ url('/profile/show/') }}'+'/'+user.id">@{{ user.name }} @{{ user.lastname }}</a></td>
                                         <td data-toggle="modal" data-target="#sendEmail" @click="setEmail(user.email)">@{{ user.email }}</td>
-                                        <td>@{{ user.role.name }}</td>
+                                        <td>@{{ dateFormatter(user.created_at) }}</td>
                                         <td>
                                             <button class="btn btn-danger" @click="erase(user.id)">eliminar</button>
                                         </td>
@@ -116,8 +137,10 @@
                     users:[],
                     pages:0,
                     page:1,
+                    order:6,
                     text:"",
                     email:"",
+                    query:"",
                     loading:false
                 }
             },
@@ -127,7 +150,7 @@
 
                     this.page = page
 
-                    axios.get("{{ url('/admin/user/fetch/') }}"+"/"+page)
+                    axios.get("{{ url('/admin/user/fetch/') }}"+"/"+page+"?order="+this.order)
                     .then(res => {
 
                         this.users = res.data.users
@@ -140,6 +163,13 @@
                         });
                     })
 
+                },
+                dateFormatter(date){
+                    
+                    let year = date.substring(0, 4)
+                    let month = date.substring(5, 7)
+                    let day = date.substring(8, 10)
+                    return day+"-"+month+"-"+year
                 },
                 setEmail(email){
                     this.text = ""
@@ -184,6 +214,24 @@
 
                         })
                     }
+
+                },
+                search(){
+
+                    if(this.query != ""){
+
+                        axios.post("{{ url('/admin/user/search') }}", {"search": this.query}).then(res => {
+
+                            this.users = res.data.users
+                            this.pages = 1
+
+                        })
+
+                    }else{
+                        this.fetch()
+                    }
+
+                    
 
                 }
 

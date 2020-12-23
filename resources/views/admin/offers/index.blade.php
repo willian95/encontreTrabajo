@@ -38,6 +38,7 @@
                                         <th>Categoría</th>
                                         <th>Status</th>
                                         <th>Estadísticas</th>
+                                        <th>Acciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -49,8 +50,12 @@
                                         <td>@{{ offer.job_position }}</td>
                                         <td>@{{ offer.category.name }}</td>
                                         <td>@{{ offer.status }}</td>
+                                        
                                         <td>
                                             <button class="btn btn-info" data-toggle="modal" data-target="#stadisticModal" @click="showStatiscitcs(offer.id)"><i class="fas fa-chart-area"></i></button>
+                                        </td>
+                                        <td>
+                                            <a :href="'{{ url('/admin/offers/edit/') }}'+'/'+offer.id" class="btn btn-success"><i class="fas fa-edit"></i></a>
                                         </td>
                                     </tr>
                                 </tbody>

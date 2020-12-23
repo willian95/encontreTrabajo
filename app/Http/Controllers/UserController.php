@@ -20,13 +20,39 @@ class UserController extends Controller
         return view('admin.business.index');
     }
 
-    function fetch($page = 1){
+    function fetch($page = 1, Request $request){
 
         try{
 
             $skip = ($page - 1) * 20;
 
-            $users = User::with("role")->skip($skip)->where("role_id", 2)->take(20)->get();
+            $query = User::with("role")->skip($skip)->where("role_id", 2)->take(20);
+            
+            if($request->order == 1){
+                $query = $query->orderBy("name", "asc");
+            }
+
+            else if($request->order == 2){
+                $query = $query->orderBy("name", "desc");
+            }
+
+            else if($request->order == 3){
+                $query = $query->orderBy("email", "asc");
+            }
+
+            else if($request->order == 4){
+                $query = $query->orderBy("email", "desc");
+            }
+
+            else if($request->order == 5){
+                $query = $query->orderBy("created_at", "asc");
+            }
+
+            else{
+                $query = $query->orderBy("created_at", "desc");
+            }
+
+            $users = $query->get();
             $usersCount = User::with("role")->where("role_id", 2)->count();
 
             return response()->json(["success" => true, "users" => $users, "usersCount" => $usersCount]);
@@ -45,7 +71,35 @@ class UserController extends Controller
 
             $skip = ($page - 1) * 20;
 
-            $users = User::with("role")->skip($skip)->where("role_id", 3)->take(20)->get();
+
+            $query = User::with("role")->skip($skip)->where("role_id", 3)->take(20);
+
+            if($request->order == 1){
+                $query = $query->orderBy("name", "asc");
+            }
+
+            else if($request->order == 2){
+                $query = $query->orderBy("name", "desc");
+            }
+
+            else if($request->order == 3){
+                $query = $query->orderBy("email", "asc");
+            }
+
+            else if($request->order == 4){
+                $query = $query->orderBy("email", "desc");
+            }
+
+            else if($request->order == 5){
+                $query = $query->orderBy("created_at", "asc");
+            }
+
+            else{
+                $query = $query->orderBy("created_at", "desc");
+            }
+
+            $users = $query->get();
+
             $usersCount = User::with("role")->where("role_id", 3)->count();
 
             return response()->json(["success" => true, "users" => $users, "usersCount" => $usersCount]);
@@ -138,6 +192,20 @@ class UserController extends Controller
         }
 
         return response()->json(["success" => true, "msg" => "Campo eliminado"]);
+
+    }
+
+    function search(Request $request){
+
+        $users = User::with("role")->where("name", "like", "%".$request->search."%")->orWhere("email", "like", "%".$request->search."%")->take(40)->where("role_id", 2)->get();
+        return response()->json(["users" => $users]);
+
+    }
+
+    function searchBusiness(Request $request){
+
+        $users = User::with("role")->where("name", "like", "%".$request->search."%")->orWhere("email", "like", "%".$request->search."%")->take(40)->where("role_id", 3)->get();
+        return response()->json(["users" => $users]);
 
     }
 

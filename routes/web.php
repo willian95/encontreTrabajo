@@ -71,6 +71,8 @@ Route::middleware(['auth', 'user'])->group(function(){
 
 });
 
+Route::post("/offers/update", "OfferController@update");
+
 Route::middleware(['auth', 'business'])->group(function(){
 
     Route::get('/profile/business', "ProfileController@businessIndex");
@@ -80,7 +82,7 @@ Route::middleware(['auth', 'business'])->group(function(){
     Route::get("/offers/create", "OfferController@create");
     Route::get("/offers/edit/{id}", "OfferController@edit");
     Route::post("/offers/store", "OfferController@store");
-    Route::post("/offers/update", "OfferController@update");
+    
     Route::post("/offers/delete", "OfferController@delete");
 
     Route::get("/user/service-amount", "UserController@getServiceAmount");
@@ -144,6 +146,8 @@ Route::get('/admin/dashboard', "AdminController@index");
 Route::get('/admin/user/index', "UserController@index");
 Route::get('/admin/user/fetch/{page}', "UserController@fetch");
 Route::post('/admin/user/delete', "UserController@delete");
+Route::post('/admin/user/search', "UserController@search");
+Route::post('/admin/user/searchBusiness', "UserController@searchBusiness");
 
 Route::get('/admin/plans', "PlanController@adminIndex")->middleware('auth');
 Route::get("/admin/plans/fetch", "PlanController@fetch");
@@ -155,6 +159,7 @@ Route::get('/admin/offers', "AdminOfferController@index")->middleware('auth');
 Route::get('/admin/offers/fetch/{page}', "AdminOfferController@fetch");
 Route::post('/admin/offers/search', "AdminOfferController@search");
 Route::post('/admin/offers/statistics', "AdminOfferController@statistics");
+Route::get("/admin/offers/edit/{id}", "AdminOfferController@edit");
 
 Route::get("/admin/landing-business", "LandingBusinessController@index");
 Route::get("/admin/landing-business/fetch", "LandingBusinessController@fetch");

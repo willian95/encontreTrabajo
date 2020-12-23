@@ -65,4 +65,11 @@ class AdminOfferController extends Controller
 
     }
 
+    function edit($id){
+
+        $offer = Offer::where("id", $id)->first();
+        return view("admin.offers.edit", ["offer" => $offer]);
+
+    }
+
 }
