@@ -65,7 +65,7 @@ class UserController extends Controller
 
     }
 
-    function fetchBusiness($page = 1){
+    function fetchBusiness($page = 1, Request $request){
 
         try{
 
