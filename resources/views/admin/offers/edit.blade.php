@@ -232,7 +232,7 @@
                                 icon:"success"
                             }).then(res => {
 
-                                window.location.href="{{ url('/home') }}"
+                                window.location.href="{{ url('/admin/dashboard') }}"
 
                             })
 
