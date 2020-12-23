@@ -99,14 +99,13 @@ class UserController extends Controller
             }
 
             $users = $query->get();
-
             $usersCount = User::with("role")->where("role_id", 3)->count();
 
             return response()->json(["success" => true, "users" => $users, "usersCount" => $usersCount]);
 
         }catch(\Exception $e){
 
-            return response()->json(["success" => false, "msg" => "Error en el servidor"]);
+            return response()->json(["success" => false, "msg" => "Error en el servidor", "err" => $e->getMessage(), "ln" => $e->getLine()]);
 
         }
 
