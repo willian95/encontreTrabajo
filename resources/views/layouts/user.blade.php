@@ -364,7 +364,7 @@
                                     <li><a  class="dropdown-item" href="{{ url('/plans/available') }}">Planes</a></li>
                                     <li><a class="dropdown-item" href="{{ url('/my-proposals') }}">Ofertas Respondidas</a></li>
                                 @endif
-                                <li><a class="dropdown-item" href="{{ url('/logout') }}">Cerrar sesión</a></li>
+                                <li><a class="dropdown-item" href="{{ url('/logout') }}">Cerrar sesión 2</a></li>
                             </ul>
                         </div>
                     </div>
